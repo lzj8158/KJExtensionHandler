@@ -15,8 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong,readonly)NSString *pinYin;
 /// 随机汉字
 + (NSString*)kj_randomCreateChinese:(NSInteger)count;
-/// 文字转图片
-+ (UIImage*)kj_imageFromText:(NSArray*)contents ContentWidth:(CGFloat)width Font:(UIFont*)font TextColor:(UIColor*)textColor BgColor:(UIColor*_Nullable)bgColor;
 
 @end
 

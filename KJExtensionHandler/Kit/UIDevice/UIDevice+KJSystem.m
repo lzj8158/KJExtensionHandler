@@ -58,15 +58,5 @@
         if (complete) complete(finished);
     }];
 }
-/// 跳转到设置
-+ (void)kj_{
-    if (UIApplicationOpenSettingsURLString != NULL) {
-        UIApplication *application = [UIApplication sharedApplication];
-        NSURL *URL = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-        if ([application respondsToSelector:@selector(openURL:options:completionHandler:)]) {
-            [application openURL:URL options:@{} completionHandler:nil];
-        }
-    }
-}
 
 @end

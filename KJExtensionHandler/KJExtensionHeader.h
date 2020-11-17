@@ -90,6 +90,8 @@ Github地址：https://github.com/yangKJ
 //#import "UITextView+KJHyperlink.h" // 超链接处理
 //#import "UITextView+KJBackout.h" // 撤销输入
 
+//#import "UIImageView+KJLetters.h" // 头像浏览和文字头像
+
 #import "UIColor+KJExtension.h"/// 颜色相关扩展
 #import "UIColor+KJExtension2.h"
 

@@ -25,6 +25,7 @@
         [temp1 addObject:@{@"VCName":@"KJSliderVC",@"describeName":@"Slider渐变色滑块"}];
         [temp1 addObject:@{@"VCName":@"KJTextViewVC",@"describeName":@"TextView设置限制字数"}];
         [temp1 addObject:@{@"VCName":@"KJCollectionVC",@"describeName":@"CollectView滚动处理"}];
+        [temp1 addObject:@{@"VCName":@"KJImageViewVC",@"describeName":@"ImageView文字头像"}];
         [temp1 addObject:@{@"VCName":@"KJToastVC",@"describeName":@"Toast处理"}];
                                                                                                                              
         NSMutableArray *temp0 = [NSMutableArray array];
