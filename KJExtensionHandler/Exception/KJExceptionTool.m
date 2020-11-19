@@ -8,12 +8,12 @@
 #import "KJExceptionTool.h"
 
 @interface KJExceptionTool ()
-@property(nonatomic,strong,readwrite,class) kExceptionBlock exceptionblock;
+@property(nonatomic,copy,readwrite,class) kExceptionBlock exceptionblock;
 @end
 
 @implementation KJExceptionTool
 static kExceptionBlock _exceptionblock = nil;
-+ (kExceptionBlock)exceptionblock{return _exceptionblock;}
++ (kExceptionBlock)exceptionblock{ return _exceptionblock;}
 + (void)setExceptionblock:(kExceptionBlock)exceptionblock{
     _exceptionblock = exceptionblock;
 }
@@ -26,6 +26,7 @@ static kExceptionBlock _exceptionblock = nil;
         [NSDictionary kj_openExchangeMethod];
         [NSMutableDictionary kj_openExchangeMethod];
         [NSMutableString kj_openExchangeMethod];
+        [NSObject kj_openExchangeMethod];
     });
 }
 /// 异常回调处理
@@ -36,7 +37,7 @@ static kExceptionBlock _exceptionblock = nil;
 + (void)kj_crashDealWithException:(NSException*)exception CrashTitle:(NSString*)title{
     NSString *crashMessage = [self kj_analysisCallStackSymbols:[NSThread callStackSymbols]];
     if (crashMessage == nil) crashMessage = @"崩溃方法定位失败,请查看函数调用栈来排查错误原因";
-    NSString *crashName   = exception.name;
+    NSString *crashName = exception.name;
     NSString *crashReason = exception.reason;
     crashReason = [crashReason stringByReplacingOccurrencesOfString:@"avoidCrash" withString:@""];
     NSLog(@"========== crash 日志 ==========\ncrashName: %@\ncrashTitle: %@\ncrashReason: %@\ncrashMessage: %@",crashName,title,crashReason,crashMessage);

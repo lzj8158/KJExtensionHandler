@@ -39,7 +39,7 @@
 }
 
 //MARK: - 验证手机号码是否有效
-- (BOOL)kj_mobileNumberIsCorrect{
+- (BOOL)kj_validateMobileNumber{
     if (self.length != 11) return NO;
     NSString *mo = @"^1(3[0-9]|4[57]|5[0-35-9]|7[0135678]|8[0-9])\\d{8}$";
     NSString *cm = @"^1(3[4-9]|4[7]|5[0-27-9]|7[08]|8[2-478])\\d{8}$";
@@ -49,7 +49,7 @@
     NSPredicate *regexcm = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", cm];
     NSPredicate *regexcu = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", cu];
     NSPredicate *regexct = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", ct];
-    if (([regexmo evaluateWithObject:self] == YES) || ([regexcm evaluateWithObject:self] == YES) || ([regexct evaluateWithObject:self] == YES) || ([regexcu evaluateWithObject:self] == YES)){
+    if ([regexmo evaluateWithObject:self] || [regexcm evaluateWithObject:self] || [regexct evaluateWithObject:self] || [regexcu evaluateWithObject:self]){
         return YES;
     }else{
         return NO;
@@ -68,13 +68,12 @@
     NSString *value = self;
     value = [value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSInteger length = 0;
-    if (!value){
+    if (!value) {
         return NO;
-    }else {
+    }else{
         length = value.length;
         if (length != 15 && length != 18) return NO;
     }
-    // 省份代码
     NSArray *areasArray =@[@"11",@"12", @"13",@"14", @"15",@"21", @"22",@"23", @"31",@"32", @"33",@"34", @"35",@"36", @"37",@"41", @"42",@"43", @"44",@"45", @"46",@"50", @"51",@"52", @"53",@"54", @"61",@"62", @"63",@"64", @"65",@"71", @"81",@"82", @"91"];
     NSString *valueStart2 = [value substringToIndex:2];
     BOOL areaFlag = NO;
@@ -91,18 +90,18 @@
     switch (length){
         case 15:
             year = [value substringWithRange:NSMakeRange(6,2)].intValue + 1900;
-            if (year %4 ==0 || (year %100 ==0 && year %4 ==0)){
-                regularExpression = [[NSRegularExpression alloc] initWithPattern:@"^[1-9][0-9]{5}[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|[1-2][0-9]))[0-9]{3}$" options:NSRegularExpressionCaseInsensitive error:nil];//测试出生日期的合法性
-            }else {
-                regularExpression = [[NSRegularExpression alloc]initWithPattern:@"^[1-9][0-9]{5}[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|1[0-9]|2[0-8]))[0-9]{3}$" options:NSRegularExpressionCaseInsensitive error:nil];//测试出生日期的合法性
+            if (year %4 ==0 || (year %100 ==0 && year %4 ==0)) {
+                regularExpression = [[NSRegularExpression alloc] initWithPattern:@"^[1-9][0-9]{5}[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|[1-2][0-9]))[0-9]{3}$" options:NSRegularExpressionCaseInsensitive error:nil];
+            }else{
+                regularExpression = [[NSRegularExpression alloc]initWithPattern:@"^[1-9][0-9]{5}[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|1[0-9]|2[0-8]))[0-9]{3}$" options:NSRegularExpressionCaseInsensitive error:nil];
             }
             return [regularExpression numberOfMatchesInString:value options:NSMatchingReportProgress range:NSMakeRange(0, value.length)] > 0 ? YES : NO;
         case 18:
             year = [value substringWithRange:NSMakeRange(6,4)].intValue;
-            if (year % 4 == 0 || (year % 100 == 0 && year % 4 == 0)){
-                regularExpression = [[NSRegularExpression alloc]initWithPattern:@"^[1-9][0-9]{5}19[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|[1-2][0-9]))[0-9]{3}[0-9Xx]$" options:NSRegularExpressionCaseInsensitive error:nil];//测试出生日期的合法性
-            }else {
-                regularExpression = [[NSRegularExpression alloc]initWithPattern:@"^[1-9][0-9]{5}19[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|1[0-9]|2[0-8]))[0-9]{3}[0-9Xx]$" options:NSRegularExpressionCaseInsensitive error:nil];//测试出生日期的合法性
+            if (year % 4 == 0 || (year % 100 == 0 && year % 4 == 0)) {
+                regularExpression = [[NSRegularExpression alloc]initWithPattern:@"^[1-9][0-9]{5}19[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|[1-2][0-9]))[0-9]{3}[0-9Xx]$" options:NSRegularExpressionCaseInsensitive error:nil];
+            }else{
+                regularExpression = [[NSRegularExpression alloc]initWithPattern:@"^[1-9][0-9]{5}19[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|1[0-9]|2[0-8]))[0-9]{3}[0-9Xx]$" options:NSRegularExpressionCaseInsensitive error:nil];
             }
             numberofMatch = [regularExpression numberOfMatchesInString:value options:NSMatchingReportProgress range:NSMakeRange(0, value.length)];
             if(numberofMatch > 0){
@@ -112,12 +111,18 @@
                 NSString *JYM = @"10X98765432";
                 M = [JYM substringWithRange:NSMakeRange(Y,1)];
                 return [M isEqualToString:[value substringWithRange:NSMakeRange(17,1)]];
-            }else {
+            }else{
                 return NO;
             }
         default:
             return NO;
     }
+}
+/// 验证银行卡
+- (BOOL)kj_validateBankCardNumber{
+    NSString * const BANKCARD = @"^(\\d{16}|\\d{19})$";
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", BANKCARD];
+    return [predicate evaluateWithObject:self];
 }
 
 @end

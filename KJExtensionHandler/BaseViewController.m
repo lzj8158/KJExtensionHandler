@@ -45,7 +45,7 @@
             };
             return info;
         }, ^(UIButton * _Nonnull kButton) {
-            UIImage *image = [UIImage kj_captureScreen:weakself.view Rect:CGRectMake(0, kSTATUSBAR_NAVIGATION_HEIGHT, kScreenW, kScreenH-kSTATUSBAR_NAVIGATION_HEIGHT) Quality:5];
+            UIImage *image = [UIImage kj_captureScreen:weakself.view Rect:CGRectMake(0, kSTATUSBAR_NAVIGATION_HEIGHT, kScreenW, kScreenH-kSTATUSBAR_NAVIGATION_HEIGHT) Quality:3];
             [UIDevice kj_shareActivityWithItems:@[UIImagePNGRepresentation(image)] ViewController:weakself Complete:^(BOOL success) {
                 [weakself.navigationController.view makeToast:success?@"分享成功":@"分享失败"];
             }];

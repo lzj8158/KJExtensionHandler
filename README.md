@@ -106,6 +106,7 @@ pod 'KJExtensionHandler/Exception'
 #### Add 0.0.8
 1. UIImage+KJCapture 截图方法修改，提升截图质量
 2. 新增 UIImageView+KJLetters 头像浏览和文字头像
+3. 新增 UIScrollView+KJEmptyDataSet 空数据展示
 
 #### Add 0.0.7
 1. 重写 UIView+KJGestureBlock 解决手势共存问题

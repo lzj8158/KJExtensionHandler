@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void(^kObserveResultBlock) (id newData, id oldData,id owner);
 @interface NSObject (KJKVO)<KJNSObjectKVOExchangeMethodProtocol>
 /// 记录已经添加监听的keyPath与对应的block
-@property(strong,nonatomic,readonly)NSMutableDictionary *kObserveDictionary;
+@property(nonatomic,strong,readonly)NSMutableDictionary *kObserveDictionary;
 /// kvo监听
 - (void)kj_observeKey:(NSString*)key ObserveResultBlock:(kObserveResultBlock)block;
 

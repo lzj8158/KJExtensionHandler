@@ -92,6 +92,8 @@ Github地址：https://github.com/yangKJ
 
 //#import "UIImageView+KJLetters.h" // 头像浏览和文字头像
 
+//#import "UIScrollView+KJEmptyDataSet.h" // 没数据时状态
+
 #import "UIColor+KJExtension.h"/// 颜色相关扩展
 #import "UIColor+KJExtension2.h"
 

@@ -30,9 +30,9 @@
 }
 
 #pragma mark - Public
--(void)kj_observeKey:(NSString*)key ObserveResultBlock:(kObserveResultBlock)block{
-    [self addObserver:self forKeyPath:key options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:(__bridge_retained void *)([block copy])];
-    if(!self.kObserveDictionary) self.kObserveDictionary = [NSMutableDictionary dictionary];
+- (void)kj_observeKey:(NSString*)key ObserveResultBlock:(kObserveResultBlock)block{
+    [self addObserver:self forKeyPath:key options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:(__bridge_retained void *)([block copy])];
+    if(self.kObserveDictionary == nil) self.kObserveDictionary = [NSMutableDictionary dictionary];
     [self.kObserveDictionary setValue:block forKey:key];
 }
 #pragma mark - kvo
@@ -48,7 +48,7 @@ static void kj_swizzleMethod(Class class, SEL originalSelector, SEL swizzledSele
     Method originalMethod = class_getInstanceMethod(class, originalSelector);
     Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
     BOOL didAddMethod = class_addMethod(class, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod));
-    if (didAddMethod){
+    if (didAddMethod) {
         class_replaceMethod(class, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod));
     }else{
         method_exchangeImplementations(originalMethod, swizzledMethod);

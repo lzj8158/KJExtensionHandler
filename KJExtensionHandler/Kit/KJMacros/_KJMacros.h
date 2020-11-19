@@ -26,11 +26,11 @@
 #endif
 
 #define kNSSTRING_NOT_NIL(value)  value ? value : @""
-#define kNSARRAY_NOT_NIL(value)  value ? value : @[]
+#define kNSARRAY_NOT_NIL(value)   value ? value : @[]
 #define kNSDICTIONARY_NOT_NIL(value)  value ? value : @{}
 #define kNSSTRING_VALUE_OPTIONAL(value)  [value isKindOfClass:[NSString class] ] ? value : nil
-#define kINT_TO_STRING(intValue) [NSString stringWithFormat:@"%ld", (long)intValue]
-#define kDELEGATE_HAS_METHOD(method) self.delegate&&[self.delegate respondsToSelector:@selector(method)]
+#define kINT_TO_STRING(intValue)  [NSString stringWithFormat:@"%ld", (long)intValue]
+#define kDELEGATE_HAS_METHOD(method)  self.delegate&&[self.delegate respondsToSelector:@selector(method)]
 #define kDELEGATE_WITH_NAME_HAS_METHOD(delegateName,method) self.delegateName&&[self.delegateName respondsToSelector:@selector(method)]
 #define kTN_DEPRECATED(message) __attribute((deprecated(message)))
 
@@ -39,7 +39,7 @@
 // block相关宏
 #define kBlockSafeRun(block, ...) block ? block(__VA_ARGS__) : nil
 // 版本判定 大于等于某个版本
-#define kCurrentSystemVersion(version) ([[[UIDevice currentDevice] systemVersion] compare:@#version options:NSNumericSearch] != NSOrderedAscending)
+#define kCurrentSystemVersion(version) ([[[UIDevice currentDevice] systemVersion] compare:@#version options:NSNumericSearch]!=NSOrderedAscending)
 // 获取时间间隔宏
 #define kTimeTick CFAbsoluteTime start = CFAbsoluteTimeGetCurrent();
 #define kTimeTock NSLog(@"Time: %f", CFAbsoluteTimeGetCurrent() - start);
@@ -79,7 +79,7 @@
 #endif
 
 #pragma mark ********** 5.iPhoneX系列尺寸布局   *********
-// 判断是否为iPhone X 系列 这样写消除了在Xcode10上的警告
+// 判断是否为iPhone X 系列
 #define iPhoneX \
 ({BOOL isPhoneX = NO;\
 if (@available(iOS 13.0, *)) {\
@@ -118,7 +118,7 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 #define kISiPhoneXX (kISiPhone && kScreenMaxLength >  811.0)
 
 /// 支持横屏可以用下面的宏
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000 // 当前Xcode支持iOS8及以上
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
 #define kLandscapeScreenW    ([[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)]?[UIScreen mainScreen].nativeBounds.size.width/[UIScreen mainScreen].nativeScale:[UIScreen mainScreen].bounds.size.width)
 #define kLandscapeScreenH    ([[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)]?[UIScreen mainScreen].nativeBounds.size.height/[UIScreen mainScreen].nativeScale:[UIScreen mainScreen].bounds.size.height)
 #define kLandscapeScreenSize ([[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)]?CGSizeMake([UIScreen mainScreen].nativeBounds.size.width/[UIScreen mainScreen].nativeScale,[UIScreen mainScreen].nativeBounds.size.height/[UIScreen mainScreen].nativeScale):[UIScreen mainScreen].bounds.size)
@@ -128,7 +128,7 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 #define kLandscapeScreenSize [UIScreen mainScreen].bounds.size
 #endif
 
-#pragma mark ********** 6.颜色和图片相关   *********
+#pragma mark ********** 6.颜色和图片相关  *********
 #define UIColorFromHEXA(hex,a)    [UIColor colorWithRed:((hex&0xFF0000)>>16)/255.0f green:((hex&0xFF00)>>8)/255.0f blue:(hex&0xFF)/255.0f alpha:a]
 #define UIColorFromRGBA(r,g,b,a)  [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:a]
 #define UIColorHexFromRGB(hex)    UIColorFromHEXA(hex,1.0)
