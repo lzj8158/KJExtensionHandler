@@ -64,7 +64,6 @@
     CGFloat alpha = pixel[0]/255.0f;
     return alpha < 0.01f;
 }
-
 /// 文字转图片
 + (UIImage*)kj_textBecomeImageWithText:(NSString*)text Size:(CGSize)size BackgroundColor:(UIColor*)color TextAttributes:(NSDictionary*)attributes{
     CGRect bounds = CGRectMake(0, 0, size.width, size.height);

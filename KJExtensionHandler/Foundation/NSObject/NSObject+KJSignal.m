@@ -27,7 +27,7 @@
 }
 /// 接收消息处理
 - (void)kj_receivedSignalWithSender:(NSObject*)sender SignalBlock:(kSignalBlock)block{
-    if (!sender) return;
+    if (sender == nil) return;
     sender.signalblock = block;
 }
 

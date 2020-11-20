@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    KJColorSlider *slider = [[KJColorSlider alloc]initWithFrame:CGRectMake(20, 100, kScreenW-40, 30)];
+    __block KJColorSlider *slider = [[KJColorSlider alloc]initWithFrame:CGRectMake(20, 100, kScreenW-40, 30)];
     slider.value = 0.5;
     [self.view addSubview:slider];
     slider.colors = @[UIColorFromHEXA(0xF44336,1), UIColorFromHEXA(0xFFFFFF,1)];
@@ -30,7 +30,13 @@
     
     KJColorSlider *slider2 = [[KJColorSlider alloc] initWithFrame:CGRectMake(20, slider.bottom+30, kScreenW-40, 30)];
     slider2.value = 0.5;
-    slider2.colors = @[UIColorFromHEXA(0xFF0000,1),UIColorFromHEXA(0xFF7F00,1),UIColorFromHEXA(0xFFFF00,1),UIColorFromHEXA(0x00FF00,1),UIColorFromHEXA(0x00FFFF,1),UIColorFromHEXA(0x0000FF,1),UIColorFromHEXA(0x8B00FF,1)];
+    slider2.colors = @[UIColorFromHEXA(0xFF0000,1),
+                       UIColorFromHEXA(0xFF7F00,1),
+                       UIColorFromHEXA(0xFFFF00,1),
+                       UIColorFromHEXA(0x00FF00,1),
+                       UIColorFromHEXA(0x00FFFF,1),
+                       UIColorFromHEXA(0x0000FF,1),
+                       UIColorFromHEXA(0x8B00FF,1)];
     slider2.locations = @[@0.,@0.16,@(0.16*2),@(0.16*3),@(0.16*4),@(0.16*5),@1.];
     [self.view addSubview:slider2];
     
@@ -40,6 +46,14 @@
     slider3.borderWidth = 1.5;
     slider3.value = 0.5;
     [self.view addSubview:slider3];
+    
+    /// kvo
+    [slider kj_observeKey:@"progress" ObserveResultBlock:^(id  _Nonnull newValue, id  _Nonnull oldValue) {
+        NSLog(@"%@",newValue);
+    }];
+    [slider2 kj_observeKey:@"progress" ObserveResultBlock:^(id  _Nonnull newValue, id  _Nonnull oldValue) {
+        NSLog(@"---%@",newValue);
+    }];
 }
 
 @end
