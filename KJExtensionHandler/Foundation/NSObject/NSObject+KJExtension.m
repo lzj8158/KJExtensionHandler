@@ -6,7 +6,7 @@
 //  https://github.com/yangKJ/KJExtensionHandler
 
 #import "NSObject+KJExtension.h"
-#import <objc/runtime.h>
+
 @implementation NSObject (KJExtension)
 /// 获取该对象的所有属性，包含父类
 - (NSArray*)kj_getTotalPropertieNames{
