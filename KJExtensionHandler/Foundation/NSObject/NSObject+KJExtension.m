@@ -6,11 +6,11 @@
 //  https://github.com/yangKJ/KJExtensionHandler
 
 #import "NSObject+KJExtension.h"
-
+#import <objc/runtime.h>
 @implementation NSObject (KJExtension)
 /// 获取该对象的所有属性，包含父类
 - (NSArray*)kj_getTotalPropertieNames{
-    NSMutableArray *props = [NSMutableArray array];
+    NSMutableArray *temps = [NSMutableArray array];
     unsigned int outCount, i;
     Class targetClass = [self class];
     while (targetClass != [NSObject class]) {
@@ -19,12 +19,12 @@
             objc_property_t property = properties[i];
             const char *char_f = property_getName(property);
             NSString *propertyName = [NSString stringWithUTF8String:char_f];
-            [props addObject:propertyName];
+            [temps addObject:propertyName];
         }
         free(properties);
         targetClass = [targetClass superclass];
     }
-    return props;
+    return temps.mutableCopy;
 }
 #pragma mark - 动态添加属性
 - (NSMutableArray*)propertyNames{
