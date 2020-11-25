@@ -50,7 +50,7 @@
         }
         maxY = imageView.maxY;
     }
-    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(sp, maxY+4*sp, w, kScreenH-5*sp-maxY-kBOTTOM_SPACE_HEIGHT)];
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(sp, maxY+5*sp, w, w+2*sp)];
     imageView.contentMode = UIViewContentModeScaleAspectFit;
     imageView.backgroundColor = [UIColor.orangeColor colorWithAlphaComponent:0.1];
     [self.view addSubview:imageView];

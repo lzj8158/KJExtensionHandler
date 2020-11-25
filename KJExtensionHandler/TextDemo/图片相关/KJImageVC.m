@@ -31,7 +31,7 @@
     
     self.Button.kj_AcceptEventTime = 3;
     [self.Button kj_addAction:^(UIButton * _Nonnull kButton) {
-        UIImage *image = [weakself.Image1.image kj_waterMark:weakself.Image2.image InRect:CGRectMake(0, 0, weakself.Image1.image.size.width/4., weakself.Image1.image.size.width/4.)];
+        UIImage *image = [weakself.Image2.image kj_waterMark:weakself.Image1.image InRect:CGRectMake(20, 20, weakself.Image2.image.size.width/4., weakself.Image2.image.size.width/4.)];
         weakself.ImageView.image = image;
     }];
     self.Button2.kj_AcceptDealTime = 5;

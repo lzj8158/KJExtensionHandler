@@ -18,10 +18,10 @@
     CGFloat x,y;
     CGFloat sp = kAutoW(10);
     CGFloat w = (kScreenW-sp*2)/2.;
-    CGFloat h = (kScreenH-4*sp-kSTATUSBAR_NAVIGATION_HEIGHT)/3;
+    CGFloat h = (kScreenH-4*sp-kSTATUSBAR_NAVIGATION_HEIGHT-kBOTTOM_SPACE_HEIGHT)/3;
     NSArray *names = @[@"原图",@"UIKit",@"Quartz 2D",@"ImageIO",@"CoreImage",@"Accelerate"];
-    UIImage *image = kGetImage(@"xxsf");
-    CGSize size = CGSizeMake(image.size.width/4.3, image.size.height/4.3);
+    UIImage *image = kGetImage(@"IMG_4931");
+    CGSize size = CGSizeMake(image.size.width/7.7, image.size.height/7.7);
     for (int k=0; k<names.count; k++) {
         x = k%2*(w+sp)+sp/2; 
         y = k/2*(h+sp)+sp+kSTATUSBAR_NAVIGATION_HEIGHT;
