@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 获取网络图片尺寸
 + (CGSize)kj_imageGetSizeWithURL:(NSURL*)URL;
 
-/// 异步获取网络图片大小
+/// 异步等待获取网络图片大小
 + (CGSize)kj_imageAsyncGetSizeWithURL:(NSURL*)URL;
 
 @end

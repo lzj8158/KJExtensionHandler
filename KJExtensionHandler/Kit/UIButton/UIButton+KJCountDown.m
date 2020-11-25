@@ -8,6 +8,7 @@
 
 #import "UIButton+KJCountDown.h"
 #import <objc/runtime.h>
+
 @implementation UIButton (KJCountDown)
 - (NSTimer*)timer{
     return objc_getAssociatedObject(self, @selector(timer));

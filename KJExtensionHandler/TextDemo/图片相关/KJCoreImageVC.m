@@ -25,7 +25,7 @@
         if (500 <= obj.tag && obj.tag <= 509) {
             UIButton *button = (UIButton*)obj;
             [button kj_addAction:^(UIButton * _Nonnull kButton) {
-                weakself.Image.contentMode = UIViewContentModeScaleAspectFit;
+                weakself.Image.contentMode = UIViewContentModeScaleAspectFill;
                 switch (kButton.tag) {
                     case 500:/// 黑色透明
                         weakself.Image.image = [weakself.Image.image kj_coreImageBlackMaskToAlpha];
@@ -67,7 +67,7 @@
         }
     }];
     [self.Button kj_addAction:^(UIButton * _Nonnull kButton) {
-        weakself.Image.contentMode = UIViewContentModeScaleAspectFit;
+        weakself.Image.contentMode = UIViewContentModeScaleAspectFill;
         weakself.Image.image = image;
     }];
 }

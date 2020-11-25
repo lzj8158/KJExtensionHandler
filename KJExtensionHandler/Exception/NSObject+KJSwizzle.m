@@ -7,6 +7,7 @@
 //  https://github.com/yangKJ/KJExtensionHandler
 
 #import "NSObject+KJSwizzle.h"
+#import <objc/runtime.h>
 
 @implementation NSObject (KJSwizzle)
 + (BOOL)kj_swizzleMethod:(SEL)origSel Method:(SEL)altSel{

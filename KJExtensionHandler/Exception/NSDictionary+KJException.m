@@ -25,19 +25,19 @@
     }@catch (NSException *exception) {
         NSString *string = @"Exception handling remove nil key-values and instance a dictionary: 字典赋值存在空\n";
         id _Nonnull __unsafe_unretained safeObjects[cnt],safeKeys[cnt];
-        NSUInteger j = 0;
-        for (NSUInteger i = 0; i < cnt; i++) {
+        int index = 0;
+        for (int i = 0; i < cnt; i++) {
             id _Nonnull __unsafe_unretained key = keys[i],obj = objects[i];
             if (key == nil || obj  == nil) {
                 string = [string stringByAppendingString:[NSString stringWithFormat:@"key:%@, val:%@\n",key,obj]];
                 continue;
             }
-            safeKeys[j] = key;
-            safeObjects[j] = obj;
-            j++;
+            safeKeys[index] = key;
+            safeObjects[index] = obj;
+            index++;
         }
         [KJExceptionTool kj_crashDealWithException:exception CrashTitle:string];
-        instance = [self kj_initWithObjects:safeObjects forKeys:safeKeys count:j];
+        instance = [self kj_initWithObjects:safeObjects forKeys:safeKeys count:index];
     }@finally {
         return instance;
     }
@@ -49,19 +49,19 @@
     }@catch (NSException *exception) {
         NSString *string = @"Exception handling remove nil key-values and instance a dictionary: 字典赋值存在空\n";
         id _Nonnull __unsafe_unretained safeObjects[cnt],safeKeys[cnt];
-        NSUInteger j = 0;
-        for (NSUInteger i = 0; i < cnt; i++) {
+        int index = 0;
+        for (int i = 0; i < cnt; i++) {
             id _Nonnull __unsafe_unretained key = keys[i],obj = objects[i];
             if (key == nil || obj  == nil) {
                 string = [string stringByAppendingString:[NSString stringWithFormat:@"key:%@, val:%@\n",key,obj]];
                 continue;
             }
-            safeKeys[j] = key;
-            safeObjects[j] = obj;
-            j++;
+            safeKeys[index] = key;
+            safeObjects[index] = obj;
+            index++;
         }
         [KJExceptionTool kj_crashDealWithException:exception CrashTitle:string];
-        instance = [self kj_dictionaryWithObjects:safeObjects forKeys:safeKeys count:j];
+        instance = [self kj_dictionaryWithObjects:safeObjects forKeys:safeKeys count:index];
     }@finally {
         return instance;
     }

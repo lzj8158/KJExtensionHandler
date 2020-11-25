@@ -16,6 +16,8 @@
 		68406B002564EADC008A5DFB /* UIScrollView+KJEmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 68406AFF2564EADC008A5DFB /* UIScrollView+KJEmptyDataSet.m */; };
 		68406B0D2564EC67008A5DFB /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 68406B0C2564EC67008A5DFB /* UIScrollView+EmptyDataSet.m */; };
 		68406B1C2564F2A6008A5DFB /* KJEmptyDataVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 68406B1B2564F2A6008A5DFB /* KJEmptyDataVC.m */; };
+		685E8236256B55280085EFD6 /* KJImageCompressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 685E8235256B55280085EFD6 /* KJImageCompressVC.m */; };
+		685E8246256BB5980085EFD6 /* KJImageJointVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 685E8245256BB5980085EFD6 /* KJImageJointVC.m */; };
 		685EA0BB25467C7200C2C33C /* UIResponder+KJChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 685EA0BA25467C7200C2C33C /* UIResponder+KJChain.m */; };
 		685EA0C32546A2D400C2C33C /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 685EA0C12546A2D400C2C33C /* UIView+Toast.m */; };
 		685EA0C92546A30A00C2C33C /* KJToastVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 685EA0C82546A30A00C2C33C /* KJToastVC.m */; };
@@ -162,6 +164,10 @@
 		68406B0C2564EC67008A5DFB /* UIScrollView+EmptyDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+EmptyDataSet.m"; sourceTree = "<group>"; };
 		68406B1A2564F2A6008A5DFB /* KJEmptyDataVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJEmptyDataVC.h; sourceTree = "<group>"; };
 		68406B1B2564F2A6008A5DFB /* KJEmptyDataVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJEmptyDataVC.m; sourceTree = "<group>"; };
+		685E8234256B55280085EFD6 /* KJImageCompressVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJImageCompressVC.h; sourceTree = "<group>"; };
+		685E8235256B55280085EFD6 /* KJImageCompressVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJImageCompressVC.m; sourceTree = "<group>"; };
+		685E8244256BB5980085EFD6 /* KJImageJointVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJImageJointVC.h; sourceTree = "<group>"; };
+		685E8245256BB5980085EFD6 /* KJImageJointVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJImageJointVC.m; sourceTree = "<group>"; };
 		685EA0B925467C7200C2C33C /* UIResponder+KJChain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIResponder+KJChain.h"; sourceTree = "<group>"; };
 		685EA0BA25467C7200C2C33C /* UIResponder+KJChain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+KJChain.m"; sourceTree = "<group>"; };
 		685EA0C12546A2D400C2C33C /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
@@ -417,6 +423,29 @@
 			path = UIDevice;
 			sourceTree = "<group>";
 		};
+		685E823D256BAD610085EFD6 /* 图片相关 */ = {
+			isa = PBXGroup;
+			children = (
+				68AD734A251D9C75000C89C5 /* KJCoreImageVC.h */,
+				68AD7350251D9C75000C89C5 /* KJCoreImageVC.m */,
+				68AD7348251D9C75000C89C5 /* KJCoreImageVC.xib */,
+				68AD734C251D9C75000C89C5 /* KJFilterImageVC.h */,
+				68AD7352251D9C75000C89C5 /* KJFilterImageVC.m */,
+				68AD7344251D9C75000C89C5 /* KJFilterImageVC.xib */,
+				68AD7323251D9C75000C89C5 /* KJFloodImageVC.h */,
+				68AD732C251D9C75000C89C5 /* KJFloodImageVC.m */,
+				68AD731E251D9C75000C89C5 /* KJFloodImageVC.xib */,
+				685E8234256B55280085EFD6 /* KJImageCompressVC.h */,
+				685E8235256B55280085EFD6 /* KJImageCompressVC.m */,
+				68AD7326251D9C75000C89C5 /* KJImageVC.h */,
+				68AD732D251D9C75000C89C5 /* KJImageVC.m */,
+				68AD731C251D9C75000C89C5 /* KJImageVC.xib */,
+				685E8244256BB5980085EFD6 /* KJImageJointVC.h */,
+				685E8245256BB5980085EFD6 /* KJImageJointVC.m */,
+			);
+			path = "图片相关";
+			sourceTree = "<group>";
+		};
 		686B01C8253183F0004A779D /* Exception */ = {
 			isa = PBXGroup;
 			children = (
@@ -484,9 +513,9 @@
 				68AD71BA251D9705000C89C5 /* AppDelegate.h */,
 				68AD71BB251D9705000C89C5 /* AppDelegate.m */,
 				68AD71BD251D9705000C89C5 /* SceneDelegate.h */,
-				68AD71BE251D9705000C89C5 /* SceneDelegate.m */,
 				68AD71C0251D9705000C89C5 /* ViewController.h */,
 				68AD71C1251D9705000C89C5 /* ViewController.m */,
+				68AD71BE251D9705000C89C5 /* SceneDelegate.m */,
 				68F3A8A8253973AF00BCD817 /* KJHomeModel.h */,
 				68F3A8A9253973AF00BCD817 /* KJHomeModel.m */,
 				68F3A89F2539739A00BCD817 /* KJHomeView.h */,
@@ -619,20 +648,20 @@
 				68AD7285251D9BB8000C89C5 /* UIImage+KJCoreImage.m */,
 				68AD727F251D9BB8000C89C5 /* UIImage+KJFloodFill.h */,
 				68AD7287251D9BB8000C89C5 /* UIImage+KJFloodFill.m */,
+				685F370F25523F6E001575DE /* UIImage+KJGIF.h */,
+				685F371025523F6E001575DE /* UIImage+KJGIF.m */,
+				685F371B25525885001575DE /* UIImage+KJJoint.h */,
+				685F371C25525885001575DE /* UIImage+KJJoint.m */,
 				68AD7278251D9BB8000C89C5 /* UIImage+KJMask.h */,
 				68AD7284251D9BB8000C89C5 /* UIImage+KJMask.m */,
 				68AD7282251D9BB8000C89C5 /* UIImage+KJPhotoshop.h */,
 				68AD7277251D9BB8000C89C5 /* UIImage+KJPhotoshop.m */,
 				68AD728C251D9BB8000C89C5 /* UIImage+KJReflection.h */,
 				68AD727A251D9BB8000C89C5 /* UIImage+KJReflection.m */,
-				68AD727E251D9BB8000C89C5 /* UIImage+KJURLSize.h */,
-				68AD7288251D9BB8000C89C5 /* UIImage+KJURLSize.m */,
 				68AD7283251D9BB8000C89C5 /* UIImage+KJScale.h */,
 				68AD7279251D9BB8000C89C5 /* UIImage+KJScale.m */,
-				685F370F25523F6E001575DE /* UIImage+KJGIF.h */,
-				685F371025523F6E001575DE /* UIImage+KJGIF.m */,
-				685F371B25525885001575DE /* UIImage+KJJoint.h */,
-				685F371C25525885001575DE /* UIImage+KJJoint.m */,
+				68AD727E251D9BB8000C89C5 /* UIImage+KJURLSize.h */,
+				68AD7288251D9BB8000C89C5 /* UIImage+KJURLSize.m */,
 			);
 			path = UIImage;
 			sourceTree = "<group>";
@@ -803,9 +832,10 @@
 		68AD731A251D9C75000C89C5 /* TextDemo */ = {
 			isa = PBXGroup;
 			children = (
-				68AD737C251D9D48000C89C5 /* Foundation */,
 				68AD731B251D9C75000C89C5 /* Kit扩展类 */,
+				685E823D256BAD610085EFD6 /* 图片相关 */,
 				68AD7343251D9C75000C89C5 /* 效果类 */,
+				68AD737C251D9D48000C89C5 /* Foundation */,
 			);
 			path = TextDemo;
 			sourceTree = "<group>";
@@ -840,18 +870,6 @@
 		68AD7343251D9C75000C89C5 /* 效果类 */ = {
 			isa = PBXGroup;
 			children = (
-				68AD7323251D9C75000C89C5 /* KJFloodImageVC.h */,
-				68AD732C251D9C75000C89C5 /* KJFloodImageVC.m */,
-				68AD731E251D9C75000C89C5 /* KJFloodImageVC.xib */,
-				68AD7326251D9C75000C89C5 /* KJImageVC.h */,
-				68AD732D251D9C75000C89C5 /* KJImageVC.m */,
-				68AD731C251D9C75000C89C5 /* KJImageVC.xib */,
-				68AD734A251D9C75000C89C5 /* KJCoreImageVC.h */,
-				68AD7350251D9C75000C89C5 /* KJCoreImageVC.m */,
-				68AD7348251D9C75000C89C5 /* KJCoreImageVC.xib */,
-				68AD734C251D9C75000C89C5 /* KJFilterImageVC.h */,
-				68AD7352251D9C75000C89C5 /* KJFilterImageVC.m */,
-				68AD7344251D9C75000C89C5 /* KJFilterImageVC.xib */,
 				68AD7345251D9C75000C89C5 /* KJReflectionVC.h */,
 				68AD734E251D9C75000C89C5 /* KJReflectionVC.m */,
 				68AD7347251D9C75000C89C5 /* KJReflectionVC.xib */,
@@ -968,7 +986,7 @@
 		68AD71AF251D9705000C89C5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1210;
+				LastUpgradeCheck = 1220;
 				TargetAttributes = {
 					68AD71B6251D9705000C89C5 = {
 						CreatedOnToolsVersion = 12.0;
@@ -1058,6 +1076,7 @@
 				685EA0BB25467C7200C2C33C /* UIResponder+KJChain.m in Sources */,
 				68AD72EE251D9BB8000C89C5 /* UIImage+KJURLSize.m in Sources */,
 				68AD7308251D9BB8000C89C5 /* UITextView+KJPlaceHolder.m in Sources */,
+				685E8246256BB5980085EFD6 /* KJImageJointVC.m in Sources */,
 				68AD72DE251D9BB8000C89C5 /* NSDictionary+KJLog.m in Sources */,
 				68AD72EB251D9BB8000C89C5 /* UIImage+KJMask.m in Sources */,
 				68406AF72564B142008A5DFB /* NSObject+KJCrash.m in Sources */,
@@ -1134,6 +1153,7 @@
 				68AD7370251D9C75000C89C5 /* KJCoreImageVC.m in Sources */,
 				68AD72E8251D9BB8000C89C5 /* UIImage+KJReflection.m in Sources */,
 				68AD72E5251D9BB8000C89C5 /* NSObject+KJMath.m in Sources */,
+				685E8236256B55280085EFD6 /* KJImageCompressVC.m in Sources */,
 				68AD730D251D9BB8000C89C5 /* KJShadowLayer.m in Sources */,
 				68406B1C2564F2A6008A5DFB /* KJEmptyDataVC.m in Sources */,
 				68AD71CD251D9706000C89C5 /* main.m in Sources */,
@@ -1251,7 +1271,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1304,7 +1324,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

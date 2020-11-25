@@ -103,6 +103,10 @@ pod 'KJExtensionHandler/Exception'
 #### <a id="更新日志"></a>更新日志
 ```
 ####版本更新日志:
+#### Add 0.0.9
+1. UIImage+KJCompress 新增多种缩放方案
+2. UIImage+KJJoint 新增多种图片拼接
+
 #### Add 0.0.8
 1. UIImage+KJCapture 截图方法修改，提升截图质量
 2. 新增 UIImageView+KJLetters 头像浏览和文字头像
