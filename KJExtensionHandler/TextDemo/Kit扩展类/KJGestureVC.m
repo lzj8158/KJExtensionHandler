@@ -39,72 +39,72 @@
         view.frame = weakself.originRect;
         weakself.lastScale = 1;
     }];
-[self.displayImageView kj_AddGestureRecognizer:(KJGestureTypePan) block:^(UIView * _Nonnull view, UIGestureRecognizer * _Nonnull gesture) {
-    UIPanGestureRecognizer *panGestureRecognizer = (UIPanGestureRecognizer*)gesture;
-    CGPoint translation = [panGestureRecognizer translationInView:panGestureRecognizer.view];
-    NSLog(@"移动%.2f",translation.x);
-    switch (panGestureRecognizer.state) {
-        case UIGestureRecognizerStateBegan:
-        case UIGestureRecognizerStateChanged:{
-            CGFloat minx = weakself.originCenter.x - (kScreenW*(weakself.lastScale-1))/2.;
-            CGFloat maxx = weakself.originCenter.x + (kScreenW*(weakself.lastScale-1))/2.;
-            CGFloat miny = weakself.originCenter.y - (kScreenH*(weakself.lastScale-1))/2.;
-            CGFloat maxy = weakself.originCenter.y + (kScreenH*(weakself.lastScale-1))/2.;
-            if (minx > view.center.x) {
-                view.centerX = minx;return;
-            }else if (view.center.x > maxx) {
-                view.centerX = maxx;return;
-            }else if (miny > view.center.y) {
-                view.centerY = miny;return;
-            }else if (view.center.y > maxy) {
-                view.centerY = maxy;return;
+    [self.displayImageView kj_AddGestureRecognizer:(KJGestureTypePan) block:^(UIView * _Nonnull view, UIGestureRecognizer * _Nonnull gesture) {
+        UIPanGestureRecognizer *panGestureRecognizer = (UIPanGestureRecognizer*)gesture;
+        CGPoint translation = [panGestureRecognizer translationInView:panGestureRecognizer.view];
+        NSLog(@"移动%.2f",translation.x);
+        switch (panGestureRecognizer.state) {
+            case UIGestureRecognizerStateBegan:
+            case UIGestureRecognizerStateChanged:{
+                CGFloat minx = weakself.originCenter.x - (kScreenW*(weakself.lastScale-1))/2.;
+                CGFloat maxx = weakself.originCenter.x + (kScreenW*(weakself.lastScale-1))/2.;
+                CGFloat miny = weakself.originCenter.y - (kScreenH*(weakself.lastScale-1))/2.;
+                CGFloat maxy = weakself.originCenter.y + (kScreenH*(weakself.lastScale-1))/2.;
+                if (minx > view.center.x) {
+                    view.centerX = minx;return;
+                }else if (view.center.x > maxx) {
+                    view.centerX = maxx;return;
+                }else if (miny > view.center.y) {
+                    view.centerY = miny;return;
+                }else if (view.center.y > maxy) {
+                    view.centerY = maxy;return;
+                }
+                if (minx <= view.center.x && view.center.x <= maxx && miny <= view.center.y && view.center.y <= maxy) {
+                    [view setCenter:(CGPoint){view.center.x + translation.x, view.center.y + translation.y}];
+                    [panGestureRecognizer setTranslation:CGPointZero inView:view.superview];
+                }
             }
-            if (minx <= view.center.x && view.center.x <= maxx && miny <= view.center.y && view.center.y <= maxy) {
-                [view setCenter:(CGPoint){view.center.x + translation.x, view.center.y + translation.y}];
-                [panGestureRecognizer setTranslation:CGPointZero inView:view.superview];
-            }
+                break;
+            case UIGestureRecognizerStateEnded:
+                break;
+            default:
+                break;
         }
-            break;
-        case UIGestureRecognizerStateEnded:
-            break;
-        default:
-            break;
-    }
-}];
-[self.displayImageView kj_AddGestureRecognizer:(KJGestureTypePinch) block:^(UIView * _Nonnull view, UIGestureRecognizer * _Nonnull gesture) {
-    UIPinchGestureRecognizer *pinchGestureRecognizer = (UIPinchGestureRecognizer*)gesture;
-    NSLog(@"缩放%.2f,%.2f",weakself.lastScale,pinchGestureRecognizer.scale);
-    switch (pinchGestureRecognizer.state) {
-        case UIGestureRecognizerStateBegan:
-//                weakself.lastScalePoint = [pinchGestureRecognizer locationInView:view];
-//                break;
-        case UIGestureRecognizerStateChanged:{
-            CGFloat scale = weakself.lastScale+pinchGestureRecognizer.scale-1;
-            if (scale >= weakself.maxScale || scale <= weakself.minScale) {
-                return;
+    }];
+    [self.displayImageView kj_AddGestureRecognizer:(KJGestureTypePinch) block:^(UIView * _Nonnull view, UIGestureRecognizer * _Nonnull gesture) {
+        UIPinchGestureRecognizer *pinchGestureRecognizer = (UIPinchGestureRecognizer*)gesture;
+        NSLog(@"缩放%.2f,%.2f",weakself.lastScale,pinchGestureRecognizer.scale);
+        switch (pinchGestureRecognizer.state) {
+            case UIGestureRecognizerStateBegan:
+    //                weakself.lastScalePoint = [pinchGestureRecognizer locationInView:view];
+    //                break;
+            case UIGestureRecognizerStateChanged:{
+                CGFloat scale = weakself.lastScale+pinchGestureRecognizer.scale-1;
+                if (scale >= weakself.maxScale || scale <= weakself.minScale) {
+                    return;
+                }
+                CGFloat w = kScreenW * scale;
+                CGFloat h = kScreenH * scale;
+                CGFloat x = weakself.originRect.origin.x - (kScreenW*(scale-1))/2.;
+                CGFloat y = weakself.originRect.origin.y - (kScreenH*(scale-1))/2.;
+                view.frame = CGRectMake(x, y, w, h);
             }
-            CGFloat w = kScreenW * scale;
-            CGFloat h = kScreenH * scale;
-            CGFloat x = weakself.originRect.origin.x - (kScreenW*(scale-1))/2.;
-            CGFloat y = weakself.originRect.origin.y - (kScreenH*(scale-1))/2.;
-            view.frame = CGRectMake(x, y, w, h);
-        }
-            break;
-        case UIGestureRecognizerStateEnded:{
-            CGFloat scale = weakself.lastScale+pinchGestureRecognizer.scale-1;
-            if (scale >= weakself.maxScale) {
-                weakself.lastScale = weakself.maxScale;
-            }else if (scale <= weakself.minScale) {
-                weakself.lastScale = weakself.minScale;
-            }else{
-                weakself.lastScale += (pinchGestureRecognizer.scale-1);
+                break;
+            case UIGestureRecognizerStateEnded:{
+                CGFloat scale = weakself.lastScale+pinchGestureRecognizer.scale-1;
+                if (scale >= weakself.maxScale) {
+                    weakself.lastScale = weakself.maxScale;
+                }else if (scale <= weakself.minScale) {
+                    weakself.lastScale = weakself.minScale;
+                }else{
+                    weakself.lastScale += (pinchGestureRecognizer.scale-1);
+                }
             }
+                break;
+            default:
+                break;
         }
-            break;
-        default:
-            break;
-    }
-}];
+    }];
 }
 
 /*

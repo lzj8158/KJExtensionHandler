@@ -41,7 +41,7 @@
 - (CAEmitterLayer*)explosionLayer{
     return objc_getAssociatedObject(self, @selector(explosionLayer));
 }
-- (void)setExplosionLayer:(CAEmitterLayer *)explosionLayer{
+- (void)setExplosionLayer:(CAEmitterLayer*)explosionLayer{
     objc_setAssociatedObject(self, @selector(explosionLayer), explosionLayer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
@@ -76,7 +76,6 @@
     if (self.selected) {
         animation.values = @[@1.5 ,@0.8, @1.0,@1.2,@1.0];
         animation.duration = 0.4;
-        /// 开始喷射
         self.explosionLayer.beginTime = CACurrentMediaTime();
         [self.explosionLayer setValue:@2000 forKeyPath:@"emitterCells.name.birthRate"];
         [self performSelector:@selector(stop) withObject:nil afterDelay:0.2];

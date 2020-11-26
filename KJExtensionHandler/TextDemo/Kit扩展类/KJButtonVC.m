@@ -26,6 +26,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    /// 开启按钮点击时间间隔
+    [UIButton kj_openTimeExchangeMethod];
+    
     self.NameArray = @[@"",@"",@"图文间距",@"图文边界间距"];
     self.segmentedTitleArray = @[@[@"居中-图左文右",@"居中-图右文左",@"居中-图上文下",@"居中-图下文上"],
     @[@"居左-图左文右",@"居左-图右文左",@"居右-图左文右",@"居右-图右文左"]];
@@ -118,8 +121,9 @@
         [_button setTitleColor:UIColor.blueColor forState:UIControlStateNormal];
         [_button setImage:[UIImage imageNamed:@"wode_nor"] forState:UIControlStateNormal];
         _button.kj_ButtonContentLayoutType = KJButtonContentLayoutStyleNormal;
+        _button.kj_AcceptDealTime = 5;
         [_button kj_addAction:^(UIButton * _Nonnull kButton) {
-                    
+            NSLog(@"5秒才再次执行");
         }];
     }
     return _button;
@@ -138,7 +142,6 @@
         _emitterButton.centerY = label.centerY;
         [_emitterButton setImage:kGetImage(@"button_like_norm") forState:(UIControlStateNormal)];
         [_emitterButton setImage:kGetImage(@"button_like_sele") forState:(UIControlStateSelected)];
-        /// 开启点赞粒子效果
         [_emitterButton kj_buttonSetEmitterImage:nil OpenEmitter:true];
         [_emitterButton kj_addAction:^(UIButton * _Nonnull kButton) {
             kButton.selected = !kButton.selected;
@@ -167,7 +170,7 @@
         [_countDownButton setTitleColor:UIColor.blueColor forState:(UIControlStateNormal)];
         [_countDownButton setTitle:@"倒计时" forState:(UIControlStateNormal)];
         [_countDownButton kj_addAction:^(UIButton * _Nonnull kButton) {
-            [kButton kj_startTime:5 CountDownFormat:@"计时%zd秒"];
+            [kButton kj_startTime:6 CountDownFormat:@"计时%zd秒"];
         }];
         _countDownButton.kButtonCountDownStop = ^{
             NSLog(@"计时结束!!!");
