@@ -106,6 +106,7 @@ pod 'KJExtensionHandler/Exception'
 #### Add 0.0.9
 1. UIImage+KJCompress 新增多种缩放方案
 2. UIImage+KJJoint 新增多种图片拼接
+3. UIButton+KJButtonContentLayout 修改三个属性layoutType、padding、periphery
 
 #### Add 0.0.8
 1. UIImage+KJCapture 截图方法修改，提升截图质量
