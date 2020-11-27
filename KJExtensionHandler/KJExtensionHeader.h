@@ -92,7 +92,7 @@ Github地址：https://github.com/yangKJ
 
 //#import "UIImageView+KJLetters.h" // 头像浏览和文字头像
 
-//#import "UIScrollView+KJEmptyDataSet.h" // 没数据时状态
+#import "UIScrollView+KJEmptyDataSet.h" // 没数据时状态
 
 #import "UIColor+KJExtension.h" // 颜色相关扩展
 #import "UIColor+KJExtension2.h"
@@ -108,7 +108,7 @@ Github地址：https://github.com/yangKJ
 //#import "UIImage+KJFloodFill.h" // 图片泛洪算法
 //#import "UIImage+KJFilter.h" // 处理图片滤镜，渲染相关
 //#import "UIImage+KJURLSize.h" // 获取网络图片尺寸
-//#import "UIImage+KJGIF.h" // 动态图相关gif
+//#import "UIImage+KJGIF.h" // 动态图相关
 
 #import "UIViewController+KJFullScreen.h" // 充满全屏处理
 
