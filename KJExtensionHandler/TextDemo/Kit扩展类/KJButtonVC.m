@@ -45,11 +45,11 @@
     NSArray *arr = self.segmentedTitleArray[tag];
     switch (tag) {
         case 0:
-            self.button.kj_ButtonContentLayoutType = sender.selectedSegmentIndex;
+            self.button.layoutType = sender.selectedSegmentIndex;
             [self.button setTitle:arr[sender.selectedSegmentIndex] forState:UIControlStateNormal];
             break;
         case 1:
-            self.button.kj_ButtonContentLayoutType = sender.selectedSegmentIndex + 4;
+            self.button.layoutType = sender.selectedSegmentIndex + 4;
             [self.button setTitle:arr[sender.selectedSegmentIndex] forState:UIControlStateNormal];
             break;
         default: break;
@@ -59,18 +59,18 @@
     NSInteger tag = sender.tag - 100;
     switch (tag) {
         case 2:
-            self.button.kj_Padding = sender.value;
+            self.button.padding = sender.value;
             [self.labelArray objectAtIndex:0].text = [NSString stringWithFormat: @"%@：\t%.0f",self.NameArray[tag], sender.value];
             break;
         case 3:
-            self.button.kj_PaddingInset = sender.value;
+            self.button.periphery = sender.value;
             [self.labelArray objectAtIndex:1].text = [NSString stringWithFormat: @"%@：\t%.0f",self.NameArray[tag], sender.value];
             break;
         default: break;
     }
 }
 - (void)createSegmented{
-    NSArray *defaultParameters = @[@"",@"",@"0",@"5"];
+    NSArray *defaultParameters = @[@"",@"",@"5",@"5"];
     for (int i = 0; i < 4; i ++) {
         CGFloat width = 150;
         CGFloat Y = i * 40 + self.button.frame.origin.y + CGRectGetHeight(self.button.frame) + 50;
@@ -85,7 +85,6 @@
             [segmented addTarget:self action:@selector(clicksegmented:) forControlEvents:UIControlEventValueChanged];
             [self.view addSubview:segmented];
         }
-        
         if (i >= 2) {
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, Y+30, width, 30)];
             label.text = self.NameArray[i];
@@ -117,10 +116,11 @@
         _button.layer.masksToBounds = YES;
         _button.layer.cornerRadius = 5;
         _button.titleLabel.font = [UIFont systemFontOfSize:14];
-        [_button setTitle:@"居中-图左文右" forState:UIControlStateNormal];
+        [_button setTitle:@"居中-图上文下" forState:UIControlStateNormal];
         [_button setTitleColor:UIColor.blueColor forState:UIControlStateNormal];
         [_button setImage:[UIImage imageNamed:@"wode_nor"] forState:UIControlStateNormal];
-        _button.kj_ButtonContentLayoutType = KJButtonContentLayoutStyleNormal;
+        _button.layoutType = KJButtonContentLayoutStyleCenterImageTop;
+        _button.padding = 5;
         _button.kj_AcceptDealTime = 5;
         [_button kj_addAction:^(UIButton * _Nonnull kButton) {
             NSLog(@"5秒才再次执行");
