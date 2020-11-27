@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "KJExceptionTool.h"
+#import <objc/runtime.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
