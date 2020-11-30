@@ -8,7 +8,6 @@
 
 #import "UIButton+KJBlock.h"
 #import <objc/runtime.h>
-@implementation UIButton (KJBlock)
 static NSString * const _Nonnull KJButtonControlEventsStringMap[] = {
     [UIControlEventTouchDown]        = @"KJ_X_UIControlEventTouchDown",
     [UIControlEventTouchDownRepeat]  = @"KJ_X_UIControlEventTouchDownRepeat",
@@ -25,6 +24,7 @@ static NSString * const _Nonnull KJButtonControlEventsStringMap[] = {
 KJButtonBlock block = objc_getAssociatedObject(self, _cmd);\
 if (block) block(self);\
 }
+@implementation UIButton (KJBlock)
 /// 事件响应方法
 KJButtonAction(KJ_X_UIControlEventTouchDown);
 KJButtonAction(KJ_X_UIControlEventTouchDownRepeat);
