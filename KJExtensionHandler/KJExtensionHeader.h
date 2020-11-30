@@ -123,12 +123,15 @@ Github地址：https://github.com/yangKJ
 #import "UIResponder+KJAdapt.h" // 简单的比例适配
 #import "UIResponder+KJChain.h" // 响应链
 
+#import "NSObject+KJKVO.h" // 键值监听封装
+#import "NSObject+KJSemaphore.h" // 信号方式解耦工具
+
 //************************************* Foundation 相关扩展 *****************************************
 // 需要引入，请使用 pod 'KJExtensionHandler/Foundation'
-#if __has_include(<KJExtensionHandler/KJFoundartionHeader.h>)
-#import <KJExtensionHandler/KJFoundartionHeader.h>
-#elif __has_include("KJFoundartionHeader.h")
-#import "KJFoundartionHeader.h"
+#if __has_include(<KJExtensionHandler/_FoundartionHeader.h>)
+#import <KJExtensionHandler/_FoundartionHeader.h>
+#elif __has_include("_FoundartionHeader.h")
+#import "_FoundartionHeader.h"
 #else
 #endif
 

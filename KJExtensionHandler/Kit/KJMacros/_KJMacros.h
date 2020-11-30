@@ -96,7 +96,7 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 #define kNAVIGATION_HEIGHT (44.f)
 // (navigationBar + statusBar) height
 #define kSTATUSBAR_NAVIGATION_HEIGHT (iPhoneX ? 88.0f : 64.f)
-// 没有tabar 距 底边高度
+// tabar距底边高度
 #define kBOTTOM_SPACE_HEIGHT (iPhoneX ? 34.0f : 0.0f)
 // 屏幕尺寸
 #define kScreenSize ([UIScreen mainScreen].bounds.size)
@@ -170,7 +170,7 @@ objc_setAssociatedObject(self, @selector(propertyGetter), valueObj, OBJC_ASSOCIA
 // 带自动提示的keypath宏(源自Reactive Cocoa) 要添加@符号，就是为了能预编译出TARGET中所有的KEYPATH属性
 #define kKeypath2(OBJ, PATH) (((void)(NO && ((void)OBJ.PATH, NO)), #PATH))
 
-/** 单例宏 单例的目的 : 希望对象只创建一个实例，并且提供一个全局的访问点
+/* 单例宏 单例的目的 : 希望对象只创建一个实例，并且提供一个全局的访问点
  使用方法:
  .h文件
  kSingletonImplementation_H(类名)
@@ -180,7 +180,7 @@ objc_setAssociatedObject(self, @selector(propertyGetter), valueObj, OBJC_ASSOCIA
  
  调用方法
  类名 *vc = [类名 shared类名];
- */
+*/
 // 1. 解决.h文件
 #define kSingletonImplementation_H(className) \
 + (instancetype)shared##className;
@@ -236,7 +236,7 @@ return instance; \
 
 #pragma mark ********** 8.系统默认字体设置和自选字体设置    *********
 #define kSystemFontSize(fontsize)  [UIFont systemFontOfSize:(fontsize)]
-#define kSystemBlodFontSize(fontsize)   [UIFont boldSystemFontOfSize:(fontsize)] /// 粗体
+#define kSystemBlodFontSize(fontsize)   [UIFont boldSystemFontOfSize:(fontsize)]
 #define kSystemItalicFontSize(fontsize) [UIFont italicSystemFontOfSize:(fontsize)]
 
 #pragma mark ********** 9.NSUserDefaults相关    *********

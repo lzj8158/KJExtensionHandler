@@ -26,7 +26,7 @@
     }
     return temps.mutableCopy;
 }
-#pragma mark - 动态添加属性
+#pragma mark - associated
 - (NSMutableArray*)propertyNames{
     NSMutableArray *array = objc_getAssociatedObject(self, @selector(propertyNames));
     if (array == nil) {

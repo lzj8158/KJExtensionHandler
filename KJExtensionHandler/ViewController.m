@@ -27,7 +27,7 @@
     [self.view addSubview:view];
     
     _weakself;
-    [NSObject kj_receivedSignalWithSender:view SignalBlock:^id _Nullable(NSString * _Nonnull key, id  _Nonnull message, id  _Nonnull parameter) {
+    [view kj_receivedSemaphoreBlock:^id _Nullable(NSString * _Nonnull key, id _Nonnull message, id _Nullable parameter) {
         if ([key isEqualToString:kHomeViewKey]) {
             ((UIViewController*)message).title = ((NSDictionary*)parameter)[@"describeName"];
             [weakself.navigationController pushViewController:message animated:true];

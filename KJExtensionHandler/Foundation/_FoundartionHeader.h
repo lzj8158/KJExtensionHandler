@@ -1,5 +1,5 @@
 //
-//  KJFoundartionHeader.h
+//  _FoundartionHeader.h
 //  KJExtensionHandler
 //
 //  Created by 杨科军 on 2020/10/30.
@@ -18,7 +18,7 @@ pod 'KJEmitterView/Control' # 自定义控件
 图片压缩加工处理、滤镜渲染、泛洪算法、识别网址超链接等等
 pod 'KJExtensionHandler'
 pod 'KJExtensionHandler/Foundation'
-pod 'KJExtensionHandler/Exception'  # 异常处理
+pod 'KJExtensionHandler/Exception' # 异常处理
 
 基类库 - 封装整理常用，采用链式处理，提炼独立工具
 pod 'KJBaseHandler'
@@ -51,21 +51,20 @@ Github地址：https://github.com/yangKJ
 *
 *********************************************************************************
 */
-#ifndef KJFoundartionHeader_h
-#define KJFoundartionHeader_h
+#ifndef _FoundartionHeader_h
+#define _FoundartionHeader_h
 
-#import "NSObject+KJKVO.h"    /// 键值监听封装
-#import "NSObject+KJMath.h"   /// 数学方程式
-#import "NSObject+KJSignal.h" /// 信号方式解耦工具
-#import "NSObject+KJGeometry.h" /// 几何方程式
-#import "NSString+KJChinese.h"  /// 汉字相关处理
-#import "NSString+KJPredicate.h"/// 谓词工具
-#import "NSArray+KJPredicate.h" /// 谓词工具
-#import "NSArray+ElementDeal.h" /// 对数组元素的处理 包括排序、查找、去重等等
+#import "NSObject+KJMath.h" // 数学方程式
+#import "NSObject+KJGeometry.h" // 几何方程式
+#import "NSString+KJChinese.h"  // 汉字相关处理
+#import "NSString+KJPredicate.h"// 谓词工具
+#import "NSArray+KJPredicate.h" // 谓词工具
+#import "NSArray+ElementDeal.h" // 对数组元素的处理 包括排序、查找、去重等等
 
-#import "NSString+KJExtension.h"/// 扩展属性
+// 扩展属性
 #import "NSObject+KJExtension.h"
+#import "NSString+KJExtension.h"
 #import "NSArray+KJExtension.h"
 #import "NSDictionary+KJExtension.h"
 
-#endif /* KJFoundartionHeader_h */
+#endif /* _FoundartionHeader_h */

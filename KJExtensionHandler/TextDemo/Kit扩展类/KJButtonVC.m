@@ -121,10 +121,12 @@
         [_button setImage:[UIImage imageNamed:@"wode_nor"] forState:UIControlStateNormal];
         _button.layoutType = KJButtonContentLayoutStyleCenterImageTop;
         _button.padding = 5;
-        _button.kj_AcceptDealTime = 5;
         [_button kj_addAction:^(UIButton * _Nonnull kButton) {
-            NSLog(@"5秒才再次执行");
+            NSLog(@"UIControlEventTouchUpInside");
         }];
+        [_button kj_addAction:^(UIButton * _Nonnull kButton) {
+            NSLog(@"UIControlEventTouchDown");
+        } forControlEvents:(UIControlEventTouchDown)];
     }
     return _button;
 }

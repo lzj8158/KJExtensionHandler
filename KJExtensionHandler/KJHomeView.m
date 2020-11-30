@@ -35,7 +35,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"UITableViewCell"];
     NSDictionary *dic = self.temps[indexPath.section][indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%ld. %@",indexPath.row + 1,dic[@"VCName"]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%ld. %@",indexPath.row+1,dic[@"VCName"]];
     cell.textLabel.font = [UIFont systemFontOfSize:16];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.detailTextLabel.text = dic[@"describeName"];
@@ -47,16 +47,13 @@
 }
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section{
     UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
-//    header.textLabel.textColor = UIColor.redColor;
     header.textLabel.font = [UIFont boldSystemFontOfSize:15];
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSInteger i = indexPath.section;
-    NSInteger k = indexPath.row;
-    NSDictionary *dic = self.temps[i][k];
+    NSDictionary *dic = self.temps[indexPath.section][indexPath.row];
     UIViewController *vc = [NSClassFromString(dic[@"VCName"]) new];
-    [self kj_sendSignalWithKey:kHomeViewKey Message:vc Parameter:dic];
+    [self kj_sendSemaphoreWithKey:kHomeViewKey Message:vc Parameter:dic];
 }
 
 @end

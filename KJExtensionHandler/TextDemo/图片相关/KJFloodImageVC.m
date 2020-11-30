@@ -11,7 +11,6 @@
 
 @interface KJFloodImageVC (){
     UIColor *currentColor;
-    NSInteger imageIndex;
     UIImage *lastImage;
 }
 
@@ -28,10 +27,7 @@
     [super viewDidLoad];
     
     lastImage = [UIImage imageNamed:@"zuqiu"];
-    
-    imageIndex = 0;
     currentColor = [UIColor redColor];
-    
     [self setUI];
 }
 
@@ -87,13 +83,7 @@
 
 - (void)covertImageToBitmapWithPoint:(CGPoint)point {
     lastImage = _bigImageView.image;
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        UIImage *image = [self->lastImage kj_FloodFillImageFromStartPoint:point NewColor:self->currentColor Tolerance:5 UseAntialias:YES];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.bigImageView.image = image;
-        });
-    });
+    self.bigImageView.image = [lastImage kj_FloodFillImageFromStartPoint:point NewColor:currentColor Tolerance:5 UseAntialias:YES];
 }
-
 
 @end

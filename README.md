@@ -103,6 +103,12 @@ pod 'KJExtensionHandler/Exception'
 #### <a id="更新日志"></a>更新日志
 ```
 ####版本更新日志:
+#### Add 0.0.10
+1. UIImage+KJGIF 新增播放本地动态图 kj_gifLocalityImageWithName:
+2. 提出 KJNodeQueue 栈操作工具
+3. 新增 NSObject+KJSemaphore 轻量级解耦工具
+4. 完善 UIButton+KJBlock 点击事件封装
+
 #### Add 0.0.9
 1. UIImage+KJCompress 新增多种缩放方案
 2. UIImage+KJJoint 新增多种图片拼接

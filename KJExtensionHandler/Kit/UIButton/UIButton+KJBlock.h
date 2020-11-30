@@ -19,7 +19,7 @@ typedef void(^KJButtonBlock)(UIButton *kButton);
 @interface UIButton (KJBlock)<KJButtonTimeExchangeMethodProtocol>
 /// 添加点击事件，默认UIControlEventTouchUpInside
 - (void)kj_addAction:(KJButtonBlock)block;
-/// 添加事件
+/// 添加事件，不支持多枚举形式
 - (void)kj_addAction:(KJButtonBlock)block forControlEvents:(UIControlEvents)controlEvents;
 
 /* ******************这两个属性互斥********************/
