@@ -1,5 +1,5 @@
 //
-//  NSObject+KJSignal.h
+//  NSObject+KJSemaphore.h
 //  KJExtensionHandler
 //
 //  Created by 杨科军 on 2020/10/15.

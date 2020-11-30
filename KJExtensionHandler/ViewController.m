@@ -8,7 +8,6 @@
 #import "ViewController.h"
 #import "KJHomeView.h"
 #import "KJHomeModel.h"
-
 @interface ViewController ()
 
 @end
