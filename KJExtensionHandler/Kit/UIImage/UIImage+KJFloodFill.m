@@ -21,117 +21,118 @@
                                    NewColor:(UIColor*)newColor
                                   Tolerance:(CGFloat)tolerance
                                UseAntialias:(BOOL)antialias{
-    if (!self.CGImage || !newColor) return self;
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGImageRef imageRef = self.CGImage;
-    NSUInteger width = CGImageGetWidth(imageRef);
-    NSUInteger height = CGImageGetHeight(imageRef);
-    NSUInteger bitsPerComponent = CGImageGetBitsPerComponent(imageRef);
-    NSUInteger bytesPerPixel = CGImageGetBitsPerPixel(imageRef) / bitsPerComponent;
-    NSUInteger bytesPerRow = CGImageGetBytesPerRow(imageRef);
-    unsigned char *imageData = malloc(height * bytesPerRow);
-    CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(imageRef);
-    if (kCGImageAlphaLast == (uint32_t)bitmapInfo || kCGImageAlphaFirst == (uint32_t)bitmapInfo){
-        bitmapInfo = (uint32_t)kCGImageAlphaPremultipliedLast;
-    }
-    CGContextRef context = CGBitmapContextCreate(imageData,
-                                                 width,
-                                                 height,
-                                                 bitsPerComponent,
-                                                 bytesPerRow,
-                                                 colorSpace,
-                                                 bitmapInfo);
-    CGColorSpaceRelease(colorSpace);
-    CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
-    NSUInteger byteIndex = roundf(startPoint.x) * bytesPerPixel + roundf(startPoint.y) * bytesPerRow;
-    NSUInteger statrColor = getColorCode(byteIndex, imageData);
-    NSUInteger red, green, blue, alpha = 0;
-    const CGFloat *components = CGColorGetComponents(newColor.CGColor);
-    if (CGColorGetNumberOfComponents(newColor.CGColor) == 2) {
-        red = green = blue  = components[0] * 255;
-        alpha = components[1] * 255;
-    }else{
-        red   = components[0] * 255;
-        green = components[1] * 255;
-        blue  = components[2] * 255;
-        alpha = components[3] * 255;
-    }
-    NSUInteger nColor = red << 24 | green << 16 | blue << 8 | alpha;
-    if (compareColor(statrColor, nColor, 0)) return self;
-    
-    // 开始点入栈
-    KJNodeQueue *points = [[KJNodeQueue alloc] initWithCapacity:500 Increments:500 Multiplier:height];
-    [points kj_pushNodeWithX:roundf(startPoint.x) PushY:roundf(startPoint.y)];
-    
-    
-    // 抗锯齿化处理
-    void (^kAntialias)(NSUInteger,NSUInteger) = ^(NSUInteger pointX, NSUInteger pointY) {
-        NSUInteger byteIndex = bytesPerPixel * pointX + bytesPerRow * pointY;
-        if (getColorCode(byteIndex, imageData) != nColor) antiAliasOperation(byteIndex, imageData, nColor);
-    };
-    
-    NSInteger color;
-    BOOL panLeft, panRight;
-    NSInteger x, y;
-    while ([points kj_popNodeWithX:&x PopY:&y]) {// 循环到栈内无节点
-        byteIndex = bytesPerPixel * x + bytesPerRow * y;
-        color = getColorCode(byteIndex, imageData);
-        while (y >= 0 && compareColor(statrColor, color, tolerance)) {
-            --y;
-            if (y >= 0) {
-                byteIndex = bytesPerPixel * x + bytesPerRow * y;
-                color = getColorCode(byteIndex, imageData);
-            }
-        }
-        ++y;
-        byteIndex = bytesPerPixel * x + bytesPerRow * y;
-        color = getColorCode(byteIndex, imageData);
-        panLeft = panRight = false;
-        while (y < height && compareColor(statrColor, color, tolerance) && color != nColor) {
-            imageData[byteIndex] = red;
-            imageData[byteIndex + 1] = green;
-            imageData[byteIndex + 2] = blue;
-            imageData[byteIndex + 3] = alpha;
-            if (x > 0) {
-                byteIndex = bytesPerPixel * (x - 1) + bytesPerRow * y;
-                color = getColorCode(byteIndex, imageData);
-                if (!panLeft && compareColor(statrColor, color, tolerance) && color != nColor) { // 左侧点入栈
-                    [points kj_pushNodeWithX:x - 1 PushY:y];
-                    panLeft = true;
-                }else if (panLeft && !compareColor(statrColor, color, tolerance)) {
-                    panLeft = false;
-                }
-            }
-            if (x < width - 1) {
-                byteIndex = bytesPerPixel * (x + 1) + bytesPerRow * y;
-                color = getColorCode(byteIndex, imageData);
-                if (!panRight && compareColor(statrColor, color, tolerance) && color != nColor) { // 右侧点入栈
-                    [points kj_pushNodeWithX:x + 1 PushY:y];
-                    panRight = true;
-                }else if (panRight && !compareColor(statrColor, color, tolerance)){
-                    panRight = false;
-                }
-            }
-            ++y;
-            if (y < height) {
-                byteIndex = bytesPerPixel * x + bytesPerRow * y;
-                color = getColorCode(byteIndex, imageData);
-            }
-            
-            if (antialias) {
-                if (x <= 0) kAntialias(x-1, y);
-                if (x >= width) kAntialias(x+1, y);
-                if (y <= 0) kAntialias(x, y-1);
-                if (y >= height) kAntialias(x, y+1);
-            }
-        }
-    }
-    
-    CGImageRef newImage = CGBitmapContextCreateImage(context);
-    CGContextRelease(context);
-    UIImage *nImage = [UIImage imageWithCGImage:newImage];
-    CGImageRelease(newImage);
-    return nImage;
+    return self;
+//    if (!self.CGImage || !newColor) return self;
+//    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+//    CGImageRef imageRef = self.CGImage;
+//    NSUInteger width = CGImageGetWidth(imageRef);
+//    NSUInteger height = CGImageGetHeight(imageRef);
+//    NSUInteger bitsPerComponent = CGImageGetBitsPerComponent(imageRef);
+//    NSUInteger bytesPerPixel = CGImageGetBitsPerPixel(imageRef) / bitsPerComponent;
+//    NSUInteger bytesPerRow = CGImageGetBytesPerRow(imageRef);
+//    unsigned char *imageData = malloc(height * bytesPerRow);
+//    CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(imageRef);
+//    if (kCGImageAlphaLast == (uint32_t)bitmapInfo || kCGImageAlphaFirst == (uint32_t)bitmapInfo){
+//        bitmapInfo = (uint32_t)kCGImageAlphaPremultipliedLast;
+//    }
+//    CGContextRef context = CGBitmapContextCreate(imageData,
+//                                                 width,
+//                                                 height,
+//                                                 bitsPerComponent,
+//                                                 bytesPerRow,
+//                                                 colorSpace,
+//                                                 bitmapInfo);
+//    CGColorSpaceRelease(colorSpace);
+//    CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
+//    NSUInteger byteIndex = roundf(startPoint.x) * bytesPerPixel + roundf(startPoint.y) * bytesPerRow;
+//    NSUInteger statrColor = getColorCode(byteIndex, imageData);
+//    NSUInteger red, green, blue, alpha = 0;
+//    const CGFloat *components = CGColorGetComponents(newColor.CGColor);
+//    if (CGColorGetNumberOfComponents(newColor.CGColor) == 2) {
+//        red = green = blue  = components[0] * 255;
+//        alpha = components[1] * 255;
+//    }else{
+//        red   = components[0] * 255;
+//        green = components[1] * 255;
+//        blue  = components[2] * 255;
+//        alpha = components[3] * 255;
+//    }
+//    NSUInteger nColor = red << 24 | green << 16 | blue << 8 | alpha;
+//    if (compareColor(statrColor, nColor, 0)) return self;
+//
+//    // 开始点入栈
+//    KJNodeQueue *points = [[KJNodeQueue alloc] initWithCapacity:500 Increments:500 Multiplier:height];
+//    [points kj_pushNodeWithX:roundf(startPoint.x) PushY:roundf(startPoint.y)];
+//
+//
+//    // 抗锯齿化处理
+//    void (^kAntialias)(NSUInteger,NSUInteger) = ^(NSUInteger pointX, NSUInteger pointY) {
+//        NSUInteger byteIndex = bytesPerPixel * pointX + bytesPerRow * pointY;
+//        if (getColorCode(byteIndex, imageData) != nColor) antiAliasOperation(byteIndex, imageData, nColor);
+//    };
+//
+//    NSInteger color;
+//    BOOL panLeft, panRight;
+//    NSInteger x, y;
+//    while ([points kj_popNodeWithX:&x PopY:&y]) {// 循环到栈内无节点
+//        byteIndex = bytesPerPixel * x + bytesPerRow * y;
+//        color = getColorCode(byteIndex, imageData);
+//        while (y >= 0 && compareColor(statrColor, color, tolerance)) {
+//            --y;
+//            if (y >= 0) {
+//                byteIndex = bytesPerPixel * x + bytesPerRow * y;
+//                color = getColorCode(byteIndex, imageData);
+//            }
+//        }
+//        ++y;
+//        byteIndex = bytesPerPixel * x + bytesPerRow * y;
+//        color = getColorCode(byteIndex, imageData);
+//        panLeft = panRight = false;
+//        while (y < height && compareColor(statrColor, color, tolerance) && color != nColor) {
+//            imageData[byteIndex] = red;
+//            imageData[byteIndex + 1] = green;
+//            imageData[byteIndex + 2] = blue;
+//            imageData[byteIndex + 3] = alpha;
+//            if (x > 0) {
+//                byteIndex = bytesPerPixel * (x - 1) + bytesPerRow * y;
+//                color = getColorCode(byteIndex, imageData);
+//                if (!panLeft && compareColor(statrColor, color, tolerance) && color != nColor) { // 左侧点入栈
+//                    [points kj_pushNodeWithX:x - 1 PushY:y];
+//                    panLeft = true;
+//                }else if (panLeft && !compareColor(statrColor, color, tolerance)) {
+//                    panLeft = false;
+//                }
+//            }
+//            if (x < width - 1) {
+//                byteIndex = bytesPerPixel * (x + 1) + bytesPerRow * y;
+//                color = getColorCode(byteIndex, imageData);
+//                if (!panRight && compareColor(statrColor, color, tolerance) && color != nColor) { // 右侧点入栈
+//                    [points kj_pushNodeWithX:x + 1 PushY:y];
+//                    panRight = true;
+//                }else if (panRight && !compareColor(statrColor, color, tolerance)){
+//                    panRight = false;
+//                }
+//            }
+//            ++y;
+//            if (y < height) {
+//                byteIndex = bytesPerPixel * x + bytesPerRow * y;
+//                color = getColorCode(byteIndex, imageData);
+//            }
+//
+//            if (antialias) {
+//                if (x <= 0) kAntialias(x-1, y);
+//                if (x >= width) kAntialias(x+1, y);
+//                if (y <= 0) kAntialias(x, y-1);
+//                if (y >= height) kAntialias(x, y+1);
+//            }
+//        }
+//    }
+//
+//    CGImageRef newImage = CGBitmapContextCreateImage(context);
+//    CGContextRelease(context);
+//    UIImage *nImage = [UIImage imageWithCGImage:newImage];
+//    CGImageRelease(newImage);
+//    return nImage;
 }
 
 #pragma mark - 内部方法
