@@ -8,33 +8,33 @@
 
 #import "UIButton+KJBlock.h"
 #import <objc/runtime.h>
-static NSString * const _Nonnull KJButtonControlEventsStringMap[] = {
-    [UIControlEventTouchDown]        = @"KJ_X_UIControlEventTouchDown",
-    [UIControlEventTouchDownRepeat]  = @"KJ_X_UIControlEventTouchDownRepeat",
-    [UIControlEventTouchDragInside]  = @"KJ_X_UIControlEventTouchDragInside",
-    [UIControlEventTouchDragOutside] = @"KJ_X_UIControlEventTouchDragOutside",
-    [UIControlEventTouchDragEnter]   = @"KJ_X_UIControlEventTouchDragEnter",
-    [UIControlEventTouchDragExit]    = @"KJ_X_UIControlEventTouchDragExit",
-    [UIControlEventTouchUpInside]    = @"KJ_X_UIControlEventTouchUpInside",
-    [UIControlEventTouchUpOutside]   = @"KJ_X_UIControlEventTouchUpOutside",
-    [UIControlEventTouchCancel]      = @"KJ_X_UIControlEventTouchCancel",
-};
-#define KJButtonAction(name) \
-- (void)kj_action##name{ \
-KJButtonBlock block = objc_getAssociatedObject(self, _cmd);\
-if (block) block(self);\
-}
+//static NSString * const _Nonnull KJButtonControlEventsStringMap[] = {
+//    [UIControlEventTouchDown]        = @"KJ_X_UIControlEventTouchDown",
+//    [UIControlEventTouchDownRepeat]  = @"KJ_X_UIControlEventTouchDownRepeat",
+//    [UIControlEventTouchDragInside]  = @"KJ_X_UIControlEventTouchDragInside",
+//    [UIControlEventTouchDragOutside] = @"KJ_X_UIControlEventTouchDragOutside",
+//    [UIControlEventTouchDragEnter]   = @"KJ_X_UIControlEventTouchDragEnter",
+//    [UIControlEventTouchDragExit]    = @"KJ_X_UIControlEventTouchDragExit",
+//    [UIControlEventTouchUpInside]    = @"KJ_X_UIControlEventTouchUpInside",
+//    [UIControlEventTouchUpOutside]   = @"KJ_X_UIControlEventTouchUpOutside",
+//    [UIControlEventTouchCancel]      = @"KJ_X_UIControlEventTouchCancel",
+//};
+//#define KJButtonAction(name) \
+//- (void)kj_action##name{ \
+//KJButtonBlock block = objc_getAssociatedObject(self, _cmd);\
+//if (block) block(self);\
+//}
 @implementation UIButton (KJBlock)
-/// 事件响应方法
-KJButtonAction(KJ_X_UIControlEventTouchDown);
-KJButtonAction(KJ_X_UIControlEventTouchDownRepeat);
-KJButtonAction(KJ_X_UIControlEventTouchDragInside);
-KJButtonAction(KJ_X_UIControlEventTouchDragOutside);
-KJButtonAction(KJ_X_UIControlEventTouchDragEnter);
-KJButtonAction(KJ_X_UIControlEventTouchDragExit);
-KJButtonAction(KJ_X_UIControlEventTouchUpInside);
-KJButtonAction(KJ_X_UIControlEventTouchUpOutside);
-KJButtonAction(KJ_X_UIControlEventTouchCancel);
+///// 事件响应方法
+//KJButtonAction(KJ_X_UIControlEventTouchDown);
+//KJButtonAction(KJ_X_UIControlEventTouchDownRepeat);
+//KJButtonAction(KJ_X_UIControlEventTouchDragInside);
+//KJButtonAction(KJ_X_UIControlEventTouchDragOutside);
+//KJButtonAction(KJ_X_UIControlEventTouchDragEnter);
+//KJButtonAction(KJ_X_UIControlEventTouchDragExit);
+//KJButtonAction(KJ_X_UIControlEventTouchUpInside);
+//KJButtonAction(KJ_X_UIControlEventTouchUpOutside);
+//KJButtonAction(KJ_X_UIControlEventTouchCancel);
 
 /// 添加点击事件，默认UIControlEventTouchUpInside
 - (void)kj_addAction:(KJButtonBlock)block{
@@ -43,10 +43,10 @@ KJButtonAction(KJ_X_UIControlEventTouchCancel);
 /// 添加事件
 - (void)kj_addAction:(KJButtonBlock)block forControlEvents:(UIControlEvents)controlEvents{
     if (block) {
-        NSString *actionName = [@"kj_action" stringByAppendingFormat:@"%@",KJButtonControlEventsStringMap[controlEvents]];
-        SEL selector = NSSelectorFromString(actionName);
-        objc_setAssociatedObject(self, selector, block, OBJC_ASSOCIATION_COPY_NONATOMIC);
-        [self addTarget:self action:selector forControlEvents:controlEvents];
+//        NSString *actionName = [@"kj_action" stringByAppendingFormat:@"%@",KJButtonControlEventsStringMap[controlEvents]];
+//        SEL selector = NSSelectorFromString(actionName);
+//        objc_setAssociatedObject(self, selector, block, OBJC_ASSOCIATION_COPY_NONATOMIC);
+//        [self addTarget:self action:selector forControlEvents:controlEvents];
     }
 }
 
