@@ -107,21 +107,21 @@ Github地址：https://github.com/yangKJ
 #import "UIImage+KJCapture.h" // 截图和裁剪处理
 #import "UIImage+KJCoreImage.h" // CoreImage 框架图片效果处理
 #import "UIImage+KJAccelerate.h" // Accelerate  框架的图片处理
-#import "UIImage+KJPhotoshop.h"
+#import "UIImage+KJGIF.h" // 动态图相关
+//#import "UIImage+KJPhotoshop.h"
 //#import "UIImage+KJFloodFill.h" // 图片泛洪算法
-//#import "UIImage+KJFilter.h" // 处理图片滤镜，渲染相关
 //#import "UIImage+KJURLSize.h" // 获取网络图片尺寸
-//#import "UIImage+KJGIF.h" // 动态图相关
 
 #import "UIViewController+KJFullScreen.h" // 充满全屏处理
 
 //#import "UISegmentedControl+KJCustom.h" // 修改背景色和文字颜色
 
-//#import "UIScrollView+KJGestureConflict.h" // 滚动冲突处理
+#import "UIScrollView+KJEmptyDataSet.h" // DZNEmptyDataSet 基础上再次封装没数据时状态
 
 //#import "UICollectionView+KJTouch.h" // 获取Touch事件
 
 //#import "KJColorSlider.h" // 渐变色滑块
+//#import "UISlider+KJTapValue.h" // 滑杆点击改值
 
 #import "UIResponder+KJAdapt.h" // 简单的比例适配
 #import "UIResponder+KJChain.h" // 响应链

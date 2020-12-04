@@ -29,21 +29,30 @@ dispatch_async(dispatch_get_main_queue(), group_notify_block);\
 
 #pragma mark - GCD 线程处理
 NS_INLINE dispatch_queue_t kGCD_queue(void) {
-//    dispatch_queue_t queue = dispatch_queue_create("com.yangkejun.gcd", DISPATCH_QUEUE_CONCURRENT);
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     return queue;
 }
 /// 主线程
 NS_INLINE void kGCD_main(dispatch_block_t block) {
-    if ([[NSThread currentThread] isMainThread]) {
-        dispatch_async(dispatch_get_main_queue(), block);
-    }else {
-        dispatch_sync(dispatch_get_main_queue(), block);
+    dispatch_queue_t queue = dispatch_get_main_queue();
+    if (strcmp(dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL), dispatch_queue_get_label(queue)) == 0) {
+        block();
+    }else{
+        if ([[NSThread currentThread] isMainThread]) {
+            dispatch_async(queue, block);
+        }else{
+            dispatch_sync(queue, block);
+        }
     }
 }
 /// 子线程
 NS_INLINE void kGCD_async(dispatch_block_t block) {
-    dispatch_async(kGCD_queue(), block);
+    dispatch_queue_t queue = kGCD_queue();
+    if (strcmp(dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL), dispatch_queue_get_label(queue)) == 0) {
+        block();
+    }else{
+        dispatch_async(queue, block);
+    }
 }
 /// 异步并行队列，携带可变参数（需要nil结尾）
 NS_INLINE void kGCD_group_notify(dispatch_block_t notify,dispatch_block_t block,...) {

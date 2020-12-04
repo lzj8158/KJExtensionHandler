@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///
 - (UIResponder*)kj_responderWithClass:(Class)clazz;
 ///
-- (BOOL)kj_sendAction:(SEL)action Sender:(id)sender;
+- (BOOL)kj_responderSendAction:(SEL)action Sender:(id)sender;
 
 @end
 

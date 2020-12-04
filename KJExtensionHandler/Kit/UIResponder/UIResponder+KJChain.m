@@ -24,7 +24,7 @@ static __weak id currentFirstResponder;
                 returnString = [returnString stringByAppendingString:@"----"];
             }
             returnString = [returnString stringByAppendingString:@" "];
-        }else {
+        }else{
             returnString = [returnString stringByAppendingString:@"| "];
         }
         returnString = [returnString stringByAppendingFormat:@"%@ (%@)\n", obj, @(idx)];
@@ -40,7 +40,7 @@ static __weak id currentFirstResponder;
 - (void)findCurrentFirstResponder:(id)sender{
     currentFirstResponder = self;
 }
-- (UIResponder *)kj_responderWithClass:(Class)clazz {
+- (UIResponder*)kj_responderWithClass:(Class)clazz{
     UIResponder *responder = self;
     while ((responder = [responder nextResponder])) {
         if ([responder isKindOfClass:clazz]) {
@@ -49,12 +49,12 @@ static __weak id currentFirstResponder;
     }return nil;
 }
 
-- (BOOL)kj_sendAction:(SEL)action Sender:(id)sender {
+- (BOOL)kj_responderSendAction:(SEL)action Sender:(id)sender{
     id target = sender;
     while (target && ![target canPerformAction:action withSender:sender]) {
         target = [target nextResponder];
     }
-    if (!target) return NO;
+    if (target == nil) return NO;
     return [[UIApplication sharedApplication] sendAction:action to:target from:sender forEvent:nil];
 }
 
