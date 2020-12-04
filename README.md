@@ -1,8 +1,18 @@
 # KJExtensionHandler
+# [KJExtensionHandler库简单介绍](https://www.jianshu.com/p/4beb1bd4e1e6)
+#### 本库主要包含三大块：UIKit类、Foundation类、Language 多语言类
+### Category各种工具集合
+- UIButton：图文混排、点击事件封装、扩大点击域、时间间隔限制、倒计时、点击粒子效果等
+- UIView：手势封装、圆角渐变、Xib属性（圆角边框阴影）
+- UITextView：输入框扩展、限制字数、撤销处理、获取文本内部超链接
+- UILabel：富文本，快捷显示文本位置
+- UISlider：渐变色滑杆，滑杆点击值修改
+- UIImage：截图和裁剪、图片压缩、蒙版处理，图片拼接、图片尺寸处理，滤镜渲染、泛洪算法等
+- CALayer：投影，倒影，内发光，外发光，内阴影，外阴影等
+- Language：多语言，支持Xib快捷设置
+- Foundation：数组和字典防崩处理，数组算法处理，谓词相关等等
 
-* 这个工程提供开发中用到的类目，方便开发
-* 这里有我经常用到的扩展，方便好用开发
-* 整理好用的自定义控件，部分数据来源于网络 
+#### Foundation我还整理封装了一套异常处理、防崩库 `KJExceptionDemo`
 
 <p align="left">
 <img src="https://upload-images.jianshu.io/upload_images/1933747-5cccc7ddb754fef5.gif?imageMogr2/auto-orient/strip" width="200" hspace="1px">
@@ -181,6 +191,3 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 [![谢谢老板](https://upload-images.jianshu.io/upload_images/1933747-879572df848f758a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)](https://github.com/yangKJ/KJPlayerDemo)
 
 #### 救救孩子吧，谢谢各位老板～～～～
-<p align="left">
-<img src="https://img.zcool.cn/community/0161da5541af81000001a64bc753a4.jpg@1280w_1l_2o_100sh.jpg" width="666" hspace="1px">
-</p>
