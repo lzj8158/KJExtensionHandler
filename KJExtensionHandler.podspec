@@ -1,12 +1,12 @@
 Pod::Spec.new do |s|
   s.name     = "KJExtensionHandler"
-  s.version  = "0.0.10"
+  s.version  = "1.0.0"
   s.summary  = "77 ExtensionHandler"
   s.homepage = "https://github.com/yangKJ/KJExtensionHandler"
   s.license  = "MIT"
   s.license  = {:type => "MIT", :file => "LICENSE"}
   s.license  = "Copyright (c) 2020 yangkejun"
-  s.author   = { "77" => "ykj310@126.com" }
+  s.author   = {"77" => "ykj310@126.com"}
   s.platform = :ios
   s.source   = {:git => "https://github.com/yangKJ/KJExtensionHandler.git",:tag => "#{s.version}"}
   s.social_media_url = 'https://www.jianshu.com/u/c84c00476ab6'
@@ -28,10 +28,10 @@ Pod::Spec.new do |s|
     fun.dependency 'KJExtensionHandler/Kit'
   end
   
-  s.subspec 'Exception' do |ex|
-    ex.source_files = "KJExtensionHandler/Exception/**/*.{h,m}"
-    ex.public_header_files = 'KJExtensionHandler/Exception/*.h',"KJExtensionHandler/Exception/**/*.h"
-    ex.dependency 'KJExtensionHandler/Kit'
+  s.subspec 'Language' do |la|
+    la.source_files = "KJExtensionHandler/Language/**/*.{h,m}"
+    la.public_header_files = 'KJExtensionHandler/Language/*.h',"KJExtensionHandler/Language/**/*.h"
+    la.dependency 'KJExtensionHandler/Kit'
   end
   
 end

@@ -738,15 +738,18 @@ Class dzn_baseClassToSwizzleForTarget(id target)
     CGRect superviewBounds = self.superview.bounds;
     self.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(superviewBounds), CGRectGetHeight(superviewBounds));
     
-    void(^fadeInBlock)(void) = ^{_contentView.alpha = 1.0;};
+//    void(^fadeInBlock)(void) = ^{_contentView.alpha = 1.0;};
     
     if (self.fadeInOnDisplay) {
-        [UIView animateWithDuration:0.25
-                         animations:fadeInBlock
-                         completion:NULL];
-    }
-    else {
-        fadeInBlock();
+//        [UIView animateWithDuration:0.25
+//                         animations:fadeInBlock
+//                         completion:NULL];
+        [UIView animateWithDuration:0.25 animations:^{
+            self.contentView.alpha = 1.0;
+        }];
+    }else {
+        _contentView.alpha = 1.0;
+//        fadeInBlock();
     }
 }
 

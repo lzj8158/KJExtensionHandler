@@ -127,6 +127,9 @@
         [_button kj_addAction:^(UIButton * _Nonnull kButton) {
             NSLog(@"UIControlEventTouchDown");
         } forControlEvents:(UIControlEventTouchDown)];
+        [_button kj_addAction:^(UIButton * _Nonnull kButton) {
+            NSLog(@"UIControlEventTouchCancel");
+        } forControlEvents:(UIControlEventTouchCancel)|(UIControlEventTouchUpInside)];
     }
     return _button;
 }
@@ -144,7 +147,7 @@
         _emitterButton.centerY = label.centerY;
         [_emitterButton setImage:kGetImage(@"button_like_norm") forState:(UIControlStateNormal)];
         [_emitterButton setImage:kGetImage(@"button_like_sele") forState:(UIControlStateSelected)];
-        [_emitterButton kj_buttonSetEmitterImage:nil OpenEmitter:true];
+        [_emitterButton kj_buttonSetEmitterImage:nil OpenEmitter:YES];
         [_emitterButton kj_addAction:^(UIButton * _Nonnull kButton) {
             kButton.selected = !kButton.selected;
         }];

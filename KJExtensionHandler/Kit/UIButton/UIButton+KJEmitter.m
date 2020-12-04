@@ -15,7 +15,7 @@
 
 @implementation UIButton (KJEmitter)
 /// 设置粒子效果
-- (void)kj_buttonSetEmitterImage:(UIImage*)image OpenEmitter:(bool)open{
+- (void)kj_buttonSetEmitterImage:(UIImage*)image OpenEmitter:(BOOL)open{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         method_exchangeImplementations(class_getInstanceMethod(self.class, @selector(setSelected:)), class_getInstanceMethod(self.class, @selector(kj_setSelected:)));
@@ -29,7 +29,7 @@
     [self kj_setSelected:selected];
     if (self.openEmitter) [self buttonAnimation];
 }
-
+#pragma mark - associated
 - (UIImage*)emitterImage{
     return objc_getAssociatedObject(self, @selector(emitterImage));
 }

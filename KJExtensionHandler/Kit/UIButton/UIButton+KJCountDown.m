@@ -46,7 +46,7 @@
         if (self.kButtonCountDownStop) { self.kButtonCountDownStop(); }
     });
 }
-
+#pragma mark - associated
 - (NSTimer*)timer{
     return objc_getAssociatedObject(self, @selector(timer));
 }

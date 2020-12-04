@@ -1,9 +1,4 @@
 # KJExtensionHandler
-<p align="left">
-<img src="https://img.zcool.cn/community/0161da5541af81000001a64bc753a4.jpg@1280w_1l_2o_100sh.jpg" width="666" hspace="1px">
-</p>
-
-##### 上传到Cocoapods `pod trunk push KJExtensionHandler.podspec --allow-warnings`
 
 * 这个工程提供开发中用到的类目，方便开发
 * 这里有我经常用到的扩展，方便好用开发
@@ -27,7 +22,11 @@
 <img src="https://upload-images.jianshu.io/upload_images/1933747-f75249465cc14d81.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" width="200" hspace="1px">
 </p>
 
-----------------------------------------
+##### 添加本地tag `git tag -a 1.0.0 -m 'release 1.0.0'`
+##### 将tag传到远程   `git push origin --tags`
+##### 不需要联网验证 `pod lib lint --verbose --allow-warnings`
+##### 上传到Cocoapods `pod trunk push KJExtensionHandler.podspec --allow-warnings`
+
 ### 框架整体介绍
 * [作者信息](#作者信息)
 * [作者其他库](#作者其他库)
@@ -38,13 +37,10 @@
 * [目录结构](#目录结构)
 * [打赏作者 &radic;](#打赏作者)
 
-----------------------------------------
-
 #### <a id="作者信息"></a>作者信息
 > Github地址：https://github.com/yangKJ  
 > 简书地址：https://www.jianshu.com/u/c84c00476ab6  
 > 博客地址：https://blog.csdn.net/qq_34534179  
-
 
 #### <a id="作者其他库"></a>作者其他Pod库
 ```
@@ -62,7 +58,7 @@ pod 'KJEmitterView/Control' # 自定义控件
 图片压缩加工处理、滤镜渲染、泛洪算法、识别网址超链接等等
 pod 'KJExtensionHandler'
 pod 'KJExtensionHandler/Foundation'
-pod 'KJExtensionHandler/Exception' # 异常处理
+pod 'KJExtensionHandler/Language' # 多语言模块
 
 基类库 - 封装整理常用，采用链式处理，提炼独立工具
 pod 'KJBaseHandler'
@@ -87,6 +83,9 @@ pod 'KJMenuView' # 菜单控件
 pod 'KJWorkbox' # 系统工具
 pod 'KJWorkbox/CommonBox'
 
+异常处理库 - 包含基本的防崩溃处理（数组，字典，字符串）
+pod 'KJExceptionDemo'
+
 * 如果觉得好用,希望您能Star支持,你的 ⭐️ 是我持续更新的动力!
 *
 *********************************************************************************
@@ -97,12 +96,18 @@ pod 'KJWorkbox/CommonBox'
 ```
 pod 'KJExtensionHandler'
 pod 'KJExtensionHandler/Foundation'
-pod 'KJExtensionHandler/Exception'
+pod 'KJExtensionHandler/Language' # 多语言模块
 ```
 
 #### <a id="更新日志"></a>更新日志
 ```
 ####版本更新日志:
+#### Add 1.0.0
+1. 完善 UIButton+KJBlock 去除多枚举和超出九种情况
+2. 新增 UIDevice+KJSystem 系统相关方法属性
+3. 分离 Exception 异常处理，请使用 pod 'KJExceptionDemo'
+4. 新增 Language 模块 pod 'KJExtensionHandler/Language' # 多语言模块
+
 #### Add 0.0.10
 1. UIImage+KJGIF 新增播放本地动态图 kj_gifLocalityImageWithName:
 2. 提出 KJNodeQueue 栈操作工具
@@ -176,3 +181,6 @@ pod 'KJExtensionHandler/Exception'
 [![谢谢老板](https://upload-images.jianshu.io/upload_images/1933747-879572df848f758a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)](https://github.com/yangKJ/KJPlayerDemo)
 
 #### 救救孩子吧，谢谢各位老板～～～～
+<p align="left">
+<img src="https://img.zcool.cn/community/0161da5541af81000001a64bc753a4.jpg@1280w_1l_2o_100sh.jpg" width="666" hspace="1px">
+</p>

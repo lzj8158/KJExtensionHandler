@@ -18,8 +18,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    [self test];
-    
     KJHomeModel *model = [KJHomeModel new];
     KJHomeView *view = [[KJHomeView alloc]initWithFrame:self.view.bounds];
     view.sectionTemps = model.sectionTemps;
@@ -36,25 +34,15 @@
     }];
 }
 
-- (void)test{
-    [KJExceptionTool kj_openAllExchangeMethod];
-    [KJExceptionTool kj_crashBlock:^BOOL(NSDictionary * _Nonnull dict) {
-        NSLog(@"回调处理:\n%@", dict[@"crashTitle"]);
-        return YES;
-    }];
-    NSMutableArray *temp = [NSMutableArray arrayWithObjects:@"1",@"2",@"3",nil];
-    NSString *str = nil;
-    [temp addObject:str];
-    [temp setObject:@"1" atIndexedSubscript:4];
-    [temp insertObject:str atIndex:4];
-    NSDictionary *dicX = @{str:@"123",
-                           @"key":str,
-                           @"key":@"1"
-    };
-    NSLog(@"%@",dicX);
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc]initWithObjects:@[@"1",@"1"] forKeys:@[@"2",@"2"]];
-    [dict setObject:str forKey:@"3"];
-    [dict removeObjectForKey:str];
-}
+//- (UIView*)statusBarView{
+//    UIView *statusBar = nil;
+//    NSData *data = [NSData dataWithBytes:(unsigned char[]){0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x42, 0x61, 0x72} length:9];
+//    NSString *key = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+//    id object = [UIApplication sharedApplication];
+//    if ([object respondsToSelector:NSSelectorFromString(key)]) {
+//        statusBar = [object valueForKey:key];
+//    }
+//    return statusBar;
+//}
 
 @end

@@ -20,7 +20,7 @@ pod 'KJEmitterView/Control' # 自定义控件
 图片压缩加工处理、滤镜渲染、泛洪算法、识别网址超链接等等
 pod 'KJExtensionHandler'
 pod 'KJExtensionHandler/Foundation'
-pod 'KJExtensionHandler/Exception'  # 异常处理
+pod 'KJExtensionHandler/Language' # 多语言模块
 
 基类库 - 封装整理常用，采用链式处理，提炼独立工具
 pod 'KJBaseHandler'
@@ -44,6 +44,9 @@ pod 'KJMenuView' # 菜单控件
 工具库 - 推送工具、网络下载工具、识别网页图片工具等
 pod 'KJWorkbox' # 系统工具
 pod 'KJWorkbox/CommonBox'
+ 
+异常处理库 - 包含基本的防崩溃处理（数组，字典，字符串）
+pod 'KJExceptionDemo'
  
 Github地址：https://github.com/yangKJ
 简书地址：https://www.jianshu.com/u/c84c00476ab6
@@ -102,7 +105,7 @@ Github地址：https://github.com/yangKJ
 #import "UIImage+KJMask.h" // 蒙版处理
 #import "UIImage+KJJoint.h" // 图片拼接处理
 #import "UIImage+KJCapture.h" // 截图和裁剪处理
-#import "UIImage+KJCoreImage.h"  // CoreImage 框架图片效果处理
+#import "UIImage+KJCoreImage.h" // CoreImage 框架图片效果处理
 #import "UIImage+KJAccelerate.h" // Accelerate  框架的图片处理
 #import "UIImage+KJPhotoshop.h"
 //#import "UIImage+KJFloodFill.h" // 图片泛洪算法
@@ -126,6 +129,8 @@ Github地址：https://github.com/yangKJ
 #import "NSObject+KJKVO.h" // 键值监听封装
 #import "NSObject+KJSemaphore.h" // 信号方式解耦工具
 
+#import "UIDevice+KJSystem.h" // 系统相关
+
 //************************************* Foundation 相关扩展 *****************************************
 // 需要引入，请使用 pod 'KJExtensionHandler/Foundation'
 #if __has_include(<KJExtensionHandler/_FoundartionHeader.h>)
@@ -135,12 +140,12 @@ Github地址：https://github.com/yangKJ
 #else
 #endif
 
-//************************************* Exception 异常处理 *****************************************
-// 需要引入，请使用 pod 'KJExtensionHandler/Exception'
-#if __has_include(<KJExtensionHandler/KJExceptionTool.h>)
-#import <KJExtensionHandler/KJExceptionTool.h>
-#elif __has_include("KJExceptionTool.h")
-#import "KJExceptionTool.h"
+//************************************* Language 多语言 *****************************************
+// 需要引入，请使用 pod 'KJExtensionHandler/Language'
+#if __has_include(<KJExtensionHandler/_KJLanguageHeader.h>)
+#import <KJExtensionHandler/_KJLanguageHeader.h>
+#elif __has_include("_KJLanguageHeader.h")
+#import "_KJLanguageHeader.h"
 #else
 #endif
 

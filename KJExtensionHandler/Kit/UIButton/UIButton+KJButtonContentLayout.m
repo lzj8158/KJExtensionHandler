@@ -82,7 +82,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self setNeedsDisplay];
 }
 
-#pragma mark - SET
+#pragma mark - associated
 - (NSInteger)layoutType{
     return [objc_getAssociatedObject(self, @selector(layoutType)) integerValue];;
 }

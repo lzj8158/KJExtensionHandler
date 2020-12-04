@@ -17,6 +17,9 @@
 #pragma mark - lazy
 - (NSArray*)temps{
     if (!_temps) {
+        NSMutableArray *temp4 = [NSMutableArray array];
+        [temp4 addObject:@{@"VCName":@"KJLanguageVC",@"describeName":@"多语言测试"}];
+        
         NSMutableArray *temp1 = [NSMutableArray array];
         [temp1 addObject:@{@"VCName":@"KJButtonVC",@"describeName":@"Button图文布局点赞粒子"}];
         [temp1 addObject:@{@"VCName":@"KJLabelVC",@"describeName":@"Label文本位置管理"}];
@@ -45,7 +48,7 @@
         NSMutableArray *temp2 = [NSMutableArray array];
         [temp2 addObject:@{@"VCName":@"KJMathVC",@"describeName":@"数学方程式"}];
 
-        _temps = @[temp1,temp3,temp0,temp2];
+        _temps = @[temp4,temp1,temp3,temp0,temp2];
     }
     return _temps;
 }

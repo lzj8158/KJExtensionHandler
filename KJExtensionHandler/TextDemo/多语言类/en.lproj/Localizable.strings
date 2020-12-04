@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  KJExtensionHandler
+
+  Created by 杨科军 on 2020/12/3.
+  
+*/
+"textLabel" = "当前语言为English";
+"textFieldPlaceholder" = "xx_textFieldPlaceholder";
+"textButtonDefault" = "xx_textButtonDefault";
+"textButtonSelect" = "xx_textButtonSelect";
+"textButtonHighliaght" = "xx_textButtonHighliaght";
+"textButtonDisable" = "xx_textButtonDisable";
+"changeLanguage" = "Change";
