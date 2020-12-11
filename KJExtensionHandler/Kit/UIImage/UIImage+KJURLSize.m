@@ -95,7 +95,7 @@
     int h = (h1 << 24) + (h2 << 16) + (h3 << 8) + h4;
     return (CGSizeMake(w, h));
 }
-+ (CGSize)jpgImageSizeWithHeaderData:(NSData *)data {
++ (CGSize)jpgImageSizeWithHeaderData:(NSData*)data {
     if ([data length] <= 0x58) return (CGSizeZero);
     if ([data length] < 210) {
         short w1 = 0, w2 = 0;
@@ -138,7 +138,7 @@
         }
     }
 }
-+ (CGSize)gifImageSizeWithHeaderData:(NSData *)data {
++ (CGSize)gifImageSizeWithHeaderData:(NSData*)data {
     short w1 = 0, w2 = 0;
     [data getBytes:&w1 range:NSMakeRange(0, 1)];
     [data getBytes:&w2 range:NSMakeRange(1, 1)];

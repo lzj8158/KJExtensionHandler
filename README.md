@@ -112,6 +112,9 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 #### <a id="更新日志"></a>更新日志
 ```
 ####版本更新日志:
+#### Add 1.0.1
+1. 新增 UITextField+KJExtension 输入框扩展，快速设置账号密码框
+
 #### Add 1.0.0
 1. 完善 UIButton+KJBlock 去除多枚举和超出九种情况
 2. 新增 UIDevice+KJSystem 系统相关方法属性
@@ -128,7 +131,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 1. UIImage+KJCompress 新增多种缩放方案
 2. UIImage+KJJoint 新增多种图片拼接
 3. UIButton+KJButtonContentLayout 修改三个属性layoutType、padding、periphery
-
+                                                                                                                                                                                                                                                                                                      
 #### Add 0.0.8
 1. UIImage+KJCapture 截图方法修改，提升截图质量
 2. 新增 UIImageView+KJLetters 头像浏览和文字头像

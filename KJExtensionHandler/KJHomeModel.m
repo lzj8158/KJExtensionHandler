@@ -10,27 +10,28 @@
 @implementation KJHomeModel
 - (instancetype)init{
     if (self==[super init]) {
-        self.sectionTemps = @[@"Kit扩展类",@"图片相关",@"效果类",@"Foundation扩展类"];
+        self.sectionTemps = @[@"Kit扩展类",@"多语言类",@"图片相关",@"效果类",@"Foundation扩展类"];
     }
     return self;
 }
 #pragma mark - lazy
 - (NSArray*)temps{
     if (!_temps) {
-        NSMutableArray *temp4 = [NSMutableArray array];
-        [temp4 addObject:@{@"VCName":@"KJLanguageVC",@"describeName":@"多语言测试"}];
-        
         NSMutableArray *temp1 = [NSMutableArray array];
         [temp1 addObject:@{@"VCName":@"KJButtonVC",@"describeName":@"Button图文布局点赞粒子"}];
         [temp1 addObject:@{@"VCName":@"KJLabelVC",@"describeName":@"Label文本位置管理"}];
         [temp1 addObject:@{@"VCName":@"KJViewVC",@"describeName":@"View快速切圆角边框"}];
         [temp1 addObject:@{@"VCName":@"KJGestureVC",@"describeName":@"Gesture手势相关处理"}];
         [temp1 addObject:@{@"VCName":@"KJSliderVC",@"describeName":@"Slider渐变色滑块"}];
+        [temp1 addObject:@{@"VCName":@"KJTextFieldVC",@"describeName":@"TextField输入扩展"}];
         [temp1 addObject:@{@"VCName":@"KJTextViewVC",@"describeName":@"TextView设置限制字数"}];
         [temp1 addObject:@{@"VCName":@"KJCollectionVC",@"describeName":@"CollectView滚动处理"}];
         [temp1 addObject:@{@"VCName":@"KJEmptyDataVC",@"describeName":@"TableView空数据状态"}];
         [temp1 addObject:@{@"VCName":@"KJImageViewVC",@"describeName":@"ImageView文字头像"}];
         [temp1 addObject:@{@"VCName":@"KJToastVC",@"describeName":@"Toast处理"}];
+        
+        NSMutableArray *temp4 = [NSMutableArray array];
+        [temp4 addObject:@{@"VCName":@"KJLanguageVC",@"describeName":@"多语言测试"}];
 
         NSMutableArray *temp3 = [NSMutableArray array];
         [temp3 addObject:@{@"VCName":@"KJImageJointVC",@"describeName":@"Image拼接性能对比"}];
@@ -48,7 +49,7 @@
         NSMutableArray *temp2 = [NSMutableArray array];
         [temp2 addObject:@{@"VCName":@"KJMathVC",@"describeName":@"数学方程式"}];
 
-        _temps = @[temp4,temp1,temp3,temp0,temp2];
+        _temps = @[temp1,temp4,temp3,temp0,temp2];
     }
     return _temps;
 }

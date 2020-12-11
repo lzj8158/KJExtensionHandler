@@ -1,17 +1,17 @@
 //
-//  UIButton+KJButtonContentLayout.m
+//  UIButton+KJContentLayout.m
 //  CategoryDemo
 //
 //  Created by 杨科军 on 2018/7/7.
 //  Copyright © 2017年 杨科军. All rights reserved.
 //  https://github.com/yangKJ/KJExtensionHandler
 
-#import "UIButton+KJButtonContentLayout.h"
+#import "UIButton+KJContentLayout.h"
 #import <objc/runtime.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@implementation UIButton (KJButtonContentLayout)
+@implementation UIButton (KJContentLayout)
 /// 设置图文混排
 - (void)kj_setButtonContentLayout{
     self.imageView.contentMode = UIViewContentModeScaleAspectFit;

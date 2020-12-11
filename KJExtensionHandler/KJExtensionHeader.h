@@ -65,7 +65,7 @@ Github地址：https://github.com/yangKJ
 
 #import "UIButton+KJBlock.h" // 点击事件ButtonBlock
 #import "UIButton+KJEnlarge.h" // 改变UIButton的响应区域
-#import "UIButton+KJButtonContentLayout.h" // 图文混排
+#import "UIButton+KJContentLayout.h" // 图文混排
 #import "UIButton+KJCreate.h" // 快速创建按钮
 //#import "UIButton+KJIndicator.h" // 指示器
 //#import "UIButton+KJEmitter.h" // 按钮粒子效果
@@ -122,6 +122,8 @@ Github地址：https://github.com/yangKJ
 
 //#import "KJColorSlider.h" // 渐变色滑块
 //#import "UISlider+KJTapValue.h" // 滑杆点击改值
+
+#import "UITextField+KJExtension.h" // 输入框扩展，快速设置账号密码框
 
 #import "UIResponder+KJAdapt.h" // 简单的比例适配
 #import "UIResponder+KJChain.h" // 响应链

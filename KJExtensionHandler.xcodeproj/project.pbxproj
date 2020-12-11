@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C00C746C5C661984A5B46D8 /* Pods_KJExtensionHandler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6984F7AF59925E58D4CA0F /* Pods_KJExtensionHandler.framework */; };
 		6808CB8C2554E6B900FBAAAD /* NSDictionary+KJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6808CB8B2554E6B900FBAAAD /* NSDictionary+KJExtension.m */; };
 		6808CB922554E6C800FBAAAD /* NSArray+KJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6808CB912554E6C800FBAAAD /* NSArray+KJExtension.m */; };
 		6808CB982554E86E00FBAAAD /* NSObject+KJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6808CB972554E86E00FBAAAD /* NSObject+KJExtension.m */; };
@@ -32,6 +33,8 @@
 		685F371725525447001575DE /* NSString+KJChinese.m in Sources */ = {isa = PBXBuildFile; fileRef = 685F371625525447001575DE /* NSString+KJChinese.m */; };
 		685F371D25525885001575DE /* UIImage+KJJoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 685F371C25525885001575DE /* UIImage+KJJoint.m */; };
 		685F37262552A41D001575DE /* NSString+KJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 685F37252552A41D001575DE /* NSString+KJExtension.m */; };
+		6868831A257A1F7D001CF162 /* UITextField+KJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 68688319257A1F7D001CF162 /* UITextField+KJExtension.m */; };
+		68688329257A2440001CF162 /* KJTextFieldVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 68688328257A2440001CF162 /* KJTextFieldVC.m */; };
 		687E1B5C255D05BF0017075D /* CALayer+KJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 687E1B5B255D05BF0017075D /* CALayer+KJExtension.m */; };
 		687E1B65255D19C50017075D /* KJGestureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 687E1B64255D19C50017075D /* KJGestureVC.m */; };
 		6895B9D62536943700AEEFA1 /* UIResponder+KJAdapt.m in Sources */ = {isa = PBXBuildFile; fileRef = 6895B9D52536943700AEEFA1 /* UIResponder+KJAdapt.m */; };
@@ -71,7 +74,7 @@
 		68AD72F5251D9BB8000C89C5 /* UILabel+KJAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD7297251D9BB8000C89C5 /* UILabel+KJAttributedString.m */; };
 		68AD72F6251D9BB8000C89C5 /* UIButton+KJIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD729A251D9BB8000C89C5 /* UIButton+KJIndicator.m */; };
 		68AD72F7251D9BB8000C89C5 /* UIButton+KJCreate.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD729B251D9BB8000C89C5 /* UIButton+KJCreate.m */; };
-		68AD72F8251D9BB8000C89C5 /* UIButton+KJButtonContentLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD729C251D9BB8000C89C5 /* UIButton+KJButtonContentLayout.m */; };
+		68AD72F8251D9BB8000C89C5 /* UIButton+KJContentLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD729C251D9BB8000C89C5 /* UIButton+KJContentLayout.m */; };
 		68AD72F9251D9BB8000C89C5 /* UIButton+KJBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD729D251D9BB8000C89C5 /* UIButton+KJBlock.m */; };
 		68AD72FA251D9BB8000C89C5 /* UIButton+KJEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD729E251D9BB8000C89C5 /* UIButton+KJEmitter.m */; };
 		68AD72FB251D9BB8000C89C5 /* UIButton+KJCountDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD72A6251D9BB8000C89C5 /* UIButton+KJCountDown.m */; };
@@ -126,6 +129,8 @@
 		68F3A8A12539739A00BCD817 /* KJHomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F3A8A02539739A00BCD817 /* KJHomeView.m */; };
 		68F3A8AA253973AF00BCD817 /* KJHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F3A8A9253973AF00BCD817 /* KJHomeModel.m */; };
 		68FFFC78254FEAA300B2E9E3 /* UIBezierPath+KJPoints.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FFFC76254FEAA300B2E9E3 /* UIBezierPath+KJPoints.m */; };
+		74A7CABAC91AE8282046C928 /* Pods_KJExtensionHandler_KJExtensionHandlerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE1742990F6FAC9E33E5691 /* Pods_KJExtensionHandler_KJExtensionHandlerUITests.framework */; };
+		96625707C2E52044EF2C2278 /* Pods_KJExtensionHandlerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB272C86683A156A6DCD51A /* Pods_KJExtensionHandlerTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +151,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		320BEC77EF565D82940A2221 /* Pods-KJExtensionHandlerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KJExtensionHandlerTests.release.xcconfig"; path = "Target Support Files/Pods-KJExtensionHandlerTests/Pods-KJExtensionHandlerTests.release.xcconfig"; sourceTree = "<group>"; };
+		32654F5AABE89700BC5D8B4B /* Pods-KJExtensionHandler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KJExtensionHandler.debug.xcconfig"; path = "Target Support Files/Pods-KJExtensionHandler/Pods-KJExtensionHandler.debug.xcconfig"; sourceTree = "<group>"; };
+		3D6984F7AF59925E58D4CA0F /* Pods_KJExtensionHandler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KJExtensionHandler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F99F47DC557AB272F4A3554 /* Pods-KJExtensionHandler-KJExtensionHandlerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KJExtensionHandler-KJExtensionHandlerUITests.debug.xcconfig"; path = "Target Support Files/Pods-KJExtensionHandler-KJExtensionHandlerUITests/Pods-KJExtensionHandler-KJExtensionHandlerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		42675860F34DC416D95095DE /* Pods-KJExtensionHandlerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KJExtensionHandlerTests.debug.xcconfig"; path = "Target Support Files/Pods-KJExtensionHandlerTests/Pods-KJExtensionHandlerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4A99FBD00083EAAF502A870F /* Pods-KJExtensionHandler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KJExtensionHandler.release.xcconfig"; path = "Target Support Files/Pods-KJExtensionHandler/Pods-KJExtensionHandler.release.xcconfig"; sourceTree = "<group>"; };
+		4CE1742990F6FAC9E33E5691 /* Pods_KJExtensionHandler_KJExtensionHandlerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KJExtensionHandler_KJExtensionHandlerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6808CB862554E4DD00FBAAAD /* _KJGCD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _KJGCD.h; sourceTree = "<group>"; };
 		6808CB8A2554E6B900FBAAAD /* NSDictionary+KJExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+KJExtension.h"; sourceTree = "<group>"; };
 		6808CB8B2554E6B900FBAAAD /* NSDictionary+KJExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+KJExtension.m"; sourceTree = "<group>"; };
@@ -198,6 +210,10 @@
 		685F37242552A41D001575DE /* NSString+KJExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+KJExtension.h"; sourceTree = "<group>"; };
 		685F37252552A41D001575DE /* NSString+KJExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+KJExtension.m"; sourceTree = "<group>"; };
 		6868128A2553CF0800024BF6 /* _FoundartionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _FoundartionHeader.h; sourceTree = "<group>"; };
+		68688318257A1F7D001CF162 /* UITextField+KJExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+KJExtension.h"; sourceTree = "<group>"; };
+		68688319257A1F7D001CF162 /* UITextField+KJExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+KJExtension.m"; sourceTree = "<group>"; };
+		68688327257A2440001CF162 /* KJTextFieldVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJTextFieldVC.h; sourceTree = "<group>"; };
+		68688328257A2440001CF162 /* KJTextFieldVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJTextFieldVC.m; sourceTree = "<group>"; };
 		687E1B5A255D05BF0017075D /* CALayer+KJExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+KJExtension.h"; sourceTree = "<group>"; };
 		687E1B5B255D05BF0017075D /* CALayer+KJExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+KJExtension.m"; sourceTree = "<group>"; };
 		687E1B63255D19C50017075D /* KJGestureVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJGestureVC.h; sourceTree = "<group>"; };
@@ -274,14 +290,14 @@
 		68AD7298251D9BB8000C89C5 /* UILabel+KJCreate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+KJCreate.h"; sourceTree = "<group>"; };
 		68AD729A251D9BB8000C89C5 /* UIButton+KJIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+KJIndicator.m"; sourceTree = "<group>"; };
 		68AD729B251D9BB8000C89C5 /* UIButton+KJCreate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+KJCreate.m"; sourceTree = "<group>"; };
-		68AD729C251D9BB8000C89C5 /* UIButton+KJButtonContentLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+KJButtonContentLayout.m"; sourceTree = "<group>"; };
+		68AD729C251D9BB8000C89C5 /* UIButton+KJContentLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+KJContentLayout.m"; sourceTree = "<group>"; };
 		68AD729D251D9BB8000C89C5 /* UIButton+KJBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+KJBlock.m"; sourceTree = "<group>"; };
 		68AD729E251D9BB8000C89C5 /* UIButton+KJEmitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+KJEmitter.m"; sourceTree = "<group>"; };
 		68AD729F251D9BB8000C89C5 /* UIButton+KJEnlarge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+KJEnlarge.h"; sourceTree = "<group>"; };
 		68AD72A0251D9BB8000C89C5 /* UIButton+KJCountDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+KJCountDown.h"; sourceTree = "<group>"; };
 		68AD72A1251D9BB8000C89C5 /* UIButton+KJCreate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+KJCreate.h"; sourceTree = "<group>"; };
 		68AD72A2251D9BB8000C89C5 /* UIButton+KJIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+KJIndicator.h"; sourceTree = "<group>"; };
-		68AD72A3251D9BB8000C89C5 /* UIButton+KJButtonContentLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+KJButtonContentLayout.h"; sourceTree = "<group>"; };
+		68AD72A3251D9BB8000C89C5 /* UIButton+KJContentLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+KJContentLayout.h"; sourceTree = "<group>"; };
 		68AD72A4251D9BB8000C89C5 /* UIButton+KJEmitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+KJEmitter.h"; sourceTree = "<group>"; };
 		68AD72A5251D9BB8000C89C5 /* UIButton+KJBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+KJBlock.h"; sourceTree = "<group>"; };
 		68AD72A6251D9BB8000C89C5 /* UIButton+KJCountDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+KJCountDown.m"; sourceTree = "<group>"; };
@@ -380,6 +396,8 @@
 		68F3A8A9253973AF00BCD817 /* KJHomeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJHomeModel.m; sourceTree = "<group>"; };
 		68FFFC76254FEAA300B2E9E3 /* UIBezierPath+KJPoints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+KJPoints.m"; sourceTree = "<group>"; };
 		68FFFC77254FEAA300B2E9E3 /* UIBezierPath+KJPoints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+KJPoints.h"; sourceTree = "<group>"; };
+		A89E9EE6C07FFEAFB356DF51 /* Pods-KJExtensionHandler-KJExtensionHandlerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KJExtensionHandler-KJExtensionHandlerUITests.release.xcconfig"; path = "Target Support Files/Pods-KJExtensionHandler-KJExtensionHandlerUITests/Pods-KJExtensionHandler-KJExtensionHandlerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		CCB272C86683A156A6DCD51A /* Pods_KJExtensionHandlerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KJExtensionHandlerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -387,6 +405,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C00C746C5C661984A5B46D8 /* Pods_KJExtensionHandler.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +413,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96625707C2E52044EF2C2278 /* Pods_KJExtensionHandlerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +421,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74A7CABAC91AE8282046C928 /* Pods_KJExtensionHandler_KJExtensionHandlerUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,6 +498,15 @@
 			path = "图片相关";
 			sourceTree = "<group>";
 		};
+		68688317257A1F4D001CF162 /* UITextField */ = {
+			isa = PBXGroup;
+			children = (
+				68688318257A1F7D001CF162 /* UITextField+KJExtension.h */,
+				68688319257A1F7D001CF162 /* UITextField+KJExtension.m */,
+			);
+			path = UITextField;
+			sourceTree = "<group>";
+		};
 		6895B9D32536941F00AEEFA1 /* UIResponder */ = {
 			isa = PBXGroup;
 			children = (
@@ -495,6 +525,8 @@
 				68AD71D5251D9707000C89C5 /* KJExtensionHandlerTests */,
 				68AD71E0251D9707000C89C5 /* KJExtensionHandlerUITests */,
 				68AD71B8251D9705000C89C5 /* Products */,
+				962F2D9A4FE87A2AB17E13F3 /* Pods */,
+				714290FC05C3F34B7F8E7C1A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -632,6 +664,7 @@
 				68AD728D251D9BB8000C89C5 /* UIScrollView */,
 				68AD72D8251D9BB8000C89C5 /* UISlider */,
 				68B32CA92553E1D5001693F6 /* UITabBar */,
+				68688317257A1F4D001CF162 /* UITextField */,
 				68AD72C0251D9BB8000C89C5 /* UITextView */,
 				68AD72B3251D9BB8000C89C5 /* UIView */,
 				68AD72D0251D9BB8000C89C5 /* UIViewController */,
@@ -699,8 +732,8 @@
 			children = (
 				68AD72A5251D9BB8000C89C5 /* UIButton+KJBlock.h */,
 				68AD729D251D9BB8000C89C5 /* UIButton+KJBlock.m */,
-				68AD72A3251D9BB8000C89C5 /* UIButton+KJButtonContentLayout.h */,
-				68AD729C251D9BB8000C89C5 /* UIButton+KJButtonContentLayout.m */,
+				68AD72A3251D9BB8000C89C5 /* UIButton+KJContentLayout.h */,
+				68AD729C251D9BB8000C89C5 /* UIButton+KJContentLayout.m */,
 				68AD72A0251D9BB8000C89C5 /* UIButton+KJCountDown.h */,
 				68AD72A6251D9BB8000C89C5 /* UIButton+KJCountDown.m */,
 				68AD72A1251D9BB8000C89C5 /* UIButton+KJCreate.h */,
@@ -848,6 +881,8 @@
 		68AD731B251D9C75000C89C5 /* Kit扩展类 */ = {
 			isa = PBXGroup;
 			children = (
+				68688327257A2440001CF162 /* KJTextFieldVC.h */,
+				68688328257A2440001CF162 /* KJTextFieldVC.m */,
 				68AD7329251D9C75000C89C5 /* KJButtonVC.h */,
 				68AD7321251D9C75000C89C5 /* KJButtonVC.m */,
 				68AD732A251D9C75000C89C5 /* KJCollectionVC.h */,
@@ -942,6 +977,29 @@
 			path = UIBezierPath;
 			sourceTree = "<group>";
 		};
+		714290FC05C3F34B7F8E7C1A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3D6984F7AF59925E58D4CA0F /* Pods_KJExtensionHandler.framework */,
+				4CE1742990F6FAC9E33E5691 /* Pods_KJExtensionHandler_KJExtensionHandlerUITests.framework */,
+				CCB272C86683A156A6DCD51A /* Pods_KJExtensionHandlerTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		962F2D9A4FE87A2AB17E13F3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				32654F5AABE89700BC5D8B4B /* Pods-KJExtensionHandler.debug.xcconfig */,
+				4A99FBD00083EAAF502A870F /* Pods-KJExtensionHandler.release.xcconfig */,
+				3F99F47DC557AB272F4A3554 /* Pods-KJExtensionHandler-KJExtensionHandlerUITests.debug.xcconfig */,
+				A89E9EE6C07FFEAFB356DF51 /* Pods-KJExtensionHandler-KJExtensionHandlerUITests.release.xcconfig */,
+				42675860F34DC416D95095DE /* Pods-KJExtensionHandlerTests.debug.xcconfig */,
+				320BEC77EF565D82940A2221 /* Pods-KJExtensionHandlerTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -949,6 +1007,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 68AD71E6251D9707000C89C5 /* Build configuration list for PBXNativeTarget "KJExtensionHandler" */;
 			buildPhases = (
+				E8FD9341C1D23AE9EB03EF83 /* [CP] Check Pods Manifest.lock */,
 				68AD71B3251D9705000C89C5 /* Sources */,
 				68AD71B4251D9705000C89C5 /* Frameworks */,
 				68AD71B5251D9705000C89C5 /* Resources */,
@@ -966,6 +1025,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 68AD71E9251D9707000C89C5 /* Build configuration list for PBXNativeTarget "KJExtensionHandlerTests" */;
 			buildPhases = (
+				0F8295E348AE27D478046C6F /* [CP] Check Pods Manifest.lock */,
 				68AD71CE251D9707000C89C5 /* Sources */,
 				68AD71CF251D9707000C89C5 /* Frameworks */,
 				68AD71D0251D9707000C89C5 /* Resources */,
@@ -984,6 +1044,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 68AD71EC251D9707000C89C5 /* Build configuration list for PBXNativeTarget "KJExtensionHandlerUITests" */;
 			buildPhases = (
+				19AC2FF02D68BC607D51DE77 /* [CP] Check Pods Manifest.lock */,
 				68AD71D9251D9707000C89C5 /* Sources */,
 				68AD71DA251D9707000C89C5 /* Frameworks */,
 				68AD71DB251D9707000C89C5 /* Resources */,
@@ -1080,6 +1141,75 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0F8295E348AE27D478046C6F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KJExtensionHandlerTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		19AC2FF02D68BC607D51DE77 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KJExtensionHandler-KJExtensionHandlerUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E8FD9341C1D23AE9EB03EF83 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KJExtensionHandler-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		68AD71B3251D9705000C89C5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1105,6 +1235,7 @@
 				68F3A876253942B400BCD817 /* NSArray+KJPredicate.m in Sources */,
 				68AD7371251D9C75000C89C5 /* KJShineVC.m in Sources */,
 				68AD7310251D9BB8000C89C5 /* UISlider+KJTapValue.m in Sources */,
+				6868831A257A1F7D001CF162 /* UITextField+KJExtension.m in Sources */,
 				6808CB982554E86E00FBAAAD /* NSObject+KJExtension.m in Sources */,
 				687E1B65255D19C50017075D /* KJGestureVC.m in Sources */,
 				68AD71C2251D9705000C89C5 /* ViewController.m in Sources */,
@@ -1138,6 +1269,7 @@
 				68F3A8702539401E00BCD817 /* NSString+KJPredicate.m in Sources */,
 				682DFDE8257781BB00B9843F /* UILabel+KJLanguage.m in Sources */,
 				68AD735C251D9C75000C89C5 /* KJSliderVC.m in Sources */,
+				68688329257A2440001CF162 /* KJTextFieldVC.m in Sources */,
 				68406B0D2564EC67008A5DFB /* UIScrollView+EmptyDataSet.m in Sources */,
 				689B947C254A573200E97DEF /* NSObject+KJKVO.m in Sources */,
 				6819092F2578BDD3008F3541 /* KJLanguageVC.m in Sources */,
@@ -1155,7 +1287,7 @@
 				68AD735B251D9C75000C89C5 /* KJViewVC.m in Sources */,
 				6808CB8C2554E6B900FBAAAD /* NSDictionary+KJExtension.m in Sources */,
 				68AD7304251D9BB8000C89C5 /* UIView+KJFrame.m in Sources */,
-				68AD72F8251D9BB8000C89C5 /* UIButton+KJButtonContentLayout.m in Sources */,
+				68AD72F8251D9BB8000C89C5 /* UIButton+KJContentLayout.m in Sources */,
 				68AD72E1251D9BB8000C89C5 /* NSArray+ElementDeal.m in Sources */,
 				68AD72EA251D9BB8000C89C5 /* UIImage+KJCompress.m in Sources */,
 				68AD7353251D9C75000C89C5 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
@@ -1365,6 +1497,7 @@
 		};
 		68AD71E7251D9707000C89C5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 32654F5AABE89700BC5D8B4B /* Pods-KJExtensionHandler.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1386,6 +1519,7 @@
 		};
 		68AD71E8251D9707000C89C5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A99FBD00083EAAF502A870F /* Pods-KJExtensionHandler.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1407,6 +1541,7 @@
 		};
 		68AD71EA251D9707000C89C5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 42675860F34DC416D95095DE /* Pods-KJExtensionHandlerTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1427,6 +1562,7 @@
 		};
 		68AD71EB251D9707000C89C5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 320BEC77EF565D82940A2221 /* Pods-KJExtensionHandlerTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1447,6 +1583,7 @@
 		};
 		68AD71ED251D9707000C89C5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F99F47DC557AB272F4A3554 /* Pods-KJExtensionHandler-KJExtensionHandlerUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6E658L6H38;
@@ -1465,6 +1602,7 @@
 		};
 		68AD71EE251D9707000C89C5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A89E9EE6C07FFEAFB356DF51 /* Pods-KJExtensionHandler-KJExtensionHandlerUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6E658L6H38;
