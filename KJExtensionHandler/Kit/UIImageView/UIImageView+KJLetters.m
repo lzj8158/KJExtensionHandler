@@ -10,10 +10,10 @@
 
 @implementation UIImageView (KJLetters)
 /// 显示文字图片
-- (void)kj_imageViewWithText:(NSString*)text LettersInfo:(UIImageViewLettersInfo*(^)(UIImageViewLettersInfo *info))block{
+- (void)kj_imageViewWithText:(NSString*)text LettersInfo:(void(^)(UIImageViewLettersInfo *info))block{
     UIImageViewLettersInfo *info = [[UIImageViewLettersInfo alloc]init];
     if (block) {
-        info = block(info);
+        block(info);
         if (!info.attributes) info.attributes = @{NSFontAttributeName:[self fontForFontName:nil],NSForegroundColorAttributeName:[UIColor whiteColor]};
         if (info.pinyin) {
             text = [self pinYin:text];

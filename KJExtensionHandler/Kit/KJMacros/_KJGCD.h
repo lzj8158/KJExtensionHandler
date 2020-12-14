@@ -100,15 +100,15 @@ NS_INLINE void kGCD_apply(int iterations, void(^block)(size_t idx)) {
     dispatch_apply(iterations, queue, block);
 }
 /// 计时器
-static dispatch_source_t timer = nil;
+static dispatch_source_t gcd_timer = nil;
 NS_INLINE dispatch_source_t kGCD_timer(int64_t delayInSeconds, dispatch_block_t block) {
-    if (timer) dispatch_source_cancel(timer);
+    if (gcd_timer) dispatch_source_cancel(gcd_timer);
     dispatch_queue_t queue = kGCD_queue();
-    timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
-    dispatch_source_set_timer(timer, dispatch_walltime(nil, 0), delayInSeconds * NSEC_PER_SEC, 0);
-    dispatch_source_set_event_handler(timer, block);
-    dispatch_resume(timer);
-    return timer;
+    gcd_timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    dispatch_source_set_timer(gcd_timer, dispatch_walltime(nil, 0), delayInSeconds * NSEC_PER_SEC, 0);
+    dispatch_source_set_event_handler(gcd_timer, block);
+    dispatch_resume(gcd_timer);
+    return gcd_timer;
 }
 
 #endif /* _KJGCD_h */

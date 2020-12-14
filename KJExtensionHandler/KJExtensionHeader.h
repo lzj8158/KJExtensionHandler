@@ -94,6 +94,7 @@ Github地址：https://github.com/yangKJ
 //#import "UITextView+KJBackout.h" // 撤销输入
 
 //#import "UIImageView+KJLetters.h" // 头像浏览和文字头像
+//#import "UIImageView+KJBlur.h" // 模糊处理
 
 #import "UIScrollView+KJEmptyDataSet.h" // 没数据时状态
 

@@ -5,6 +5,19 @@
 //  Created by 杨科军 on 2020/10/26.
 //  https://github.com/yangKJ/KJExtensionHandler
 
+//  如遇此处 __weak 报错，在 Podfile 中加入如下代码即可
+/*
+ ##################加入代码##################
+ # 使用第三方库xcode报错Cannot synthesize weak property because the current deployment target does not support weak references
+ post_install do |installer|
+ installer.pods_project.targets.each do |target|
+ target.build_configurations.each do |config|
+ config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '8.0'
+ end
+ end
+ end
+ ##################加入代码##################
+*/
 #import "UIResponder+KJChain.h"
 @implementation UIResponder (KJChain)
 static __weak id currentFirstResponder;
@@ -46,7 +59,8 @@ static __weak id currentFirstResponder;
         if ([responder isKindOfClass:clazz]) {
             return responder;
         }
-    }return nil;
+    }
+    return nil;
 }
 
 - (BOOL)kj_responderSendAction:(SEL)action Sender:(id)sender{

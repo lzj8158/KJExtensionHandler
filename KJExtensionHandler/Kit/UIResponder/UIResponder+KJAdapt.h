@@ -41,7 +41,6 @@ UIEdgeInsets KJAdaptEdgeInsetsMake(CGFloat top, CGFloat left, CGFloat bottom, CG
 
 /*
  在最初的地方AppDelegate里面调用 [UIResponder kj_adaptModelType:KJAdaptTypeIPhone6];
- 
  然后在需要适配的地方 替换 CGRectMake 为 KJAdaptRectMake
  view.frame = CGRectMake(0, 0, 10, 10);
  view.frame = KJAdaptRectMake(0, 0, 10, 10);

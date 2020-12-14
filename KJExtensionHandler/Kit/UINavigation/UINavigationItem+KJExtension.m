@@ -46,10 +46,10 @@
 }
 
 #pragma mark - ExtendParameterBlock 扩展参数
-- (UINavigationItem * (^)(KJNavigationItemInfo*(^)(KJNavigationItemInfo*),KJButtonBlock))kAddBarButtonItemInfo{
-    return ^ UINavigationItem * (KJNavigationItemInfo*(^xblock)(KJNavigationItemInfo*), KJButtonBlock block){
+- (UINavigationItem * (^)(void(^)(KJNavigationItemInfo*),KJButtonBlock))kAddBarButtonItemInfo{
+    return ^ UINavigationItem * (void(^xblock)(KJNavigationItemInfo*), KJButtonBlock block){
         KJNavigationItemInfo *info = [KJNavigationItemInfo new];
-        if (xblock) info = xblock(info);
+        if (xblock) xblock(info);
         UIBarButtonItem * barButtonItem = [self kj_barButtonItemWithTitle:info.title TitleColor:info.color Image:[UIImage imageNamed:info.imageName] TintColor:info.tintColor ButtonBlock:block BarButtonBlock:info.barButton];
         if (info.isLeft) {
             return self.kAddLeftBarButtonItem(barButtonItem);

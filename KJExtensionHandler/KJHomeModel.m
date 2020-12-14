@@ -28,6 +28,7 @@
         [temp1 addObject:@{@"VCName":@"KJCollectionVC",@"describeName":@"CollectView滚动处理"}];
         [temp1 addObject:@{@"VCName":@"KJEmptyDataVC",@"describeName":@"TableView空数据状态"}];
         [temp1 addObject:@{@"VCName":@"KJImageViewVC",@"describeName":@"ImageView文字头像"}];
+        [temp1 addObject:@{@"VCName":@"KJImageBlurVC",@"describeName":@"ImageView模糊处理"}];
         [temp1 addObject:@{@"VCName":@"KJToastVC",@"describeName":@"Toast处理"}];
         
         NSMutableArray *temp4 = [NSMutableArray array];

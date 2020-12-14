@@ -43,9 +43,9 @@
 }
 #pragma mark - public Method
 /// 设置左边视图，类似账号密码标题
-- (UIView*)kj_leftView:(KJTextFieldLeftInfo*(^)(KJTextFieldLeftInfo*info))block{
+- (UIView*)kj_leftView:(void(^)(KJTextFieldLeftInfo *info))block{
     KJTextFieldLeftInfo *info = [KJTextFieldLeftInfo new];
-    if (block) info = block(info);
+    if (block) block(info);
     UIView *view = [[UIView alloc]init];
     if (info.text && info.imageName) {
         UIImage *image = [UIImage imageNamed:info.imageName];
@@ -138,14 +138,13 @@ static char tapActionKey;
     paragraphStyle.alignment = alignment;
     if (lineSpace > 0) paragraphStyle.lineSpacing = lineSpace;
     NSDictionary *attributes = @{NSFontAttributeName:font,NSParagraphStyleAttributeName:paragraphStyle};
-    CGSize rectSize = [string boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingTruncatesLastVisibleLine attributes:attributes context:NULL].size;
-    return CGSizeMake(ceil(rectSize.width), ceil(rectSize.height));
+    CGSize newSize = [string boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingTruncatesLastVisibleLine attributes:attributes context:NULL].size;
+    return CGSizeMake(ceil(newSize.width), ceil(newSize.height));
 }
 /// 最大输入限制
 - (void)kj_textFieldChanged:(UITextField*)textField{
     if (textField.maxLength <= 0) return;
-    UITextRange *selectedRange = [self markedTextRange];
-    UITextPosition *position = [self positionFromPosition:selectedRange.start offset:0];
+    UITextPosition *position = [self positionFromPosition:[self markedTextRange].start offset:0];
     if (position == nil && textField.text.length > textField.maxLength) {
         textField.text = [self.text substringToIndex:self.maxLength];
         if (self.kMaxLengthBolck) {

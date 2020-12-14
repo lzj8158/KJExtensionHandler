@@ -22,13 +22,12 @@
     tf.font = kSystemFontSize(14);
     tf.placeholder = @"测试图文混排";
     [self.view addSubview:tf];
-    [tf kj_leftView:^KJTextFieldLeftInfo * _Nonnull(KJTextFieldLeftInfo * _Nonnull info) {
+    [tf kj_leftView:^(KJTextFieldLeftInfo * _Nonnull info) {
         info.text = @"账号:";
         info.periphery = 5;
         info.minWidth = 30;
         info.imageName = @"wode_nor";
         info.padding = 5;
-        return info;
     }];
     [tf kj_rightViewTapBlock:^(bool state) {
         tf.securePasswords = state;
@@ -40,9 +39,8 @@
     tf3.placeholder = @"最多输入10个字符";
     tf3.maxLength = 10;
     [self.view addSubview:tf3];
-    [tf3 kj_leftView:^KJTextFieldLeftInfo * _Nonnull(KJTextFieldLeftInfo * _Nonnull info) {
+    [tf3 kj_leftView:^(KJTextFieldLeftInfo * _Nonnull info) {
         info.imageName = @"wode_nor";
-        return info;
     }];
     tf3.kMaxLengthBolck = ^(NSString * _Nonnull text) {
         NSLog(@"--max:%@",text);
@@ -58,10 +56,9 @@
     tf2.bottomLineColor = UIColor.grayColor;
     tf2.placeholderColor = UIColor.blueColor;
     [self.view addSubview:tf2];
-    [tf2 kj_leftView:^KJTextFieldLeftInfo * _Nonnull(KJTextFieldLeftInfo * _Nonnull info) {
+    [tf2 kj_leftView:^(KJTextFieldLeftInfo * _Nonnull info) {
         info.text = @"密码:";
         info.periphery = 5;
-        return info;
     }];
 }
 

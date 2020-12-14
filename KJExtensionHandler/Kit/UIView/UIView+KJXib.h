@@ -45,7 +45,7 @@ IB_DESIGNABLE // 动态刷新 在类名前加上此宏定义，初始化布置�
 @property(nonatomic,assign)IBInspectable CGFloat shadowRadius;//设置阴影的圆角
 @property(nonatomic,assign)IBInspectable CGFloat shadowWidth;//设置阴影的宽度
 @property(nonatomic,assign)IBInspectable CGFloat shadowOpacity;//设置阴影透明度，默认0
-@property(nonatomic,assign)IBInspectable CGSize shadowOffset;//设置阴影偏移量
+@property(nonatomic,assign)IBInspectable CGSize  shadowOffset;//设置阴影偏移量
 
 @end
 

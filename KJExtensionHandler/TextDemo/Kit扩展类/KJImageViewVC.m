@@ -34,7 +34,7 @@
         UIImageView *imageView = [[UIImageView alloc]init];
         imageView.frame = CGRectMake(x, y+w/3+10, w, w);
         [self.view addSubview:imageView];
-        [imageView kj_imageViewWithText:name[k] LettersInfo:^UIImageViewLettersInfo * _Nonnull(UIImageViewLettersInfo * _Nonnull info) {
+        [imageView kj_imageViewWithText:name[k] LettersInfo:^(UIImageViewLettersInfo * _Nonnull info) {
             if (k==0) {
                 info.circle = NO;
                 info.color = UIColor.orangeColor;
@@ -59,7 +59,6 @@
                 info.uppercase = NO;
                 info.isPartition = YES;
             }
-            return info;
         }];
         [imageView kj_AddTapGestureRecognizerBlock:^(UIView * _Nonnull view, UIGestureRecognizer * _Nonnull gesture) {
             [imageView kj_headerImageShowScreen];

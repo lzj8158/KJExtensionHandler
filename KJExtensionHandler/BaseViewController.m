@@ -23,27 +23,24 @@
 
     _weakself;
     [self.navigationItem kj_makeNavigationItem:^(UINavigationItem * _Nonnull make) {
-        make.kAddBarButtonItemInfo(^KJNavigationItemInfo * _Nonnull(KJNavigationItemInfo * _Nonnull info) {
+        make.kAddBarButtonItemInfo(^(KJNavigationItemInfo * _Nonnull info) {
             info.imageName = @"Arrow";
             info.tintColor = UIColor.whiteColor;
-            return info;
         }, ^(UIButton * _Nonnull kButton) {
             [weakself.navigationController popViewControllerAnimated:YES];
-        }).kAddBarButtonItemInfo(^KJNavigationItemInfo * _Nonnull(KJNavigationItemInfo * _Nonnull info) {
+        }).kAddBarButtonItemInfo(^(KJNavigationItemInfo * _Nonnull info) {
             info.imageName = @"wode_nor";
             info.isLeft = NO;
             info.tintColor = UIColor.redColor;
-            return info;
         }, ^(UIButton * _Nonnull kButton) {
             [weakself.navigationController popViewControllerAnimated:YES];
         });
-        make.kAddBarButtonItemInfo(^KJNavigationItemInfo * _Nonnull(KJNavigationItemInfo * _Nonnull info) {
+        make.kAddBarButtonItemInfo(^(KJNavigationItemInfo * _Nonnull info) {
             info.isLeft = NO;
             info.barButton = ^(UIButton * _Nonnull barButton) {
                 [barButton setTitle:@"分享" forState:(UIControlStateNormal)];
                 barButton.titleLabel.font = kSystemBlodFontSize(16);
             };
-            return info;
         }, ^(UIButton * _Nonnull kButton) {
             UIImage *image = [UIImage kj_captureScreen:weakself.view Rect:CGRectMake(0, kSTATUSBAR_NAVIGATION_HEIGHT, kScreenW, kScreenH-kSTATUSBAR_NAVIGATION_HEIGHT) Quality:3];
             [UIDevice kj_shareActivityWithItems:@[UIImagePNGRepresentation(image)] ViewController:weakself Complete:^(BOOL success) {
