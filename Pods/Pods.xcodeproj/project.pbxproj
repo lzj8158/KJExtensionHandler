@@ -38,15 +38,15 @@
 		561786B5B86A2F9955D38093BCFF0F0C /* Pods-KJExtensionHandler-KJExtensionHandlerUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-KJExtensionHandler-KJExtensionHandlerUITests-Info.plist"; sourceTree = "<group>"; };
 		5BF14034DBB994A67E7DD336C7578886 /* Pods-KJExtensionHandlerTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-KJExtensionHandlerTests-umbrella.h"; sourceTree = "<group>"; };
 		5D4F9672E269CB30B12F3A19548339A3 /* Pods-KJExtensionHandlerTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-KJExtensionHandlerTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		688D7BF3F464D3A7FEF2CA92F80A30FA /* Pods_KJExtensionHandlerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_KJExtensionHandlerTests.framework; path = "Pods-KJExtensionHandlerTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		688D7BF3F464D3A7FEF2CA92F80A30FA /* Pods_KJExtensionHandlerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KJExtensionHandlerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		740D60F26E4A90ECCE4F5CA17C6A66DF /* Pods-KJExtensionHandler-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-KJExtensionHandler-acknowledgements.plist"; sourceTree = "<group>"; };
 		85C8E53B3C2CA0792606D3E791FE8C9A /* Pods-KJExtensionHandler-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-KJExtensionHandler-umbrella.h"; sourceTree = "<group>"; };
 		870AAD3A87082E1E5D558753673C791C /* Pods-KJExtensionHandlerTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-KJExtensionHandlerTests-dummy.m"; sourceTree = "<group>"; };
 		93CDA2DA73122AF06D3B47AD0691B022 /* Pods-KJExtensionHandler-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-KJExtensionHandler-dummy.m"; sourceTree = "<group>"; };
-		9AC3D6A7100D235F8004A98FB6303A28 /* Pods_KJExtensionHandler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_KJExtensionHandler.framework; path = "Pods-KJExtensionHandler.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9AC3D6A7100D235F8004A98FB6303A28 /* Pods_KJExtensionHandler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KJExtensionHandler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9E7F4E54BA1073D3318692D103B55C21 /* Pods-KJExtensionHandlerTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-KJExtensionHandlerTests.modulemap"; sourceTree = "<group>"; };
-		A01DBCF3D1AD0F4D2FD466DBCCF86801 /* Pods_KJExtensionHandler_KJExtensionHandlerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_KJExtensionHandler_KJExtensionHandlerUITests.framework; path = "Pods-KJExtensionHandler-KJExtensionHandlerUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A01DBCF3D1AD0F4D2FD466DBCCF86801 /* Pods_KJExtensionHandler_KJExtensionHandlerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KJExtensionHandler_KJExtensionHandlerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A644914B45A1831E30956709BB0E8398 /* Pods-KJExtensionHandler-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-KJExtensionHandler-Info.plist"; sourceTree = "<group>"; };
 		BB7A6EB89F74B59A365DFF7863EA5727 /* Pods-KJExtensionHandler-KJExtensionHandlerUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-KJExtensionHandler-KJExtensionHandlerUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		CC683B2DB318CF132D016324BF3427E4 /* Pods-KJExtensionHandlerTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-KJExtensionHandlerTests-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -274,7 +274,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1220;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 9.3";
@@ -383,6 +383,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -601,6 +602,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
