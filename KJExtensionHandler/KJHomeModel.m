@@ -10,13 +10,16 @@
 @implementation KJHomeModel
 - (instancetype)init{
     if (self==[super init]) {
-        self.sectionTemps = @[@"Kit扩展类",@"多语言类",@"图片相关",@"效果类",@"Foundation扩展类"];
+        self.sectionTemps = @[@"多语言类",@"Kit扩展类",@"图片相关",@"效果类"];
     }
     return self;
 }
 #pragma mark - lazy
 - (NSArray*)temps{
     if (!_temps) {
+        NSMutableArray *temp0 = [NSMutableArray array];
+        [temp0 addObject:@{@"VCName":@"KJLanguageVC",@"describeName":@"多语言测试"}];
+        
         NSMutableArray *temp1 = [NSMutableArray array];
         [temp1 addObject:@{@"VCName":@"KJButtonVC",@"describeName":@"Button图文布局点赞粒子"}];
         [temp1 addObject:@{@"VCName":@"KJLabelVC",@"describeName":@"Label文本位置管理"}];
@@ -31,26 +34,20 @@
         [temp1 addObject:@{@"VCName":@"KJImageBlurVC",@"describeName":@"ImageView模糊处理"}];
         [temp1 addObject:@{@"VCName":@"KJToastVC",@"describeName":@"Toast处理"}];
         
-        NSMutableArray *temp4 = [NSMutableArray array];
-        [temp4 addObject:@{@"VCName":@"KJLanguageVC",@"describeName":@"多语言测试"}];
-
-        NSMutableArray *temp3 = [NSMutableArray array];
-        [temp3 addObject:@{@"VCName":@"KJImageJointVC",@"describeName":@"Image拼接性能对比"}];
-        [temp3 addObject:@{@"VCName":@"KJImageCompressVC",@"describeName":@"Image压缩性能对比"}];
-        [temp3 addObject:@{@"VCName":@"KJFloodImageVC",@"describeName":@"Image填充同颜色区域"}];
-        [temp3 addObject:@{@"VCName":@"KJImageVC",@"describeName":@"Image加水印和拼接"}];
-        [temp3 addObject:@{@"VCName":@"KJCoreImageVC",@"describeName":@"CoreImage框架相关"}];
-        [temp3 addObject:@{@"VCName":@"KJFilterImageVC",@"describeName":@"滤镜相关和特效渲染"}];
-        
-        NSMutableArray *temp0 = [NSMutableArray array];
-        [temp0 addObject:@{@"VCName":@"KJReflectionVC",@"describeName":@"倒影处理"}];
-        [temp0 addObject:@{@"VCName":@"KJShadowVC",@"describeName":@"内阴影相关"}];
-        [temp0 addObject:@{@"VCName":@"KJShineVC",@"describeName":@"内发光处理"}];
-
         NSMutableArray *temp2 = [NSMutableArray array];
-        [temp2 addObject:@{@"VCName":@"KJMathVC",@"describeName":@"数学方程式"}];
+        [temp2 addObject:@{@"VCName":@"KJImageJointVC",@"describeName":@"Image拼接性能对比"}];
+        [temp2 addObject:@{@"VCName":@"KJImageCompressVC",@"describeName":@"Image压缩性能对比"}];
+        [temp2 addObject:@{@"VCName":@"KJFloodImageVC",@"describeName":@"Image填充同颜色区域"}];
+        [temp2 addObject:@{@"VCName":@"KJImageVC",@"describeName":@"Image加水印和拼接"}];
+        [temp2 addObject:@{@"VCName":@"KJCoreImageVC",@"describeName":@"CoreImage框架相关"}];
+        [temp2 addObject:@{@"VCName":@"KJFilterImageVC",@"describeName":@"滤镜相关和特效渲染"}];
+        
+        NSMutableArray *temp3 = [NSMutableArray array];
+        [temp3 addObject:@{@"VCName":@"KJReflectionVC",@"describeName":@"倒影处理"}];
+        [temp3 addObject:@{@"VCName":@"KJShadowVC",@"describeName":@"内阴影相关"}];
+        [temp3 addObject:@{@"VCName":@"KJShineVC",@"describeName":@"内发光处理"}];
 
-        _temps = @[temp1,temp4,temp3,temp0,temp2];
+        _temps = @[temp0,temp1,temp2,temp3];
     }
     return _temps;
 }

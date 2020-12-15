@@ -1,5 +1,5 @@
 //
-//  NSObject+KJMath.h
+//  KJMath.h
 //  KJEmitterView
 //
 //  Created by 杨科军 on 2019/10/31.
@@ -8,7 +8,7 @@
 //  数学算法方程式
 
 #import <Foundation/Foundation.h>
-#import <objc/runtime.h>
+
 NS_ASSUME_NONNULL_BEGIN
 
 struct KJMathPoint {
@@ -18,7 +18,7 @@ struct KJMathPoint {
 static inline KJMathPoint KJMathPointMake(CGFloat x, CGFloat y) {
     KJMathPoint p; p.x = x; p.y = y; return p;
 }
-@interface NSObject (KJMath)
+@interface KJMath : NSObject
 /// 把弧度转换成角度
 + (CGFloat)kj_degreeFromRadian:(CGFloat)radian;
 /// 把度转换成弧度

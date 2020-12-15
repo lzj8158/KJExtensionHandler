@@ -57,15 +57,12 @@ Github地址：https://github.com/yangKJ
 #ifndef _FoundartionHeader_h
 #define _FoundartionHeader_h
 
-#import "NSObject+KJMath.h" // 数学方程式
-#import "NSObject+KJGeometry.h" // 几何方程式
 #import "NSString+KJChinese.h"  // 汉字相关处理
 #import "NSString+KJPredicate.h"// 谓词工具
 #import "NSArray+KJPredicate.h" // 谓词工具
 #import "NSArray+ElementDeal.h" // 对数组元素的处理 包括排序、查找、去重等等
 
 // 扩展属性
-#import "NSObject+KJExtension.h"
 #import "NSString+KJExtension.h"
 #import "NSArray+KJExtension.h"
 #import "NSDictionary+KJExtension.h"

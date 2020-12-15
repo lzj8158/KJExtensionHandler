@@ -30,6 +30,9 @@ typedef id _Nullable(^KJSemaphoreBlock)(NSString *key, id message, id _Nullable 
 /// 接收消息处理
 - (void)kj_receivedSemaphoreBlock:(KJSemaphoreBlock)block;
 
+/// 代码执行时间处理，block当中执行代码
++ (CFTimeInterval)kj_executeTime:(void(^)(void))block;
+
 @end
 
 NS_ASSUME_NONNULL_END

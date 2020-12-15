@@ -26,5 +26,15 @@
 - (void)setSemaphoreblock:(KJSemaphoreBlock)semaphoreblock{
     objc_setAssociatedObject(self, @selector(semaphoreblock), semaphoreblock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
-
+/// 代码执行时间处理，block当中执行代码
++ (CFTimeInterval)kj_executeTime:(void(^)(void))block{
+    if (block) {
+        CFAbsoluteTime startTime =CFAbsoluteTimeGetCurrent();
+        block();
+        CFAbsoluteTime linkTime = (CFAbsoluteTimeGetCurrent() - startTime);
+        NSLog(@"Linked in %f ms", linkTime * 1000.0);
+        return linkTime * 1000;
+    }
+    return 0;
+}
 @end

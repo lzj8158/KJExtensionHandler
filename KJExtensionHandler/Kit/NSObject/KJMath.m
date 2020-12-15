@@ -1,23 +1,20 @@
 //
-//  NSObject+KJMath.m
+//  KJMath.m
 //  KJEmitterView
 //
 //  Created by 杨科军 on 2019/10/31.
 //  Copyright © 2019 杨科军. All rights reserved.
 //  https://github.com/yangKJ/KJExtensionHandler
 
-#import "NSObject+KJMath.h"
+#import "KJMath.h"
 
-@implementation NSObject (KJMath)
-
+@implementation KJMath
 + (CGFloat)kj_degreeFromRadian:(CGFloat)radian {
     return ((radian) * (180.0 / M_PI));
 }
-
 + (CGFloat)kj_radianFromDegree:(CGFloat)degree {
     return ((degree) * M_PI / 180.f);
 }
-
 + (CGFloat)kj_radianValueFromTanSideA:(CGFloat)sideA sideB:(CGFloat)sideB {
     return atan2f(sideA, sideB);
 }
@@ -26,26 +23,13 @@
     CGSize  newSize   = CGSizeMake(width, newHeight);
     return newSize;
 }
-
 + (CGSize)kj_resetFromSize:(CGSize)size FixedHeight:(CGFloat)height {
     float  newWidth = size.width * (height / size.height);
     CGSize newSize  = CGSizeMake(newWidth, height);
     return newSize;
 }
-
 #pragma mark - Calculate once linear equation (Y = kX + b)
-+ (CGFloat)kj_k{
-    return [objc_getAssociatedObject(self, @selector(kj_k)) floatValue];
-}
-+ (void)setKj_k:(CGFloat)kj_k{
-    objc_setAssociatedObject(self, @selector(kj_k), @(kj_k), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-+ (CGFloat)kj_b{
-    return [objc_getAssociatedObject(self, @selector(kj_b)) floatValue];
-}
-+ (void)setKj_b:(CGFloat)kj_b{
-    objc_setAssociatedObject(self, @selector(kj_b), @(kj_b), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
+@dynamic kj_k,kj_b;
 + (void)kj_mathOnceLinearEquationWithPointA:(KJMathPoint)pointA PointB:(KJMathPoint)pointB {
     CGFloat x1 = pointA.x; CGFloat y1 = pointA.y;
     CGFloat x2 = pointB.x; CGFloat y2 = pointB.y;

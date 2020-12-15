@@ -1,15 +1,15 @@
 //
-//  NSObject+KJGeometry.m
+//  KJGeometry.m
 //  KJEmitterView
 //
 //  Created by 杨科军 on 2020/5/13.
 //  Copyright © 2020 杨科军. All rights reserved.
 //  https://github.com/yangKJ/KJExtensionHandler
 
-#import "NSObject+KJGeometry.h"
 
-@implementation NSObject (KJGeometry)
+#import "KJGeometry.h"
 
+@implementation KJGeometry
 /// 已知A、B两点和C点到B点的长度，求垂直AB的C点
 + (CGPoint)kj_perpendicularLineDotsWithA:(CGPoint)A B:(CGPoint)B Len:(CGFloat)len Positive:(BOOL)positive{
     return kj_perpendicularLineDots(A,B,len,positive);

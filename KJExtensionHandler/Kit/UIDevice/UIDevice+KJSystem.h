@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong,class)NSString *appCurrentVersion;
 /// App名称
 @property(nonatomic,strong,class)NSString *appName;
+/// 手机UUID
+@property(nonatomic,strong,class)NSString *UUID;
 
 /// 对比版本号
 + (BOOL)kj_comparisonVersion:(NSString*)version;

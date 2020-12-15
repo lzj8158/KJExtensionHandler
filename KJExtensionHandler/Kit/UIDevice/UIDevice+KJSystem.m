@@ -9,12 +9,20 @@
 #import <objc/runtime.h>
 #import <stdatomic.h>
 @implementation UIDevice (KJSystem)
-@dynamic appCurrentVersion,appName;
+@dynamic appCurrentVersion,appName,UUID;
 + (NSString*)appCurrentVersion{
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
 }
 + (NSString*)appName{
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
+}
++ (NSString*)UUID{
+    CFUUIDRef cfUUID = CFUUIDCreate(nil);
+    CFStringRef cfUUIDString = CFUUIDCreateString(nil, cfUUID);
+    NSString * result = (__bridge_transfer NSString *)CFStringCreateCopy(NULL, cfUUIDString);
+    CFRelease(cfUUID);
+    CFRelease(cfUUIDString);
+    return [[result stringByReplacingOccurrencesOfString:@"-" withString:@""] lowercaseString];
 }
 /// 对比版本号
 + (BOOL)kj_comparisonVersion:(NSString*)version{
