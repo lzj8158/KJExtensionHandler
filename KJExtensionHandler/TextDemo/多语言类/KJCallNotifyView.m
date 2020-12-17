@@ -7,7 +7,7 @@
 //
 
 #import "KJCallNotifyView.h"
-
+#import "NSTimer+KJExtension.h"
 @interface KJCallView : UIView
 @property(nonatomic,strong)NSTimer *timer;
 @property(nonatomic,strong)UILabel *label;
@@ -57,17 +57,24 @@ static KJCallNotifyView *_instance = nil;
 - (void)kj_tapBlock:(void(^)(KJCallNotifyInfo *info))block{
     self.tapblock = block;
 }
-/// 添加来电消息
-- (void)kj_addCallNotify:(void(^)(KJCallNotifyInfo*))block{
+/// 添加来电消息，重复条件默认根据 userid 判断
+- (void)kj_addCallNotify:(void(^)(KJCallNotifyInfo *))block RepetitionCondition:(bool(^_Nullable)(KJCallNotifyInfo *))condition{
     KJCallNotifyInfo *info = [KJCallNotifyInfo new];
     if (block) block(info);
     if (self.repetition == NO) {
         __block bool skip = false;
-        [self.temps enumerateObjectsUsingBlock:^(KJCallNotifyInfo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if ([info.userid isEqualToString:obj.userid]) {
-                skip = true;*stop = YES;
+        if (condition) {
+            for (KJCallNotifyInfo *_info in self.temps) {
+                skip = condition(_info);
+                if (skip) break;
             }
-        }];
+        }else{
+            [self.temps enumerateObjectsUsingBlock:^(KJCallNotifyInfo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if ([info.userid isEqualToString:obj.userid]) {
+                    skip = true;*stop = YES;
+                }
+            }];
+        }
         if (skip) return;
         [self.temps addObject:info];
     }
@@ -131,7 +138,7 @@ static KJCallNotifyView *_instance = nil;
 /// 自动消失动画
 - (void)kj_autoVanish:(KJCallView*)view{
     [UIView animateWithDuration:.5 animations:^{
-        [self kj_changeIndex:0 Y:-kAutoH(48)];
+        [self kj_changeIndex:0 Y:-view.height];
     } completion:^(BOOL finished) {
         [view removeFromSuperview];
     }];
@@ -186,7 +193,7 @@ static KJCallNotifyView *_instance = nil;
         self.imageView = [[UIImageView alloc]initWithFrame:CGRectMake(5, 5, height-10, height-10)];
         self.imageView.cornerRadius = (height-10)/2;
         [self addSubview:self.imageView];
-        self.button = [UIButton kj_createButtonWithImageName:@"button_like_norm"];
+        self.button = [UIButton kj_createButtonWithImageName:@"xxx"];
         self.button.frame = CGRectMake(self.width-18-8, 0, 18, 18);
         self.button.centerY = self.height/2;
         [self addSubview:self.button];

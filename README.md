@@ -112,9 +112,10 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 #### <a id="更新日志"></a>更新日志
 ```
 ####版本更新日志:
-#### Add 1.0.5
+#### Add 1.0.6
 1. 重新整理 KJMathEquation 数学方程式类
 2. 新增 NSTimer+KJExtension 计时器简单封装
+3. 礼物控件提示 KJCallNotifyView
 
 #### Add 1.0.3
 1. 新增 NSObject+KJRuntime Runtime轻量级封装

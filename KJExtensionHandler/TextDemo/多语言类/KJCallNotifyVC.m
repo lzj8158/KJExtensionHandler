@@ -29,27 +29,32 @@
 //    [self.view addSubview:view];
 //    view.maxCount = 5;
 //    view.vanishTime = 5;
+//    view.repetition = YES;
 //    [view kj_tapBlock:^(KJCallNotifyInfo * _Nonnull info) {
-//
+//        NSLog(@"-----%@",info);
 //    }];
     
-    __block NSInteger index = 1000;
-    NSArray *names = @[@"Sone",@"痛苦的信仰",@"X"];
+    __block NSInteger index = 520;
+    NSArray *names = @[@"Sone",@"痛苦的信仰",@"X",@"yang"];
     [button kj_addAction:^(UIButton * _Nonnull kButton) {
         [[KJCallNotifyView kj_shareInstance] kj_addCallNotify:^(KJCallNotifyInfo * _Nonnull info) {
             info.imageUrl = @"xxsf";
             info.userid = [NSString stringWithFormat:@"%ld",index++];
-            info.name = names[index%3];
+            info.name = names[index%4];
+        } RepetitionCondition:^bool(KJCallNotifyInfo * _Nonnull info) {
+            if ([info.name isEqualToString:names[index%4]]) {
+                return true;
+            }
+            return false;
         }];
 //        [view kj_addCallNotify:^(KJCallNotifyInfo * _Nonnull info) {
-//            info.imageUrl = @"xxsf";
-//            info.userid = [NSString stringWithFormat:@"%ld",index];
-//            info.name = names[2];
-//        }];
+//            info.imageUrl = @"IMG_4931";
+//            info.userid = @"userid";
+//            info.name = @"Like You";
+//        } RepetitionCondition:nil];
     }];
     [KJCallNotifyView kj_shareInstance].maxCount = 5;
     [KJCallNotifyView kj_shareInstance].vanishTime = 7;
-    [KJCallNotifyView kj_shareInstance].repetition = YES;
     [KJCallNotifyView kj_shareInstance].tapVanish = YES;
     [[KJCallNotifyView kj_shareInstance] kj_tapBlock:^(KJCallNotifyInfo * _Nonnull info) {
         NSLog(@"-----%@",info);

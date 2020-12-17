@@ -20,8 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)BOOL tapVanish;
 /// 创建单例
 + (instancetype)kj_shareInstance;
-/// 添加来电消息
-- (void)kj_addCallNotify:(void(^)(KJCallNotifyInfo *info))block;
+/// 添加来电消息，重复条件默认根据 userid 判断
+- (void)kj_addCallNotify:(void(^)(KJCallNotifyInfo *info))block RepetitionCondition:(bool(^_Nullable)(KJCallNotifyInfo *info))condition;
 /// 点击事件
 - (void)kj_tapBlock:(void(^)(KJCallNotifyInfo *info))block;
 @end
