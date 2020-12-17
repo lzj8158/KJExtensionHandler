@@ -14,6 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)NSInteger maxCount;
 /// 自动消失时间，默认5s
 @property(nonatomic,assign)CGFloat vanishTime;
+/// 是否允许重复显示，默认NO
+@property(nonatomic,assign)BOOL repetition;
+/// 点击控件是否消失，默认NO
+@property(nonatomic,assign)BOOL tapVanish;
 /// 创建单例
 + (instancetype)kj_shareInstance;
 /// 添加来电消息

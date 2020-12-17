@@ -25,33 +25,36 @@
     button.borderColor = UIColor.orangeColor;
     [self.view addSubview:button];
     
-    __block KJCallNotifyView *view = [[KJCallNotifyView alloc]initWithFrame:CGRectMake(0, 64, kScreenW, kScreenH-64)];
-    [self.view addSubview:view];
-    view.maxCount = 5;
-    view.vanishTime = 5;
-    [view kj_tapBlock:^(KJCallNotifyInfo * _Nonnull info) {
-            
-    }];
+//    __block KJCallNotifyView *view = [[KJCallNotifyView alloc]initWithFrame:CGRectMake(0, 64, kScreenW, kScreenH-64)];
+//    [self.view addSubview:view];
+//    view.maxCount = 5;
+//    view.vanishTime = 5;
+//    [view kj_tapBlock:^(KJCallNotifyInfo * _Nonnull info) {
+//
+//    }];
     
     __block NSInteger index = 1000;
     NSArray *names = @[@"Sone",@"痛苦的信仰",@"X"];
     [button kj_addAction:^(UIButton * _Nonnull kButton) {
-//        [[KJCallNotifyView kj_shareInstance] kj_addCallNotify:^(KJCallNotifyInfo * _Nonnull info) {
-//            info.imageUrl = @"xxsf";
-//            info.userid = [NSString stringWithFormat:@"%ld",index++];
-//            info.name = names[index%3];
-//        }];
-        [view kj_addCallNotify:^(KJCallNotifyInfo * _Nonnull info) {
+        [[KJCallNotifyView kj_shareInstance] kj_addCallNotify:^(KJCallNotifyInfo * _Nonnull info) {
             info.imageUrl = @"xxsf";
             info.userid = [NSString stringWithFormat:@"%ld",index++];
             info.name = names[index%3];
         }];
+//        [view kj_addCallNotify:^(KJCallNotifyInfo * _Nonnull info) {
+//            info.imageUrl = @"xxsf";
+//            info.userid = [NSString stringWithFormat:@"%ld",index];
+//            info.name = names[2];
+//        }];
     }];
-//    [KJCallNotifyView kj_shareInstance].maxCount = 5;
-//    [KJCallNotifyView kj_shareInstance].vanishTime = 7;
-//    [[KJCallNotifyView kj_shareInstance] kj_tapBlock:^(KJCallNotifyInfo * _Nonnull info) {
-//        NSLog(@"-----%@",info);
-//    }];
+    [KJCallNotifyView kj_shareInstance].maxCount = 5;
+    [KJCallNotifyView kj_shareInstance].vanishTime = 7;
+    [KJCallNotifyView kj_shareInstance].repetition = YES;
+    [KJCallNotifyView kj_shareInstance].tapVanish = YES;
+    [[KJCallNotifyView kj_shareInstance] kj_tapBlock:^(KJCallNotifyInfo * _Nonnull info) {
+        NSLog(@"-----%@",info);
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
 }
 
 /*

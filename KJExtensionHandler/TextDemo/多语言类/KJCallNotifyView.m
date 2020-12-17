@@ -14,7 +14,7 @@
 @property(nonatomic,strong)UIImageView *imageView;
 @property(nonatomic,strong)UIImageView *tvImageView;
 @property(nonatomic,strong)UIButton *button;
-@property(nonatomic,strong)NSString *userid;
+@property(nonatomic,strong)KJCallNotifyInfo *info;
 - (instancetype)kj_initWithFrame:(CGRect)frame Name:(NSString*)name;
 - (void)kj_invalidateTimer;
 @end
@@ -61,14 +61,16 @@ static KJCallNotifyView *_instance = nil;
 - (void)kj_addCallNotify:(void(^)(KJCallNotifyInfo*))block{
     KJCallNotifyInfo *info = [KJCallNotifyInfo new];
     if (block) block(info);
-    __block bool skip = false;
-    [self.temps enumerateObjectsUsingBlock:^(KJCallNotifyInfo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([info.userid isEqualToString:obj.userid]) {
-            skip = true;*stop = YES;
-        }
-    }];
-    if (skip) return;
-    [self.temps addObject:info];
+    if (self.repetition == NO) {
+        __block bool skip = false;
+        [self.temps enumerateObjectsUsingBlock:^(KJCallNotifyInfo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([info.userid isEqualToString:obj.userid]) {
+                skip = true;*stop = YES;
+            }
+        }];
+        if (skip) return;
+        [self.temps addObject:info];
+    }
     @synchronized (@(self.displayCount)) {
         self.displayCount++;
         KJCallView *view = [self kj_viewIndex:self.displayCount Info:info];
@@ -76,39 +78,43 @@ static KJCallNotifyView *_instance = nil;
         [self addSubview:view];
         if (self.displayCount > self.maxCount) {
             KJCallView *fristView = self.viewTemps.firstObject;
-            [fristView kj_invalidateTimer];
             [self kj_autoVanish:fristView];
-            [self.viewTemps removeObject:fristView];
-            self.displayCount--;
+            [self kj_displayEnd:fristView];
         }
+    }
+}
+/// 显示结束
+- (void)kj_displayEnd:(KJCallView*)view{
+    [view kj_invalidateTimer];
+    [self.viewTemps removeObject:view];
+    if (self.repetition == NO) {
+        [self.temps removeObject:view.info];
+    }
+    @synchronized (@(self.displayCount)) {
+        self.displayCount--;
     }
 }
 - (KJCallView*)kj_viewIndex:(NSInteger)index Info:(KJCallNotifyInfo*)info{
     CGFloat y = kAutoH(17) + (index-1) * kAutoH(58);
     __block KJCallView *view = [[KJCallView alloc]kj_initWithFrame:CGRectMake(0, y, kAutoW(170), kAutoH(48)) Name:info.name];
     view.tag = 520 + index - 1;
-    view.userid = info.userid;
+    view.info = info;
     view.imageView.image = [UIImage imageNamed:info.imageUrl];
     _weakself;
-    __block void (^kRemove)(bool tapX) = ^(bool tapX){
-        [view kj_invalidateTimer];
+    void (^kRemove)(bool tapX) = ^(bool tapX){
         if (tapX) {
             [weakself kj_vanish:view];
         }else{
             [weakself kj_autoVanish:view];
         }
-        [weakself.viewTemps removeObject:view];
-        @synchronized (@(weakself.displayCount)) {
-            weakself.displayCount--;
-        }
+        [weakself kj_displayEnd:view];
     };
     [view kj_AddTapGestureRecognizerBlock:^(UIView * _Nonnull __view, UIGestureRecognizer * _Nonnull gesture) {
         if (weakself.tapblock) {
-            for (KJCallNotifyInfo *obj in weakself.temps) {
-                if ([view.userid isEqualToString:obj.userid]) {
-                    weakself.tapblock(obj);
-                    break;
-                }
+            weakself.tapblock(view.info);
+            if (weakself.tapVanish) {
+                [weakself kj_vanish:view];
+                [weakself kj_displayEnd:view];
             }
         }
     }];
