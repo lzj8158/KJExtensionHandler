@@ -13,11 +13,12 @@
 #ifdef DEBUG
     NSLog(@"🍒🍒 发送信号消息 🍒🍒\nSenderKey:%@\n目标:%@\n发送者:%@\n携带参数:%@",key,message,self,parameter);
 #endif
-    return self.semaphoreblock?self.semaphoreblock(key,message,parameter):nil;
+    if (self.semaphoreblock) return self.semaphoreblock(key,message,parameter);
+    return nil;
 }
 /// 接收消息处理
 - (void)kj_receivedSemaphoreBlock:(KJSemaphoreBlock)block{
-    if (block) self.semaphoreblock = block;
+    self.semaphoreblock = block;
 }
 #pragma mark - associated
 - (KJSemaphoreBlock)semaphoreblock{

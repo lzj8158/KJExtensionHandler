@@ -22,6 +22,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// Josn字符串转字典
 @property(nonatomic,strong,readonly)NSDictionary *jsonDict;
 
+/// 获取文本宽度
+- (CGFloat)kj_maxWidthWithFont:(UIFont*)font Height:(CGFloat)height Alignment:(NSTextAlignment)alignment LinebreakMode:(NSLineBreakMode)linebreakMode LineSpace:(CGFloat)lineSpace;
+/// 获取文本高度
+- (CGFloat)kj_maxHeightWithFont:(UIFont*)font Width:(CGFloat)width Alignment:(NSTextAlignment)alignment LinebreakMode:(NSLineBreakMode)linebreakMode LineSpace:(CGFloat)lineSpace;
+
 @end
 
 NS_ASSUME_NONNULL_END

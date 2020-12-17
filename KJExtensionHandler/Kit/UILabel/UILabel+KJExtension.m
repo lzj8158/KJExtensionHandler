@@ -60,21 +60,23 @@
             break;
     }
 }
-
+/// 获取宽度
+- (CGFloat)kj_calculateWidth{
+    self.lineBreakMode = NSLineBreakByCharWrapping;
+    CGSize size = [UILabel kj_calculateLabelSizeWithTitle:self.text font:self.font constrainedToSize:CGSizeMake(MAXFLOAT, self.frame.size.height) lineBreakMode:NSLineBreakByCharWrapping];
+    return ceil(size.width);
+}
 /// 获取高度
 - (CGFloat)kj_calculateHeightWithWidth:(CGFloat)width{
     self.numberOfLines = 0;
     self.lineBreakMode = NSLineBreakByCharWrapping;
     CGSize size = [UILabel kj_calculateLabelSizeWithTitle:self.text font:self.font constrainedToSize:CGSizeMake(width, MAXFLOAT) lineBreakMode:NSLineBreakByCharWrapping];
-    size.height += 3;
-    return size.height;
+    return ceil(size.height);
 }
 /// 获取高度，指定行高
 - (CGFloat)kj_calculateHeightWithWidth:(CGFloat)width OneLineHeight:(CGFloat)height{
-    self.numberOfLines = 0;
-    self.lineBreakMode = NSLineBreakByCharWrapping;
-    CGSize size = [UILabel kj_calculateLabelSizeWithTitle:self.text font:self.font constrainedToSize:CGSizeMake(width, MAXFLOAT) lineBreakMode:NSLineBreakByCharWrapping];
-    return size.height * height / self.font.lineHeight;
+    CGFloat newHeight = [self kj_calculateHeightWithWidth:width];
+    return newHeight * height / self.font.lineHeight;
 }
 /// 获取文字尺寸
 + (CGSize)kj_calculateLabelSizeWithTitle:(NSString*)title font:(UIFont*)font constrainedToSize:(CGSize)size lineBreakMode:(NSLineBreakMode)lineBreakMode{

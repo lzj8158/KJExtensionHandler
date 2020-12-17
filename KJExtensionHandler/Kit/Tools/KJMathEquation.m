@@ -1,14 +1,14 @@
 //
-//  KJMath.m
+//  KJMathEquation.m
 //  KJEmitterView
 //
 //  Created by 杨科军 on 2019/10/31.
 //  Copyright © 2019 杨科军. All rights reserved.
 //  https://github.com/yangKJ/KJExtensionHandler
 
-#import "KJMath.h"
+#import "KJMathEquation.h"
 
-@implementation KJMath
+@implementation KJMathEquation
 + (CGFloat)kj_degreeFromRadian:(CGFloat)radian {
     return ((radian) * (180.0 / M_PI));
 }
@@ -29,19 +29,21 @@
     return newSize;
 }
 #pragma mark - Calculate once linear equation (Y = kX + b)
-@dynamic kj_k,kj_b;
-+ (void)kj_mathOnceLinearEquationWithPointA:(KJMathPoint)pointA PointB:(KJMathPoint)pointB {
++ (KJLinearEquation)kj_mathOnceLinearEquationWithPointA:(CGPoint)pointA PointB:(CGPoint)pointB{
     CGFloat x1 = pointA.x; CGFloat y1 = pointA.y;
     CGFloat x2 = pointB.x; CGFloat y2 = pointB.y;
-    self.kj_k = x1 == x2 ? 0 : (y2 - y1) / (x2 - x1);
-    self.kj_b = x1 == x2 ? 0 : (y1*(x2 - x1) - x1*(y2 - y1)) / (x2 - x1);
+    CGFloat k = x1 == x2 ? 0 : (y2 - y1) / (x2 - x1);
+    CGFloat b = x1 == x2 ? 0 : (y1*(x2 - x1) - x1*(y2 - y1)) / (x2 - x1);
+    return (KJLinearEquation){k,b};
 }
-+ (CGFloat)kj_xValueWithY:(CGFloat)yValue {
-    if (self.kj_k == 0) return 0;
-    return (yValue - self.kj_b) / self.kj_k;
+/// 已知y，k，b 求 x
++ (CGFloat)kj_xValueWithY:(CGFloat)yValue LinearEquation:(KJLinearEquation)kb{
+    if (kb.k == 0) return 0;
+    return (yValue - kb.b) / kb.k;
 }
-+ (CGFloat)kj_yValueWithX:(CGFloat)xValue {
-    return self.kj_k * xValue + self.kj_b;
+/// 已知x，k，b 求 y
++ (CGFloat)kj_yValueWithX:(CGFloat)xValue LinearEquation:(KJLinearEquation)kb{
+    return kb.k * xValue + kb.b;
 }
 
 @end

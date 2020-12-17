@@ -10,8 +10,9 @@
 		2C00C746C5C661984A5B46D8 /* Pods_KJExtensionHandler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6984F7AF59925E58D4CA0F /* Pods_KJExtensionHandler.framework */; };
 		6808CB8C2554E6B900FBAAAD /* NSDictionary+KJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6808CB8B2554E6B900FBAAAD /* NSDictionary+KJExtension.m */; };
 		6808CB922554E6C800FBAAAD /* NSArray+KJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6808CB912554E6C800FBAAAD /* NSArray+KJExtension.m */; };
+		681254AD2589EF0E00A307B7 /* NSTimer+KJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 681254AC2589EF0E00A307B7 /* NSTimer+KJExtension.m */; };
 		6813D2882588B72B00412987 /* KJGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 6813D2872588B72B00412987 /* KJGeometry.m */; };
-		6813D2912588B78500412987 /* KJMath.m in Sources */ = {isa = PBXBuildFile; fileRef = 6813D2902588B78500412987 /* KJMath.m */; };
+		6813D2912588B78500412987 /* KJMathEquation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6813D2902588B78500412987 /* KJMathEquation.m */; };
 		681908E32578870B008F3541 /* UIButton+KJLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 681908E22578870B008F3541 /* UIButton+KJLanguage.m */; };
 		681908E925788721008F3541 /* UITextField+KJLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 681908E825788721008F3541 /* UITextField+KJLanguage.m */; };
 		681909222578BD98008F3541 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 681909242578BD98008F3541 /* Localizable.strings */; };
@@ -21,6 +22,8 @@
 		681DA7F4255B934D0091B571 /* KJLabelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 681DA7F3255B934D0091B571 /* KJLabelVC.m */; };
 		682DFDE8257781BB00B9843F /* UILabel+KJLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 682DFDE7257781BB00B9843F /* UILabel+KJLanguage.m */; };
 		682DFDF42577824E00B9843F /* NSBundle+KJLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 682DFDF32577824E00B9843F /* NSBundle+KJLanguage.m */; };
+		6833386B258A01630081A409 /* KJCallNotifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6833386A258A01630081A409 /* KJCallNotifyVC.m */; };
+		68333871258A019B0081A409 /* KJCallNotifyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68333870258A019B0081A409 /* KJCallNotifyView.m */; };
 		683FA3AD2542A6C50083D806 /* UIDevice+KJSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 683FA3AC2542A6C50083D806 /* UIDevice+KJSystem.m */; };
 		68406B002564EADC008A5DFB /* UIScrollView+KJEmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 68406AFF2564EADC008A5DFB /* UIScrollView+KJEmptyDataSet.m */; };
 		68406B0D2564EC67008A5DFB /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 68406B0C2564EC67008A5DFB /* UIScrollView+EmptyDataSet.m */; };
@@ -59,7 +62,6 @@
 		68AD7259251D9B9D000C89C5 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD7256251D9B9D000C89C5 /* BaseViewController.m */; };
 		68AD72DE251D9BB8000C89C5 /* NSDictionary+KJLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD7263251D9BB8000C89C5 /* NSDictionary+KJLog.m */; };
 		68AD72E0251D9BB8000C89C5 /* NSArray+KJLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD7268251D9BB8000C89C5 /* NSArray+KJLog.m */; };
-		68AD72E1251D9BB8000C89C5 /* NSArray+ElementDeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD726A251D9BB8000C89C5 /* NSArray+ElementDeal.m */; };
 		68AD72E6251D9BB8000C89C5 /* UIImage+KJPhotoshop.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD7277251D9BB8000C89C5 /* UIImage+KJPhotoshop.m */; };
 		68AD72E7251D9BB8000C89C5 /* UIImage+KJScale.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD7279251D9BB8000C89C5 /* UIImage+KJScale.m */; };
 		68AD72E8251D9BB8000C89C5 /* UIImage+KJReflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD727A251D9BB8000C89C5 /* UIImage+KJReflection.m */; };
@@ -163,10 +165,12 @@
 		6808CB8B2554E6B900FBAAAD /* NSDictionary+KJExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+KJExtension.m"; sourceTree = "<group>"; };
 		6808CB902554E6C800FBAAAD /* NSArray+KJExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+KJExtension.h"; sourceTree = "<group>"; };
 		6808CB912554E6C800FBAAAD /* NSArray+KJExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+KJExtension.m"; sourceTree = "<group>"; };
+		681254AB2589EF0E00A307B7 /* NSTimer+KJExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSTimer+KJExtension.h"; sourceTree = "<group>"; };
+		681254AC2589EF0E00A307B7 /* NSTimer+KJExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+KJExtension.m"; sourceTree = "<group>"; };
 		6813D2862588B72B00412987 /* KJGeometry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJGeometry.h; sourceTree = "<group>"; };
 		6813D2872588B72B00412987 /* KJGeometry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJGeometry.m; sourceTree = "<group>"; };
-		6813D28F2588B78500412987 /* KJMath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJMath.h; sourceTree = "<group>"; };
-		6813D2902588B78500412987 /* KJMath.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJMath.m; sourceTree = "<group>"; };
+		6813D28F2588B78500412987 /* KJMathEquation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJMathEquation.h; sourceTree = "<group>"; };
+		6813D2902588B78500412987 /* KJMathEquation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJMathEquation.m; sourceTree = "<group>"; };
 		681908E12578870B008F3541 /* UIButton+KJLanguage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+KJLanguage.h"; sourceTree = "<group>"; };
 		681908E22578870B008F3541 /* UIButton+KJLanguage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+KJLanguage.m"; sourceTree = "<group>"; };
 		681908E725788721008F3541 /* UITextField+KJLanguage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+KJLanguage.h"; sourceTree = "<group>"; };
@@ -185,6 +189,10 @@
 		682DFDE7257781BB00B9843F /* UILabel+KJLanguage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+KJLanguage.m"; sourceTree = "<group>"; };
 		682DFDF22577824E00B9843F /* NSBundle+KJLanguage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+KJLanguage.h"; sourceTree = "<group>"; };
 		682DFDF32577824E00B9843F /* NSBundle+KJLanguage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+KJLanguage.m"; sourceTree = "<group>"; };
+		68333869258A01630081A409 /* KJCallNotifyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJCallNotifyVC.h; sourceTree = "<group>"; };
+		6833386A258A01630081A409 /* KJCallNotifyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJCallNotifyVC.m; sourceTree = "<group>"; };
+		6833386F258A019B0081A409 /* KJCallNotifyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJCallNotifyView.h; sourceTree = "<group>"; };
+		68333870258A019B0081A409 /* KJCallNotifyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJCallNotifyView.m; sourceTree = "<group>"; };
 		683FA3AB2542A6C50083D806 /* UIDevice+KJSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+KJSystem.h"; sourceTree = "<group>"; };
 		683FA3AC2542A6C50083D806 /* UIDevice+KJSystem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+KJSystem.m"; sourceTree = "<group>"; };
 		68406AFE2564EADC008A5DFB /* UIScrollView+KJEmptyDataSet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+KJEmptyDataSet.h"; sourceTree = "<group>"; };
@@ -262,9 +270,7 @@
 		68AD7261251D9BB8000C89C5 /* NSDictionary+KJLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+KJLog.h"; sourceTree = "<group>"; };
 		68AD7263251D9BB8000C89C5 /* NSDictionary+KJLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+KJLog.m"; sourceTree = "<group>"; };
 		68AD7268251D9BB8000C89C5 /* NSArray+KJLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+KJLog.m"; sourceTree = "<group>"; };
-		68AD726A251D9BB8000C89C5 /* NSArray+ElementDeal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+ElementDeal.m"; sourceTree = "<group>"; };
 		68AD726C251D9BB8000C89C5 /* NSArray+KJLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+KJLog.h"; sourceTree = "<group>"; };
-		68AD726D251D9BB8000C89C5 /* NSArray+ElementDeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+ElementDeal.h"; sourceTree = "<group>"; };
 		68AD7277251D9BB8000C89C5 /* UIImage+KJPhotoshop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+KJPhotoshop.m"; sourceTree = "<group>"; };
 		68AD7278251D9BB8000C89C5 /* UIImage+KJMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+KJMask.h"; sourceTree = "<group>"; };
 		68AD7279251D9BB8000C89C5 /* UIImage+KJScale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+KJScale.m"; sourceTree = "<group>"; };
@@ -429,6 +435,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		681254AA2589EEF100A307B7 /* NSTimer */ = {
+			isa = PBXGroup;
+			children = (
+				681254AB2589EF0E00A307B7 /* NSTimer+KJExtension.h */,
+				681254AC2589EF0E00A307B7 /* NSTimer+KJExtension.m */,
+			);
+			path = NSTimer;
+			sourceTree = "<group>";
+		};
 		681908F0257887C5008F3541 /* 多语言类 */ = {
 			isa = PBXGroup;
 			children = (
@@ -436,6 +451,10 @@
 				6819092D2578BDD3008F3541 /* KJLanguageVC.m */,
 				6819092E2578BDD3008F3541 /* KJLanguageVC.xib */,
 				681909242578BD98008F3541 /* Localizable.strings */,
+				68333869258A01630081A409 /* KJCallNotifyVC.h */,
+				6833386A258A01630081A409 /* KJCallNotifyVC.m */,
+				6833386F258A019B0081A409 /* KJCallNotifyView.h */,
+				68333870258A019B0081A409 /* KJCallNotifyView.m */,
 			);
 			path = "多语言类";
 			sourceTree = "<group>";
@@ -600,6 +619,7 @@
 			isa = PBXGroup;
 			children = (
 				6868128A2553CF0800024BF6 /* _FoundartionHeader.h */,
+				681254AA2589EEF100A307B7 /* NSTimer */,
 				68F3A86D25393FE600BCD817 /* NSString */,
 				68AD725F251D9BB8000C89C5 /* NSDictionary */,
 				68AD7267251D9BB8000C89C5 /* NSArray */,
@@ -610,8 +630,6 @@
 		68AD725F251D9BB8000C89C5 /* NSDictionary */ = {
 			isa = PBXGroup;
 			children = (
-				68AD7261251D9BB8000C89C5 /* NSDictionary+KJLog.h */,
-				68AD7263251D9BB8000C89C5 /* NSDictionary+KJLog.m */,
 				6808CB8A2554E6B900FBAAAD /* NSDictionary+KJExtension.h */,
 				6808CB8B2554E6B900FBAAAD /* NSDictionary+KJExtension.m */,
 			);
@@ -621,10 +639,6 @@
 		68AD7267251D9BB8000C89C5 /* NSArray */ = {
 			isa = PBXGroup;
 			children = (
-				68AD726D251D9BB8000C89C5 /* NSArray+ElementDeal.h */,
-				68AD726A251D9BB8000C89C5 /* NSArray+ElementDeal.m */,
-				68AD726C251D9BB8000C89C5 /* NSArray+KJLog.h */,
-				68AD7268251D9BB8000C89C5 /* NSArray+KJLog.m */,
 				68F3A874253942B400BCD817 /* NSArray+KJPredicate.h */,
 				68F3A875253942B400BCD817 /* NSArray+KJPredicate.m */,
 				6808CB902554E6C800FBAAAD /* NSArray+KJExtension.h */,
@@ -638,7 +652,7 @@
 			children = (
 				68AD72D3251D9BB8000C89C5 /* CALayer */,
 				68AD72B0251D9BB8000C89C5 /* KJMacros */,
-				68C3C47325748C2100C07C4E /* NSObject */,
+				68C3C47325748C2100C07C4E /* Tools */,
 				68FFFC75254FEA8E00B2E9E3 /* UIBezierPath */,
 				68AD7299251D9BB8000C89C5 /* UIButton */,
 				68AD72C7251D9BB8000C89C5 /* UICollectionView */,
@@ -922,23 +936,27 @@
 			path = UITabBar;
 			sourceTree = "<group>";
 		};
-		68C3C47325748C2100C07C4E /* NSObject */ = {
+		68C3C47325748C2100C07C4E /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				6813D28F2588B78500412987 /* KJMath.h */,
-				6813D2902588B78500412987 /* KJMath.m */,
 				6813D2862588B72B00412987 /* KJGeometry.h */,
 				6813D2872588B72B00412987 /* KJGeometry.m */,
+				6813D28F2588B78500412987 /* KJMathEquation.h */,
+				6813D2902588B78500412987 /* KJMathEquation.m */,
 				68BF04BD25749B1A00B96F31 /* KJNodeQueue.h */,
 				68BF04BE25749B1A00B96F31 /* KJNodeQueue.m */,
+				68AD726C251D9BB8000C89C5 /* NSArray+KJLog.h */,
+				68AD7268251D9BB8000C89C5 /* NSArray+KJLog.m */,
+				68AD7261251D9BB8000C89C5 /* NSDictionary+KJLog.h */,
+				68AD7263251D9BB8000C89C5 /* NSDictionary+KJLog.m */,
 				689B947A254A573200E97DEF /* NSObject+KJKVO.h */,
 				689B947B254A573200E97DEF /* NSObject+KJKVO.m */,
-				68F3A887253969FA00BCD817 /* NSObject+KJSemaphore.h */,
-				68F3A888253969FA00BCD817 /* NSObject+KJSemaphore.m */,
 				684FD0A225889BA30064D356 /* NSObject+KJRuntime.h */,
 				684FD0A325889BA30064D356 /* NSObject+KJRuntime.m */,
+				68F3A887253969FA00BCD817 /* NSObject+KJSemaphore.h */,
+				68F3A888253969FA00BCD817 /* NSObject+KJSemaphore.m */,
 			);
-			path = NSObject;
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		68F3A86D25393FE600BCD817 /* NSString */ = {
@@ -1254,6 +1272,7 @@
 				682DFDE8257781BB00B9843F /* UILabel+KJLanguage.m in Sources */,
 				68AD735C251D9C75000C89C5 /* KJSliderVC.m in Sources */,
 				68688329257A2440001CF162 /* KJTextFieldVC.m in Sources */,
+				68333871258A019B0081A409 /* KJCallNotifyView.m in Sources */,
 				68406B0D2564EC67008A5DFB /* UIScrollView+EmptyDataSet.m in Sources */,
 				689B947C254A573200E97DEF /* NSObject+KJKVO.m in Sources */,
 				6819092F2578BDD3008F3541 /* KJLanguageVC.m in Sources */,
@@ -1271,8 +1290,8 @@
 				68AD735B251D9C75000C89C5 /* KJViewVC.m in Sources */,
 				6808CB8C2554E6B900FBAAAD /* NSDictionary+KJExtension.m in Sources */,
 				68AD7304251D9BB8000C89C5 /* UIView+KJFrame.m in Sources */,
+				6833386B258A01630081A409 /* KJCallNotifyVC.m in Sources */,
 				68AD72F8251D9BB8000C89C5 /* UIButton+KJContentLayout.m in Sources */,
-				68AD72E1251D9BB8000C89C5 /* NSArray+ElementDeal.m in Sources */,
 				684FD0A425889BA30064D356 /* NSObject+KJRuntime.m in Sources */,
 				68AD72EA251D9BB8000C89C5 /* UIImage+KJCompress.m in Sources */,
 				68AD7353251D9C75000C89C5 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
@@ -1290,11 +1309,12 @@
 				68AD72E8251D9BB8000C89C5 /* UIImage+KJReflection.m in Sources */,
 				685E8236256B55280085EFD6 /* KJImageCompressVC.m in Sources */,
 				68AD730D251D9BB8000C89C5 /* KJShadowLayer.m in Sources */,
+				681254AD2589EF0E00A307B7 /* NSTimer+KJExtension.m in Sources */,
 				68406B1C2564F2A6008A5DFB /* KJEmptyDataVC.m in Sources */,
 				68AD71CD251D9706000C89C5 /* main.m in Sources */,
 				68AD72FC251D9BB8000C89C5 /* UIButton+KJEnlarge.m in Sources */,
 				68AD71BF251D9705000C89C5 /* SceneDelegate.m in Sources */,
-				6813D2912588B78500412987 /* KJMath.m in Sources */,
+				6813D2912588B78500412987 /* KJMathEquation.m in Sources */,
 				681909392578C8D3008F3541 /* KJLoadLanguageViewController.m in Sources */,
 				686EDA6F25874314007880B5 /* UIImageView+KJBlur.m in Sources */,
 				68AD72F7251D9BB8000C89C5 /* UIButton+KJCreate.m in Sources */,

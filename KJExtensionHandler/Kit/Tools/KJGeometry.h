@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface KJGeometry : NSObject
 /// 已知A、B两点和C点到B点的长度，求垂直AB的C点
 + (CGPoint)kj_perpendicularLineDotsWithA:(CGPoint)A B:(CGPoint)B Len:(CGFloat)len Positive:(BOOL)positive;
+typedef struct KJDoubleValue{ CGPoint max;CGPoint min; }KJDoubleValue;
++ (KJDoubleValue)kj_perpendicularLineDotsWithA:(CGPoint)A B:(CGPoint)B Length:(CGFloat)len;
 /// 已知A、B、C、D 4个点，求AB与CD交点  备注：重合和平行返回（0,0）
 + (CGPoint)kj_linellaeCrosspointWithA:(CGPoint)A B:(CGPoint)B C:(CGPoint)C D:(CGPoint)D;
 /// 求两点线段长度

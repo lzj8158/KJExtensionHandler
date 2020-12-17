@@ -129,7 +129,7 @@ Github地址：https://github.com/yangKJ
 #import "UIResponder+KJAdapt.h" // 简单的比例适配
 #import "UIResponder+KJChain.h" // 响应链
 
-//#import "KJMath.h" // 数学方程式
+//#import "KJMathEquation.h" // 数学方程式
 //#import "KJGeometry.h" // 几何方程式
 //#import "KJNodeQueue.h"// 栈操作工具
 #import "NSObject+KJKVO.h" // 键值监听封装

@@ -19,6 +19,7 @@
     if (!_temps) {
         NSMutableArray *temp0 = [NSMutableArray array];
         [temp0 addObject:@{@"VCName":@"KJLanguageVC",@"describeName":@"多语言测试"}];
+        [temp0 addObject:@{@"VCName":@"KJCallNotifyVC",@"describeName":@"来电提醒测试"}];
         
         NSMutableArray *temp1 = [NSMutableArray array];
         [temp1 addObject:@{@"VCName":@"KJButtonVC",@"describeName":@"Button图文布局点赞粒子"}];

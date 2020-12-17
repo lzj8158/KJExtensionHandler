@@ -66,8 +66,6 @@
             [[UIApplication sharedApplication] openURL:URL];
 #pragma clang diagnostic pop
         }
-    }else{
-        NSLog(@"can not go！！！！！");
     }
 }
 /// 调用AppStore

@@ -1,5 +1,5 @@
 //
-//  KJMath.h
+//  KJMathEquation.h
 //  KJEmitterView
 //
 //  Created by 杨科军 on 2019/10/31.
@@ -11,19 +11,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-struct KJMathPoint {
-    CGFloat x;
-    CGFloat y;
-};typedef struct KJMathPoint KJMathPoint;
-static inline KJMathPoint KJMathPointMake(CGFloat x, CGFloat y) {
-    KJMathPoint p; p.x = x; p.y = y; return p;
-}
-@interface KJMath : NSObject
+@interface KJMathEquation : NSObject
 /// 把弧度转换成角度
 + (CGFloat)kj_degreeFromRadian:(CGFloat)radian;
-/// 把度转换成弧度
+/// 把角度转换成弧度
 + (CGFloat)kj_radianFromDegree:(CGFloat)degree;
-/// 从数学 tan 函数的弧度值
+/// 正切函数的弧度值，tan
 + (CGFloat)kj_radianValueFromTanSideA:(CGFloat)sideA sideB:(CGFloat)sideB;
 /// 获取具有固定宽度的新size
 + (CGSize)kj_resetFromSize:(CGSize)size FixedWidth:(CGFloat)width;
@@ -31,14 +24,13 @@ static inline KJMathPoint KJMathPointMake(CGFloat x, CGFloat y) {
 + (CGSize)kj_resetFromSize:(CGSize)size FixedHeight:(CGFloat)height;
 
 #pragma mark - 一元一次线性方程 (Y = kX + b).
-@property (nonatomic,assign,class) CGFloat kj_k;
-@property (nonatomic,assign,class) CGFloat kj_b;
 /// 一元一次线性方程，求k，b
-+ (void)kj_mathOnceLinearEquationWithPointA:(KJMathPoint)pointA PointB:(KJMathPoint)pointB;
+typedef struct KJLinearEquation{ CGFloat k;CGFloat b; }KJLinearEquation;
++ (KJLinearEquation)kj_mathOnceLinearEquationWithPointA:(CGPoint)pointA PointB:(CGPoint)pointB;
 /// 已知y，k，b 求 x
-+ (CGFloat)kj_xValueWithY:(CGFloat)yValue;
++ (CGFloat)kj_xValueWithY:(CGFloat)yValue LinearEquation:(KJLinearEquation)kb;
 /// 已知x，k，b 求 y
-+ (CGFloat)kj_yValueWithX:(CGFloat)xValue;
++ (CGFloat)kj_yValueWithX:(CGFloat)xValue LinearEquation:(KJLinearEquation)kb;
 
 @end
 

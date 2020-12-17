@@ -12,15 +12,20 @@
 @implementation KJGeometry
 /// 已知A、B两点和C点到B点的长度，求垂直AB的C点
 + (CGPoint)kj_perpendicularLineDotsWithA:(CGPoint)A B:(CGPoint)B Len:(CGFloat)len Positive:(BOOL)positive{
-    return kj_perpendicularLineDots(A,B,len,positive);
+    KJDoubleValue douvalue = [self kj_perpendicularLineDotsWithA:A B:B Length:len];
+    if (positive) {
+        return douvalue.max;
+    }else{
+        return douvalue.min;
+    }
 }
-static inline CGPoint kj_perpendicularLineDots(CGPoint A, CGPoint B, CGFloat len, BOOL positive){
++ (KJDoubleValue)kj_perpendicularLineDotsWithA:(CGPoint)A B:(CGPoint)B Length:(CGFloat)len{
     CGFloat x1 = A.x,y1 = A.y;
     CGFloat x2 = B.x,y2 = B.y;
     if (x1 == x2) {/// 垂直线
-        return positive ? CGPointMake(x2 + len, y2) : CGPointMake(x2 - len, y2);
+        return (KJDoubleValue){CGPointMake(x2+len, y2),CGPointMake(x2-len, y2)};
     }else if (y1 == y2) {/// 水平线
-        return positive ? CGPointMake(x2, y2 + len) : CGPointMake(x2, y2 - len);
+        return (KJDoubleValue){CGPointMake(x2, y2+len),CGPointMake(x2, y2-len)};
     }
     /// 既非垂直又非水平处理
     CGFloat k1 = (y1-y2)/(x1-x2);
@@ -32,28 +37,22 @@ static inline CGPoint kj_perpendicularLineDots(CGPoint A, CGPoint B, CGFloat len
     CGFloat f = x2*x2 + (b-y2)*(b-y2);
     CGFloat m = g/t;
     CGFloat n = (len*len - f)/t + m*m;
-    
     CGFloat xa = sqrt(n) - m;
     CGFloat ya = k * xa + b;
     CGFloat xb = -sqrt(n) - m;
     CGFloat yb = k * xb + b;
-    if (positive) {
-        return yb>ya ? CGPointMake(xb, yb) : CGPointMake(xa, ya);
-    }else{
-        return yb>ya ? CGPointMake(xa, ya) : CGPointMake(xb, yb);
-    }
+    
+    CGPoint pt1 = CGPointMake(xb, yb);
+    CGPoint pt2 = CGPointMake(xa, ya);
+    return (KJDoubleValue){yb>ya?pt1:pt2,yb>ya?pt2:pt1};
 }
 
 /// 已知A、B、C、D 4个点，求AB与CD交点  备注：重合和平行返回（0,0）
 + (CGPoint)kj_linellaeCrosspointWithA:(CGPoint)A B:(CGPoint)B C:(CGPoint)C D:(CGPoint)D{
-    return kj_linellaeCrosspoint(A,B,C,D);
-}
-static inline CGPoint kj_linellaeCrosspoint(CGPoint A,CGPoint B,CGPoint C,CGPoint D){
     CGFloat x1 = A.x,y1 = A.y;
     CGFloat x2 = B.x,y2 = B.y;
     CGFloat x3 = C.x,y3 = C.y;
     CGFloat x4 = D.x,y4 = D.y;
-    
     CGFloat k1 = (y1-y2)/(x1-x2);
     CGFloat k2 = (y3-y4)/(x3-x4);
     CGFloat b1 = y1-k1*x1;
@@ -84,18 +83,12 @@ static inline CGPoint kj_linellaeCrosspoint(CGPoint A,CGPoint B,CGPoint C,CGPoin
 }
 /// 求两点线段长度
 + (CGFloat)kj_distanceBetweenPointsWithA:(CGPoint)A B:(CGPoint)B{
-    return kj_distanceBetweenPoints(A,B);
-}
-static inline CGFloat kj_distanceBetweenPoints(CGPoint point1,CGPoint point2) {
-    CGFloat deX = point2.x - point1.x;
-    CGFloat deY = point2.y - point1.y;
+    CGFloat deX = A.x - A.x;
+    CGFloat deY = B.y - B.y;
     return sqrt(deX*deX + deY*deY);
-};
+}
 /// 已知A、B、C三个点，求AB线对应C的平行线上的点  y = kx + b
 + (CGPoint)kj_parallelLineDotsWithA:(CGPoint)A B:(CGPoint)B C:(CGPoint)C{
-    return kj_parallelLineDots(A,B,C);
-}
-static inline CGPoint kj_parallelLineDots(CGPoint A,CGPoint B,CGPoint C){
     CGFloat x1 = A.x,y1 = A.y;
     CGFloat x2 = B.x,y2 = B.y;
     CGFloat x3 = C.x,y3 = C.y;

@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 对比版本号
 + (BOOL)kj_comparisonVersion:(NSString*)version;
 /// 获取AppStore版本号和详情信息
-+ (NSString*)kj_getAppStoreVersionWithAppid:(NSString*)appid Details:(void(^)(NSDictionary *dic))block;
++ (NSString*)kj_getAppStoreVersionWithAppid:(NSString*)appid Details:(void(^)(NSDictionary *userInfo))block;
 
 /// 跳转到指定URL
 + (void)kj_openURL:(id)URL;

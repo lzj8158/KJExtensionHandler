@@ -25,6 +25,8 @@ typedef NS_ENUM(NSUInteger, KJLabelTextAlignmentType) {
 @interface UILabel (KJExtension)
 /// 设置文字内容显示位置，外部不需要再去设置 " textAlignment " 属性
 @property(nonatomic,assign)KJLabelTextAlignmentType kTextAlignmentType;
+/// 获取宽度
+- (CGFloat)kj_calculateWidth;
 /// 获取高度
 - (CGFloat)kj_calculateHeightWithWidth:(CGFloat)width;
 /// 获取高度，指定行高
