@@ -16,7 +16,6 @@
 @property(nonatomic,strong)UIButton *button;
 @property(nonatomic,strong)KJCallNotifyInfo *info;
 - (instancetype)kj_initWithFrame:(CGRect)frame Name:(NSString*)name;
-- (void)kj_invalidateTimer;
 @end
 @interface KJCallNotifyView ()
 @property(nonatomic,strong)NSMutableArray<KJCallNotifyInfo*>*temps;
@@ -92,7 +91,7 @@ static KJCallNotifyView *_instance = nil;
 }
 /// 显示结束
 - (void)kj_displayEnd:(KJCallView*)view{
-    [view kj_invalidateTimer];
+    [NSTimer kj_invalidateTimer:view.timer];
     [self.viewTemps removeObject:view];
     if (self.repetition == NO) {
         [self.temps removeObject:view.info];
@@ -102,7 +101,7 @@ static KJCallNotifyView *_instance = nil;
     }
 }
 - (KJCallView*)kj_viewIndex:(NSInteger)index Info:(KJCallNotifyInfo*)info{
-    CGFloat y = kAutoH(17) + (index-1) * kAutoH(58);
+    CGFloat y = kAutoH(17) + (index-1) * kAutoH(58) + kSTATUSBAR_HEIGHT - 20;
     __block KJCallView *view = [[KJCallView alloc]kj_initWithFrame:CGRectMake(0, y, kAutoW(170), kAutoH(48)) Name:info.name];
     view.tag = 520 + index - 1;
     view.info = info;
@@ -128,11 +127,10 @@ static KJCallNotifyView *_instance = nil;
     [view.button kj_addAction:^(UIButton * _Nonnull kButton) {
         kRemove(true);
     }];
-    view.timer = [NSTimer kj_scheduledNoImmediateTimerWithTimeInterval:self.vanishTime Block:^(NSTimer * _Nonnull timer) {
+    view.timer = [NSTimer kj_scheduledTimerWithTimeInterval:self.vanishTime Repeats:NO Block:^(NSTimer * _Nonnull timer) {
         kRemove(false);
     }];
     [[NSRunLoop mainRunLoop] addTimer:view.timer forMode:NSRunLoopCommonModes];
-    [view.timer fire];
     return view;
 }
 /// 自动消失动画
@@ -211,10 +209,6 @@ static KJCallNotifyView *_instance = nil;
         [self addSubview:self.tvImageView];
     }
     return self;
-}
-- (void)kj_invalidateTimer{
-    [_timer invalidate];
-    _timer = nil;
 }
 
 @end

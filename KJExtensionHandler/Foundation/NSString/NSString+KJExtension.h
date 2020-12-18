@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong,readonly)NSString *HTMLString;
 /// Josn字符串转字典
 @property(nonatomic,strong,readonly)NSDictionary *jsonDict;
+/// 生成竖直文字
+@property(nonatomic,strong,readonly)NSString *verticalText;
 
 /// 获取文本宽度
 - (CGFloat)kj_maxWidthWithFont:(UIFont*)font Height:(CGFloat)height Alignment:(NSTextAlignment)alignment LinebreakMode:(NSLineBreakMode)linebreakMode LineSpace:(CGFloat)lineSpace;

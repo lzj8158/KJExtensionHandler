@@ -20,6 +20,7 @@
         NSMutableArray *temp0 = [NSMutableArray array];
         [temp0 addObject:@{@"VCName":@"KJLanguageVC",@"describeName":@"多语言测试"}];
         [temp0 addObject:@{@"VCName":@"KJCallNotifyVC",@"describeName":@"来电提醒测试"}];
+        [temp0 addObject:@{@"VCName":@"KJAnimationVC",@"describeName":@"动画效果测试"}];
         
         NSMutableArray *temp1 = [NSMutableArray array];
         [temp1 addObject:@{@"VCName":@"KJButtonVC",@"describeName":@"Button图文布局点赞粒子"}];
@@ -36,6 +37,7 @@
         [temp1 addObject:@{@"VCName":@"KJToastVC",@"describeName":@"Toast处理"}];
         
         NSMutableArray *temp2 = [NSMutableArray array];
+        [temp2 addObject:@{@"VCName":@"KJCodeImageVC",@"describeName":@"Image二维码生成器"}];
         [temp2 addObject:@{@"VCName":@"KJImageJointVC",@"describeName":@"Image拼接性能对比"}];
         [temp2 addObject:@{@"VCName":@"KJImageCompressVC",@"describeName":@"Image压缩性能对比"}];
         [temp2 addObject:@{@"VCName":@"KJFloodImageVC",@"describeName":@"Image填充同颜色区域"}];

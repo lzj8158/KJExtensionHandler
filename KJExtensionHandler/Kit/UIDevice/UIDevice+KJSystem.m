@@ -7,23 +7,43 @@
 
 #import "UIDevice+KJSystem.h"
 #import <objc/runtime.h>
-#import <stdatomic.h>
 @implementation UIDevice (KJSystem)
-@dynamic appCurrentVersion,appName,UUID;
+@dynamic appCurrentVersion,appName,appIcon,launchImage,deviceID;
 + (NSString*)appCurrentVersion{
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
 }
 + (NSString*)appName{
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
 }
-+ (NSString*)UUID{
-    CFUUIDRef cfUUID = CFUUIDCreate(nil);
-    CFStringRef cfUUIDString = CFUUIDCreateString(nil, cfUUID);
-    NSString * result = (__bridge_transfer NSString *)CFStringCreateCopy(NULL, cfUUIDString);
-    CFRelease(cfUUID);
-    CFRelease(cfUUIDString);
-    return [[result stringByReplacingOccurrencesOfString:@"-" withString:@""] lowercaseString];
++ (NSString*)deviceID{
+    return [[[UIDevice currentDevice] identifierForVendor] UUIDString];
 }
++ (UIImage*)appIcon{
+    NSString *iconFilename = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIconFile"];
+    NSString *iconBasename = [iconFilename stringByDeletingPathExtension];
+    NSString *iconExtension = [iconFilename pathExtension];
+    return [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:iconBasename ofType:iconExtension]];
+}
++ (UIImage*)launchImage{
+    UIImage *lauchImage = nil;
+    NSString *viewOrientation = nil;
+    CGSize viewSize = [UIScreen mainScreen].bounds.size;
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeRight){
+        viewOrientation = @"Landscape";
+    }else{
+        viewOrientation = @"Portrait";
+    }
+    NSArray *imagesDictionary = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"UILaunchImages"];
+    for (NSDictionary *dict in imagesDictionary){
+        CGSize imageSize = CGSizeFromString(dict[@"UILaunchImageSize"]);
+        if (CGSizeEqualToSize(imageSize, viewSize)&& [viewOrientation isEqualToString:dict[@"UILaunchImageOrientation"]]){
+            lauchImage = [UIImage imageNamed:dict[@"UILaunchImageName"]];
+        }
+    }
+    return lauchImage;
+}
+
 /// 对比版本号
 + (BOOL)kj_comparisonVersion:(NSString*)version{
     if ([version compare:UIDevice.appCurrentVersion] == NSOrderedDescending) {

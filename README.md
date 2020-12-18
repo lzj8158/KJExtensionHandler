@@ -112,6 +112,12 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 #### <a id="更新日志"></a>更新日志
 ```
 ####版本更新日志:
+#### Add 1.0.7
+1. 新增 UIImage+KJQRCode 二维码/条形码生成
+2. 新增 UIView+KJAnimation 简单动画效果链式封装
+3. 新增 UILabel+KJCopy UILabel添加长按复制功能
+4. 移除 UIView+Toast
+
 #### Add 1.0.6
 1. 重新整理 KJMathEquation 数学方程式类
 2. 新增 NSTimer+KJExtension 计时器简单封装

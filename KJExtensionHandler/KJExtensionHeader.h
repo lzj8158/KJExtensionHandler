@@ -79,7 +79,6 @@ Github地址：https://github.com/yangKJ
 #import "UIView+KJFrame.h" // Frame - 轻量级布局
 #import "UIView+KJGestureBlock.h" // 手势Block
 #import "UIView+KJRectCorner.h" // 切圆角
-#import "UIView+Toast.h" // Toast快捷显示
 //#import "UIView+KJGradient.h" // 渐变处理 和 画指定图形（直线、虚线、五角星、六边形、八边形）
 
 //#import "KJShadowLayer.h" // 内阴影、外阴影、投影相关
@@ -112,6 +111,7 @@ Github地址：https://github.com/yangKJ
 //#import "UIImage+KJPhotoshop.h"
 //#import "UIImage+KJFloodFill.h" // 图片泛洪算法
 //#import "UIImage+KJURLSize.h" // 获取网络图片尺寸
+//#import "UIImage+KJQRCode.h" // 二维码/条形码生成器
 
 #import "UIViewController+KJFullScreen.h" // 充满全屏处理
 

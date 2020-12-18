@@ -13,12 +13,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIImage (KJPhotoshop)
 /// 获取图片平均颜色
 - (UIColor*)kj_getImageAverageColor;
-/// 改变图片透明度
-- (UIImage*)kj_changeImageAlpha:(CGFloat)alpha;
-/// 改变图片颜色
-- (UIImage*)kj_changeImageColor:(UIColor*)color;
 /// 获得灰度图
 - (UIImage*)kj_getGrayImage;
+/// 改变图片透明度
+- (UIImage*)kj_changeImageAlpha:(CGFloat)alpha;
+/// 改变图片背景颜色
+- (UIImage*)kj_changeImageColor:(UIColor*)color;
 
 @end
 

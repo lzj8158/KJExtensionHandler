@@ -54,22 +54,12 @@
 //        } RepetitionCondition:nil];
     }];
     [KJCallNotifyView kj_shareInstance].maxCount = 5;
-    [KJCallNotifyView kj_shareInstance].vanishTime = 7;
+    [KJCallNotifyView kj_shareInstance].vanishTime = 2;
     [KJCallNotifyView kj_shareInstance].tapVanish = YES;
     [[KJCallNotifyView kj_shareInstance] kj_tapBlock:^(KJCallNotifyInfo * _Nonnull info) {
         NSLog(@"-----%@",info);
         [self.navigationController popViewControllerAnimated:YES];
     }];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

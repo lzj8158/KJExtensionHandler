@@ -15,25 +15,38 @@
     void (^block)(NSTimer *timer) = timer.userInfo;
     if (block) block(timer);
 }
-
-/// 下次执行计时器
-+ (NSTimer*)kj_scheduledNoImmediateTimerWithTimeInterval:(NSTimeInterval)inerval Block:(void(^)(NSTimer*timer))block{
-    self.immediate = NO;
-    return [NSTimer scheduledTimerWithTimeInterval:inerval target:self selector:@selector(blcokInvokeImmediate:) userInfo:[block copy] repeats:YES];
+/// 开启一个需添加到线程的可重复执行的NSTimer对象
++ (NSTimer*)kj_timerWithTimeInterval:(NSTimeInterval)inerval Repeats:(BOOL)repeats Block:(void(^)(NSTimer*timer))block{
+    return [NSTimer timerWithTimeInterval:inerval target:self selector:@selector(xxxblcokInvoke:) userInfo:[block copy] repeats:repeats];
 }
-+ (void)blcokInvokeImmediate:(NSTimer*)timer{
-    if (self.immediate == NO) {
-        self.immediate = YES;
-        return;
-    }
++ (void)xxxblcokInvoke:(NSTimer*)timer{
     void (^block)(NSTimer *timer) = timer.userInfo;
     if (block) block(timer);
 }
-+ (BOOL)immediate{
-    return [objc_getAssociatedObject(self, @selector(immediate)) boolValue];
+/// 立刻执行
+- (void)kj_immediatelyTimer{
+    if (![self isValid]) return;
+    [self fire];
 }
-+ (void)setImmediate:(BOOL)immediate{
-    objc_setAssociatedObject(self, @selector(immediate), @(immediate), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+/// 暂停
+- (void)kj_pauseTimer{
+    if (![self isValid]) return;
+    [self setFireDate:[NSDate distantFuture]];
+}
+/// 继续
+- (void)kj_resumeTimer{
+    if (![self isValid]) return;
+    [self setFireDate:[NSDate date]];
+}
+/// 延时执行
+- (void)kj_resumeTimerAfterTimeInterval:(NSTimeInterval)interval{
+    if (![self isValid]) return;
+    [self setFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]];
+}
+/// 释放计时器
++ (void)kj_invalidateTimer:(NSTimer*)timer{
+    [timer invalidate];
+    timer = nil;
 }
 
 @end

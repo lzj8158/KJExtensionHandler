@@ -25,6 +25,22 @@
         return [UIColor colorWithRed:((CGFloat)rgba[0])/255.0 green:((CGFloat)rgba[1])/255.0 blue:((CGFloat)rgba[2])/255.0 alpha:((CGFloat)rgba[3])/255.0];
     }
 }
+/// 获得灰度图
+- (UIImage*)kj_getGrayImage{
+    CGFloat scale = [UIScreen mainScreen].scale;
+    CGFloat w = self.size.width * scale;
+    CGFloat h = self.size.height * scale;
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
+    //使用kCGImageAlphaPremultipliedLast保留Alpha通道，避免透明区域变成黑色
+    CGContextRef context = CGBitmapContextCreate(nil,w,h,8,0,colorSpace,kCGImageAlphaPremultipliedLast);
+    CGContextDrawImage(context,CGRectMake(0,0,w,h),[self CGImage]);
+    CGImageRef imageRef = CGBitmapContextCreateImage(context);
+    UIImage *newImage = [UIImage imageWithCGImage:imageRef];
+    CGColorSpaceRelease(colorSpace);
+    CGContextRelease(context);
+    CFRelease(imageRef);
+    return newImage;
+}
 /// 改变图片透明度
 - (UIImage*)kj_changeImageAlpha:(CGFloat)alpha{
     UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0f);
@@ -56,22 +72,6 @@
     UIImage *destImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return destImage;
-}
-/// 获得灰度图
-- (UIImage*)kj_getGrayImage{
-    CGFloat scale = [UIScreen mainScreen].scale;
-    CGFloat w = self.size.width * scale;
-    CGFloat h = self.size.height * scale;
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
-    //使用kCGImageAlphaPremultipliedLast保留Alpha通道，避免透明区域变成黑色
-    CGContextRef context = CGBitmapContextCreate(nil,w,h,8,0,colorSpace,kCGImageAlphaPremultipliedLast);
-    CGContextDrawImage(context,CGRectMake(0,0,w,h),[self CGImage]);
-    CGImageRef imageRef = CGBitmapContextCreateImage(context);
-    UIImage *newImage = [UIImage imageWithCGImage:imageRef];
-    CGColorSpaceRelease(colorSpace);
-    CGContextRelease(context);
-    CFRelease(imageRef);
-    return newImage;
 }
 
 @end

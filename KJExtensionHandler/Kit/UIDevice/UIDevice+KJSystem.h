@@ -15,8 +15,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// App名称
 @property(nonatomic,strong,class)NSString *appName;
 /// 手机UUID
-@property(nonatomic,strong,class)NSString *UUID;
-
+@property(nonatomic,strong,class)NSString *deviceID;
+/// 获取App图标
+@property(nonatomic,strong,class)UIImage *appIcon;
+/// 获取启动页图片
+@property(nonatomic,strong,class)UIImage *launchImage;
 /// 对比版本号
 + (BOOL)kj_comparisonVersion:(NSString*)version;
 /// 获取AppStore版本号和详情信息

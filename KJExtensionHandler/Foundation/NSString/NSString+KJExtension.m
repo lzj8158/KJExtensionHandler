@@ -32,6 +32,7 @@
     }
     return html;
 }
+/// Josn字符串转字典
 - (NSDictionary*)jsonDict{
     if (self == nil) return nil;
     NSData *jsonData = [self dataUsingEncoding:NSUTF8StringEncoding];
@@ -39,6 +40,15 @@
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
     if(error) return nil;
     return dic;
+}
+/// 生成竖直文字
+- (NSString*)verticalText{
+    NSMutableString *text = [[NSMutableString alloc] initWithString:self];
+    NSInteger count = text.length;
+    for (int i = 1; i < count; i ++) {
+        [text insertString:@"\n" atIndex:i*2-1];
+    }
+    return text;
 }
 /// 获取文本宽度
 - (CGFloat)kj_maxWidthWithFont:(UIFont*)font Height:(CGFloat)height Alignment:(NSTextAlignment)alignment LinebreakMode:(NSLineBreakMode)linebreakMode LineSpace:(CGFloat)lineSpace{
