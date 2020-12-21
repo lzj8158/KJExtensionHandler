@@ -7,6 +7,9 @@ target 'KJExtensionHandler' do
 
   # Pods for KJExtensionHandler
 
+  pod "Toast"
+  pod "FDFullscreenPopGesture"
+  
   target 'KJExtensionHandlerTests' do
     inherit! :search_paths
     # Pods for testing
