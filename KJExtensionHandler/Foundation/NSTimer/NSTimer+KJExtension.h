@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSTimer (KJExtension)
 /// 开启一个当前线程内可重复执行的NSTimer对象
 + (NSTimer*)kj_scheduledTimerWithTimeInterval:(NSTimeInterval)inerval Repeats:(BOOL)repeats Block:(void(^)(NSTimer*timer))block;
+/// 开启一个当前线程内可重复执行的NSTimer对象
++ (NSTimer*)kj_scheduledTimerWithTimeInterval:(NSTimeInterval)inerval Repeats:(BOOL)repeats Block:(void(^)(NSTimer*timer))block RunLoopMode:(NSRunLoopMode)mode;
 /// 开启一个需添加到线程的可重复执行的NSTimer对象
 + (NSTimer*)kj_timerWithTimeInterval:(NSTimeInterval)inerval Repeats:(BOOL)repeats Block:(void(^)(NSTimer*timer))block;
 /// 立刻执行

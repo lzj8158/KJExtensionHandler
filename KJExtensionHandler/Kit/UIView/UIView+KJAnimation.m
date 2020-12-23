@@ -11,11 +11,20 @@
 @property(nonatomic,assign)CGFloat repeatDuration;
 @property(nonatomic,assign)CGFloat duration;
 @property(nonatomic,assign)BOOL autoreverses;
-@property(nonatomic,assign)NSInteger ease;
+@property(nonatomic,assign)NSInteger ease,rotation;
 @property(nonatomic,assign)CGFloat multiple;
 @property(nonatomic,assign)CGFloat opacity;
 @end
 @implementation UIView (KJAnimation)
+/// 隐式动画
+- (void)kj_animationImplicitDuration:(CFTimeInterval)time animations:(void(^)(void))animations{
+    [CATransaction begin];
+    [CATransaction setDisableActions:NO];
+    [CATransaction setAnimationDuration:time];
+    if (animations) animations();
+    [CATransaction commit];
+}
+
 /// 动画组
 - (CAAnimationGroup*)kj_animationMoreAnimations:(NSArray<CABasicAnimation*>*)animations{
     CAAnimationGroup *group = [CAAnimationGroup animation];
@@ -38,7 +47,13 @@
 - (CABasicAnimation*)kj_animationRotateClockwise:(BOOL)clockwise makeParameter:(void(^)(KJAnimationManager *make))parameter{
     KJAnimationManager *manager = [KJAnimationManager new];
     if (parameter) parameter(manager);
-    CABasicAnimation *animation = [self kj_createBasicAnimation:@"transform.rotation.z" Parameter:manager];
+    NSString *key = @"transform.rotation.z";
+    if (manager.rotation == 1) {
+        key = @"transform.rotation.x";
+    }else if (manager.rotation == 2) {
+        key = @"transform.rotation.y";
+    }
+    CABasicAnimation *animation = [self kj_createBasicAnimation:key Parameter:manager];
     animation.fromValue = @(clockwise ? 0 : M_PI*2);
     animation.toValue   = @(clockwise ? M_PI*2 : 0);
     animation.fillMode = kCAFillModeForwards;
@@ -120,6 +135,12 @@
 - (KJAnimationManager * (^)(NSInteger))kEaseInEaseOut{
     return ^KJAnimationManager*(NSInteger xxx) {
         self.ease = xxx;
+        return self;
+    };
+}
+- (KJAnimationManager * (^)(NSInteger))kTransformRotation{
+    return ^KJAnimationManager*(NSInteger xxx) {
+        self.rotation = xxx;
         return self;
     };
 }

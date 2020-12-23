@@ -19,6 +19,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (UIImage*)kj_changeImageAlpha:(CGFloat)alpha;
 /// 改变图片背景颜色
 - (UIImage*)kj_changeImageColor:(UIColor*)color;
+/// 修改图片线条颜色
+- (UIImage*)kj_imageLinellaeColor:(UIColor*)color;
+/// 图层混合，https://blog.csdn.net/yignorant/article/details/77864887
+- (UIImage*)kj_imageBlendMode:(CGBlendMode)blendMode TineColor:(UIColor*)tintColor;
 
 @end
 

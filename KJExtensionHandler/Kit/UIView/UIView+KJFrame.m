@@ -154,6 +154,13 @@
         [child removeFromSuperview];
     }
 }
+/// 隐藏/显示所有子视图
+- (void)kj_hideSubviews:(BOOL)hide operation:(BOOL(^)(UIView *subview))operation{
+    for (UIView *view in self.subviews) {
+        if (operation && operation(view)) continue;
+        view.hidden = hide;
+    }
+}
 /// 移动时刻显示阴影效果
 - (void)kj_movingShadow{
     static float step = 0.0;

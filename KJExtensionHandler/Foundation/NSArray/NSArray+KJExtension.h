@@ -12,6 +12,14 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSArray (KJExtension)
 /// 是否为空
 @property(nonatomic,assign,readonly)bool isEmpty;
+/// 筛选数据
+- (id)kj_detectArray:(BOOL(^)(id object, int index))block;
+/// 多维数组筛选数据
+- (id)kj_detectManyDimensionArray:(BOOL(^)(id object, BOOL * stop))recurse;
+/// 查找数据，返回-1表示未查询到
+- (int)kj_searchObject:(id)object;
+/// 映射
+- (NSArray*)kj_mapArray:(id(^)(id object))block;
 /// 数组计算交集
 - (NSArray*)kj_arrayIntersectionWithOtherArray:(NSArray*)otherArray;
 /// 数组计算差集
@@ -20,8 +28,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray*)kj_disorganizeArray;
 /// 删除数组当中的相同元素
 - (NSArray*)kj_delArrayEquelObj;
-/// 查找数据，返回-1表示未查询到
-- (NSInteger)kj_searchDataWithTarget:(id)target;
 /// 生成一组不重复的随机数
 - (NSArray*)kj_noRepeatRandomArrayWithMinNum:(NSInteger)min maxNum:(NSInteger)max count:(NSInteger)count;
 /// 二分查找，当数据量很大适宜采用该方法

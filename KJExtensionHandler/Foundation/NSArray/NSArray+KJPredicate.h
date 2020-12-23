@@ -11,10 +11,6 @@ NS_ASSUME_NONNULL_BEGIN
 // bindings参数:替换变量字典，字典必须包含接收器中所有变量的键值对
 typedef BOOL (^kPredicateBlock)(id evaluatedObject,NSDictionary<NSString*,id> *bindings);
 @interface NSArray (KJPredicate)
-/// 映射
-- (NSArray*)kj_mapWithBlock:(id(^)(id object))block;
-/// 筛选数据
-- (id)kj_detectWithBlock:(BOOL(^)(id object))block;
 /// 对比两个数组删除相同元素并合并
 - (NSArray*)kj_mergeArrayAndDelEqualObjWithOtherArray:(NSArray*)temp;
 /// 过滤数组

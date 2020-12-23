@@ -8,30 +8,14 @@
 #import "NSArray+KJPredicate.h"
 
 @implementation NSArray (KJPredicate)
-//MARK: - 映射
-- (NSArray*)kj_mapWithBlock:(id(^)(id object))block{
-    NSMutableArray *array = [NSMutableArray arrayWithCapacity:self.count];
-    for (id object in self) {
-        [array addObject:block(object) ?: [NSNull null]];
-    }
-    return array;
-}
-//MARK: - 筛选数据
-- (id)kj_detectWithBlock:(BOOL(^)(id object))block{
-    for (id object in self) {
-        if (block(object)) return object;
-    }
-    return nil;
-}
 //MARK: - 对比两个数组删除相同元素并合并
 - (NSArray*)kj_mergeArrayAndDelEqualObjWithOtherArray:(NSArray*)temp{
-    NSPredicate *Predicate = [NSPredicate predicateWithFormat:@"NOT (SELF IN %@)",self];
-    NSArray *FilteredArray = [temp filteredArrayUsingPredicate:Predicate];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"NOT (SELF IN %@)",self];
+    NSArray *filteredTemps = [temp filteredArrayUsingPredicate:predicate];
     NSMutableArray *newTemps = [NSMutableArray arrayWithArray:self];
-    [newTemps addObjectsFromArray:FilteredArray];
+    [newTemps addObjectsFromArray:filteredTemps];
     return newTemps;
 }
-
 //MARK: - NSPredicate 不影响原数组，返回数组即为过滤结果
 - (NSArray*)kj_filtrationDatasWithPredicateBlock:(kPredicateBlock)block{
     return [self filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:block]];
@@ -43,7 +27,6 @@
 }
 //MARK: - 利用 NSSortDescriptor 对对象数组，按照某一属性的升序降序排列
 - (NSArray*)kj_sortDescriptorWithKey:(NSString*)key Ascending:(BOOL)ascending{
-    // 利用 NSSortDescriptor 对对象数组，按照某一属性或某些属性的升序降序排列
     NSSortDescriptor *des = [NSSortDescriptor sortDescriptorWithKey:key ascending:ascending];
     NSMutableArray *array = [NSMutableArray arrayWithArray:self];
     [array sortUsingDescriptors:@[des]];

@@ -9,18 +9,54 @@
 #import "UIImage+KJMask.h"
 
 @implementation UIImage (KJMask)
-/// 圆形图片
-- (UIImage *)kj_circleImage{
-    UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0);
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
-    CGRect rect = CGRectMake(0, 0, self.size.width, self.size.height);
-    CGContextAddEllipseInRect(ctx, rect);
-    CGContextClip(ctx);
+/// 文字水印
+- (UIImage*)kj_waterText:(NSString*)text direction:(KJImageWaterType)direction textColor:(UIColor*)color font:(UIFont*)font margin:(CGPoint)margin{
+    CGRect rect = (CGRect){CGPointZero,self.size};
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0f);
     [self drawInRect:rect];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    NSDictionary *dict = @{NSFontAttributeName:font,
+                           NSForegroundColorAttributeName:color
+    };
+    CGRect calRect = [self kj_rectWithRect:rect size:[text sizeWithAttributes:dict] direction:direction margin:margin];
+    [text drawInRect:calRect withAttributes:dict];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    return image;
+    return newImage;
 }
+/// 图片水印
+- (UIImage*)kj_waterImage:(UIImage*)image direction:(KJImageWaterType)direction waterSize:(CGSize)size margin:(CGPoint)margin{
+    CGRect rect = (CGRect){CGPointZero,self.size};
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0f);
+    [self drawInRect:rect];
+    CGSize waterImageSize = CGSizeEqualToSize(size, CGSizeZero) ? image.size : size;
+    CGRect waterRect = [self kj_rectWithRect:rect size:waterImageSize direction:direction margin:margin];
+    [image drawInRect:waterRect];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+- (CGRect)kj_rectWithRect:(CGRect)rect size:(CGSize)size direction:(KJImageWaterType)direction margin:(CGPoint)margin{
+    CGPoint point = CGPointZero;
+    switch (direction) {
+        case KJImageWaterTypeTopLeft:
+            break;
+        case KJImageWaterTypeTopRight:
+            point = CGPointMake(rect.size.width - size.width, 0);
+            break;
+        case KJImageWaterTypeBottomRight:
+            point = CGPointMake(rect.size.width - size.width, rect.size.height - size.height);
+            break;
+        case KJImageWaterTypeCenter:
+            point = CGPointMake((rect.size.width - size.width)*.5f, (rect.size.height - size.height)*.5f);
+            break;
+        default:
+            break;
+    }
+    point.x += margin.x;
+    point.y += margin.y;
+    return (CGRect){point,size};
+}
+
 // 画水印
 - (UIImage*)kj_waterMark:(UIImage*)mark InRect:(CGRect)rect{
     UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0);
@@ -53,6 +89,18 @@
     CGImageRelease(masked);
     return retImage;
 }
+/// 圆形图片
+- (UIImage *)kj_circleImage{
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0);
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGRect rect = CGRectMake(0, 0, self.size.width, self.size.height);
+    CGContextAddEllipseInRect(ctx, rect);
+    CGContextClip(ctx);
+    [self drawInRect:rect];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
 /// 透明图片穿透
 - (bool)kj_transparentWithPoint:(CGPoint)point{
     unsigned char pixel[1] = {0};
@@ -63,19 +111,6 @@
     CGContextRelease(context);
     CGFloat alpha = pixel[0]/255.0f;
     return alpha < 0.01f;
-}
-/// 文字转图片
-+ (UIImage*)kj_textBecomeImageWithText:(NSString*)text Size:(CGSize)size BackgroundColor:(UIColor*)color TextAttributes:(NSDictionary*)attributes{
-    CGRect bounds = CGRectMake(0, 0, size.width, size.height);
-    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, color.CGColor);
-    CGContextFillRect(context, bounds);
-    CGSize textSize = [text sizeWithAttributes:attributes];
-    [text drawInRect:CGRectMake(bounds.size.width/2-textSize.width/2, bounds.size.height/2-textSize.height/2, textSize.width, textSize.height) withAttributes:attributes];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return image;
 }
 
 @end

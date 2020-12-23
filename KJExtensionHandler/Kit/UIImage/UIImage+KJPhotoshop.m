@@ -73,5 +73,23 @@
     UIGraphicsEndImageContext();
     return destImage;
 }
+/// 修改图片颜色
+- (UIImage*)kj_imageLinellaeColor:(UIColor*)color{
+    return [self kj_imageBlendMode:kCGBlendModeDestinationIn TineColor:color];
+}
+/// 图层混合
+- (UIImage*)kj_imageBlendMode:(CGBlendMode)blendMode TineColor:(UIColor*)tintColor{
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0f);
+    [tintColor setFill];
+    CGRect bounds = CGRectMake(0, 0, self.size.width, self.size.height);
+    UIRectFill(bounds);
+    [self drawInRect:bounds blendMode:blendMode alpha:1.0f];
+    if (blendMode != kCGBlendModeDestinationIn) {
+        [self drawInRect:bounds blendMode:kCGBlendModeDestinationIn alpha:1.0f];
+    }
+    UIImage *tintedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return tintedImage;
+}
 
 @end

@@ -11,12 +11,52 @@
 - (bool)isEmpty{
     return (self == nil || [self isKindOfClass:[NSNull class]] || self.count == 0);
 }
+//MARK: - 筛选数据
+- (id)kj_detectArray:(BOOL(^)(id object, int index))block{
+    for (int i=0; i<self.count; i++) {
+        id object = self[i];
+        if (block(object,i)) return object;
+    }
+    return nil;
+}
+//MARK: - 多维数组筛选数据
+- (id)kj_detectManyDimensionArray:(BOOL(^)(id object, BOOL *stop))recurse{
+    for (id object in self) {
+        BOOL stop = NO;
+        if (recurse(object, &stop)) {
+            if ([object isKindOfClass:[NSArray class]]) {
+                return [(NSArray*)object kj_detectManyDimensionArray:recurse];
+            }
+            return object;
+        }else if (stop) {
+            return object;
+        }
+    }
+    return nil;
+}
+// 查找数据，返回-1表示未查询到
+- (int)kj_searchObject:(id)object{
+    unsigned index = (unsigned)CFArrayBSearchValues((CFArrayRef)self, CFRangeMake(0, CFArrayGetCount((CFArrayRef)self)), (CFStringRef)object, (CFComparatorFunction)CFStringCompare, NULL);
+    if (index < self.count && [object isEqualToString:self[index]]){
+        return index;
+    }else{
+        return -1;
+    }
+}
+//MARK: - 映射
+- (NSArray*)kj_mapArray:(id(^)(id object))block{
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:self.count];
+    for (id object in self) {
+        [array addObject:block(object) ?: [NSNull null]];
+    }
+    return array;
+}
 /// 数组计算交集
 - (NSArray*)kj_arrayIntersectionWithOtherArray:(NSArray*)otherArray{
     if(self.count == 0 || otherArray == nil) return nil;
     NSMutableArray *temps = [NSMutableArray array];
     for (id obj in self) {
-        if(![otherArray containsObject:obj]) continue;
+        if (![otherArray containsObject:obj]) continue;
         [temps addObject:obj];
     }
     return temps;
@@ -27,7 +67,7 @@
     if(otherArray == nil) return self;
     NSMutableArray *temps = [NSMutableArray arrayWithArray:self];
     for (id obj in otherArray) {
-        if(![self containsObject:obj]) continue;
+        if (![self containsObject:obj]) continue;
         [temps removeObject:obj];
     }
     return temps;
@@ -41,16 +81,6 @@
 // 删除数组当中的相同元素
 - (NSArray*)kj_delArrayEquelObj{
     return [self valueForKeyPath:@"@distinctUnionOfObjects.self"];
-}
-// 查找数据 返回-1表示未查询到
-- (NSInteger)kj_searchDataWithTarget:(id)target{
-    NSArray *source = self.mutableCopy;
-    unsigned index = (unsigned)CFArrayBSearchValues((CFArrayRef)source, CFRangeMake(0, CFArrayGetCount((CFArrayRef)source)), (CFStringRef)target, (CFComparatorFunction)CFStringCompare, NULL);
-    if (index < [source count] && [target isEqualToString:source[index]]){
-        return index;
-    }else {
-        return -1;
-    }
 }
 /// 生成一组不重复的随机数
 - (NSArray*)kj_noRepeatRandomArrayWithMinNum:(NSInteger)min maxNum:(NSInteger)max count:(NSInteger)count{

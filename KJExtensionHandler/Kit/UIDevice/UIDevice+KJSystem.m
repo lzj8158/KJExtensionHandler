@@ -7,6 +7,7 @@
 
 #import "UIDevice+KJSystem.h"
 #import <objc/runtime.h>
+#import <AVFoundation/AVFoundation.h>
 @implementation UIDevice (KJSystem)
 @dynamic appCurrentVersion,appName,appIcon,launchImage,deviceID;
 + (NSString*)appCurrentVersion{
@@ -101,7 +102,15 @@
 + (void)kj_skipToMail{
     [self kj_openURL:@"mailto://admin@abt.com"];
 }
-
+/// 是否切换为扬声器
++ (void)kj_changeLoudspeaker:(bool)loudspeaker{
+    NSError *error;
+    if (loudspeaker) {
+        [[AVAudioSession sharedInstance] overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:&error];
+    }else{
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:&error];
+    }
+}
 /// 保存到相册
 static char kSavePhotosKey;
 + (void)kj_savedPhotosAlbumWithImage:(UIImage*)image Complete:(void(^)(BOOL success))complete{

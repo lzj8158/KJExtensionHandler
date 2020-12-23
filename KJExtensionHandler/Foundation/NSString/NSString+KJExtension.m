@@ -68,5 +68,17 @@
     CGSize newSize = [self boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingTruncatesLastVisibleLine attributes:attributes context:NULL].size;
     return CGSizeMake(ceil(newSize.width), ceil(newSize.height));
 }
-
+/// 文字转图片
+- (UIImage*)kj_textBecomeImageWithSize:(CGSize)size BackgroundColor:(UIColor*)color TextAttributes:(NSDictionary*)attributes{
+    CGRect bounds = CGRectMake(0, 0, size.width, size.height);
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, color.CGColor);
+    CGContextFillRect(context, bounds);
+    CGSize textSize = [self sizeWithAttributes:attributes];
+    [self drawInRect:CGRectMake(bounds.size.width/2-textSize.width/2, bounds.size.height/2-textSize.height/2, textSize.width, textSize.height) withAttributes:attributes];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
 @end

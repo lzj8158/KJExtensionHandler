@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong,class)NSString *deviceID;
 /// 获取App图标
 @property(nonatomic,strong,class)UIImage *appIcon;
-/// 获取启动页图片
+/// 获取启动页图片  
 @property(nonatomic,strong,class)UIImage *launchImage;
 /// 对比版本号
 + (BOOL)kj_comparisonVersion:(NSString*)version;
@@ -33,6 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)kj_skipToSafari;
 /// 调用自带Mail
 + (void)kj_skipToMail;
+/// 是否切换为扬声器
++ (void)kj_changeLoudspeaker:(bool)loudspeaker;
 
 /// 保存到相册
 + (void)kj_savedPhotosAlbumWithImage:(UIImage*)image Complete:(void(^)(BOOL success))complete;
