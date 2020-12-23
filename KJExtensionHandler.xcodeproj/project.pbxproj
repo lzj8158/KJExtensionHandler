@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -103,10 +103,8 @@
 		68AD730B251D9BB8000C89C5 /* UINavigationBar+KJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD72CF251D9BB8000C89C5 /* UINavigationBar+KJExtension.m */; };
 		68AD730C251D9BB8000C89C5 /* UIViewController+KJFullScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD72D2251D9BB8000C89C5 /* UIViewController+KJFullScreen.m */; };
 		68AD730D251D9BB8000C89C5 /* KJShadowLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD72D5251D9BB8000C89C5 /* KJShadowLayer.m */; };
-		68AD730E251D9BB8000C89C5 /* CALayer+KJReflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD72D6251D9BB8000C89C5 /* CALayer+KJReflection.m */; };
 		68AD730F251D9BB8000C89C5 /* KJColorSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD72DA251D9BB8000C89C5 /* KJColorSlider.m */; };
 		68AD7310251D9BB8000C89C5 /* UISlider+KJTapValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD72DB251D9BB8000C89C5 /* UISlider+KJTapValue.m */; };
-		68AD7353251D9C75000C89C5 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD7319251D9C74000C89C5 /* UINavigationController+FDFullscreenPopGesture.m */; };
 		68AD7354251D9C75000C89C5 /* KJImageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68AD731C251D9C75000C89C5 /* KJImageVC.xib */; };
 		68AD7355251D9C75000C89C5 /* KJFloodImageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68AD731E251D9C75000C89C5 /* KJFloodImageVC.xib */; };
 		68AD7356251D9C75000C89C5 /* KJCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD731F251D9C75000C89C5 /* KJCollectionVC.m */; };
@@ -135,6 +133,7 @@
 		68F3A889253969FA00BCD817 /* NSObject+KJSemaphore.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F3A888253969FA00BCD817 /* NSObject+KJSemaphore.m */; };
 		68F3A8A12539739A00BCD817 /* KJHomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F3A8A02539739A00BCD817 /* KJHomeView.m */; };
 		68F3A8AA253973AF00BCD817 /* KJHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F3A8A9253973AF00BCD817 /* KJHomeModel.m */; };
+		68FAD5EA2593726D00DB9D8A /* DUCE.md in Resources */ = {isa = PBXBuildFile; fileRef = 68FAD5E92593726D00DB9D8A /* DUCE.md */; };
 		68FFFC78254FEAA300B2E9E3 /* UIBezierPath+KJPoints.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FFFC76254FEAA300B2E9E3 /* UIBezierPath+KJPoints.m */; };
 		74A7CABAC91AE8282046C928 /* Pods_KJExtensionHandler_KJExtensionHandlerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE1742990F6FAC9E33E5691 /* Pods_KJExtensionHandler_KJExtensionHandlerUITests.framework */; };
 		96625707C2E52044EF2C2278 /* Pods_KJExtensionHandlerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB272C86683A156A6DCD51A /* Pods_KJExtensionHandlerTests.framework */; };
@@ -357,16 +356,12 @@
 		68AD72CF251D9BB8000C89C5 /* UINavigationBar+KJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+KJExtension.m"; sourceTree = "<group>"; };
 		68AD72D1251D9BB8000C89C5 /* UIViewController+KJFullScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KJFullScreen.h"; sourceTree = "<group>"; };
 		68AD72D2251D9BB8000C89C5 /* UIViewController+KJFullScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KJFullScreen.m"; sourceTree = "<group>"; };
-		68AD72D4251D9BB8000C89C5 /* CALayer+KJReflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+KJReflection.h"; sourceTree = "<group>"; };
 		68AD72D5251D9BB8000C89C5 /* KJShadowLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJShadowLayer.m; sourceTree = "<group>"; };
-		68AD72D6251D9BB8000C89C5 /* CALayer+KJReflection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+KJReflection.m"; sourceTree = "<group>"; };
 		68AD72D7251D9BB8000C89C5 /* KJShadowLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJShadowLayer.h; sourceTree = "<group>"; };
 		68AD72D9251D9BB8000C89C5 /* UISlider+KJTapValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISlider+KJTapValue.h"; sourceTree = "<group>"; };
 		68AD72DA251D9BB8000C89C5 /* KJColorSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJColorSlider.m; sourceTree = "<group>"; };
 		68AD72DB251D9BB8000C89C5 /* UISlider+KJTapValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISlider+KJTapValue.m"; sourceTree = "<group>"; };
 		68AD72DC251D9BB8000C89C5 /* KJColorSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJColorSlider.h; sourceTree = "<group>"; };
-		68AD7318251D9C74000C89C5 /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
-		68AD7319251D9C74000C89C5 /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
 		68AD731C251D9C75000C89C5 /* KJImageVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KJImageVC.xib; sourceTree = "<group>"; };
 		68AD731E251D9C75000C89C5 /* KJFloodImageVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KJFloodImageVC.xib; sourceTree = "<group>"; };
 		68AD731F251D9C75000C89C5 /* KJCollectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJCollectionVC.m; sourceTree = "<group>"; };
@@ -416,6 +411,7 @@
 		68F3A8A02539739A00BCD817 /* KJHomeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJHomeView.m; sourceTree = "<group>"; };
 		68F3A8A8253973AF00BCD817 /* KJHomeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJHomeModel.h; sourceTree = "<group>"; };
 		68F3A8A9253973AF00BCD817 /* KJHomeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJHomeModel.m; sourceTree = "<group>"; };
+		68FAD5E92593726D00DB9D8A /* DUCE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = DUCE.md; sourceTree = SOURCE_ROOT; };
 		68FFFC76254FEAA300B2E9E3 /* UIBezierPath+KJPoints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+KJPoints.m"; sourceTree = "<group>"; };
 		68FFFC77254FEAA300B2E9E3 /* UIBezierPath+KJPoints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+KJPoints.h"; sourceTree = "<group>"; };
 		A89E9EE6C07FFEAFB356DF51 /* Pods-KJExtensionHandler-KJExtensionHandlerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KJExtensionHandler-KJExtensionHandlerUITests.release.xcconfig"; path = "Target Support Files/Pods-KJExtensionHandler-KJExtensionHandlerUITests/Pods-KJExtensionHandler-KJExtensionHandlerUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -600,6 +596,7 @@
 				68AD725E251D9BB8000C89C5 /* Foundation */,
 				68AD731A251D9C75000C89C5 /* TextDemo */,
 				68AD71BA251D9705000C89C5 /* AppDelegate.h */,
+				68FAD5E92593726D00DB9D8A /* DUCE.md */,
 				68AD71BB251D9705000C89C5 /* AppDelegate.m */,
 				68AD71BD251D9705000C89C5 /* SceneDelegate.h */,
 				68AD71BE251D9705000C89C5 /* SceneDelegate.m */,
@@ -611,8 +608,6 @@
 				68F3A8A02539739A00BCD817 /* KJHomeView.m */,
 				68AD7258251D9B9D000C89C5 /* BaseViewController.h */,
 				68AD7256251D9B9D000C89C5 /* BaseViewController.m */,
-				68AD7318251D9C74000C89C5 /* UINavigationController+FDFullscreenPopGesture.h */,
-				68AD7319251D9C74000C89C5 /* UINavigationController+FDFullscreenPopGesture.m */,
 				68AD71C3251D9705000C89C5 /* Main.storyboard */,
 				68AD71C6251D9706000C89C5 /* Assets.xcassets */,
 				68AD71C8251D9706000C89C5 /* LaunchScreen.storyboard */,
@@ -883,8 +878,6 @@
 			children = (
 				687E1B5A255D05BF0017075D /* CALayer+KJExtension.h */,
 				687E1B5B255D05BF0017075D /* CALayer+KJExtension.m */,
-				68AD72D4251D9BB8000C89C5 /* CALayer+KJReflection.h */,
-				68AD72D6251D9BB8000C89C5 /* CALayer+KJReflection.m */,
 				68AD72D7251D9BB8000C89C5 /* KJShadowLayer.h */,
 				68AD72D5251D9BB8000C89C5 /* KJShadowLayer.m */,
 			);
@@ -1048,6 +1041,7 @@
 				68AD71B3251D9705000C89C5 /* Sources */,
 				68AD71B4251D9705000C89C5 /* Frameworks */,
 				68AD71B5251D9705000C89C5 /* Resources */,
+				4D63E3764173DBA1429F15DC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1085,6 +1079,7 @@
 				68AD71D9251D9707000C89C5 /* Sources */,
 				68AD71DA251D9707000C89C5 /* Frameworks */,
 				68AD71DB251D9707000C89C5 /* Resources */,
+				D2501D4641A587E8C8011428 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1150,6 +1145,7 @@
 				68AD71C7251D9706000C89C5 /* Assets.xcassets in Resources */,
 				68AD7251251D9AD2000C89C5 /* README.md in Resources */,
 				68AD7250251D9AD2000C89C5 /* KJExtensionHandler.podspec in Resources */,
+				68FAD5EA2593726D00DB9D8A /* DUCE.md in Resources */,
 				68AD72F2251D9BB8000C89C5 /* KJKit.bundle in Resources */,
 				68AD71C5251D9705000C89C5 /* Main.storyboard in Resources */,
 				68AD736D251D9C75000C89C5 /* KJShadowVC.xib in Resources */,
@@ -1220,6 +1216,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4D63E3764173DBA1429F15DC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KJExtensionHandler/Pods-KJExtensionHandler-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KJExtensionHandler/Pods-KJExtensionHandler-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KJExtensionHandler/Pods-KJExtensionHandler-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D2501D4641A587E8C8011428 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KJExtensionHandler-KJExtensionHandlerUITests/Pods-KJExtensionHandler-KJExtensionHandlerUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KJExtensionHandler-KJExtensionHandlerUITests/Pods-KJExtensionHandler-KJExtensionHandlerUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KJExtensionHandler-KJExtensionHandlerUITests/Pods-KJExtensionHandler-KJExtensionHandlerUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E8FD9341C1D23AE9EB03EF83 /* [CP] Check Pods Manifest.lock */ = {
@@ -1332,7 +1362,6 @@
 				684FD0A425889BA30064D356 /* NSObject+KJRuntime.m in Sources */,
 				687C7351258C838E002DC19C /* KJAnimationVC.m in Sources */,
 				68AD72EA251D9BB8000C89C5 /* UIImage+KJCompress.m in Sources */,
-				68AD7353251D9C75000C89C5 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				68BC33F6255A9EB100A64894 /* UITextView+KJBackout.m in Sources */,
 				68AD7358251D9C75000C89C5 /* KJButtonVC.m in Sources */,
 				68AD72FA251D9BB8000C89C5 /* UIButton+KJEmitter.m in Sources */,
@@ -1357,7 +1386,6 @@
 				686EDA6F25874314007880B5 /* UIImageView+KJBlur.m in Sources */,
 				68AD72F7251D9BB8000C89C5 /* UIButton+KJCreate.m in Sources */,
 				68AD72FE251D9BB8000C89C5 /* UIColor+KJExtension.m in Sources */,
-				68AD730E251D9BB8000C89C5 /* CALayer+KJReflection.m in Sources */,
 				68AD7303251D9BB8000C89C5 /* UIView+KJRectCorner.m in Sources */,
 				68AD72E0251D9BB8000C89C5 /* NSArray+KJLog.m in Sources */,
 				68AD730F251D9BB8000C89C5 /* KJColorSlider.m in Sources */,

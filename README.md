@@ -1,7 +1,6 @@
 # KJExtensionHandler
-# [KJExtensionHandler库简单介绍](https://www.jianshu.com/p/4beb1bd4e1e6)
+### [API & Property整体介绍](https://github.com/yangKJ/KJExtensionHandler/blob/main/DUCE.md)、[图文介绍](https://www.jianshu.com/p/4beb1bd4e1e6)
 #### 本库主要包含三大块：UIKit类、Foundation类、Language 多语言类
-### Category各种工具集合
 - UIButton：图文混排、点击事件封装、扩大点击域、时间间隔限制、倒计时、点击粒子效果等
 - UIView：手势封装、圆角渐变、Xib属性（圆角边框阴影）
 - UITextView：输入框扩展、限制字数、撤销处理、获取文本内部超链接
@@ -12,7 +11,7 @@
 - Language：多语言，支持Xib快捷设置
 - Foundation：数组和字典防崩处理，数组算法处理，谓词相关等等
 
-#### Foundation我还整理封装了一套异常处理、防崩库 `KJExceptionDemo`
+#### Foundation我还整理封装异常处理Crash防护 [KJExceptionDemo](https://github.com/yangKJ/KJExceptionDemo)
 
 <p align="left">
 <img src="https://upload-images.jianshu.io/upload_images/1933747-5cccc7ddb754fef5.gif?imageMogr2/auto-orient/strip" width="200" hspace="1px">
@@ -42,7 +41,6 @@
 * [作者其他库](#作者其他库)
 * [功能介绍](#功能介绍)
 * [Cocoapods安装](#Cocoapods安装)
-* [更新日志](#更新日志)
 * [效果图](#效果图)
 * [目录结构](#目录结构)
 * [打赏作者 &radic;](#打赏作者)
@@ -109,93 +107,6 @@ pod 'KJExtensionHandler/Foundation'
 pod 'KJExtensionHandler/Language' # 多语言模块
 ```
 
-#### <a id="更新日志"></a>更新日志
-```
-####版本更新日志:
-#### Add 1.0.7
-1. 新增 UIImage+KJQRCode 二维码/条形码生成
-2. 新增 UIView+KJAnimation 简单动画效果链式封装
-3. 新增 UILabel+KJCopy UILabel添加长按复制功能
-4. 移除 UIView+Toast
-
-#### Add 1.0.6
-1. 重新整理 KJMathEquation 数学方程式类
-2. 新增 NSTimer+KJExtension 计时器简单封装
-3. 礼物控件提示 KJCallNotifyView
-
-#### Add 1.0.3
-1. 新增 NSObject+KJRuntime Runtime轻量级封装
-2. 新增 UIImageView+KJBlur 简单的模糊效果
-
-#### Add 1.0.1
-1. 新增 UITextField+KJExtension 输入框扩展，快速设置账号密码框
-2. 删除不必要代码，简练操作
-
-#### Add 1.0.0
-1. 完善 UIButton+KJBlock 去除多枚举和超出九种情况
-2. 新增 UIDevice+KJSystem 系统相关方法属性
-3. 分离 Exception 异常处理，请使用 pod 'KJExceptionDemo'
-4. 新增 Language 模块 pod 'KJExtensionHandler/Language' # 多语言模块
-
-#### Add 0.0.10
-1. UIImage+KJGIF 新增播放本地动态图 kj_gifLocalityImageWithName:
-2. 提出 KJNodeQueue 栈操作工具
-3. 新增 NSObject+KJSemaphore 轻量级解耦工具
-4. 完善 UIButton+KJBlock 点击事件封装
-
-#### Add 0.0.9
-1. UIImage+KJCompress 新增多种缩放方案
-2. UIImage+KJJoint 新增多种图片拼接
-3. UIButton+KJButtonContentLayout 修改三个属性layoutType、padding、periphery
-
-#### Add 0.0.8
-1. UIImage+KJCapture 截图方法修改，提升截图质量
-2. 新增 UIImageView+KJLetters 头像浏览和文字头像
-3. 新增 UIScrollView+KJEmptyDataSet 空数据展示
-4. 新增 NSObject+KJExtension 动态属性添加
-
-#### Add 0.0.7
-1. 重写 UIView+KJGestureBlock 解决手势共存问题
-2. UIView+KJRectCorner 完善处理
-3. 新增 CALayer+KJExtension 增加标签属性
-
-#### Add 0.0.6
-1. 新增 UITabBar+KJBadge 小红点处理
-2. 新增 _KJGCD 处理线程相关
-3. 重写指示器按钮 UIButton+KJIndicator 
-4. 重写点赞粒子效果 kj_buttonSetEmitterImage:OpenEmitter:
-5. 重写 UINavigationItem+KJExtension 采用链式处理
-6. 新增 UITextView+KJBackout 撤销输入
-7. UILabel+KJExtension 新增文本显示位置属性 kTextAlignmentType
-
-#### Add 0.0.5
-1. UIView+KJXib 新增判断是否有子视图在滚动 anySubViewScrolling
-2. UIView+KJFrame 新增移除所有子视图 kj_removeAllSubviews
-3. 新增 NSString+KJChinese 汉字相关操作
-4. UIView+KJRectCorner 修改局部边框处理
-5. UIView+KJXib 新增设置图片属性 viewImage
-6. 新增 UIImage+KJGIF 动态图显示gif
-7. 新增 UIImage+KJJoint 拼接图片相关操作
-
-#### Add 0.0.4
-1. 新增 UIView+Toast 快捷显示
-2. 新增 UIResponder+KJChain 响应链处理
-3. 新增 NSObject+KJKVO 键值监听简单封装
-
-#### Add 0.0.3
-1. 新增 UIResponder+KJAdapt 简单的比例适配
-2. 新增 NSArray+KJPredicate 谓词数组处理
-3. 新增 NSString+KJPredicate 谓词字符串处理
-
-#### Add 0.0.2
-1. 新增Exception异常处理
-2. UITextView 增加是否开启方法交换委托处理
-
-#### Add 0.0.1
-1. 从原先的KJEmitterView库中分离出来
-
-备注：部分资料来源于网络～ 就不一一指出道谢，整理起来方便自己和大家使用
-```
 #### <a id="效果图"></a>效果图
 <p align="left">
 <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590984664032&di=f75bbfdf1c76e20749fd40be9c784738&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20181208%2F2e9d5c7277094ace8e7385e018ccc2d4.jpeg" width="666" hspace="1px">
