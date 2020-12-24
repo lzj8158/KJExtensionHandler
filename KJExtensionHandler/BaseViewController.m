@@ -7,8 +7,9 @@
 //
 
 #import "BaseViewController.h"
-//#import "UIBarButtonItem+KJExtension.h" // 设置BarButtonItem
 #import "UIDevice+KJSystem.h"
+#import "UIView+Toast.h"
+#import "UINavigationController+FDFullscreenPopGesture.h" // 侧滑返回
 @interface BaseViewController ()
 
 @end
@@ -20,7 +21,7 @@
     // Do any additional setup after loading the view.
     
     self.view.backgroundColor = UIColorFromHEXA(0xf5f5f5, 1);
-
+    
     _weakself;
     [self.navigationItem kj_makeNavigationItem:^(UINavigationItem * _Nonnull make) {
         make.kAddBarButtonItemInfo(^(KJNavigationItemInfo * _Nonnull info) {

@@ -10,7 +10,7 @@
 @implementation KJHomeModel
 - (instancetype)init{
     if (self==[super init]) {
-        self.sectionTemps = @[@"多语言类",@"Kit扩展类",@"图片相关",@"效果类"];
+        self.sectionTemps = @[@"其他相关",@"Kit扩展类",@"图片相关",@"效果类"];
     }
     return self;
 }
@@ -20,7 +20,9 @@
         NSMutableArray *temp0 = [NSMutableArray array];
         [temp0 addObject:@{@"VCName":@"KJLanguageVC",@"describeName":@"多语言测试"}];
         [temp0 addObject:@{@"VCName":@"KJCallNotifyVC",@"describeName":@"来电提醒测试"}];
+        [temp0 addObject:@{@"VCName":@"KJSoundViewVC",@"describeName":@"声音动画效果测试"}];
         [temp0 addObject:@{@"VCName":@"KJAnimationVC",@"describeName":@"动画效果测试"}];
+        [temp0 addObject:@{@"VCName":@"KJToastVC",@"describeName":@"Toast处理"}];
         
         NSMutableArray *temp1 = [NSMutableArray array];
         [temp1 addObject:@{@"VCName":@"KJButtonVC",@"describeName":@"Button图文布局点赞粒子"}];
@@ -34,7 +36,6 @@
         [temp1 addObject:@{@"VCName":@"KJEmptyDataVC",@"describeName":@"TableView空数据状态"}];
         [temp1 addObject:@{@"VCName":@"KJImageViewVC",@"describeName":@"ImageView文字头像"}];
         [temp1 addObject:@{@"VCName":@"KJImageBlurVC",@"describeName":@"ImageView模糊处理"}];
-        [temp1 addObject:@{@"VCName":@"KJToastVC",@"describeName":@"Toast处理"}];
         
         NSMutableArray *temp2 = [NSMutableArray array];
         [temp2 addObject:@{@"VCName":@"KJCodeImageVC",@"describeName":@"Image二维码生成器"}];

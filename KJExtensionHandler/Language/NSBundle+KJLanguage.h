@@ -6,11 +6,7 @@
 //  https://github.com/yangKJ/KJExtensionHandler
 
 #import <Foundation/Foundation.h>
-#import <objc/runtime.h>
 #import "KJLoadLanguageViewController.h"
-#import "UIButton+KJLanguage.h"
-#import "UILabel+KJLanguage.h"
-#import "UITextField+KJLanguage.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSBundle (KJLanguage)

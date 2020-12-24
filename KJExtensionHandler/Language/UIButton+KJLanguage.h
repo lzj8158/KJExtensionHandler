@@ -6,7 +6,7 @@
 //  https://github.com/yangKJ/KJExtensionHandler
 
 #import <UIKit/UIKit.h>
-#import "NSBundle+KJLanguage.h"
+
 NS_ASSUME_NONNULL_BEGIN
 IB_DESIGNABLE
 @interface UIButton (KJLanguage)

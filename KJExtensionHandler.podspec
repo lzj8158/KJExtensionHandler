@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = "KJExtensionHandler"
-  s.version  = "1.0.6"
+  s.version  = "1.0.8"
   s.summary  = "77 ExtensionHandler"
   s.homepage = "https://github.com/yangKJ/KJExtensionHandler"
   s.license  = "MIT"
@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
 
   s.default_subspec  = 'Kit'
   s.ios.source_files = 'KJExtensionHandler/KJExtensionHeader.h'
-  s.resources = "README.md"
+  s.resources = "DUCE.md"
 
   s.subspec 'Kit' do |y|
     y.source_files = "KJExtensionHandler/Kit/**/*.{h,m}"

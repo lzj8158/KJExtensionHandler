@@ -108,7 +108,7 @@ Github地址：https://github.com/yangKJ
 #import "UIImage+KJCoreImage.h" // CoreImage 框架图片效果处理
 #import "UIImage+KJAccelerate.h" // Accelerate  框架的图片处理
 #import "UIImage+KJGIF.h" // 动态图相关
-//#import "UIImage+KJPhotoshop.h"
+#import "UIImage+KJPhotoshop.h"
 //#import "UIImage+KJFloodFill.h" // 图片泛洪算法
 //#import "UIImage+KJURLSize.h" // 获取网络图片尺寸
 //#import "UIImage+KJQRCode.h" // 二维码/条形码生成器

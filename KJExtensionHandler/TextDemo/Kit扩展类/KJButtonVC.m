@@ -118,7 +118,8 @@
         _button.titleLabel.font = [UIFont systemFontOfSize:14];
         [_button setTitle:@"居中-图上文下" forState:UIControlStateNormal];
         [_button setTitleColor:UIColor.blueColor forState:UIControlStateNormal];
-        [_button setImage:[UIImage imageNamed:@"wode_nor"] forState:UIControlStateNormal];
+        UIImage *image = [kGetImage(@"wode_nor") kj_imageLinellaeColor:UIColor.greenColor];
+        [_button setImage:image forState:UIControlStateNormal];
         _button.layoutType = KJButtonContentLayoutStyleCenterImageTop;
         _button.kj_Padding = 5;
         [_button kj_addAction:^(UIButton * _Nonnull kButton) {

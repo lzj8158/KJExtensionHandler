@@ -6,28 +6,18 @@
 //  https://github.com/yangKJ/KJExtensionHandler
 
 #import "NSBundle+KJLanguage.h"
-
-@interface KJLanguageBundle : NSBundle
-@end
-@implementation KJLanguageBundle
-/// 国际化
-- (NSString*)localizedStringForKey:(NSString*)key value:(NSString*)value table:(NSString*)tableName{
-    NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:NSBundle.currentLanguage ofType:@"lproj"]];
-    if (bundle) {
-        return [bundle localizedStringForKey:key value:value table:tableName];
-    }else{
-        return [super localizedStringForKey:key value:value table:tableName];
-    }
-}
-
-@end
+#import <objc/runtime.h>
+#import "UIButton+KJLanguage.h"
+#import "UILabel+KJLanguage.h"
+#import "UITextField+KJLanguage.h"
+#import "KJLanguageManager.h"
 
 @implementation NSBundle (KJLanguage)
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        // 动态继承修改[NSBundle mainBundle]对象的isa指针使其指向子类，便可以调用子类的方法
-        object_setClass([NSBundle mainBundle], [KJLanguageBundle class]);
+        // 动态继承修改[NSBundle mainBundle]对象的isa指针使其指向子类(KJLanguageManager)，便可以调用子类的方法
+        object_setClass([NSBundle mainBundle], [KJLanguageManager class]);
     });
 }
 + (NSString*)customStringsName{
@@ -35,14 +25,10 @@
 }
 + (void)setCustomStringsName:(NSString*)customStringsName{
     objc_setAssociatedObject(self, @selector(customStringsName), customStringsName, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    KJLanguageManager.customStringsName = customStringsName;
 }
-static NSString *kAppLanguageKey = @"KJ_CURRENT_LANGUAGE_KEY";
 + (NSString*)currentLanguage{
-    NSString *language = [[NSUserDefaults standardUserDefaults] objectForKey:kAppLanguageKey];
-    if (language == nil) {
-        language = [[NSLocale preferredLanguages] firstObject];
-    }
-    return language;
+    return KJLanguageManager.currentLanguage;
 }
 /// 设置语言
 + (void)kj_setCurrentLanguage:(NSString*)language complete:(void(^)(void))complete{

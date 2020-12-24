@@ -37,8 +37,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)kj_removeAllSubviews;
 /// 隐藏/显示所有子视图
 - (void)kj_hideSubviews:(BOOL)hide operation:(BOOL(^)(UIView *subview))operation;
-/// 移动时刻显示阴影效果
-- (void)kj_movingShadow;
 
 @end
 

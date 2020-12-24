@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIView (KJAnimation)
 /// 隐式动画
 - (void)kj_animationImplicitDuration:(CFTimeInterval)time animations:(void(^)(void))animations;
+/// 移动时刻显示阴影效果
+- (void)kj_movingShadow;
 
 /// 动画组
 - (CAAnimationGroup*)kj_animationMoreAnimations:(NSArray<CABasicAnimation*>*)animations;

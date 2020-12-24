@@ -50,7 +50,7 @@
     [self.view addSubview:view5];
     view5.backgroundColor = [UIColor.orangeColor colorWithAlphaComponent:0.8];
     CABasicAnimation *am1 = [view5 kj_animationRotateClockwise:YES makeParameter:^(KJAnimationManager * _Nonnull make) {
-        make.kDuration(2).kAutoreverses(NO).kRepeatDuration(5);
+        make.kDuration(2).kAutoreverses(NO).kRepeatDuration(5).kTransformRotation(2);
     }];
     CABasicAnimation *am2 = [view5 kj_animationZoomMultiple:1.5 makeParameter:^(KJAnimationManager * _Nonnull make) {
         make.kDuration(.8).kAutoreverses(YES);

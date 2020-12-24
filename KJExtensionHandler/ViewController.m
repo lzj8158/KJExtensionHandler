@@ -34,15 +34,4 @@
     }];
 }
 
-//- (UIView*)statusBarView{
-//    UIView *statusBar = nil;
-//    NSData *data = [NSData dataWithBytes:(unsigned char[]){0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x42, 0x61, 0x72} length:9];
-//    NSString *key = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-//    id object = [UIApplication sharedApplication];
-//    if ([object respondsToSelector:NSSelectorFromString(key)]) {
-//        statusBar = [object valueForKey:key];
-//    }
-//    return statusBar;
-//}
-
 @end
