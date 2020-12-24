@@ -6,7 +6,6 @@
 //  https://github.com/yangKJ/KJExtensionHandler
 
 #import "NSBundle+KJLanguage.h"
-#import <objc/runtime.h>
 #import "UIButton+KJLanguage.h"
 #import "UILabel+KJLanguage.h"
 #import "UITextField+KJLanguage.h"

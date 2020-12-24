@@ -7,7 +7,7 @@
 //  解决循环导入
 
 #import <Foundation/Foundation.h>
-
+#import <objc/runtime.h>
 NS_ASSUME_NONNULL_BEGIN
 static NSString *kAppLanguageKey = @"KJ_CURRENT_LANGUAGE_KEY";
 @interface KJLanguageManager : NSBundle
