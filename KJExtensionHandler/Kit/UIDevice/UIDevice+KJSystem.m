@@ -104,11 +104,10 @@
 }
 /// 是否切换为扬声器
 + (void)kj_changeLoudspeaker:(bool)loudspeaker{
-    NSError *error;
     if (loudspeaker) {
-        [[AVAudioSession sharedInstance] overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:&error];
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
     }else{
-        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:&error];
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
     }
 }
 /// 保存到相册

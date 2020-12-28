@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (int)kj_searchObject:(id)object;
 /// 映射
 - (NSArray*)kj_mapArray:(id(^)(id object))block;
+/// 插入数据到目的位置
+- (NSArray*)kj_insertObject:(id)object aim:(BOOL(^)(id object, int index))aim;
 /// 数组计算交集
 - (NSArray*)kj_arrayIntersectionWithOtherArray:(NSArray*)otherArray;
 /// 数组计算差集

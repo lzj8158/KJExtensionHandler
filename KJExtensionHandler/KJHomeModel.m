@@ -18,6 +18,7 @@
 - (NSArray*)temps{
     if (!_temps) {
         NSMutableArray *temp0 = [NSMutableArray array];
+        [temp0 addObject:@{@"VCName":@"KJArrayTestVC",@"describeName":@"数组操作测试"}];
         [temp0 addObject:@{@"VCName":@"KJLanguageVC",@"describeName":@"多语言测试"}];
         [temp0 addObject:@{@"VCName":@"KJCallNotifyVC",@"describeName":@"来电提醒测试"}];
         [temp0 addObject:@{@"VCName":@"KJSoundViewVC",@"describeName":@"声音动画效果测试"}];

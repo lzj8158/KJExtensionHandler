@@ -59,24 +59,36 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 - **[UICollectionView](#UICollectionView)**
 - **[UIBezierPath](#UIBezierPath)**
 - **[NSObject](#NSObject)**
-- **[NSArray](#NSArray)**
 - **[NSDictionary](#NSDictionary)**
 - **[NSString](#NSString)**
 - **[NSTimer](#NSTimer)**
+- **[NSArray](#NSArray)**
 
 ### **[更新日志](#更新日志)**、**[功能介绍](#功能介绍)**、**[效果图](#效果图)**、**[打赏作者](#打赏作者)**
 
-## 关于类型说明
+### 关于类型说明
 > Property：属性  
 > Class & Property：类属性  
 > Protocol：协议  
 > Instance：实例方法  
 > Class：类方法  
+> Function：函数
 
 ### <a id="UIView"></a>UIView
+#### UIView+KJAnimation  简单动画效果链式封装
+|   功能   |  类型  |  API & Property  | 
+| ---- | :----: | ---- |
+| 隐式动画 | Instance | kj_animationImplicitDuration:animations: |
+| 移动时刻显示阴影效果 | Instance | kj_movingShadow |
+| 动画组 | Instance | kj_animationMoreAnimations: |
+| 旋转动画效果 | Instance | kj_animationRotateClockwise:makeParameter: |
+| 移动动画效果 | Instance | kj_animationMovePoint:makeParameter: |
+| 缩放动画效果 | Instance | kj_animationZoomMultiple:makeParameter: |
+| 渐隐动画效果 | Instance | kj_animationOpacity:makeParameter: |
+
 #### UIView+KJXib
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 阴影偏移量 | Property | shadowOffset |
 | 阴影透明度 | Property | shadowOpacity |
 | 阴影的宽度 | Property | shadowWidth |
@@ -88,8 +100,8 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 | 图片属性 | Property | viewImage |
 | 判断是否有子视图在滚动 | Property | anySubViewScrolling |
 | 判断是否有子视图在滚动 | Instance | kj_anySubViewScrolling |
-| 判断一个控件是否真正显示在主窗口 | Property | showKeyWindow |
-| 判断一个控件是否真正显示在主窗口 | Instance | kj_isShowingOnKeyWindow |
+| 判断控件是否显示在主窗口 | Property | showKeyWindow |
+| 判断控件是否显示在主窗口 | Instance | kj_isShowingOnKeyWindow |
 | 顶部控制器 | Property | topViewController |
 | 当前的控制器 | Property | viewController |
 | 当前的控制器 | Instance | kj_currentViewController |
@@ -98,7 +110,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 
 #### UIView+KJRectCorner  进阶版圆角和边框扩展
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 圆角半径 | Property | kj_radius |
 | 圆角方位 | Property | kj_rectCorner |
 | 边框颜色 | Property | kj_borderColor |
@@ -107,7 +119,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 
 #### UIView+KJGradient  渐变处理 和 指定图形
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 返回渐变layer | Instance | kj_GradientLayerWithColors:Frame:Locations:StartPoint:EndPoint: |
 | 生成渐变背景色 | Instance | kj_GradientBgColorWithColors:Locations:StartPoint:EndPoint: |
 | 虚线边框 | Instance | kj_DashedLineColor:lineWidth:spaceAry: |
@@ -119,13 +131,13 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 
 #### UIView+KJGestureBlock  手势Block
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 单击手势 | Instance | kj_AddTapGestureRecognizerBlock: |
 | 手势处理 | Instance | kj_AddGestureRecognizer:block: |
 
 #### UIView+KJFrame  轻量级布局
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 大小 | Property | size |
 | 位置 | Property | origin |
 | x坐标 | Property | x |
@@ -140,42 +152,31 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 | 底部距离 | Property | bottom |
 | x + width | Property | maxX |
 | y + height | Property |maxY |
-| 使用Masonry布局之后得到尺寸 | Property | masonry_x |
-| 使用Masonry布局之后得到尺寸 | Property | masonry_y |
-| 使用Masonry布局之后得到尺寸 | Property | masonry_width |
-| 使用Masonry布局之后得到尺寸 | Property | masonry_height |
+| Masonry布局后x | Property | masonry_x |
+| Masonry布局后y | Property | masonry_y |
+| Masonry布局后宽度 | Property | masonry_width |
+| Masonry布局后高度 | Property | masonry_height |
 | 寻找子视图 | Instance | kj_FindSubviewRecursively: |
 | 移除所有子视图 | Instance | kj_removeAllSubviews |
 | 隐藏/显示所有子视图 | Instance | kj_hideSubviews:operation: |
 
-#### UIView+KJAnimation  简单动画效果链式封装
-|   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
-| 隐式动画 | Instance | kj_animationImplicitDuration:animations: |
-| 移动时刻显示阴影效果 | Instance | kj_movingShadow |
-| 动画组 | Instance | kj_animationMoreAnimations: |
-| 旋转动画效果 | Instance | kj_animationRotateClockwise:makeParameter: |
-| 移动动画效果 | Instance | kj_animationMovePoint:makeParameter: |
-| 缩放动画效果 | Instance | kj_animationZoomMultiple:makeParameter: |
-| 渐隐动画效果 | Instance | kj_animationOpacity:makeParameter: |
-
 ### <a id="UITextView"></a>UITextView
 #### UITextView+KJBackout  撤销处理，相当于 command + z
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 是否开启撤销功能 | Property | kOpenBackout |
-| 撤销输入，相当于 command + z | Instance | kj_textViewBackout |
+| 撤销输入 | Instance | kj_textViewBackout |
 
 #### UITextView+KJPlaceHolder
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 开启方法交换 | Protocol | kj_openPlaceHolderExchangeMethod |
 | 占位符文字 | Property | kj_placeHolder |
 | 占位符Label | Property | kj_placeHolderLabel |
 
 #### UITextView+KJLimitCounter  限制处理
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 开启方法交换 | Protocol | kj_openLimitExchangeMethod |
 | 限制字数 | Property | kj_limitCount |
 | 限制区域右边距 | Property | kj_limitMargin |
@@ -184,13 +185,13 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 
 #### UITextView+KJHyperlink  超链接点击处理
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 识别点击TextView里面的超链接网址地址 | Instance | kj_clickTextViewURLCustom:URLHyperlink: |
 
 ### <a id="UITextField"></a>UITextField
 #### UITextField+KJExtension  输入框扩展，快速设置账号密码框
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 设置底部边框线条颜色 | Property | bottomLineColor |
 | 占位placeholder颜色 | Property | placeholderColor |
 | 最大长度 | Property | maxLength |
@@ -202,7 +203,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 ### <a id="UITabBar"></a>UITabBar
 #### UITabBar+KJBadge  显示小红点
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 当前的TabBar个数 | Protocol | kj_tabBarCount: |
 | 显示小红点 | Instance | kj_showRedBadgeOnItemIndex: |
 | 隐藏小红点 | Instance | kj_hideRedBadgeOnItemIndex: |
@@ -210,7 +211,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 ### <a id="UISlider"></a>UISlider
 #### KJColorSlider  渐变色滑块
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 颜色数组 | Property | colors |
 | 每个颜色对应的位置信息 | Property | locations |
 | 颜色的高度 | Property | colorHeight |
@@ -225,14 +226,14 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 
 #### UISlider+KJTapValue  滑杆点击改值
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 是否开启滑杆点击修改值 | Property | kTapValue |
 
 ### <a id="UIScrollView"></a>UIScrollView
 #### UIScrollView+KJEmptyDataSet  DZNEmptyDataSet 基础上再次封装没数据时状态
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
-| 是否正在加载，加载数据前必须设置为YES | Property | loading |
+| ---- | :----: | ---- |
+| 是否正在加载 | Property | loading |
 | 视图的垂直位置 | Property | verticalOffset |
 | 空数据图片名 | Property | loadedImageName |
 | 空数据详情信息 | Property | descriptionText |
@@ -244,7 +245,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 ### <a id="UIResponder"></a>UIResponder
 #### UIResponder+KJChain  响应链处理
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 响应链详情 | Property | kChainDescription |
 | 第一响应者 | Property | kFirstResponder |
 |  | Instance | kj_responderWithClass: |
@@ -252,10 +253,10 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 
 #### UIResponder+KJAdapt   简单的屏幕比例适配
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 设计图机型 | Protocol | kj_adaptModelType: |
 | 水平比例适配 | Function | KJAdaptScaleLevel |
-| 竖直比例适配，取值为水平比例适配 | Function | KJAdaptScaleVertical |
+| 竖直比例适配 | Function | KJAdaptScaleVertical |
 | 适配CGpoint | Function | KJAdaptPointMake |
 | 适配CGSize | Function | KJAdaptSizeMake |
 | 适配CGRect | Function | KJAdaptRectMake |
@@ -264,7 +265,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 ### <a id="UINavigation"></a>UINavigation
 #### UINavigationBar+KJExtension   
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 设置navigationBar背景颜色 | Property | kj_BackgroundColor |
 | 设置基础的透明度 | Property | kj_Alpha |
 |  | Property | kj_TranslationY |
@@ -272,7 +273,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 
 #### UINavigationItem+KJExtension   Item链式生成
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 链式生成 | Instance | kj_makeNavigationItem:(void(^)(UINavigationItem *make))block |
 | 快捷生成Item | Instance | kj_barButtonItemWithTitle:TitleColor:Image:TintColor:ButtonBlock:BarButtonBlock: |
 | ExtendParameterBlock 扩展参数 | Property | kAddBarButtonItemInfo |
@@ -282,12 +283,12 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 ### <a id="UILabel"></a>UILabel
 #### UILabel+KJCopy   UILabel添加长按复制功能
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 是否可以拷贝 | Property | copyable |
 
 #### UILabel+KJExtension   文本位置和尺寸获取
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 设置文字内容显示位置 | Property | kTextAlignmentType |
 | 获取宽度 | Instance | kj_calculateWidth |
 | 获取高度 | Instance | kj_calculateHeightWithWidth: |
@@ -296,7 +297,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 
 #### UILabel+KJCreate   快速创建文本
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 快速创建文本 | Class | kj_createLabelWithText: |
 |  | Class | kj_createLabelWithText:FontSize: |
 |  | Class | kj_createLabelWithText:FontSize:TextColor: |
@@ -304,26 +305,26 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 
 #### UILabel+KJAttributedString   富文本
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | Range之间文字行间距 | Instance | kj_AttributedStringTextLineSpace: |
 | Range之间文字大小 | Instance | kj_AttributedStringTextFont:Range: |
 | Range之间文字颜色 | Instance | kj_AttributedStringTextColor:Range: |
-| Range之间文字大小 和 颜色 | Instance | kj_AttributedStringTextFont:TextColor:Range: |
+| Range之间文字大小和颜色 | Instance | kj_AttributedStringTextFont:TextColor:Range: |
 | Range之间文字相关属性 | Instance | kj_AttributedStringTextAttributes:Range: |
-| 富文本文字大小 loc:起始位置 len:长度 | Instance | kj_AttributedStringTextFont:Loc:Len: |
-| 富文本文字颜色 loc:起始位置 len:长度 | Instance | kj_AttributedStringTextColor:Loc:Len: |
-| 富文本文字大小和颜色 loc:起始位置 len:长度 和 颜色 | Instance | kj_AttributedStringTextFont:TextColor:Loc:Len: |
-| 富文本文字相关属性 loc:起始位置 len:长度 | Instance | kj_AttributedStringTextAttributes:Loc:Len: |
+| 富文本文字大小 | Instance | kj_AttributedStringTextFont:Loc:Len: |
+| 富文本文字颜色 | Instance | kj_AttributedStringTextColor:Loc:Len: |
+| 富文本文字大小和颜色 | Instance | kj_AttributedStringTextFont:TextColor:Loc:Len: |
+| 富文本文字相关属性 | Instance | kj_AttributedStringTextAttributes:Loc:Len: |
 
 ### <a id="UIImageView"></a>UIImageView
 #### UIImageView+KJBlur   模糊处理（高斯模糊、Accelerate模糊、毛玻璃、蒙版）
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 模糊处理 | Instance | kj_blurImageViewWithBlurType:BlurImage:BlurRadius: |
 
 #### UIImageView+KJLetters  文字头像，首字母缩略头像
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 显示文字图片 | Instance | kj_imageViewWithText:LettersInfo: |
 | 浏览头像，点击全屏展示 | Instance | kj_headerImageShowScreen |
 | 浏览头像，背景颜色 | Instance | kj_headerImageShowScreenWithBackground: |
@@ -331,7 +332,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 ### <a id="UIImage"></a>UIImage
 #### UIImage+KJQRCode  二维码/条形码生成器，特别备注文字不能是中文汉字
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 将字符串转成条形码 | Class | kj_barCodeImageWithContent: |
 | 生成二维码 | Class | kj_QRCodeImageWithContent:codeImageSize: |
 | 生成指定颜色二维码 | Class | kj_QRCodeImageWithContent:codeImageSize:color: |
@@ -342,13 +343,13 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 
 #### UIImage+KJURLSize  获取网络图片尺寸
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 获取网络图片尺寸 | Class | kj_imageGetSizeWithURL: |
 | 异步等待获取网络图片大小，信号量 | Class | kj_imageAsyncGetSizeWithURL: |
 
 #### UIImage+KJScale  图片尺寸处理
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 通过比例来缩放图片 | Instance | kj_scaleImage: |
 | 以固定宽度缩放图像 | Instance | kj_scaleWithFixedWidth: |
 | 以固定高度缩放图像 | Instance | kj_scaleWithFixedHeight: |
@@ -358,7 +359,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 
 #### UIImage+KJPhotoshop
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 获取图片平均颜色 | Instance | kj_getImageAverageColor |
 | 获得灰度图 | Instance | kj_getGrayImage |
 | 改变图片透明度 | Instance | kj_changeImageAlpha: |
@@ -368,7 +369,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 
 #### UIImage+KJMask   蒙版处理，图片拼接
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 文字水印 | Instance | kj_waterText:direction:textColor:font:margin: |
 | 图片水印 | Instance | kj_waterImage:direction:waterSize:margin: |
 | 图片添加水印 | Instance | kj_waterMark:InRect: |
@@ -378,7 +379,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 
 #### UIImage+KJJoint   图片拼接相关处理
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 旋转图片和镜像处理 | Instance | kj_rotationImageWithOrientation: |
 | 竖直方向拼接随意张图片，固定主图的宽度 | Instance | kj_moreJointVerticalImage: |
 | 水平方向拼接随意张图片，固定主图的高度 | Instance | kj_moreJointLevelImage: |
@@ -389,35 +390,35 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 
 #### UIImage+KJGIF   播放动态图
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 本地动态图播放 | Class | kj_gifLocalityImageWithName: |
 | 本地动图 | Class | kj_gifImageWithData: |
 | 网络动图 | Class | kj_gifImageWithURL: |
 
 #### UIImage+KJFloodFill   基于扫描线的泛洪算法，获取填充同颜色区域后的图片
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
-| 基于扫描线的泛洪算法，获取填充同颜色区域后的图片 | Instance | kj_FloodFillImageFromStartPoint:NewColor:Tolerance:UseAntialias: |
+| ---- | :----: | ---- |
+| 填充图片 | Instance | kj_FloodFillImageFromStartPoint:NewColor:Tolerance:UseAntialias: |
 
 #### UIImage+CoreImage   CoreImage框架整理
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
-| Photoshop滤镜相关操作 | Instance | kj_coreImagePhotoshopWithType:Value: |
-| 通用方法 - 传入滤镜过滤器名称 和 需要的参数 | Instance | kj_coreImageCustomWithName:Dicts: |
-| 调整图像的色调映射，同时保留空间细节（高光和阴影） | Instance | kj_coreImageHighlightShadowWithHighlightAmount:ShadowAmount: |
-| 将图片里面的黑色变透明 | Instance | kj_coreImageBlackMaskToAlpha |
+| ---- | :----: | ---- |
+| Photoshop滤镜 | Instance | kj_coreImagePhotoshopWithType:Value: |
+| 通用方法 | Instance | kj_coreImageCustomWithName:Dicts: |
+| 高光和阴影 | Instance | kj_coreImageHighlightShadowWithHighlightAmount:ShadowAmount: |
+| 将图片黑色变透明 | Instance | kj_coreImageBlackMaskToAlpha |
 | 马赛克 | Instance | kj_coreImagePixellateWithCenter:Scale: |
 | 图片圆形变形 | Instance | kj_coreImageCircularWrapWithCenter:Radius:Angle: |
 | 环形透镜畸变 | Instance | kj_coreImageTorusLensDistortionCenter:Radius:Width:Refraction: |
 | 空变形 | Instance | kj_coreImageHoleDistortionCenter:Radius: |
-| 应用透视校正，将源图像中的任意四边形区域转换为矩形输出图像 | Instance | kj_coreImagePerspectiveCorrectionWithTopLeft:TopRight:BottomRight:BottomLeft: |
-| 透视变换，透视滤镜倾斜图像 | Instance | kj_coreImagePerspectiveTransformWithTopLeft:TopRight:BottomRight:BottomLeft: |
-| 软装专属透视 - 内部有相对应的坐标转换 | Instance | kj_softFitmentFluoroscopyWithTopLeft:TopRight:BottomRight:BottomLeft: |
+| 应用透视校正 | Instance | kj_coreImagePerspectiveCorrectionWithTopLeft:TopRight:BottomRight:BottomLeft: |
+| 透视变换 | Instance | kj_coreImagePerspectiveTransformWithTopLeft:TopRight:BottomRight:BottomLeft: |
+| 软装专属透视 | Instance | kj_softFitmentFluoroscopyWithTopLeft:TopRight:BottomRight:BottomLeft: |
 | 将定向聚光灯效果应用于图像（射灯） | Instance | kj_coreImageSpotLightWithLightPosition:LightPointsAt:Brightness:Concentration:LightColor: |
 
 #### UIImage+KJCompress  图片压缩处理，提供几种系统API的处理方式
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 压缩图片到指定大小 | Instance | kj_compressTargetByte: |
 | 压缩图片到指定大小 | Class | kj_compressImage:TargetByte: |
 | UIKit方式 | Instance | kj_UIKitChangeImageSize: |
@@ -428,7 +429,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 
 #### UIImage+KJCapture  截图和裁剪处理
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 当前视图截图 | Class | kj_captureScreen: |
 | 指定位置屏幕截图 | Class | kj_captureScreen:Rect: |
 | 自定义质量的截图，quality质量倍数 | Class | kj_captureScreen:Rect:Quality: |
@@ -445,7 +446,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 
 #### UIImage+KJAccelerate  Accelerate 框架的图片处理
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 图片旋转 | Instance | kj_rotateInRadians: |
 | 模糊处理 | Instance | kj_blurImageSoft |
 | 模糊处理 | Instance | kj_blurImageLight |
@@ -473,7 +474,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 ### <a id="UIDevice"></a>UIDevice
 #### UIDevice+KJSystem  系统相关的操作
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | App版本号 | Class & Property | appCurrentVersion |
 | App名称 | Class & Property | appName |
 | 手机UUID | Class & Property | deviceID |
@@ -493,13 +494,13 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 ### <a id="UIControl"></a>UIControl
 #### UISegmentedControl+KJCustom
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 解决修改背景色和文字颜色 | Instance | kj_ensureBackgroundAndTintColor: |
 
 ### <a id="UIColor"></a>UIColor
 #### UIColor+KJExtension  颜色相关扩展
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 渐变颜色 | Class | zj_gradientColorWithColors:GradientType:Size: |
 | 竖直渐变颜色 | Instance | kj_gradientVerticalToColor:Height: |
 | 横向渐变颜色 | Instance | kj_gradientAcrossToColor:Width: |
@@ -511,14 +512,14 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 
 #### UIColor+KJExtension2  颜色相关扩展
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 |  | Property | red |
 |  | Property | green |
 |  | Property | blue |
 |  | Property | alpha |
-| 色相 -π ~ π | Property | hue |
-| 饱和度 0 ~ 1 | Property | saturation |
-| 亮度 0 ~ 1 | Property | light |
+| 色相 | Property | hue |
+| 饱和度 | Property | saturation |
+| 亮度 | Property | light |
 | 获取颜色对应的RGBA | Instance | kj_colorGetRGBA |
 | 获取颜色对应的色相饱和度和透明度 | Instance | kj_colorGetHSL |
 | 获取颜色的均值 | Class | kj_averageColors: |
@@ -526,7 +527,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 ### <a id="UIButton"></a>UIButton
 #### UIButton+KJBlock  点击事件ButtonBlock
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 是否开启时间间隔的方法交换 | Protocol | kj_openTimeExchangeMethod |
 | 添加点击事件 | Instance | kj_addAction: |
 | 添加事件，不支持多枚举形式 | Instance | kj_addAction:forControlEvents: |
@@ -535,7 +536,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 
 #### UIButton+KJContentLayout  图文混排（支持XIB显示）
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 图文样式 | Property | layoutType |
 | 图文间距 | Property | padding |
 | 图文边界的间距 | Property | periphery |
@@ -545,14 +546,14 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 
 #### UIButton+KJCountDown  倒计时
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 倒计时结束的回调 | Property | kButtonCountDownStop |
 | 设置倒计时的间隔和倒计时文案 | Instance | kj_startTime:CountDownFormat: |
 | 取消倒计时 | Instance | kj_cancelTimer |
 
 #### UIButton+KJCreate  按钮快速创建
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 创建图片按钮 | Class | kj_createButtonWithImageName: |
 | 创建图片按钮 | Class | kj_createButtonWithImageName:SelectImageName: |
 | 创建文本按钮 | Class | kj_createButtonWithFontSize:Title:TextColor: |
@@ -561,23 +562,23 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 
 #### UIButton+KJEmitter  按钮粒子效果
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 是否开启粒子效果 | Property | openEmitter |
 | 粒子，备注 name 属性不要更改 | Property | emitterCell |
 | 设置粒子效果 | Instance | kj_buttonSetEmitterImage:OpenEmitter: |
 
 #### UIButton+KJEnlarge  改变UIButton的响应区域 - 扩大Button点击域
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 设置按钮额外热区 | Property | touchAreaInsets |
 | 扩大点击域 | Instance | kj_EnlargeEdgeWithTop:right:bottom:left: |
 
 #### UIButton+KJIndicator  指示器(系统自带菊花)
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 按钮是否正在提交中 | Property | submitting |
 | 指示器和文字间隔 | Property | indicatorSpace |
-| 指示器颜色，默认白色 | Property | indicatorType |
+| 指示器颜色 | Property | indicatorType |
 | 开始提交，指示器跟随文字 | Instance | kj_beginSubmitting: |
 | 结束提交 | Instance | kj_endSubmitting |
 | 显示指示器 | Instance | kj_showIndicator |
@@ -586,21 +587,21 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 ### <a id="UICollectionView"></a>UICollectionView
 #### UICollectionView+KJTouch  获取touch事件处理
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 开启方法交换 | Property | kOpenExchange |
-| Touch里面移动回调，需要开启方法交换才处理 | Property | moveblock |
+| Touch里面移动回调 | Property | moveblock |
 
 ### <a id="UIBezierPath"></a>UIBezierPath
 #### UIBezierPath+KJPoints  获取贝塞尔曲线上面的点
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 获取所有点 | Property | points |
 | 获取文字贝塞尔路径 | Class | kj_bezierPathWithText:Font: |
 
 ### <a id="NSObject"></a>NSObject
 #### KJGeometry  几何方程式相关
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 已知A、B两点和C点到B点的长度，求垂直AB的C点 | Class | kj_perpendicularLineDotsWithA:B:Len:Positive: |
 | 已知A、B两点和C点到B点的长度，求垂直AB的C点 | Class | kj_perpendicularLineDotsWithA:B:Length: |
 | 已知A、B、C、D 4个点，求AB与CD交点 | Class | kj_linellaeCrosspointWithA:B:C:D: |
@@ -610,7 +611,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 
 #### KJMathEquation  数学算法方程式
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 把弧度转换成角度 | Class | kj_degreeFromRadian: |
 | 把角度转换成弧度 | Class | kj_radianFromDegree: |
 | 正切函数的弧度值，tan | Class | kj_radianValueFromTanSideA:sideB: |
@@ -622,64 +623,34 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 
 #### NSObject+KJKVO  键值监听封装，自动释放
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | kvo监听 | Instance | kj_observeKey:ObserveResultBlock: |
 
 #### NSObject+KJRuntime  Runtime轻量级封装
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 获取该对象的所有属性，包含父类 | Property | propertyTemps |
 | 获取该对象的所有实例变量 | Property | ivarTemps |
 | 获取该对象的所有方法 | Property | methodTemps |
 
 #### NSObject+KJSemaphore  轻量级解耦工具（信号）
 |   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 发送消息处理 | Instance | kj_sendSemaphoreWithKey:Message:Parameter: |
 | 接收消息处理 | Instance | kj_receivedSemaphoreBlock: |
 | 代码执行时间处理 | Class | kj_executeTime: |
 
-### <a id="NSArray"></a>NSArray
-#### NSArray+KJPredicate  谓词工具
-|   功能   |  类型  |  API & Property  | 
-|  ----  | :----: | ----  |
-| 对比两个数组删除相同元素并合并 | Instance | kj_mergeArrayAndDelEqualObjWithOtherArray: |
-| 过滤数组 | Instance | kj_filtrationDatasWithPredicateBlock: |
-| 除去数组当中包含目标数组的数据 | Instance | kj_delEqualDatasWithTargetTemps: |
-| 按照某一属性的升序降序排列 | Instance | kj_sortDescriptorWithKey:Ascending: |
-| 按照某些属性的升序降序排列 | Instance | kj_sortDescriptorWithKeys:Ascendings: |
-| 取出 key 中匹配 value 的元素 | Instance | kj_takeOutDatasWithKey:Value: |
-| 字符串比较运算符 | Instance | kj_takeOutDatasWithOperator:Key:Value: |
-
-#### NSArray+KJExtension  对数组里面元素的相关处理
-|  功能   |  类型  | API & Property |
-|  ----  | :----: | ----  |
-| 是否为空 | Property | isEmpty |
-| 筛选数据 | Instance | kj_detectArray: |
-| 多维数组筛选数据 | Instance | kj_detectManyDimensionArray: |
-| 查找数据，返回-1表示未查询到 | Instance | kj_searchObject: |
-| 映射 | Instance | kj_mapArray: |
-| 数组计算交集 | Instance | kj_arrayIntersectionWithOtherArray: |
-| 数组计算差集 | Instance | kj_arrayMinusWithOtherArray: |
-| 随机打乱数组 | Instance | kj_disorganizeArray |
-| 删除数组当中的相同元素 | Instance | kj_delArrayEquelObj |
-| 生成一组不重复的随机数 | Instance | kj_noRepeatRandomArrayWithMinNum:maxNum:count: |
-| 二分查找 | Instance | kj_binarySearchTarget: |
-| 冒泡排序 | Instance | kj_bubbleSort |
-| 插入排序 | Instance | kj_insertSort |
-| 选择排序 | Instance | kj_selectionSort |
-
 ###  <a id="NSDictionary"></a>NSDictionary
 #### NSDictionary+KJExtension  
 |  功能   |  类型  | API & Property |
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 是否为空 | Property | isEmpty |
 | 转换为Josn字符串 | Property | jsonString |
 
 ###  <a id="NSString"></a>NSString
 #### NSString+KJExtension  字符串扩展属性
 |  功能   |  类型 | API & Property |
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 是否为空 | Property | isEmpty |
 | 转换为URL | Property | URL |
 | 获取图片 | Property | image |
@@ -692,13 +663,13 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 
 #### NSString+KJChinese  汉字相关处理
 |  功能   |  类型  | API & Property |
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 汉字转拼音 | Property | pinYin |
 | 随机汉字 | Class | kj_randomCreateChinese: |
 
 #### NSString+KJPredicate  谓词工具
 |  功能   |  类型 | API & Property |
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 过滤空格 | Instance | kj_filterSpace |
 | 验证数字 | Instance | kj_validateNumber |
 | 是否有特殊字符 | Instance | kj_validateHaveSpecialCharacter |
@@ -710,7 +681,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 ###  <a id="NSTimer"></a>NSTimer
 #### NSTimer+KJExtension
 |  功能   |  类型 | API & Property |
-|  ----  | :----: | ----  |
+| ---- | :----: | ---- |
 | 当前线程计时器 | Class | kj_scheduledTimerWithTimeInterval:Repeats:Block: |
 | 当前线程 | Class | kj_scheduledTimerWithTimeInterval:Repeats:Block:RunLoopMode: |
 | 线程计时器 | Class | kj_timerWithTimeInterval:Repeats:Block: |
@@ -720,14 +691,47 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 | 延时执行 | Instance | kj_resumeTimerAfterTimeInterval: |
 | 释放计时器 | Class | kj_invalidateTimer: |
 
+### <a id="NSArray"></a>NSArray
+#### NSArray+KJPredicate  谓词工具
+|   功能   |  类型  |  API & Property  | 
+| ---- | :----: | ---- |
+| 对比两个数组删除相同元素并合并 | Instance | kj_mergeArrayAndDelEqualObjWithOtherArray: |
+| 过滤数组 | Instance | kj_filtrationDatasWithPredicateBlock: |
+| 除去数组当中包含目标数组的数据 | Instance | kj_delEqualDatasWithTargetTemps: |
+| 按照某一属性的升序降序排列 | Instance | kj_sortDescriptorWithKey:Ascending: |
+| 按照某些属性的升序降序排列 | Instance | kj_sortDescriptorWithKeys:Ascendings: |
+| 取出 key 中匹配 value 的元素 | Instance | kj_takeOutDatasWithKey:Value: |
+| 字符串比较运算符 | Instance | kj_takeOutDatasWithOperator:Key:Value: |
+
+#### NSArray+KJExtension  对数组里面元素的相关处理
+|  功能   |  类型  | API & Property |
+| ---- | :----: | ---- |
+| 是否为空 | Property | isEmpty |
+| 筛选数据 | Instance | kj_detectArray: |
+| 多维数组筛选数据 | Instance | kj_detectManyDimensionArray: |
+| 查找数据，返回-1表示未查询到 | Instance | kj_searchObject: |
+| 映射 | Instance | kj_mapArray: |
+| 插入数据到目的位置 | Instance | kj_insertObject: |
+| 数组计算交集 | Instance | kj_arrayIntersectionWithOtherArray: |
+| 数组计算差集 | Instance | kj_arrayMinusWithOtherArray: |
+| 随机打乱数组 | Instance | kj_disorganizeArray |
+| 删除数组当中的相同元素 | Instance | kj_delArrayEquelObj |
+| 生成一组不重复的随机数 | Instance | kj_noRepeatRandomArrayWithMinNum:maxNum:count: |
+| 二分查找 | Instance | kj_binarySearchTarget: |
+| 冒泡排序 | Instance | kj_bubbleSort |
+| 插入排序 | Instance | kj_insertSort |
+| 选择排序 | Instance | kj_selectionSort |
+
 #### <a id="更新日志"></a>更新日志
 ```
 ####版本更新日志:
-#### Add 1.0.8
-1. Language 解决循环引用
+#### Add 1.0.10
+1. NSArray+KJExtension 新增 kj_insertObject 插入数据到目的位置
+
+#### Add 1.0.9
+1. Language 解决循环引入
 2. 新增 UIView+KJAnimation 简单动画效果链式封装
-3. 新增 KJCallNotifyView 来电提醒小控件
-4. 新增 KJSoundView 声音大小控件
+3. 新增 KJSoundView 声音大小控件
 
 #### Add 1.0.7
 1. 新增 UIImage+KJQRCode 二维码/条形码生成
@@ -813,6 +817,8 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 
 备注：部分资料来源于网络～ 就不一一指出道谢，整理起来方便自己和大家使用
 ```
+---
+
 <p align="left">
 <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590984664032&di=f75bbfdf1c76e20749fd40be9c784738&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20181208%2F2e9d5c7277094ace8e7385e018ccc2d4.jpeg" width="666" hspace="1px">
 </p>

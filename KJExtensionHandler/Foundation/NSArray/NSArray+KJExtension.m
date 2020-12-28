@@ -23,10 +23,10 @@
 - (id)kj_detectManyDimensionArray:(BOOL(^)(id object, BOOL *stop))recurse{
     for (id object in self) {
         BOOL stop = NO;
+        if ([object isKindOfClass:[NSArray class]]) {
+            return [(NSArray*)object kj_detectManyDimensionArray:recurse];
+        }
         if (recurse(object, &stop)) {
-            if ([object isKindOfClass:[NSArray class]]) {
-                return [(NSArray*)object kj_detectManyDimensionArray:recurse];
-            }
             return object;
         }else if (stop) {
             return object;
@@ -36,12 +36,15 @@
 }
 // 查找数据，返回-1表示未查询到
 - (int)kj_searchObject:(id)object{
-    unsigned index = (unsigned)CFArrayBSearchValues((CFArrayRef)self, CFRangeMake(0, CFArrayGetCount((CFArrayRef)self)), (CFStringRef)object, (CFComparatorFunction)CFStringCompare, NULL);
-    if (index < self.count && [object isEqualToString:self[index]]){
-        return index;
-    }else{
-        return -1;
-    }
+    __block int idx = -1;
+    [self kj_detectArray:^BOOL(id _Nonnull obj, int index) {
+        if (obj == object) {
+            idx = index;
+            return YES;
+        }
+        return NO;
+    }];
+    return idx;
 }
 //MARK: - 映射
 - (NSArray*)kj_mapArray:(id(^)(id object))block{
@@ -50,6 +53,21 @@
         [array addObject:block(object) ?: [NSNull null]];
     }
     return array;
+}
+/// 插入数据到目的位置
+- (NSArray*)kj_insertObject:(id)object aim:(BOOL(^)(id object, int index))aim{
+    NSMutableArray *temps = [NSMutableArray array];
+    BOOL stop = NO;
+    for (int i=0; i<self.count; i++) {
+        id obj = self[i];
+        [temps addObject:obj];
+        if (aim(obj, i)) {
+            stop = YES;
+            [temps addObject:object];
+        }
+    }
+    if (!stop) [temps addObject:object];
+    return temps.mutableCopy;
 }
 /// 数组计算交集
 - (NSArray*)kj_arrayIntersectionWithOtherArray:(NSArray*)otherArray{
@@ -125,8 +143,7 @@
  */
 - (NSArray *)kj_bubbleSort{
     NSMutableArray *arr = [NSMutableArray arrayWithArray:self];
-    id temp;
-    int i, j;
+    id temp;int i, j;
     NSInteger count = [arr count];
     for (i=0; i < count - 1; ++i){
         for (j=0; j < count - i - 1; ++j){
@@ -151,8 +168,7 @@
  */
 - (NSArray *)kj_insertSort{
     NSMutableArray *arr = [NSMutableArray arrayWithArray:self];
-    id temp;
-    int i, j;
+    id temp;int i, j;
     NSInteger count = [arr count];
     for (i=1; i < count; ++i){
         temp = arr[i];
@@ -174,8 +190,7 @@
  */
 - (NSArray *)kj_selectionSort{
     NSMutableArray *arr = [NSMutableArray arrayWithArray:self];
-    id temp;
-    int min, i, j;
+    id temp;int min, i, j;
     NSInteger count = [arr count];
     for (i=0; i < count; ++i){
         min = i;

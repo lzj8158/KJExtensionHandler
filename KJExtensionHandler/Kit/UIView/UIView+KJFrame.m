@@ -157,7 +157,7 @@
 /// 隐藏/显示所有子视图
 - (void)kj_hideSubviews:(BOOL)hide operation:(BOOL(^)(UIView *subview))operation{
     for (UIView *view in self.subviews) {
-        if (operation && operation(view)) continue;
+        if (operation && operation(view) == NO) continue;
         view.hidden = hide;
     }
 }

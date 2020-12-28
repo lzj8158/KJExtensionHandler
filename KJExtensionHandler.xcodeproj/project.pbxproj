@@ -10,7 +10,6 @@
 		2C00C746C5C661984A5B46D8 /* Pods_KJExtensionHandler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6984F7AF59925E58D4CA0F /* Pods_KJExtensionHandler.framework */; };
 		6808CB8C2554E6B900FBAAAD /* NSDictionary+KJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6808CB8B2554E6B900FBAAAD /* NSDictionary+KJExtension.m */; };
 		6808CB922554E6C800FBAAAD /* NSArray+KJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6808CB912554E6C800FBAAAD /* NSArray+KJExtension.m */; };
-		680C369125942492005F2150 /* DUCE.md in Resources */ = {isa = PBXBuildFile; fileRef = 680C369025942492005F2150 /* DUCE.md */; };
 		681254AD2589EF0E00A307B7 /* NSTimer+KJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 681254AC2589EF0E00A307B7 /* NSTimer+KJExtension.m */; };
 		6813D2882588B72B00412987 /* KJGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 6813D2872588B72B00412987 /* KJGeometry.m */; };
 		6813D2912588B78500412987 /* KJMathEquation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6813D2902588B78500412987 /* KJMathEquation.m */; };
@@ -18,6 +17,7 @@
 		681908E925788721008F3541 /* UITextField+KJLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 681908E825788721008F3541 /* UITextField+KJLanguage.m */; };
 		681909392578C8D3008F3541 /* KJLoadLanguageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 681909382578C8D3008F3541 /* KJLoadLanguageViewController.m */; };
 		681DA7F4255B934D0091B571 /* KJLabelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 681DA7F3255B934D0091B571 /* KJLabelVC.m */; };
+		682B023025996FCE00FF334B /* KJArrayTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 682B022F25996FCE00FF334B /* KJArrayTestVC.m */; };
 		682DFDE8257781BB00B9843F /* UILabel+KJLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 682DFDE7257781BB00B9843F /* UILabel+KJLanguage.m */; };
 		682DFDF42577824E00B9843F /* NSBundle+KJLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 682DFDF32577824E00B9843F /* NSBundle+KJLanguage.m */; };
 		683FA3AD2542A6C50083D806 /* UIDevice+KJSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 683FA3AC2542A6C50083D806 /* UIDevice+KJSystem.m */; };
@@ -174,7 +174,6 @@
 		6808CB8B2554E6B900FBAAAD /* NSDictionary+KJExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+KJExtension.m"; sourceTree = "<group>"; };
 		6808CB902554E6C800FBAAAD /* NSArray+KJExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+KJExtension.h"; sourceTree = "<group>"; };
 		6808CB912554E6C800FBAAAD /* NSArray+KJExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+KJExtension.m"; sourceTree = "<group>"; };
-		680C369025942492005F2150 /* DUCE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = DUCE.md; sourceTree = SOURCE_ROOT; };
 		681254AB2589EF0E00A307B7 /* NSTimer+KJExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSTimer+KJExtension.h"; sourceTree = "<group>"; };
 		681254AC2589EF0E00A307B7 /* NSTimer+KJExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+KJExtension.m"; sourceTree = "<group>"; };
 		6813D2862588B72B00412987 /* KJGeometry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJGeometry.h; sourceTree = "<group>"; };
@@ -190,6 +189,8 @@
 		681909412578FFC1008F3541 /* _KJLanguageHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _KJLanguageHeader.h; sourceTree = "<group>"; };
 		681DA7F2255B934D0091B571 /* KJLabelVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJLabelVC.h; sourceTree = "<group>"; };
 		681DA7F3255B934D0091B571 /* KJLabelVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJLabelVC.m; sourceTree = "<group>"; };
+		682B022E25996FCE00FF334B /* KJArrayTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJArrayTestVC.h; sourceTree = "<group>"; };
+		682B022F25996FCE00FF334B /* KJArrayTestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJArrayTestVC.m; sourceTree = "<group>"; };
 		682DFDE6257781BB00B9843F /* UILabel+KJLanguage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+KJLanguage.h"; sourceTree = "<group>"; };
 		682DFDE7257781BB00B9843F /* UILabel+KJLanguage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+KJLanguage.m"; sourceTree = "<group>"; };
 		682DFDF22577824E00B9843F /* NSBundle+KJLanguage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+KJLanguage.h"; sourceTree = "<group>"; };
@@ -616,7 +617,6 @@
 				68AD71CC251D9706000C89C5 /* main.m */,
 				68AD71F2251D97A6000C89C5 /* PrefixHeader.pch */,
 				68AD724E251D9AD2000C89C5 /* KJExtensionHandler.podspec */,
-				680C369025942492005F2150 /* DUCE.md */,
 				68AD724F251D9AD2000C89C5 /* README.md */,
 			);
 			path = KJExtensionHandler;
@@ -994,6 +994,8 @@
 				68F032B32594274C00302E6C /* 水波动画 */,
 				68F032B82594274C00302E6C /* KJAnimationVC.h */,
 				68F032C82594274C00302E6C /* KJAnimationVC.m */,
+				682B022E25996FCE00FF334B /* KJArrayTestVC.h */,
+				682B022F25996FCE00FF334B /* KJArrayTestVC.m */,
 				68F032B22594274C00302E6C /* KJLanguageVC.h */,
 				68F032BA2594274C00302E6C /* KJLanguageVC.m */,
 				68F032AB2594274C00302E6C /* KJLanguageVC.xib */,
@@ -1202,7 +1204,6 @@
 				68AD736D251D9C75000C89C5 /* KJShadowVC.xib in Resources */,
 				68AD7369251D9C75000C89C5 /* KJFilterImageVC.xib in Resources */,
 				68F032CA2594274C00302E6C /* LocalizableTest.strings in Resources */,
-				680C369125942492005F2150 /* DUCE.md in Resources */,
 				68AD736C251D9C75000C89C5 /* KJCoreImageVC.xib in Resources */,
 				68AD7354251D9C75000C89C5 /* KJImageVC.xib in Resources */,
 			);
@@ -1391,6 +1392,7 @@
 				681DA7F4255B934D0091B571 /* KJLabelVC.m in Sources */,
 				68AD72FF251D9BB8000C89C5 /* UIColor+KJExtension2.m in Sources */,
 				68AD7301251D9BB8000C89C5 /* UIView+KJGradient.m in Sources */,
+				682B023025996FCE00FF334B /* KJArrayTestVC.m in Sources */,
 				68AD7356251D9C75000C89C5 /* KJCollectionVC.m in Sources */,
 				68F3A8702539401E00BCD817 /* NSString+KJPredicate.m in Sources */,
 				682DFDE8257781BB00B9843F /* UILabel+KJLanguage.m in Sources */,
