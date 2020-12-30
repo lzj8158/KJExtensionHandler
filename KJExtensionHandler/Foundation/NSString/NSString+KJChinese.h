@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong,readonly)NSString *pinYin;
 /// 随机汉字
 + (NSString*)kj_randomCreateChinese:(NSInteger)count;
+/// 查找数据，返回-1表示未查询到
+- (int)kj_searchArray:(NSArray<NSString*>*)temps;
 
 @end
 

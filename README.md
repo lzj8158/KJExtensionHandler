@@ -170,18 +170,16 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 #### UITextView+KJPlaceHolder
 |   功能   |  类型  |  API & Property  | 
 | ---- | :----: | ---- |
-| 开启方法交换 | Protocol | kj_openPlaceHolderExchangeMethod |
-| 占位符文字 | Property | kj_placeHolder |
-| 占位符Label | Property | kj_placeHolderLabel |
+| 占位符文字 | Property | placeHolder |
+| 占位符Label | Property | placeHolderLabel |
 
 #### UITextView+KJLimitCounter  限制处理
 |   功能   |  类型  |  API & Property  | 
 | ---- | :----: | ---- |
-| 开启方法交换 | Protocol | kj_openLimitExchangeMethod |
-| 限制字数 | Property | kj_limitCount |
-| 限制区域右边距 | Property | kj_limitMargin |
-| 限制区域高度 | Property | kj_limitHeight |
-| 统计限制字数Label | Property | kj_limitLabel |
+| 限制字数 | Property | limitCount |
+| 限制区域右边距 | Property | limitMargin |
+| 限制区域高度 | Property | limitHeight |
+| 统计限制字数Label | Property | limitLabel |
 
 #### UITextView+KJHyperlink  超链接点击处理
 |   功能   |  类型  |  API & Property  | 
@@ -285,6 +283,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 |   功能   |  类型  |  API & Property  | 
 | ---- | :----: | ---- |
 | 是否可以拷贝 | Property | copyable |
+| 移除拷贝长按手势 | Instance | kj_removeCopyLongPressGestureRecognizer |
 
 #### UILabel+KJExtension   文本位置和尺寸获取
 |   功能   |  类型  |  API & Property  | 
@@ -375,6 +374,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 | 图片添加水印 | Instance | kj_waterMark:InRect: |
 | 蒙版图片处理 | Instance | kj_maskImage: |
 | 圆形图片 | Instance | kj_circleImage |
+| 椭圆形图片 | Instance | kj_ellipseImage |
 | 图片透明区域点击穿透处理 | Instance | kj_transparentWithPoint: |
 
 #### UIImage+KJJoint   图片拼接相关处理
@@ -531,8 +531,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 | 是否开启时间间隔的方法交换 | Protocol | kj_openTimeExchangeMethod |
 | 添加点击事件 | Instance | kj_addAction: |
 | 添加事件，不支持多枚举形式 | Instance | kj_addAction:forControlEvents: |
-| 接受点击事件的时间间隔 | Property | kj_AcceptEventTime |
-| 接受点击事件执行处理之后的时间间隔 | Property | kj_AcceptDealTime |
+| 点击事件间隔 | Property | timeInterval |
 
 #### UIButton+KJContentLayout  图文混排（支持XIB显示）
 |   功能   |  类型  |  API & Property  | 
@@ -725,6 +724,13 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 #### <a id="更新日志"></a>更新日志
 ```
 ####版本更新日志:
+#### Add 1.0.11
+1. 修改 UITextView 占位符和限制字符，同时支持Xib快捷设置
+2. 修改 UITextField 支持Xib设置 bottomLineColor、placeholderColor、maxLength属性 
+3. 新增 UILabel+KJCopy 移除拷贝长按手势 kj_removeCopyLongPressGestureRecognizer
+4. 修改 UIButton+KJBlocktap 点击时间间隔 timeInterval，支持Xib设置
+5. 新增 UIImage+KJMask 椭圆形图片 kj_ellipseImage
+
 #### Add 1.0.10
 1. NSArray+KJExtension 新增 kj_insertObject 插入数据到目的位置
 

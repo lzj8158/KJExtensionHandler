@@ -9,15 +9,12 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@protocol KJTextViewPlaceHolderExchangeMethodProtocol <NSObject>
-@required
-+ (void)kj_openPlaceHolderExchangeMethod;
-@end
-@interface UITextView (KJPlaceHolder)<KJTextViewPlaceHolderExchangeMethodProtocol>
+IB_DESIGNABLE
+@interface UITextView (KJPlaceHolder)
 /// 占位符文字
-@property(nonatomic,strong)NSString *kj_placeHolder;
+@property(nonatomic,strong)IBInspectable NSString *placeHolder;
 /// 占位符Label
-@property(nonatomic,strong,readonly)UILabel *kj_placeHolderLabel;
+@property(nonatomic,strong,readonly)UILabel *placeHolderLabel;
 
 @end
 

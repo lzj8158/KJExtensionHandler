@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UILabel (KJCopy)
 /// 是否可以拷贝
 @property(nonatomic,assign)BOOL copyable;
+/// 移除拷贝长按手势
+- (void)kj_removeCopyLongPressGestureRecognizer;
 
 @end
 

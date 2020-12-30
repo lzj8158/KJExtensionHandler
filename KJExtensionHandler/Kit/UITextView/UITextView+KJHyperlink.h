@@ -10,7 +10,6 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
 /// 定义网址结构体
 typedef struct kURLCustom {
     UIColor *color;/// 文字颜色

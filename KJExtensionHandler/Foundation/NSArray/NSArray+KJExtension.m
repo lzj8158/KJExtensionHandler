@@ -52,7 +52,7 @@
     for (id object in self) {
         [array addObject:block(object) ?: [NSNull null]];
     }
-    return array;
+    return array.mutableCopy;
 }
 /// 插入数据到目的位置
 - (NSArray*)kj_insertObject:(id)object aim:(BOOL(^)(id object, int index))aim{
@@ -77,7 +77,7 @@
         if (![otherArray containsObject:obj]) continue;
         [temps addObject:obj];
     }
-    return temps;
+    return temps.mutableCopy;
 }
 /// 数组计算差集
 - (NSArray*)kj_arrayMinusWithOtherArray:(NSArray*)otherArray{
@@ -88,7 +88,7 @@
         if (![self containsObject:obj]) continue;
         [temps removeObject:obj];
     }
-    return temps;
+    return temps.mutableCopy;
 }
 /// 随机打乱数组
 - (NSArray*)kj_disorganizeArray{

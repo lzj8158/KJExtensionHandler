@@ -14,13 +14,14 @@ typedef NS_ENUM(NSInteger, KJTextAndImageStyle) {
     KJTextAndImageStyleImageRight,// 图右文左
 };
 @class KJTextFieldLeftInfo;
+IB_DESIGNABLE
 @interface UITextField (KJExtension)
 /// 设置底部边框线条颜色
-@property(nonatomic,strong)UIColor *bottomLineColor;
+@property(nonatomic,strong)IBInspectable UIColor *bottomLineColor;
 /// 占位placeholder颜色
-@property(nonatomic,strong)UIColor *placeholderColor;
+@property(nonatomic,strong)IBInspectable UIColor *placeholderColor;
 /// 最大长度
-@property(nonatomic,assign)NSInteger maxLength;
+@property(nonatomic,assign)IBInspectable NSInteger maxLength;
 /// 达到最大字符长度
 @property(nonatomic,copy,readwrite)void(^kMaxLengthBolck)(NSString*text);
 /// 明文暗文切换

@@ -22,20 +22,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-      
-    /// 开启时间间隔的方法交换
-    [UIButton kj_openTimeExchangeMethod];
-    
     _weakself;
     weakself.Image1.image = [weakself.Image1.image kj_circleImage];
     
-    self.Button.kj_AcceptEventTime = 3;
+    self.Button.timeInterval = 3;
     [self.Button kj_addAction:^(UIButton * _Nonnull kButton) {
+        NSLog(@"----%f",CFAbsoluteTimeGetCurrent());
         UIImage *image = [weakself.Image2.image kj_waterMark:weakself.Image1.image InRect:CGRectMake(20, 20, weakself.Image2.image.size.width/4., weakself.Image2.image.size.width/4.)];
         weakself.ImageView.image = image;
     }];
-    self.Button2.kj_AcceptDealTime = 5;
+    self.Button2.timeInterval = 5;
     [self.Button2 kj_addAction:^(UIButton * _Nonnull kButton) {
+        NSLog(@"--2222--%f",CFAbsoluteTimeGetCurrent());
         CGFloat wd = MAX(weakself.Image2.image.size.width, weakself.Image2.image.size.height);
         /// 裁剪图片
         UIImage *img = [UIImage kj_cutImageWithImage:weakself.Image2.image Frame:CGRectMake(0, 0, wd, wd)];

@@ -18,8 +18,7 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    [UITextView kj_openLimitExchangeMethod];
-    [UITextView kj_openPlaceHolderExchangeMethod];
+    
     [self.view addSubview:self.remarkTextView];
     
     UIButton *button = [UIButton buttonWithType:(UIButtonTypeCustom)];
@@ -47,13 +46,13 @@
         textView.textAlignment = NSTextAlignmentLeft;
         textView.borderWidth = 1;
         
-        textView.kj_limitCount = 100;
-        textView.kj_limitHeight = 20;
-        textView.kj_limitMargin = 10;
-        textView.kj_limitLabel.textColor = UIColor.blueColor;
+        textView.limitCount = 100;
+        textView.limitHeight = 20;
+        textView.limitMargin = 10;
+        textView.limitLabel.textColor = UIColor.blueColor;
         
-        textView.kj_placeHolder = @"默认占位符文字";
-        textView.kj_placeHolderLabel.textColor = UIColor.orangeColor;
+        textView.placeHolder = @"默认占位符文字";
+        textView.placeHolderLabel.textColor = UIColor.orangeColor;
         
         textView.kOpenBackout = true;
         

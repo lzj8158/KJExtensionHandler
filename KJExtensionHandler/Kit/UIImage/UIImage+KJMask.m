@@ -14,9 +14,7 @@
     CGRect rect = (CGRect){CGPointZero,self.size};
     UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0f);
     [self drawInRect:rect];
-    NSDictionary *dict = @{NSFontAttributeName:font,
-                           NSForegroundColorAttributeName:color
-    };
+    NSDictionary *dict = @{NSFontAttributeName:font,NSForegroundColorAttributeName:color};
     CGRect calRect = [self kj_rectWithRect:rect size:[text sizeWithAttributes:dict] direction:direction margin:margin];
     [text drawInRect:calRect withAttributes:dict];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -89,8 +87,8 @@
     CGImageRelease(masked);
     return retImage;
 }
-/// 圆形图片
-- (UIImage *)kj_circleImage{
+/// 椭圆形图片
+- (UIImage *)kj_ellipseImage{
     UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0);
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGRect rect = CGRectMake(0, 0, self.size.width, self.size.height);
@@ -100,6 +98,38 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
+}
+/// 圆形图片
+- (UIImage*)kj_circleImage{
+    CGFloat width = MIN(self.size.width, self.size.height);
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(width, width), NO, 0.0);
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextAddEllipseInRect(ctx, CGRectMake(0, 0, width, width));
+    CGContextClip(ctx);
+    [self drawInRect:CGRectMake(0, 0, self.size.width, self.size.height)];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+/// 边框圆形图片
+- (UIImage*)kj_squareCircleImageWithBorderWidth:(CGFloat)borderWidth borderColor:(UIColor*)borderColor{
+    CGFloat imageW = self.size.width + 2 * borderWidth;
+    CGFloat imageH = imageW;
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(imageW, imageH), NO, 0.0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [borderColor set];
+    CGFloat bigRadius = imageW * 0.5;
+    CGFloat centerX = bigRadius;
+    CGFloat centerY = bigRadius;
+    CGContextAddArc(context, centerX, centerY, bigRadius, 0, M_PI * 2, 0);
+    CGContextFillPath(context);
+    CGFloat smallRadius = bigRadius - borderWidth;
+    CGContextAddArc(context, centerX, centerY, smallRadius, 0, M_PI * 2, 0);
+    CGContextClip(context);
+    [self drawInRect:CGRectMake(borderWidth, borderWidth, imageW, imageH)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
 }
 /// 透明图片穿透
 - (bool)kj_transparentWithPoint:(CGPoint)point{

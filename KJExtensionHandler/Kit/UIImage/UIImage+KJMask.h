@@ -27,8 +27,12 @@ typedef NS_ENUM(NSInteger, KJImageWaterType) {
 - (UIImage*)kj_maskImage:(UIImage*)maskImage;
 
 #pragma mark - 其他
+/// 椭圆形图片，图片长宽不等会出现切出椭圆
+- (UIImage*)kj_ellipseImage;
 /// 圆形图片
 - (UIImage*)kj_circleImage;
+/// 边框圆形图片
+- (UIImage*)kj_squareCircleImageWithBorderWidth:(CGFloat)borderWidth borderColor:(UIColor*)borderColor;
 /// 图片透明区域点击穿透处理
 - (bool)kj_transparentWithPoint:(CGPoint)point;
 

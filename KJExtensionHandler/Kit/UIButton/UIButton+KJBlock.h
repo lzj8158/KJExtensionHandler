@@ -10,24 +10,16 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@protocol KJButtonTimeExchangeMethodProtocol <NSObject>
-@required
-/// 是否开启时间间隔的方法交换
-+ (void)kj_openTimeExchangeMethod;
-@end
+IB_DESIGNABLE
 typedef void(^KJButtonBlock)(UIButton *kButton);
-@interface UIButton (KJBlock)<KJButtonTimeExchangeMethodProtocol>
+@interface UIButton (KJBlock)
 /// 添加点击事件，默认UIControlEventTouchUpInside
 - (void)kj_addAction:(KJButtonBlock)block;
 /// 添加事件，不支持多枚举形式
 - (void)kj_addAction:(KJButtonBlock)block forControlEvents:(UIControlEvents)controlEvents;
 
-/* ******************这两个属性互斥********************/
-/// 接受点击事件的时间间隔
-@property (nonatomic, assign) NSTimeInterval kj_AcceptEventTime;
-/// 接受点击事件执行处理之后的时间间隔
-@property (nonatomic, assign) NSTimeInterval kj_AcceptDealTime;
-/* ******************这两个属性互斥********************/
+/// 点击事件间隔，设置非零取消间隔
+@property(nonatomic,assign)IBInspectable CGFloat timeInterval;
 
 @end
 

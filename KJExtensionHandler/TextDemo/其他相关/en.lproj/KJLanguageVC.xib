@@ -50,21 +50,58 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="LocalizedKey" value="textFieldPlaceholder"/>
                     </userDefinedRuntimeAttributes>
                 </textField>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="DJ1-t2-69u">
+                    <rect key="frame" x="20" y="263.66666666666669" width="374" height="100"/>
+                    <color key="backgroundColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="0.56791923420000001" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="dOs-Dr-si4"/>
+                    </constraints>
+                    <color key="textColor" systemColor="labelColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="placeHolder" value="占位"/>
+                    </userDefinedRuntimeAttributes>
+                </textView>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AVJ-5z-NFg">
+                    <rect key="frame" x="157" y="383.66666666666669" width="100" height="34"/>
+                    <color key="backgroundColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="0.56791923420000001" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="IT5-rs-YMS"/>
+                        <constraint firstAttribute="width" constant="100" id="Nro-oL-esI"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                            <integer key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </textField>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="DJ1-t2-69u" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="20" id="0fs-Jy-N6Q"/>
                 <constraint firstItem="bV9-6T-k4g" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="100" id="4yl-0Z-4pX"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="DJ1-t2-69u" secondAttribute="trailing" constant="20" id="5sg-XB-Hl0"/>
+                <constraint firstItem="AVJ-5z-NFg" firstAttribute="top" secondItem="DJ1-t2-69u" secondAttribute="bottom" constant="20" id="77u-wb-dcb"/>
+                <constraint firstItem="AVJ-5z-NFg" firstAttribute="centerX" secondItem="bV9-6T-k4g" secondAttribute="centerX" id="8OY-lZ-1mH"/>
                 <constraint firstItem="Y7W-YW-sYf" firstAttribute="top" secondItem="bV9-6T-k4g" secondAttribute="bottom" constant="30" id="Cmk-tJ-LUL"/>
                 <constraint firstItem="bps-ND-RtF" firstAttribute="centerX" secondItem="bV9-6T-k4g" secondAttribute="centerX" id="FbI-nw-wez"/>
                 <constraint firstItem="bV9-6T-k4g" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="FfR-mh-lYx"/>
                 <constraint firstItem="Y7W-YW-sYf" firstAttribute="centerX" secondItem="bV9-6T-k4g" secondAttribute="centerX" id="HIV-rZ-jDQ"/>
                 <constraint firstItem="bps-ND-RtF" firstAttribute="top" secondItem="Y7W-YW-sYf" secondAttribute="bottom" constant="30" id="RQy-1N-qRv"/>
+                <constraint firstItem="DJ1-t2-69u" firstAttribute="top" secondItem="bps-ND-RtF" secondAttribute="bottom" constant="20" id="jXd-nP-Aft"/>
+                <constraint firstItem="DJ1-t2-69u" firstAttribute="centerX" secondItem="bV9-6T-k4g" secondAttribute="centerX" id="y8W-cM-bYp"/>
             </constraints>
             <point key="canvasLocation" x="138" y="82"/>
         </view>
     </objects>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

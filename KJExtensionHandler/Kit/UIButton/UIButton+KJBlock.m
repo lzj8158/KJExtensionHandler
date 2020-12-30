@@ -52,57 +52,44 @@ KJButtonAction(KJ_X_UIControlEventTouchCancel);
 
 
 #pragma mark - 时间相关方法交换
-/// 是否开启时间间隔的方法交换
-+ (void)kj_openTimeExchangeMethod{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        SEL orSel = @selector(sendAction:to:forEvent:);
-        SEL swSel = @selector(kj_sendAction:to:forEvent:);
-        Method orMethod = class_getInstanceMethod(self.class, orSel);
-        Method swMethod = class_getInstanceMethod(self.class, swSel);
-        if (class_addMethod(self.class, orSel, method_getImplementation(swMethod), method_getTypeEncoding(swMethod))){
-            class_replaceMethod(self.class, swSel, method_getImplementation(orMethod), method_getTypeEncoding(orMethod));
-        }else{
-            method_exchangeImplementations(orMethod, swMethod);
-        }
-    });
-}
 /// 交换方法后实现
-- (void)kj_sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event{
-    if (self.kj_AcceptEventTime <= 0 && self.kj_AcceptDealTime <= 0) {
+- (void)kj_sendAction:(SEL)action to:(id)target forEvent:(UIEvent*)event{
+    if (self.timeInterval <= 0) {
         [self kj_sendAction:action to:target forEvent:event];
         return;
     }
-    NSTimeInterval time = self.kj_AcceptEventTime > 0 ? self.kj_AcceptEventTime : self.kj_AcceptDealTime;
-    BOOL boo = (CFAbsoluteTimeGetCurrent() - self.kLastTime >= time);
-    if (self.kj_AcceptEventTime > 0) {
-        self.kLastTime = CFAbsoluteTimeGetCurrent();
-    }
-    if (boo) {
-        if (self.kj_AcceptDealTime > 0) {
-            self.kLastTime = CFAbsoluteTimeGetCurrent();
-        }
+    NSTimeInterval time = CFAbsoluteTimeGetCurrent();
+    if ((time - self.lastTime >= self.timeInterval)) {
+        self.lastTime = time;
         [self kj_sendAction:action to:target forEvent:event];
     }
 }
 #pragma mark - associated
-- (NSTimeInterval)kj_AcceptEventTime{
-    return [objc_getAssociatedObject(self, @selector(kj_AcceptEventTime)) doubleValue];
+- (CGFloat)timeInterval{
+    return [objc_getAssociatedObject(self, @selector(timeInterval)) doubleValue];
 }
-- (void)setKj_AcceptEventTime:(NSTimeInterval)kj_AcceptEventTime{
-    objc_setAssociatedObject(self, @selector(kj_AcceptEventTime), @(kj_AcceptEventTime), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)setTimeInterval:(CGFloat)timeInterval{
+    objc_setAssociatedObject(self, @selector(timeInterval), @(timeInterval), OBJC_ASSOCIATION_ASSIGN);
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        kExceptionMethodSwizzling([self class], @selector(sendAction:to:forEvent:), @selector(kj_sendAction:to:forEvent:));
+    });
 }
-- (NSTimeInterval)kj_AcceptDealTime{
-    return [objc_getAssociatedObject(self, @selector(kj_AcceptDealTime)) doubleValue];
+- (NSTimeInterval)lastTime{
+    return [objc_getAssociatedObject(self, @selector(lastTime)) doubleValue];
 }
-- (void)setKj_AcceptDealTime:(NSTimeInterval)kj_AcceptDealTime{
-    objc_setAssociatedObject(self, @selector(kj_AcceptDealTime), @(kj_AcceptDealTime), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)setLastTime:(NSTimeInterval)lastTime{
+    objc_setAssociatedObject(self, @selector(lastTime), @(lastTime), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
-- (NSTimeInterval)kLastTime{
-    return [objc_getAssociatedObject(self, @selector(kLastTime)) doubleValue];
-}
-- (void)setKLastTime:(NSTimeInterval)kLastTime{
-    objc_setAssociatedObject(self, @selector(kLastTime), @(kLastTime), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+/// 交换实例方法的实现
+static void kExceptionMethodSwizzling(Class clazz, SEL original, SEL swizzled){
+    Method originalMethod = class_getInstanceMethod(clazz, original);
+    Method swizzledMethod = class_getInstanceMethod(clazz, swizzled);
+    if (class_addMethod(clazz, original, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))) {
+        class_replaceMethod(clazz, swizzled, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod));
+    }else{
+        method_exchangeImplementations(originalMethod, swizzledMethod);
+    }
 }
 
 @end

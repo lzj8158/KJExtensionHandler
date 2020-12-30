@@ -31,5 +31,14 @@
     }
     return randomChineseString.mutableCopy;
 }
+/// 查找数据，返回-1表示未查询到
+- (int)kj_searchArray:(NSArray<NSString*>*)temps{
+    unsigned index = (unsigned)CFArrayBSearchValues((CFArrayRef)temps, CFRangeMake(0, temps.count), (CFStringRef)self, (CFComparatorFunction)CFStringCompare, NULL);
+    if (index < temps.count && [self isEqualToString:temps[index]]){
+        return index;
+    }else{
+        return -1;
+    }
+}
 
 @end

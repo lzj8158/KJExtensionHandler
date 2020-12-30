@@ -26,8 +26,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    /// 开启按钮点击时间间隔
-    [UIButton kj_openTimeExchangeMethod];
     
     self.NameArray = @[@"",@"",@"图文间距",@"图文边界间距"];
     self.segmentedTitleArray = @[@[@"居中-图左文右",@"居中-图右文左",@"居中-图上文下",@"居中-图下文上"],

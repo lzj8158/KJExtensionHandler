@@ -10,19 +10,16 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@protocol KJTextViewLimitExchangeMethodProtocol <NSObject>
-@required
-+ (void)kj_openLimitExchangeMethod;
-@end
-@interface UITextView (KJLimitCounter)<KJTextViewLimitExchangeMethodProtocol>
+IB_DESIGNABLE
+@interface UITextView (KJLimitCounter)
 /// 限制字数
-@property(nonatomic,assign)NSInteger kj_limitCount;
+@property(nonatomic,assign)IBInspectable NSInteger limitCount;
 /// 限制区域右边距，默认10
-@property(nonatomic,assign)CGFloat kj_limitMargin;
+@property(nonatomic,assign)IBInspectable CGFloat limitMargin;
 /// 限制区域高度，默认20
-@property(nonatomic,assign)CGFloat kj_limitHeight;
+@property(nonatomic,assign)IBInspectable CGFloat limitHeight;
 /// 统计限制字数Label
-@property(nonatomic,strong,readonly)UILabel *kj_limitLabel;
+@property(nonatomic,strong,readonly)UILabel *limitLabel;
 
 @end
 

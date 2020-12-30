@@ -15,10 +15,13 @@
     objc_setAssociatedObject(self, @selector(copyable), @(copyable), OBJC_ASSOCIATION_ASSIGN);
     [self attachTapHandler];
 }
+/// 移除拷贝长按手势
+- (void)kj_removeCopyLongPressGestureRecognizer{
+    [self removeGestureRecognizer:self.copyGesture];
+}
 - (void)attachTapHandler{
     self.userInteractionEnabled = YES;
-    UILongPressGestureRecognizer *gesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-    [self addGestureRecognizer:gesture];
+    [self addGestureRecognizer:self.copyGesture];
 }
 - (void)handleTap:(UIGestureRecognizer*)recognizer{
     [self becomeFirstResponder];
@@ -45,6 +48,15 @@
 }
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender{
     return (action == @selector(kj_copyText));
+}
+#pragma mark - lazzing
+- (UILongPressGestureRecognizer*)copyGesture{
+    UILongPressGestureRecognizer *gesture = objc_getAssociatedObject(self, @selector(copyGesture));
+    if (gesture == nil) {
+        gesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+        objc_setAssociatedObject(self, @selector(copyGesture), gesture, OBJC_ASSOCIATION_RETAIN);
+    }
+    return gesture;
 }
 
 @end
