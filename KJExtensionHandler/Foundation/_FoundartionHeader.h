@@ -67,4 +67,7 @@ Github地址：https://github.com/yangKJ
 #import "NSArray+KJExtension.h"
 #import "NSDictionary+KJExtension.h"
 
+// 加密解密工具
+#import "NSString+KJSecurity.h"
+
 #endif /* _FoundartionHeader_h */

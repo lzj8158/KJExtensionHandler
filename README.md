@@ -736,6 +736,9 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 #### <a id="更新日志"></a>更新日志
 ```
 ####版本更新日志:
+#### Add 1.0.13
+1. 新增 NSString+KJSecurity 加密解密工具
+
 #### Add 1.0.12
 1. UIDevice+KJSystem 新增启动图相关属性方法
 2. UIView+KJFrame 新增子控件处理事件和常用方法
