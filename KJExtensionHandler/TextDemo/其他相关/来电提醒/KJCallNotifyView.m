@@ -31,6 +31,7 @@ static KJCallNotifyView *_instance = nil;
         if (_instance == nil) {
             _instance = [[KJCallNotifyView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, kScreenH)];
             [kKeyWindow addSubview:_instance];
+            
         }
     });
     return _instance;
@@ -43,13 +44,8 @@ static KJCallNotifyView *_instance = nil;
     return self;
 }
 - (UIView*)hitTest:(CGPoint)point withEvent:(UIEvent*)event{
-    NSInteger count = self.subviews.count;
-    for (int i = 0; i < count; i++) {
-        UIView *childView  = self.subviews[count - 1 - i];
-        CGPoint childPoint = [self convertPoint:point toView:childView];
-        UIView *view = [childView hitTest:childPoint withEvent:event];
-        if (view) return view;
-    }
+    UIView *view = [self kj_childHitTest:point withEvent:event];
+    if (view) return view;
     return nil;
 }
 /// 点击事件
@@ -119,6 +115,7 @@ static KJCallNotifyView *_instance = nil;
         if (weakself.tapblock) {
             weakself.tapblock(view.info);
             if (weakself.tapVanish) {
+                [__view removeGestureRecognizer:gesture];
                 [weakself kj_vanish:view];
                 [weakself kj_displayEnd:view];
             }

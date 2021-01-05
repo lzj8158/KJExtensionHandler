@@ -109,10 +109,9 @@
         _button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, kScreenW-150, 80)];
         _button.center = CGPointMake(kScreenW/2, 150);
         _button.backgroundColor = UIColor.whiteColor;
-        _button.layer.borderWidth = 1;
-        _button.layer.borderColor = UIColor.blueColor.CGColor;
-        _button.layer.masksToBounds = YES;
-        _button.layer.cornerRadius = 5;
+        _button.borderWidth = 1;
+        _button.borderColor = UIColor.blueColor;
+        _button.cornerRadius = 5;
         _button.titleLabel.font = [UIFont systemFontOfSize:14];
         [_button setTitle:@"居中-图上文下" forState:UIControlStateNormal];
         [_button setTitleColor:UIColor.blueColor forState:UIControlStateNormal];

@@ -48,6 +48,7 @@
         [temp2 addObject:@{@"VCName":@"KJFilterImageVC",@"describeName":@"滤镜相关和特效渲染"}];
         
         NSMutableArray *temp3 = [NSMutableArray array];
+        [temp3 addObject:@{@"VCName":@"KJRenderImageVC",@"describeName":@"滤镜渲染"}];
         [temp3 addObject:@{@"VCName":@"KJReflectionVC",@"describeName":@"倒影处理"}];
         [temp3 addObject:@{@"VCName":@"KJShadowVC",@"describeName":@"内阴影相关"}];
         [temp3 addObject:@{@"VCName":@"KJShineVC",@"describeName":@"内发光处理"}];

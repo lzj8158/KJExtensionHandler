@@ -89,6 +89,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 #### UIView+KJXib
 |   功能   |  类型  |  API & Property  | 
 | ---- | :----: | ---- |
+| 贝塞尔圆角 | Property | bezierRadius |
 | 阴影偏移量 | Property | shadowOffset |
 | 阴影透明度 | Property | shadowOpacity |
 | 阴影的宽度 | Property | shadowWidth |
@@ -156,9 +157,15 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 | Masonry布局后y | Property | masonry_y |
 | Masonry布局后宽度 | Property | masonry_width |
 | Masonry布局后高度 | Property | masonry_height |
+| 将视图中心置于其父视图 | Instance | kj_centerToSuperview |
+| 距父视图右边距离 | Instance | kj_rightToSuperview: |
+| 距父视图下边距离 | Instance | kj_bottomToSuperview: |
+| 获取子视图的最高Y | Instance | kj_subviewMaxY |
+| 获取子视图的最高X | Instance | kj_subviewMaxX |
 | 寻找子视图 | Instance | kj_FindSubviewRecursively: |
 | 移除所有子视图 | Instance | kj_removeAllSubviews |
 | 隐藏/显示所有子视图 | Instance | kj_hideSubviews:operation: |
+| 子控件处理手势事件 | Instance | kj_childHitTest:withEvent: |
 
 ### <a id="UITextView"></a>UITextView
 #### UITextView+KJBackout  撤销处理，相当于 command + z
@@ -479,7 +486,12 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 | App名称 | Class & Property | appName |
 | 手机UUID | Class & Property | deviceID |
 | 获取App图标 | Class & Property | appIcon |
+| 判断App是否支持横屏 | Class & Property | supportHorizontalScreen |
 | 获取启动页图片  | Class & Property | launchImage |
+| 系统启动图缓存路径 | Class & Property | launchImageCachePath |
+| 启动图备份文件路径 | Class & Property | launchImageBackupPath |
+| 生成启动图 | Class | kj_launchImageWithPortrait:Dark: |
+| 生成启动图 | Class | kj_launchImageWithStoryboard:Portrait:Dark: |
 | 对比版本号 | Class | kj_comparisonVersion: |
 | 获取AppStore版本号和详情信息 | Class | kj_getAppStoreVersionWithAppid:Details: |
 | 跳转到指定URL | Class | kj_openURL: |
@@ -724,6 +736,11 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 #### <a id="更新日志"></a>更新日志
 ```
 ####版本更新日志:
+#### Add 1.0.12
+1. UIDevice+KJSystem 新增启动图相关属性方法
+2. UIView+KJFrame 新增子控件处理事件和常用方法
+3. 细节优化
+
 #### Add 1.0.11
 1. 修改 UITextView 占位符和限制字符，同时支持Xib快捷设置
 2. 修改 UITextField 支持Xib设置 bottomLineColor、placeholderColor、maxLength属性 

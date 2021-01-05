@@ -18,8 +18,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong,class)NSString *deviceID;
 /// 获取App图标
 @property(nonatomic,strong,class)UIImage *appIcon;
+/// 判断App是否支持横屏
+@property(nonatomic,assign,class)BOOL supportHorizontalScreen;
 /// 获取启动页图片  
 @property(nonatomic,strong,class)UIImage *launchImage;
+/// 系统启动图缓存路径
+@property(nonatomic,strong,class)NSString *launchImageCachePath;
+/// 启动图备份文件路径
+@property(nonatomic,strong,class)NSString *launchImageBackupPath;
+/// 生成启动图
++ (UIImage*)kj_launchImageWithPortrait:(BOOL)portrait Dark:(BOOL)dark;
+/// 生成启动图，根据LaunchScreen名称、是否竖屏、是否暗黑
++ (UIImage*)kj_launchImageWithStoryboard:(NSString*)name Portrait:(BOOL)portrait Dark:(BOOL)dark;
+
 /// 对比版本号
 + (BOOL)kj_comparisonVersion:(NSString*)version;
 /// 获取AppStore版本号和详情信息

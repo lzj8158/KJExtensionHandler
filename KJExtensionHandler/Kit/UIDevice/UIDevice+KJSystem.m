@@ -8,8 +8,9 @@
 #import "UIDevice+KJSystem.h"
 #import <objc/runtime.h>
 #import <AVFoundation/AVFoundation.h>
+#import "_KJMacros.h"
 @implementation UIDevice (KJSystem)
-@dynamic appCurrentVersion,appName,appIcon,launchImage,deviceID;
+@dynamic appCurrentVersion,appName,appIcon,deviceID,supportHorizontalScreen;
 + (NSString*)appCurrentVersion{
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
 }
@@ -21,10 +22,18 @@
 }
 + (UIImage*)appIcon{
     NSString *iconFilename = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIconFile"];
-    NSString *iconBasename = [iconFilename stringByDeletingPathExtension];
-    NSString *iconExtension = [iconFilename pathExtension];
-    return [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:iconBasename ofType:iconExtension]];
+    NSString *name = [iconFilename stringByDeletingPathExtension];
+    return [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:name ofType:[iconFilename pathExtension]]];
 }
++ (BOOL)supportHorizontalScreen{
+    NSArray *temp = [NSBundle.mainBundle.infoDictionary objectForKey:@"UISupportedInterfaceOrientations"];
+    if ([temp containsObject:@"UIInterfaceOrientationLandscapeLeft"] || [temp containsObject:@"UIInterfaceOrientationLandscapeRight"]) {
+        return YES;
+    }else{
+        return NO;
+    }
+}
+@dynamic launchImage,launchImageCachePath,launchImageBackupPath;
 + (UIImage*)launchImage{
     UIImage *lauchImage = nil;
     NSString *viewOrientation = nil;
@@ -44,6 +53,58 @@
     }
     return lauchImage;
 }
++ (NSString*)launchImageCachePath{
+    NSString *bundleID = [NSBundle mainBundle].infoDictionary[@"CFBundleIdentifier"];
+    NSString *path = nil;
+    if (@available(iOS 13.0, *)) {
+        NSString *libraryDirectory = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) firstObject];
+        path = [NSString stringWithFormat:@"%@/SplashBoard/Snapshots/%@ - {DEFAULT GROUP}", libraryDirectory, bundleID];
+    }else{
+        NSString *cachesDirectory = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
+        path = [[cachesDirectory stringByAppendingPathComponent:@"Snapshots"] stringByAppendingPathComponent:bundleID];
+    }
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        return path;
+    }
+    return nil;
+}
++ (NSString*)launchImageBackupPath{
+    NSString *cachesDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *path = [cachesDirectory stringByAppendingPathComponent:@"ll_launchImage_backup"];
+    if (![NSFileManager.defaultManager fileExistsAtPath:path]) {
+        [NSFileManager.defaultManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:@{} error:nil];
+    }
+    return path;
+}
+/// 生成启动图
++ (UIImage*)kj_launchImageWithPortrait:(BOOL)portrait Dark:(BOOL)dark{
+    return [self kj_launchImageWithStoryboard:@"LaunchScreen" Portrait:portrait Dark:dark];
+}
+/// 生成启动图，根据LaunchScreen名称、是否竖屏、是否暗黑
++ (UIImage*)kj_launchImageWithStoryboard:(NSString*)name Portrait:(BOOL)portrait Dark:(BOOL)dark{
+    if (@available(iOS 13.0, *)) {
+        UIWindow *window = UIApplication.sharedApplication.windows.firstObject;
+        window.overrideUserInterfaceStyle = dark?UIUserInterfaceStyleDark:UIUserInterfaceStyleLight;
+    }
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:name bundle:nil];
+    UIView *__view = storyboard.instantiateInitialViewController.view;
+    __view.frame = [UIScreen mainScreen].bounds;
+    CGFloat w = __view.frame.size.width;
+    CGFloat h = __view.frame.size.height;
+    if (portrait) {
+        if (w > h) __view.frame = CGRectMake(0, 0, h, w);
+    }else{
+        if (w < h) __view.frame = CGRectMake(0, 0, h, w);
+    }
+    [__view setNeedsLayout];
+    [__view layoutIfNeeded];
+    UIGraphicsBeginImageContextWithOptions(__view.frame.size, NO, [UIScreen mainScreen].scale);
+    [__view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *launchImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return launchImage;
+}
+
 
 /// 对比版本号
 + (BOOL)kj_comparisonVersion:(NSString*)version{
@@ -144,10 +205,10 @@ static char kSavePhotosKey;
 }
 /// 切换根视图控制器
 + (void)kj_changeRootViewController:(UIViewController*)vc Complete:(void(^)(BOOL success))complete{
-    [UIView transitionWithView:[UIApplication sharedApplication].keyWindow duration:0.5f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+    [UIView transitionWithView:kKeyWindow duration:0.5f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
         BOOL oldState = [UIView areAnimationsEnabled];
         [UIView setAnimationsEnabled:NO];
-        [UIApplication sharedApplication].keyWindow.rootViewController = vc;
+        kKeyWindow.rootViewController = vc;
         [UIView setAnimationsEnabled:oldState];
     }completion:^(BOOL finished) {
         if (complete) complete(finished);

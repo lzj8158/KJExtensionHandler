@@ -7,7 +7,7 @@
 //  https://github.com/yangKJ/KJExtensionHandler
 
 #import "UIView+KJXib.h"
-
+#import "_KJMacros.h"
 @implementation UIView (KJXib)
 /// xib创建的view
 + (instancetype)kj_viewFromXib{
@@ -20,7 +20,7 @@
 }
 /// 判断一个控件是否真正显示在主窗口
 - (BOOL)kj_isShowingOnKeyWindow{
-    UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+    UIWindow *keyWindow = kKeyWindow;
     CGRect newFrame = [keyWindow convertRect:self.frame fromView:self.superview];
     CGRect winBounds = keyWindow.bounds;
     BOOL intersects = CGRectIntersectsRect(newFrame, winBounds);
@@ -63,7 +63,7 @@
 }
 - (UIViewController*)topViewController{
     UIViewController *result = nil;
-    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+    UIWindow * window = kKeyWindow;
     if (window.windowLevel != UIWindowLevelNormal){
         NSArray *windows = [[UIApplication sharedApplication] windows];
         for(UIWindow * tmpWin in windows){
@@ -114,8 +114,6 @@
     if (cornerRadius <= 0) return;
     [self.layer setCornerRadius:cornerRadius];
     self.layer.masksToBounds = YES;
-    /// 设置光栅化，可以使离屏渲染的结果缓存到内存中存为位图，使用的时候直接使用缓存，节省了一直离屏渲染损耗的性能
-    self.layer.shouldRasterize = YES;
 }
 
 @dynamic shadowColor,shadowRadius,shadowWidth,shadowOffset,shadowOpacity;
@@ -136,6 +134,14 @@
 }
 - (void)setShadowOffset:(CGSize)shadowOffset{
     [self.layer setShadowOffset:shadowOffset];
+}
+@dynamic bezierRadius;
+- (void)setBezierRadius:(CGFloat)bezierRadius {
+    if (bezierRadius <= 0) return;
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = self.bounds;
+    maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:bezierRadius].CGPath;
+    self.layer.mask = maskLayer;
 }
 
 @end

@@ -12,8 +12,8 @@ IB_DESIGNABLE
 @interface UIButton (KJLanguage)
 @property(nonatomic,strong)IBInspectable NSString *LocalizedKey;
 @property(nonatomic,strong)IBInspectable NSString *SelectedKey;
-@property(nonatomic,strong)IBInspectable NSString *DisabledKey;
-@property(nonatomic,strong)IBInspectable NSString *HighlightedKey;
+@property(nonatomic,strong)NSString *DisabledKey;
+@property(nonatomic,strong)NSString *HighlightedKey;
 
 @end
 

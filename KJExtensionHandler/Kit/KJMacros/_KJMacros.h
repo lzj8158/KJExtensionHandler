@@ -13,11 +13,18 @@
 
 #pragma mark ********** 1.缩写 ************
 #define kApplication        [UIApplication sharedApplication]
-#define kKeyWindow          [UIApplication sharedApplication].keyWindow // KeyWindow
 #define kAppDelegate        [UIApplication sharedApplication].delegate  // AppDelegate
 #define kNotificationCenter [NSNotificationCenter defaultCenter] // 通知中心
-#define kPostNotification(name,obj,info) [[NSNotificationCenter defaultCenter]postNotificationName:name object:obj userInfo:info] // 发送通知
+#define kPostNotification(name,obj,info) [kNotificationCenter postNotificationName:name object:obj userInfo:info] // 发送通知
 #define kMethodDeprecated(instead) DEPRECATED_MSG_ATTRIBUTE("Please use " # instead " instead") // 方法失效
+#define kKeyWindow \
+({UIWindow *window;\
+if (@available(iOS 13.0, *)) {\
+window = [UIApplication sharedApplication].windows.firstObject;\
+}else{\
+window = [UIApplication sharedApplication].keyWindow;\
+}\
+window;})
 
 #pragma mark ********** 2.自定义高效率的 NSLog ************
 #ifdef DEBUG // 输出日志 (格式: [编译时间] [文件名] [方法名] [行号] [输出内容])

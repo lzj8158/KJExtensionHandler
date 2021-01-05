@@ -12,6 +12,24 @@
 @end
 
 @implementation UIView (KJFrame)
+#pragma mark - 使用Masonry布局之后得到尺寸
+@dynamic masonry_x,masonry_y,masonry_width,masonry_height;
+- (CGFloat)masonry_x{
+    [self.superview layoutIfNeeded];
+    return self.frame.origin.x;
+}
+- (CGFloat)masonry_y{
+    [self.superview layoutIfNeeded];
+    return self.frame.origin.y;
+}
+- (CGFloat)masonry_width{
+    [self.superview layoutIfNeeded];
+    return self.frame.size.width;
+}
+- (CGFloat)masonry_height{
+    [self.superview layoutIfNeeded];
+    return self.frame.size.height;
+}
 - (CGFloat)x{
     return self.frame.origin.x;
 }
@@ -116,25 +134,43 @@
 - (CGFloat)maxY{
     return self.frame.origin.y + self.frame.size.height;
 }
-#pragma mark - 使用Masonry布局之后得到尺寸
-@dynamic masonry_x,masonry_y,masonry_width,masonry_height;
-- (CGFloat)masonry_x{
-    [self.superview layoutIfNeeded];
-    return self.frame.origin.x;
-}
-- (CGFloat)masonry_y{
-    [self.superview layoutIfNeeded];
-    return self.frame.origin.y;
-}
-- (CGFloat)masonry_width{
-    [self.superview layoutIfNeeded];
-    return self.frame.size.width;
-}
-- (CGFloat)masonry_height{
-    [self.superview layoutIfNeeded];
-    return self.frame.size.height;
-}
 
+- (void)kj_centerToSuperview{
+    if (self.superview) {
+        switch ([UIApplication sharedApplication].statusBarOrientation) {
+            case UIInterfaceOrientationLandscapeLeft:
+            case UIInterfaceOrientationLandscapeRight:
+                self.origin = CGPointMake((self.superview.height/2.0) - (self.width/2.0), (self.superview.width/2.0) - (self.height/2.0));
+                break;
+            case UIInterfaceOrientationPortrait:
+            case UIInterfaceOrientationPortraitUpsideDown:
+                self.origin = CGPointMake((self.superview.width/2.0) - (self.width/2.0), (self.superview.height/2.0) - (self.height/2.0));
+                break;
+            case UIInterfaceOrientationUnknown:
+                return;
+        }
+    }
+}
+- (void)kj_rightToSuperview:(CGFloat)right{
+    self.x = self.superview.width - self.width - right;
+}
+- (void)kj_bottomToSuperview:(CGFloat)bottom{
+    self.y = self.superview.height - self.height - bottom;
+}
+- (CGFloat)kj_subviewMaxY{
+    CGFloat y = 0;
+    for (UIView *view in [self subviews]) {
+        y = MAX(view.maxY, y);
+    }
+    return y;
+}
+- (CGFloat)kj_subviewMaxX{
+    CGFloat x = 0;
+    for (UIView *view in [self subviews]) {
+        x = MAX(view.maxX, x);
+    }
+    return x;
+}
 /// 寻找子视图
 - (UIView*)kj_FindSubviewRecursively:(BOOL(^)(UIView *subview, BOOL *stop))recurse{
     for (UIView *view in self.subviews) {
@@ -161,6 +197,16 @@
         view.hidden = hide;
     }
 }
-
+/// 子控件处理手势事件
+- (UIView*)kj_childHitTest:(CGPoint)point withEvent:(UIEvent*)event{
+    NSInteger count = self.subviews.count;
+    for (int i = 0; i < count; i++) {
+        UIView *childView  = self.subviews[count - 1 - i];
+        CGPoint childPoint = [self convertPoint:point toView:childView];
+        UIView *view = [childView hitTest:childPoint withEvent:event];
+        if (view) return view;
+    }
+    return nil;
+}
 
 @end

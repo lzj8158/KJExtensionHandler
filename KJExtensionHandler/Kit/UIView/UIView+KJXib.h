@@ -31,7 +31,7 @@ IB_DESIGNABLE // 动态刷新 在类名前加上此宏定义，初始化布置�
 @property(nonatomic,assign,readonly) BOOL anySubViewScrolling;
 
 
-//*********  Xib中显示属性 IBInspectable就可以可视化显示相关的属性  ***********
+//********* Xib中显示属性 IBInspectable就可以可视化显示相关的属性  ***********
 /// 图片属性，备注这个会覆盖掉UIImageView上面设置的image
 @property(nonatomic,strong)IBInspectable UIImage *viewImage;
 
@@ -46,6 +46,9 @@ IB_DESIGNABLE // 动态刷新 在类名前加上此宏定义，初始化布置�
 @property(nonatomic,assign)IBInspectable CGFloat shadowWidth;//设置阴影的宽度
 @property(nonatomic,assign)IBInspectable CGFloat shadowOpacity;//设置阴影透明度，默认0
 @property(nonatomic,assign)IBInspectable CGSize  shadowOffset;//设置阴影偏移量
+
+/// 贝塞尔圆角，更快捷高效的圆角方式
+@property(nonatomic,assign)CGFloat bezierRadius;
 
 @end
 

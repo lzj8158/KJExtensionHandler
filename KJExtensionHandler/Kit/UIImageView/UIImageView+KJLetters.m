@@ -7,7 +7,7 @@
 
 #import "UIImageView+KJLetters.h"
 #import <objc/runtime.h>
-
+#import "_KJMacros.h"
 @implementation UIImageView (KJLetters)
 /// 显示文字图片
 - (void)kj_imageViewWithText:(NSString*)text LettersInfo:(void(^)(UIImageViewLettersInfo *info))block{
@@ -101,7 +101,7 @@
     UIImage *image = self.image;
     CGFloat w = [UIScreen mainScreen].bounds.size.width;
     CGFloat h = [UIScreen mainScreen].bounds.size.height;
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    UIWindow *window = kKeyWindow;
     UIView *backgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, w, h)];
     self.kOriginRect = [self convertRect:self.bounds toView:window];
     backgroundView.backgroundColor = color;

@@ -37,7 +37,7 @@
 - (instancetype)kj_initWithFrame:(CGRect)frame ShadowType:(KJShadowType)type{
     if (self == [super init]) {
         self.frame = frame;
-        self.drawsAsynchronously = YES;// 进行异步绘制
+        self.drawsAsynchronously = YES;
         self.contentsScale = [UIScreen mainScreen].scale;
         self.kj_shadowType = type;
         self.kj_shadowColor = UIColor.blackColor;
