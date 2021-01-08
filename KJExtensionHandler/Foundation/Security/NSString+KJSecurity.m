@@ -6,8 +6,7 @@
 //  https://github.com/yangKJ/KJExtensionHandler
 
 #import "NSString+KJSecurity.h"
-#import "NSData+KJRSA.h"
-#import "NSData+KJAES.h"
+
 @implementation NSString (KJSecurity)
 /// 生成key
 + (NSString*)kj_createKey{
@@ -31,25 +30,25 @@
 static NSString * base64_encode_data(NSData *data){
     return [[NSString alloc] initWithData:[data base64EncodedDataWithOptions:0] encoding:NSUTF8StringEncoding];
 }
-- (NSString*(^)(NSString*key))kj_rsaEncryptPublicKey{
+- (NSString*(^)(NSString*))kj_rsaEncryptPublicKey{
     return ^(NSString*key) {
         NSData *data = [NSData kj_rsaencryptData:[self dataUsingEncoding:NSUTF8StringEncoding] publicKey:key];
         return base64_encode_data(data);
     };
 }
-- (NSString*(^)(NSString *key))kj_rsaDecryptPublicKey{
+- (NSString*(^)(NSString*))kj_rsaDecryptPublicKey{
     return ^(NSString*key) {
         NSData *data = [[NSData alloc] initWithBase64EncodedString:self options:NSDataBase64DecodingIgnoreUnknownCharacters];
         return [[NSString alloc] initWithData:[NSData kj_rsadecryptData:data publicKey:key] encoding:NSUTF8StringEncoding];
     };
 }
-- (NSString*(^)(NSString*key))kj_rsaEncryptPrivateKey{
+- (NSString*(^)(NSString*))kj_rsaEncryptPrivateKey{
     return ^(NSString*key) {
         NSData *data = [NSData kj_rsaencryptData:[self dataUsingEncoding:NSUTF8StringEncoding] privateKey:key];
         return base64_encode_data(data);
     };
 }
-- (NSString*(^)(NSString *key))kj_rsaDecryptPrivateKey{
+- (NSString*(^)(NSString*))kj_rsaDecryptPrivateKey{
     return ^(NSString*key) {
         NSData *data = [[NSData alloc] initWithBase64EncodedString:self options:NSDataBase64DecodingIgnoreUnknownCharacters];
         return [[NSString alloc] initWithData:[NSData kj_rsadecryptData:data privateKey:key] encoding:NSUTF8StringEncoding];
@@ -58,7 +57,7 @@ static NSString * base64_encode_data(NSData *data){
 
 #pragma mark - aes
 /// 加密
-- (NSString*(^)(NSString *key))kj_aesEncryptKey{
+- (NSString*(^)(NSString*))kj_aesEncryptKey{
     return ^(NSString*key) {
         NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
         NSData *aesData = [data kj_aes128operation:kCCEncrypt key:key];
@@ -66,11 +65,20 @@ static NSString * base64_encode_data(NSData *data){
     };
 }
 /// 解密
-- (NSString*(^)(NSString *key))kj_aesDecryptKey{
+- (NSString*(^)(NSString*))kj_aesDecryptKey{
     return ^(NSString*key) {
         NSData *data = [[NSData alloc] initWithBase64EncodedString:self options:0];
         return [[NSString alloc] initWithData:[data kj_aes128operation:kCCDecrypt key:key] encoding:NSUTF8StringEncoding];
     };
+}
+#pragma mark - base64
+- (NSString*)kj_base64EncodedString{
+    NSData *date = [self dataUsingEncoding:NSUTF8StringEncoding];
+    return [date kj_base64EncodedString];
+}
+- (NSString*)kj_base64DecodingString{
+    NSData *data = [[NSData alloc]initWithBase64EncodedString:self options:0];
+    return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 }
 
 @end

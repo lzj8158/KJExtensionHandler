@@ -23,6 +23,7 @@
 		6836238725A4497200A97610 /* KJFPSHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6836238625A4497200A97610 /* KJFPSHandler.m */; };
 		6836EE8525A30D840048A3C7 /* KJRenderImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6836EE8425A30D840048A3C7 /* KJRenderImageVC.m */; };
 		6836EE8C25A30DCF0048A3C7 /* KJRenderImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6836EE8B25A30DCF0048A3C7 /* KJRenderImageView.m */; };
+		683975BA25A5DFB80093275D /* NSData+KJBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 683975B925A5DFB80093275D /* NSData+KJBase64.m */; };
 		683FA3AD2542A6C50083D806 /* UIDevice+KJSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 683FA3AC2542A6C50083D806 /* UIDevice+KJSystem.m */; };
 		68406B002564EADC008A5DFB /* UIScrollView+KJEmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 68406AFF2564EADC008A5DFB /* UIScrollView+KJEmptyDataSet.m */; };
 		68406B0D2564EC67008A5DFB /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 68406B0C2564EC67008A5DFB /* UIScrollView+EmptyDataSet.m */; };
@@ -205,6 +206,8 @@
 		6836EE8425A30D840048A3C7 /* KJRenderImageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJRenderImageVC.m; sourceTree = "<group>"; };
 		6836EE8A25A30DCF0048A3C7 /* KJRenderImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJRenderImageView.h; sourceTree = "<group>"; };
 		6836EE8B25A30DCF0048A3C7 /* KJRenderImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJRenderImageView.m; sourceTree = "<group>"; };
+		683975B825A5DFB80093275D /* NSData+KJBase64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+KJBase64.h"; sourceTree = "<group>"; };
+		683975B925A5DFB80093275D /* NSData+KJBase64.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+KJBase64.m"; sourceTree = "<group>"; };
 		683FA3AB2542A6C50083D806 /* UIDevice+KJSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+KJSystem.h"; sourceTree = "<group>"; };
 		683FA3AC2542A6C50083D806 /* UIDevice+KJSystem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+KJSystem.m"; sourceTree = "<group>"; };
 		68406AFE2564EADC008A5DFB /* UIScrollView+KJEmptyDataSet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+KJEmptyDataSet.h"; sourceTree = "<group>"; };
@@ -993,6 +996,8 @@
 				68BC81DB25A47CBE005C64CD /* NSData+KJRSA.m */,
 				68BC81E325A47EB8005C64CD /* NSData+KJAES.h */,
 				68BC81E425A47EB8005C64CD /* NSData+KJAES.m */,
+				683975B825A5DFB80093275D /* NSData+KJBase64.h */,
+				683975B925A5DFB80093275D /* NSData+KJBase64.m */,
 			);
 			path = Security;
 			sourceTree = "<group>";
@@ -1480,6 +1485,7 @@
 				68AD72FC251D9BB8000C89C5 /* UIButton+KJEnlarge.m in Sources */,
 				68AD71BF251D9705000C89C5 /* SceneDelegate.m in Sources */,
 				6813D2912588B78500412987 /* KJMathEquation.m in Sources */,
+				683975BA25A5DFB80093275D /* NSData+KJBase64.m in Sources */,
 				68BC81DC25A47CBE005C64CD /* NSData+KJRSA.m in Sources */,
 				681909392578C8D3008F3541 /* KJLoadLanguageViewController.m in Sources */,
 				686EDA6F25874314007880B5 /* UIImageView+KJBlur.m in Sources */,

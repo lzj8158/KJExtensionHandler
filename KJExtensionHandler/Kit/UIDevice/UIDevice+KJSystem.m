@@ -8,7 +8,7 @@
 #import "UIDevice+KJSystem.h"
 #import <objc/runtime.h>
 #import <AVFoundation/AVFoundation.h>
-#import "_KJMacros.h"
+#import <MobileCoreServices/MobileCoreServices.h>
 @implementation UIDevice (KJSystem)
 @dynamic appCurrentVersion,appName,appIcon,deviceID,supportHorizontalScreen;
 + (NSString*)appCurrentVersion{
@@ -104,8 +104,18 @@
     UIGraphicsEndImageContext();
     return launchImage;
 }
-
-
+@dynamic cameraAvailable;
++ (BOOL)cameraAvailable{
+    NSArray *temps = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+    BOOL canTakeVideo = NO;
+    for (NSString *mediaType in temps) {
+        if ([mediaType isEqualToString:(NSString*)kUTTypeImage]) {
+            canTakeVideo = YES;
+            break;
+        }
+    }
+    return canTakeVideo;
+}
 /// 对比版本号
 + (BOOL)kj_comparisonVersion:(NSString*)version{
     if ([version compare:UIDevice.appCurrentVersion] == NSOrderedDescending) {

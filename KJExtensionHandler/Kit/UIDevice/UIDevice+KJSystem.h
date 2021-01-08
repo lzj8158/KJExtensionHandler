@@ -7,7 +7,7 @@
 //  系统相关的操作
 
 #import <UIKit/UIKit.h>
-
+#import "_KJMacros.h"
 NS_ASSUME_NONNULL_BEGIN
 @interface UIDevice (KJSystem)
 /// App版本号
@@ -30,6 +30,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIImage*)kj_launchImageWithPortrait:(BOOL)portrait Dark:(BOOL)dark;
 /// 生成启动图，根据LaunchScreen名称、是否竖屏、是否暗黑
 + (UIImage*)kj_launchImageWithStoryboard:(NSString*)name Portrait:(BOOL)portrait Dark:(BOOL)dark;
+
+/// 判断相机是否可用
+@property(nonatomic,assign,class)BOOL cameraAvailable;
 
 /// 对比版本号
 + (BOOL)kj_comparisonVersion:(NSString*)version;
