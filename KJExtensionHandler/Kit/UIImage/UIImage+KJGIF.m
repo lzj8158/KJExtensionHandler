@@ -16,7 +16,9 @@
 #endif
 
 @implementation UIImage (KJGIF)
-/// 本地动态图播放
+- (BOOL)isGif{
+    return (self.images != nil);
+}
 + (UIImage*)kj_gifLocalityImageWithName:(NSString*)name{
     NSData *localData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:name ofType:@"gif"]];
     return [self kj_gifImageWithData:localData];
@@ -24,7 +26,6 @@
 + (UIImage*)kj_gifImageWithData:(NSData*)data {
     return animatedImageWithAnimatedGIFReleasingImageSource(CGImageSourceCreateWithData(GIFTOCF data, NULL));
 }
-
 + (UIImage*)kj_gifImageWithURL:(NSURL*)URL {
     return animatedImageWithAnimatedGIFReleasingImageSource(CGImageSourceCreateWithURL(GIFTOCF URL, NULL));
 }

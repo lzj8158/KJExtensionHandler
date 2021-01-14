@@ -20,12 +20,16 @@ IB_DESIGNABLE
 @property(nonatomic,strong)IBInspectable UIColor *bottomLineColor;
 /// 占位placeholder颜色
 @property(nonatomic,strong)IBInspectable UIColor *placeholderColor;
+/// 占位文字字体大小
+@property(nonatomic,assign)IBInspectable CGFloat placeholderFontSize;
 /// 最大长度
 @property(nonatomic,assign)IBInspectable NSInteger maxLength;
-/// 达到最大字符长度
-@property(nonatomic,copy,readwrite)void(^kMaxLengthBolck)(NSString*text);
 /// 明文暗文切换
 @property(nonatomic,assign)BOOL securePasswords;
+/// 达到最大字符长度
+@property(nonatomic,copy,readwrite)void(^kMaxLengthBolck)(NSString *text);
+/// 文本编辑时刻
+@property(nonatomic,copy,readwrite)void(^kTextEditingChangedBolck)(NSString *text);
 
 /// 设置左边视图，类似账号密码标题
 - (UIView*)kj_leftView:(void(^)(KJTextFieldLeftInfo *info))block;

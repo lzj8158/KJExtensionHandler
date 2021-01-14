@@ -8,12 +8,35 @@
 #import "UITextField+KJExtension.h"
 #import <objc/runtime.h>
 @implementation UITextField (KJExtension)
-@dynamic placeholderColor,bottomLineColor;
-- (void)setPlaceholderColor:(UIColor*)placeholderColor{
-    if (self.placeholder) {
-        self.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.placeholder attributes:@{NSForegroundColorAttributeName:placeholderColor}];
-    }
+static char placeholderColorKey,placeHolderFontSizeKey;
+- (UIColor *)placeholderColor{
+    return objc_getAssociatedObject(self, &placeholderColorKey);
 }
+- (void)setPlaceholderColor:(UIColor*)placeholderColor{
+    objc_setAssociatedObject(self, &placeholderColorKey, placeholderColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    if (self.placeholder) [self kj_setPlaceholder];
+}
+- (CGFloat)placeholderFontSize{
+    return [objc_getAssociatedObject(self, &placeHolderFontSizeKey) floatValue];
+}
+- (void)setPlaceholderFontSize:(CGFloat)placeHolderFontSize{
+    objc_setAssociatedObject(self, &placeHolderFontSizeKey, @(placeHolderFontSize), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    if (self.placeholder) [self kj_setPlaceholder];
+}
+- (void)kj_setPlaceholder{
+    UIColor *color = objc_getAssociatedObject(self, &placeholderColorKey);
+    CGFloat size = [objc_getAssociatedObject(self, &placeHolderFontSizeKey) floatValue];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    if (color) {
+        [dict setValue:color forKey:NSForegroundColorAttributeName];
+    }
+    if (size) {
+        [dict setValue:[UIFont systemFontOfSize:size] forKey:NSFontAttributeName];
+    }
+    self.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.placeholder attributes:dict];
+}
+
+@dynamic bottomLineColor;
 - (void)setBottomLineColor:(UIColor*)bottomLineColor{
     [self layoutIfNeeded];
     CALayer *bottomLayer = [CALayer new];
@@ -41,6 +64,14 @@
     self.secureTextEntry = mingwen;
     self.text = temp;
 }
+- (void (^)(NSString * _Nonnull))kTextEditingChangedBolck{
+    return objc_getAssociatedObject(self, _cmd);
+}
+- (void)setKTextEditingChangedBolck:(void (^)(NSString * _Nonnull))kTextEditingChangedBolck{
+    objc_setAssociatedObject(self, @selector(kTextEditingChangedBolck), kTextEditingChangedBolck, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self addTarget:self action:@selector(kj_textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
+}
+
 #pragma mark - public Method
 /// 设置左边视图，类似账号密码标题
 - (UIView*)kj_leftView:(void(^)(KJTextFieldLeftInfo *info))block{
@@ -143,6 +174,9 @@ static char tapActionKey;
 }
 /// 最大输入限制
 - (void)kj_textFieldChanged:(UITextField*)textField{
+    if (self.kTextEditingChangedBolck) {
+        self.kTextEditingChangedBolck(textField.text);
+    }
     if (textField.maxLength <= 0) return;
     UITextPosition *position = [self positionFromPosition:[self markedTextRange].start offset:0];
     if (position == nil && textField.text.length > textField.maxLength) {

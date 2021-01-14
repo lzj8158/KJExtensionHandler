@@ -17,7 +17,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    UITextField *tf = [[UITextField alloc]initWithFrame:CGRectMake(20, 64+20, kScreenW-40, 40)];
+    UITextField *tf = [[UITextField alloc]initWithFrame:CGRectMake(20, kSTATUSBAR_NAVIGATION_HEIGHT+20, kScreenW-40, 40)];
     tf.backgroundColor = [UIColor.greenColor colorWithAlphaComponent:.4];
     tf.font = kSystemFontSize(14);
     tf.placeholder = @"测试图文混排";
@@ -48,13 +48,14 @@
     [tf3 kj_rightViewTapBlock:^(bool state) {
         NSLog(@"%d",state);
         tf3.text = @"";
-    } ImageName:@"Arrow" Width:20 Padding:10];
+    } ImageName:@"xxx" Width:15 Padding:10];
     
     UITextField *tf2 = [[UITextField alloc]initWithFrame:CGRectMake(20, CGRectGetMaxY(tf3.frame)+10, kScreenW-40, 40)];
     tf2.font = kSystemFontSize(14);
-    tf2.placeholder = @"测试下划线和占位颜色";
+    tf2.placeholder = @"测试下划线和占位颜色尺寸";
     tf2.bottomLineColor = UIColor.grayColor;
     tf2.placeholderColor = UIColor.blueColor;
+    tf2.placeholderFontSize = 25                                                                                                                                                                           ;
     [self.view addSubview:tf2];
     [tf2 kj_leftView:^(KJTextFieldLeftInfo * _Nonnull info) {
         info.text = @"密码:";

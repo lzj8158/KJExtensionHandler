@@ -67,7 +67,6 @@
 		68AD72E0251D9BB8000C89C5 /* NSArray+KJLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD7268251D9BB8000C89C5 /* NSArray+KJLog.m */; };
 		68AD72E6251D9BB8000C89C5 /* UIImage+KJPhotoshop.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD7277251D9BB8000C89C5 /* UIImage+KJPhotoshop.m */; };
 		68AD72E7251D9BB8000C89C5 /* UIImage+KJScale.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD7279251D9BB8000C89C5 /* UIImage+KJScale.m */; };
-		68AD72E8251D9BB8000C89C5 /* UIImage+KJReflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD727A251D9BB8000C89C5 /* UIImage+KJReflection.m */; };
 		68AD72EA251D9BB8000C89C5 /* UIImage+KJCompress.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD7281251D9BB8000C89C5 /* UIImage+KJCompress.m */; };
 		68AD72EB251D9BB8000C89C5 /* UIImage+KJMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD7284251D9BB8000C89C5 /* UIImage+KJMask.m */; };
 		68AD72EC251D9BB8000C89C5 /* UIImage+KJCoreImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD7285251D9BB8000C89C5 /* UIImage+KJCoreImage.m */; };
@@ -295,7 +294,6 @@
 		68AD7277251D9BB8000C89C5 /* UIImage+KJPhotoshop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+KJPhotoshop.m"; sourceTree = "<group>"; };
 		68AD7278251D9BB8000C89C5 /* UIImage+KJMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+KJMask.h"; sourceTree = "<group>"; };
 		68AD7279251D9BB8000C89C5 /* UIImage+KJScale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+KJScale.m"; sourceTree = "<group>"; };
-		68AD727A251D9BB8000C89C5 /* UIImage+KJReflection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+KJReflection.m"; sourceTree = "<group>"; };
 		68AD727B251D9BB8000C89C5 /* UIImage+KJCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+KJCapture.h"; sourceTree = "<group>"; };
 		68AD727C251D9BB8000C89C5 /* UIImage+KJAccelerate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+KJAccelerate.h"; sourceTree = "<group>"; };
 		68AD727E251D9BB8000C89C5 /* UIImage+KJURLSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+KJURLSize.h"; sourceTree = "<group>"; };
@@ -311,7 +309,6 @@
 		68AD7288251D9BB8000C89C5 /* UIImage+KJURLSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+KJURLSize.m"; sourceTree = "<group>"; };
 		68AD7289251D9BB8000C89C5 /* UIImage+KJAccelerate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+KJAccelerate.m"; sourceTree = "<group>"; };
 		68AD728B251D9BB8000C89C5 /* UIImage+KJCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+KJCapture.m"; sourceTree = "<group>"; };
-		68AD728C251D9BB8000C89C5 /* UIImage+KJReflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+KJReflection.h"; sourceTree = "<group>"; };
 		68AD7291251D9BB8000C89C5 /* KJKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = KJKit.bundle; sourceTree = "<group>"; };
 		68AD7293251D9BB8000C89C5 /* UILabel+KJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+KJExtension.m"; sourceTree = "<group>"; };
 		68AD7294251D9BB8000C89C5 /* UILabel+KJCreate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+KJCreate.m"; sourceTree = "<group>"; };
@@ -749,8 +746,6 @@
 				68AD7284251D9BB8000C89C5 /* UIImage+KJMask.m */,
 				68AD7282251D9BB8000C89C5 /* UIImage+KJPhotoshop.h */,
 				68AD7277251D9BB8000C89C5 /* UIImage+KJPhotoshop.m */,
-				68AD728C251D9BB8000C89C5 /* UIImage+KJReflection.h */,
-				68AD727A251D9BB8000C89C5 /* UIImage+KJReflection.m */,
 				68AD7283251D9BB8000C89C5 /* UIImage+KJScale.h */,
 				68AD7279251D9BB8000C89C5 /* UIImage+KJScale.m */,
 				68AD727E251D9BB8000C89C5 /* UIImage+KJURLSize.h */,
@@ -1475,7 +1470,6 @@
 				68406B002564EADC008A5DFB /* UIScrollView+KJEmptyDataSet.m in Sources */,
 				68B32CAC2553E1E7001693F6 /* UITabBar+KJBadge.m in Sources */,
 				68AD7370251D9C75000C89C5 /* KJCoreImageVC.m in Sources */,
-				68AD72E8251D9BB8000C89C5 /* UIImage+KJReflection.m in Sources */,
 				6836EE8C25A30DCF0048A3C7 /* KJRenderImageView.m in Sources */,
 				685E8236256B55280085EFD6 /* KJImageCompressVC.m in Sources */,
 				68AD730D251D9BB8000C89C5 /* KJShadowLayer.m in Sources */,

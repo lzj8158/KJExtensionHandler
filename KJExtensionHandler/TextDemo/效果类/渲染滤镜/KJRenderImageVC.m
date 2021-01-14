@@ -20,8 +20,8 @@
     CGFloat sp = kAutoW(10);
     CGFloat w = (kScreenW-sp*3)/2;
     CGFloat h = w;
-    CGFloat maxY = 64.;
-    UIImage *image  = kGetImage(@"IMG_4931");
+    CGFloat maxY = kSTATUSBAR_NAVIGATION_HEIGHT;
+    UIImage *image = kGetImage(@"IMG_4931");
     
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(sp, maxY+sp, w, h)];
     imageView.contentMode = UIViewContentModeScaleAspectFit;

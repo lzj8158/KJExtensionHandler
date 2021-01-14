@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIImage (KJGIF)
-
+/// 是否为动态图
+@property(nonatomic,assign,readonly) BOOL isGif;
 /// 本地动态图播放
 + (UIImage*)kj_gifLocalityImageWithName:(NSString*)name;
 /// 本地动图

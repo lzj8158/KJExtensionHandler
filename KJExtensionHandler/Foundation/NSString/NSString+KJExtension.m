@@ -10,7 +10,7 @@
 @implementation NSString (KJExtension)
 /// 是否为空
 - (bool)isEmpty{
-    if (self == nil || self == NULL || [self isKindOfClass:[NSNull class]] || [self length] == 0 || [self isEqualToString: @"(null)"]) {
+    if (self == nil || self == NULL || [self isKindOfClass:[NSNull class]] || [self length] == 0 || [self isEqualToString:@"(null)"] || [self isEqualToString:@""]) {
         return true;
     }
     return false;

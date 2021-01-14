@@ -199,9 +199,11 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 | ---- | :----: | ---- |
 | 设置底部边框线条颜色 | Property | bottomLineColor |
 | 占位placeholder颜色 | Property | placeholderColor |
+| 占位文字字体大小 | Property | placeholderFontSize |
 | 最大长度 | Property | maxLength |
-| 达到最大字符长度 | Property | kMaxLengthBolck |
 | 明文暗文切换 | Property | securePasswords |
+| 达到最大字符长度 | Property | kMaxLengthBolck |
+| 文本编辑时刻回调 | Property | kTextEditingChangedBolck |
 | 设置左边视图，类似账号密码标题 | Instance | kj_leftView: |
 | 设置右边视图，类似小圆叉 | Instance | kj_rightViewTapBlock:ImageName:Width:Padding: |
 
@@ -689,6 +691,20 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 | 验证身份证 | Instance | kj_validateIDCardNumber |
 | 验证银行卡 | Instance | kj_validateBankCardNumber |
 
+#### NSString+KJSecurity 加密解密工具，链式处理
+|  功能   |  类型 | API & Property |
+| ---- | :----: | ---- |
+| 生成key | Instance | kj_createKey |
+| 生成token | Instance | kj_createToken |
+| RSA公钥加密 | Instance | kj_rsaEncryptPublicKey |
+| RSA公钥解密 | Instance | kj_rsaDecryptPublicKey |
+| RSA私钥加密 | Instance | kj_rsaEncryptPrivateKey |
+| RSA私钥解密 | Instance | kj_rsaDecryptPrivateKey |
+| AES加密 | Instance | kj_aesEncryptKey |
+| AES解密 | Instance | kj_aesDecryptKey |
+| Base64编码 | Instance | kj_base64EncodedString |
+| Base64解码 | Instance | kj_base64DecodingString |
+
 ###  <a id="NSTimer"></a>NSTimer
 #### NSTimer+KJExtension
 |  功能   |  类型 | API & Property |
@@ -736,6 +752,10 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 #### <a id="更新日志"></a>更新日志
 ```
 ####版本更新日志:
+#### Add 1.0.14
+1. UITextField+KJExtension 新增回调 kTextEditingChangedBolck 文本编辑
+2. 移除 UIImage+KJReflection 简单的倒影处理
+
 #### Add 1.0.13
 1. 新增 NSString+KJSecurity 加密解密工具
 

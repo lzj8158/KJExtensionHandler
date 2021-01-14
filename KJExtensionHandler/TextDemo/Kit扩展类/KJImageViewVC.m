@@ -24,7 +24,7 @@
     NSArray *name = @[@"回头",@"看看",@"Z Jian",@"I Love You",@"你好",@"喜 欢",@"痛苦的信 仰",@"吗？",@"End",@"hao ba"];
     for (int k=0; k<name.count; k++) {
         x = k%4*(w+sp)+sp;
-        y = k/4*(h+sp*2)+sp+64+sp*2;
+        y = k/4*(h+sp*2)+sp+kSTATUSBAR_NAVIGATION_HEIGHT+sp*2;
         UILabel *label = [UILabel kj_createLabelWithText:name[k] FontSize:14 TextColor:UIColor.orangeColor];
         label.backgroundColor = [UIColor.orangeColor colorWithAlphaComponent:0.2];
         label.borderWidth = 1;
