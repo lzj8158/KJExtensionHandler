@@ -10,11 +10,9 @@
 @implementation NSString (KJChinese)
 /// 汉字转拼音
 - (NSString*)pinYin{
-    //先转换为带声调的拼音
     NSMutableString *str = [self mutableCopy];
-    CFStringTransform((CFMutableStringRef)str,NULL,kCFStringTransformMandarinLatin,NO);
-    //再转换为不带声调的拼音
-    CFStringTransform((CFMutableStringRef)str,NULL,kCFStringTransformStripDiacritics,NO);
+    CFStringTransform((CFMutableStringRef)str,NULL,kCFStringTransformMandarinLatin,  NO);//先转换为带声调的拼音
+    CFStringTransform((CFMutableStringRef)str,NULL,kCFStringTransformStripDiacritics,NO);//再转换为不带声调的拼音
     return str;
 }
 /// 随机汉字
@@ -39,6 +37,10 @@
     }else{
         return -1;
     }
+}
+/// 字母排序
+- (NSArray*)kj_letterSortArray:(NSArray<NSString*>*)array{
+    return [array sortedArrayUsingSelector:@selector(compare:)];
 }
 
 @end

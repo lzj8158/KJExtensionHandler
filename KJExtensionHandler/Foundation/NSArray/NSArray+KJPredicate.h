@@ -21,9 +21,9 @@ typedef BOOL (^kPredicateBlock)(id evaluatedObject,NSDictionary<NSString*,id> *b
 - (NSArray*)kj_sortDescriptorWithKey:(NSString*)key Ascending:(BOOL)ascending;
 /// 按照某些属性的升序降序排列
 - (NSArray*)kj_sortDescriptorWithKeys:(NSArray*)keys Ascendings:(NSArray*)ascendings;
-/// 取出 key 中匹配 value 的元素
+/// 匹配元素
 - (NSArray*)kj_takeOutDatasWithKey:(NSString*)key Value:(NSString*)value;
-/// 字符串比较运算符 beginswith(以*开头)、endswith(以*结尾)、contains(包含)、like(匹配)、matches(正则)，[c]不区分大小写 [d]不区分发音符号即没有重音符号 [cd] 既又
+/// 字符串比较运算符
 - (NSArray*)kj_takeOutDatasWithOperator:(NSString*)ope Key:(NSString*)key Value:(NSString*)value;
 
 @end

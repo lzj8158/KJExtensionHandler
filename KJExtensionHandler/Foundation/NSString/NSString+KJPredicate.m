@@ -37,7 +37,17 @@
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     return [pred evaluateWithObject:self];
 }
-
+/// 过滤特殊字符
+- (NSString*)kj_removeSpecialCharacter:(NSString*_Nullable)character{
+    if (character == nil) {
+        character = @"‘；：”“'。，、,.？、 ~￥#……&<>《》()[]{}【】^!@/￡¤|§¨「」『』￠￢￣~@#&*（）——+|《》$_€";
+    }
+    NSRange urgentRange = [self rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:character]];
+    if (urgentRange.location != NSNotFound){
+        return [self kj_removeSpecialCharacter:[self stringByReplacingCharactersInRange:urgentRange withString:@""]];
+    }
+    return self;
+}
 //MARK: - 验证手机号码是否有效
 - (BOOL)kj_validateMobileNumber{
     if (self.length != 11) return NO;

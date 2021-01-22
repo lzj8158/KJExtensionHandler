@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString*)kj_randomCreateChinese:(NSInteger)count;
 /// 查找数据，返回-1表示未查询到
 - (int)kj_searchArray:(NSArray<NSString*>*)temps;
+/// 字母排序
+- (NSArray*)kj_letterSortArray:(NSArray<NSString*>*)array;
 
 @end
 

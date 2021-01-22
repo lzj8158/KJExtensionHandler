@@ -16,7 +16,7 @@
     Class targetClass = [self class];
     while (targetClass != [NSObject class]) {
         objc_property_t *properties = class_copyPropertyList(targetClass, &outCount);
-        for (i = 0; i < outCount; i++)  {
+        for (i = 0; i < outCount; i++) {
             objc_property_t property = properties[i];
             const char *char_f = property_getName(property);
             NSString *propertyName = [NSString stringWithUTF8String:char_f];

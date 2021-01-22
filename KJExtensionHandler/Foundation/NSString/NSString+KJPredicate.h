@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)kj_validateNumber;
 /// 验证字符串中是否有特殊字符
 - (BOOL)kj_validateHaveSpecialCharacter;
+/// 过滤特殊字符
+- (NSString*)kj_removeSpecialCharacter:(NSString*_Nullable)character;
 /// 验证手机号码
 - (BOOL)kj_validateMobileNumber;
 /// 验证邮箱格式

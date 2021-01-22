@@ -35,7 +35,7 @@
 //MARK: - 利用 NSSortDescriptor 对对象数组，按照某些属性的升序降序排列
 - (NSArray*)kj_sortDescriptorWithKeys:(NSArray*)keys Ascendings:(NSArray*)ascendings{
     NSMutableArray *desTemp = [NSMutableArray array];
-    for (NSInteger i=0; i<keys.count; i++) {
+    for (int i=0; i<keys.count; i++) {
         NSString *key = keys[i];
         BOOL boo = [ascendings[i] integerValue] ? YES : NO;
         NSSortDescriptor *des = [NSSortDescriptor sortDescriptorWithKey:key ascending:boo];
@@ -52,7 +52,7 @@
     return [self filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:string]];
 }
 //MARK: - 字符串比较运算符 beginswith(以*开头)、endswith(以*结尾)、contains(包含)、like(匹配)、matches(正则)
-// [c]不区分大小写 [d]不区分发音符号即没有重音符号 [cd]既又
+//  beginswith(以*开头)、endswith(以*结尾)、contains(包含)、like(匹配)、matches(正则)，[c]不区分大小写 [d]不区分发音符号即没有重音符号 [cd] 既又
 - (NSArray*)kj_takeOutDatasWithOperator:(NSString*)ope Key:(NSString*)key Value:(NSString*)value{
     NSString *string  = [NSString stringWithFormat:@"%@ %@ '%@'",key,ope,value];
     return [self filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:string]];

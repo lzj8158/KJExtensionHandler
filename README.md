@@ -281,8 +281,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 #### UINavigationItem+KJExtension   Item链式生成
 |   功能   |  类型  |  API & Property  | 
 | ---- | :----: | ---- |
-| 链式生成 | Instance | kj_makeNavigationItem:(void(^)(UINavigationItem *make))block |
-| 快捷生成Item | Instance | kj_barButtonItemWithTitle:TitleColor:Image:TintColor:ButtonBlock:BarButtonBlock: |
+| 链式生成 | Instance | kj_makeNavigationItem: |
 | ExtendParameterBlock 扩展参数 | Property | kAddBarButtonItemInfo |
 | ExtendParameterBlock 扩展参数 | Property | kAddLeftBarButtonItem |
 | ExtendParameterBlock 扩展参数 | Property | kAddRightBarButtonItem |
@@ -423,7 +422,6 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 | 应用透视校正 | Instance | kj_coreImagePerspectiveCorrectionWithTopLeft:TopRight:BottomRight:BottomLeft: |
 | 透视变换 | Instance | kj_coreImagePerspectiveTransformWithTopLeft:TopRight:BottomRight:BottomLeft: |
 | 软装专属透视 | Instance | kj_softFitmentFluoroscopyWithTopLeft:TopRight:BottomRight:BottomLeft: |
-| 将定向聚光灯效果应用于图像（射灯） | Instance | kj_coreImageSpotLightWithLightPosition:LightPointsAt:Brightness:Concentration:LightColor: |
 
 #### UIImage+KJCompress  图片压缩处理，提供几种系统API的处理方式
 |   功能   |  类型  |  API & Property  | 
@@ -679,6 +677,8 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 | ---- | :----: | ---- |
 | 汉字转拼音 | Property | pinYin |
 | 随机汉字 | Class | kj_randomCreateChinese: |
+| 查找数据 | Instance | kj_searchArray: |
+| 字母排序 | Instance | kj_letterSortArray: |
 
 #### NSString+KJPredicate  谓词工具
 |  功能   |  类型 | API & Property |
@@ -686,6 +686,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 | 过滤空格 | Instance | kj_filterSpace |
 | 验证数字 | Instance | kj_validateNumber |
 | 是否有特殊字符 | Instance | kj_validateHaveSpecialCharacter |
+| 过滤特殊字符 | Instance | kj_removeSpecialCharacter: |
 | 验证手机号码 | Instance | kj_validateMobileNumber |
 | 验证邮箱格式 | Instance | kj_validateEmail |
 | 验证身份证 | Instance | kj_validateIDCardNumber |
@@ -736,7 +737,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 | 是否为空 | Property | isEmpty |
 | 筛选数据 | Instance | kj_detectArray: |
 | 多维数组筛选数据 | Instance | kj_detectManyDimensionArray: |
-| 查找数据，返回-1表示未查询到 | Instance | kj_searchObject: |
+| 查找数据 | Instance | kj_searchObject: |
 | 映射 | Instance | kj_mapArray: |
 | 插入数据到目的位置 | Instance | kj_insertObject: |
 | 数组计算交集 | Instance | kj_arrayIntersectionWithOtherArray: |
@@ -752,6 +753,11 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 #### <a id="更新日志"></a>更新日志
 ```
 ####版本更新日志:
+#### Add 1.0.15
+1. 新增 KJRouterHandler 简单的路由工具(基于URL实现控制器转场的框架)
+2. 移除 KJFPSHandler 和 KJShadowLayer，需要去Demo下载
+3. NSString 新增字母排序和过滤特殊字符
+
 #### Add 1.0.14
 1. UITextField+KJExtension 新增回调 kTextEditingChangedBolck 文本编辑
 2. 移除 UIImage+KJReflection 简单的倒影处理
@@ -866,7 +872,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 ---
 
 <p align="left">
-<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590984664032&di=f75bbfdf1c76e20749fd40be9c784738&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20181208%2F2e9d5c7277094ace8e7385e018ccc2d4.jpeg" width="666" hspace="1px">
+<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590984664032&di=f75bbfdf1c76e20749fd40be9c784738&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20181208%2F2e9d5c7277094ace8e7385e018ccc2d4.jpeg" width="777" hspace="1px">
 </p>
 
 #### <a id="打赏作者"></a>打赏作者

@@ -71,7 +71,7 @@
 }
 /// 数组计算交集
 - (NSArray*)kj_arrayIntersectionWithOtherArray:(NSArray*)otherArray{
-    if(self.count == 0 || otherArray == nil) return nil;
+    if (self.count == 0 || otherArray == nil) return nil;
     NSMutableArray *temps = [NSMutableArray array];
     for (id obj in self) {
         if (![otherArray containsObject:obj]) continue;
@@ -81,8 +81,8 @@
 }
 /// 数组计算差集
 - (NSArray*)kj_arrayMinusWithOtherArray:(NSArray*)otherArray{
-    if(self == nil) return nil;
-    if(otherArray == nil) return self;
+    if (self == nil) return nil;
+    if (otherArray == nil) return self;
     NSMutableArray *temps = [NSMutableArray arrayWithArray:self];
     for (id obj in otherArray) {
         if (![self containsObject:obj]) continue;
@@ -142,19 +142,18 @@
  3. 重复2号步骤(倒数的数字加1。例如：第一次到倒数第二个数字，第二次到倒数第三个数字，依此类推...)，直至再也不能交换
  */
 - (NSArray *)kj_bubbleSort{
-    NSMutableArray *arr = [NSMutableArray arrayWithArray:self];
-    id temp;int i, j;
-    NSInteger count = [arr count];
-    for (i=0; i < count - 1; ++i){
-        for (j=0; j < count - i - 1; ++j){
-            if (arr[j] > arr[j+1]){
-                temp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = temp;
+    NSMutableArray *array = [NSMutableArray arrayWithArray:self];
+    NSInteger count = [array count];
+    for (int i = 0; i < count - 1; ++i){
+        for (int j = 0; j < count - i - 1; ++j){
+            if (array[j] > array[j+1]){
+                id temp = array[j];
+                array[j] = array[j+1];
+                array[j+1] = temp;
             }
         }
     }
-    return arr;
+    return array.mutableCopy;
 }
 
 //MARK: - --- 插入排序
@@ -167,17 +166,16 @@
  6. 重复步骤2
  */
 - (NSArray *)kj_insertSort{
-    NSMutableArray *arr = [NSMutableArray arrayWithArray:self];
-    id temp;int i, j;
-    NSInteger count = [arr count];
-    for (i=1; i < count; ++i){
-        temp = arr[i];
-        for (j=i; j > 0 && temp < arr[j-1]; --j){
-            arr[j] = arr[j-1];
+    NSMutableArray *array = [NSMutableArray arrayWithArray:self];
+    int j;
+    for (int i = 1; i < [array count]; ++i){
+        id temp = array[i];
+        for (j = i; j > 0 && temp < array[j-1]; --j){
+            array[j] = array[j-1];
         }
-        arr[j] = temp;
+        array[j] = temp;
     }
-    return arr;
+    return array.mutableCopy;
 }
 
 //MARK: - ---  选择排序
@@ -189,21 +187,20 @@
  5. 如果i=n－1算法结束，否则回到第3步
  */
 - (NSArray *)kj_selectionSort{
-    NSMutableArray *arr = [NSMutableArray arrayWithArray:self];
-    id temp;int min, i, j;
-    NSInteger count = [arr count];
-    for (i=0; i < count; ++i){
-        min = i;
-        for (j = i+1; j < count; ++j){
-            if (arr[min] > arr[j]) min = j;
+    NSMutableArray *array = [NSMutableArray arrayWithArray:self];
+    NSInteger count = [array count];
+    for (int i = 0; i < count; ++i){
+        int min = i;
+        for (int j = i+1; j < count; ++j){
+            if (array[min] > array[j]) min = j;
         }
         if (min != i){
-            temp = arr[min];
-            arr[min] = arr[i];
-            arr[i] = temp;
+            id temp = array[min];
+            array[min] = array[i];
+            array[i] = temp;
         }
     }
-    return arr;
+    return array.mutableCopy;
 }
 
 @end

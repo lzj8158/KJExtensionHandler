@@ -28,6 +28,7 @@
 		68406B002564EADC008A5DFB /* UIScrollView+KJEmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 68406AFF2564EADC008A5DFB /* UIScrollView+KJEmptyDataSet.m */; };
 		68406B0D2564EC67008A5DFB /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 68406B0C2564EC67008A5DFB /* UIScrollView+EmptyDataSet.m */; };
 		68406B1C2564F2A6008A5DFB /* KJEmptyDataVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 68406B1B2564F2A6008A5DFB /* KJEmptyDataVC.m */; };
+		6846389925B525C90089865B /* KJRouterHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6846389825B525C90089865B /* KJRouterHandler.m */; };
 		684FD0A425889BA30064D356 /* NSObject+KJRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 684FD0A325889BA30064D356 /* NSObject+KJRuntime.m */; };
 		685E8236256B55280085EFD6 /* KJImageCompressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 685E8235256B55280085EFD6 /* KJImageCompressVC.m */; };
 		685E8246256BB5980085EFD6 /* KJImageJointVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 685E8245256BB5980085EFD6 /* KJImageJointVC.m */; };
@@ -215,6 +216,8 @@
 		68406B0C2564EC67008A5DFB /* UIScrollView+EmptyDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+EmptyDataSet.m"; sourceTree = "<group>"; };
 		68406B1A2564F2A6008A5DFB /* KJEmptyDataVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJEmptyDataVC.h; sourceTree = "<group>"; };
 		68406B1B2564F2A6008A5DFB /* KJEmptyDataVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJEmptyDataVC.m; sourceTree = "<group>"; };
+		6846389725B525C90089865B /* KJRouterHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJRouterHandler.h; sourceTree = "<group>"; };
+		6846389825B525C90089865B /* KJRouterHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJRouterHandler.m; sourceTree = "<group>"; };
 		684FD0A225889BA30064D356 /* NSObject+KJRuntime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+KJRuntime.h"; sourceTree = "<group>"; };
 		684FD0A325889BA30064D356 /* NSObject+KJRuntime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KJRuntime.m"; sourceTree = "<group>"; };
 		685E8234256B55280085EFD6 /* KJImageCompressVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJImageCompressVC.h; sourceTree = "<group>"; };
@@ -631,6 +634,10 @@
 				68F3A8A9253973AF00BCD817 /* KJHomeModel.m */,
 				68F3A89F2539739A00BCD817 /* KJHomeView.h */,
 				68F3A8A02539739A00BCD817 /* KJHomeView.m */,
+				6836238525A4497200A97610 /* KJFPSHandler.h */,
+				6836238625A4497200A97610 /* KJFPSHandler.m */,
+				68AD72D7251D9BB8000C89C5 /* KJShadowLayer.h */,
+				68AD72D5251D9BB8000C89C5 /* KJShadowLayer.m */,
 				68AD7258251D9B9D000C89C5 /* BaseViewController.h */,
 				68AD7256251D9B9D000C89C5 /* BaseViewController.m */,
 				68AD71C3251D9705000C89C5 /* Main.storyboard */,
@@ -902,8 +909,6 @@
 			children = (
 				687E1B5A255D05BF0017075D /* CALayer+KJExtension.h */,
 				687E1B5B255D05BF0017075D /* CALayer+KJExtension.m */,
-				68AD72D7251D9BB8000C89C5 /* KJShadowLayer.h */,
-				68AD72D5251D9BB8000C89C5 /* KJShadowLayer.m */,
 			);
 			path = CALayer;
 			sourceTree = "<group>";
@@ -1000,14 +1005,14 @@
 		68C3C47325748C2100C07C4E /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				6836238525A4497200A97610 /* KJFPSHandler.h */,
-				6836238625A4497200A97610 /* KJFPSHandler.m */,
 				6813D2862588B72B00412987 /* KJGeometry.h */,
 				6813D2872588B72B00412987 /* KJGeometry.m */,
 				6813D28F2588B78500412987 /* KJMathEquation.h */,
 				6813D2902588B78500412987 /* KJMathEquation.m */,
 				68BF04BD25749B1A00B96F31 /* KJNodeQueue.h */,
 				68BF04BE25749B1A00B96F31 /* KJNodeQueue.m */,
+				6846389725B525C90089865B /* KJRouterHandler.h */,
+				6846389825B525C90089865B /* KJRouterHandler.m */,
 				68AD726C251D9BB8000C89C5 /* NSArray+KJLog.h */,
 				68AD7268251D9BB8000C89C5 /* NSArray+KJLog.m */,
 				68AD7261251D9BB8000C89C5 /* NSDictionary+KJLog.h */,
@@ -1474,6 +1479,7 @@
 				685E8236256B55280085EFD6 /* KJImageCompressVC.m in Sources */,
 				68AD730D251D9BB8000C89C5 /* KJShadowLayer.m in Sources */,
 				681254AD2589EF0E00A307B7 /* NSTimer+KJExtension.m in Sources */,
+				6846389925B525C90089865B /* KJRouterHandler.m in Sources */,
 				68406B1C2564F2A6008A5DFB /* KJEmptyDataVC.m in Sources */,
 				68AD71CD251D9706000C89C5 /* main.m in Sources */,
 				68AD72FC251D9BB8000C89C5 /* UIButton+KJEnlarge.m in Sources */,
