@@ -19,10 +19,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view addSubview:self.collectView];
-    UILabel *label = [UILabel kj_createLabelWithText:@"核心就是解决左右滚动和上下滑动冲突处理" FontSize:16 TextColor:UIColor.orangeColor];
+    UILabel *label = [UILabel kj_createLabel:^(id<KJQuickCreateHandle>  _Nonnull handle) {
+        handle.kj_add(self.view);
+        handle.kj_text(@"核心就是解决左右滚动和上下滑动冲突处理").kj_font([UIFont systemFontOfSize:16]).kj_textColor(UIColor.orangeColor);
+    }];
+    [label sizeToFit];
     label.centerX = self.view.centerX;
     label.centerY = self.collectView.y - 50;
-    [self.view addSubview:label];
     [self.view addSubview:self.imageView];
 }
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView*)collectionView{

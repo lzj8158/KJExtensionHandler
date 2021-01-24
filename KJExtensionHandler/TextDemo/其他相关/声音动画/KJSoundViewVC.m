@@ -19,13 +19,13 @@
     
     CGFloat sp = (kScreenW-4*50)/5;
     
-    UIButton *button = [UIButton kj_createButtonWithFontSize:15 Title:@"测试音量大小" TextColor:UIColor.orangeColor];
-    button.frame = CGRectMake(0, 0, 100, 50);
+    UIButton *button = [UIButton kj_createButton:^(id<KJQuickCreateHandle>  _Nonnull handle) {
+        handle.kj_frame(0, 0, 100, 50).kj_add(self.view);
+    }];
     button.centerX = kScreenW/2;
     button.centerY = kScreenH - 100;
     button.borderWidth = 1;
     button.borderColor = UIColor.orangeColor;
-    [self.view addSubview:button];
 
     __block KJSoundView *view = [[KJSoundView alloc]initWithFrame:CGRectMake(sp, kSTATUSBAR_NAVIGATION_HEIGHT+20, 50, 100)];
     view.backgroundColor = [UIColor.orangeColor colorWithAlphaComponent:0.3];

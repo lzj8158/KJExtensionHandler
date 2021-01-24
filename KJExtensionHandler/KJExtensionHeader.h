@@ -66,12 +66,10 @@ Github地址：https://github.com/yangKJ
 #import "UIButton+KJBlock.h" // 点击事件ButtonBlock
 #import "UIButton+KJEnlarge.h" // 改变UIButton的响应区域
 #import "UIButton+KJContentLayout.h" // 图文混排
-#import "UIButton+KJCreate.h" // 快速创建按钮
 //#import "UIButton+KJIndicator.h" // 指示器
 //#import "UIButton+KJEmitter.h" // 按钮粒子效果
 //#import "UIButton+KJCountDown.h" // 倒计时
 
-#import "UILabel+KJCreate.h" // 快速创建文本
 #import "UILabel+KJExtension.h" // 文本尺寸
 //#import "UILabel+KJAttributedString.h" // 富文本
 
@@ -137,6 +135,10 @@ Github地址：https://github.com/yangKJ
 #import "NSObject+KJRuntime.h" // runtime轻量级封装
 
 #import "UIDevice+KJSystem.h" // 系统相关
+
+//***************** 快捷创建UI *******************
+#import "UIButton+KJCreate.h" // 快速创建按钮
+#import "UILabel+KJCreate.h" // 快速创建文本
 
 //************************************* Foundation 相关扩展 *****************************************
 // 需要引入，请使用 pod 'KJExtensionHandler/Foundation'

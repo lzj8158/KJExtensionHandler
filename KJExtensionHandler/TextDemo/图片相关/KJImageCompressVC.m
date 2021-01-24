@@ -25,9 +25,10 @@
     for (int k=0; k<names.count; k++) {
         x = k%2*(w+sp)+sp/2; 
         y = k/2*(h+sp)+sp+kSTATUSBAR_NAVIGATION_HEIGHT;
-        UILabel *label = [UILabel kj_createLabelWithText:names[k] FontSize:16 TextColor:UIColor.orangeColor];
-        label.frame = CGRectMake(x, y, w, 20);
-        [self.view addSubview:label];
+        [UILabel kj_createLabel:^(id<KJQuickCreateHandle>  _Nonnull handle) {
+            handle.kj_frame(x, y, w, 20).kj_add(self.view);
+            handle.kj_text(names[k]).kj_font([UIFont systemFontOfSize:16]).kj_textColor(UIColor.orangeColor);
+        }];
         UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(x, y+25, w, h-25)];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         imageView.backgroundColor = [UIColor.orangeColor colorWithAlphaComponent:0.1];

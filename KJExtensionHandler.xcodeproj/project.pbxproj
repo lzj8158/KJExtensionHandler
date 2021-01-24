@@ -411,6 +411,7 @@
 		68BC81E425A47EB8005C64CD /* NSData+KJAES.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+KJAES.m"; sourceTree = "<group>"; };
 		68BF04BD25749B1A00B96F31 /* KJNodeQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJNodeQueue.h; sourceTree = "<group>"; };
 		68BF04BE25749B1A00B96F31 /* KJNodeQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJNodeQueue.m; sourceTree = "<group>"; };
+		68EC5A0D25BD246100D852AF /* _KJQuickCreateHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _KJQuickCreateHandle.h; sourceTree = "<group>"; };
 		68F032AC2594274C00302E6C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/KJLanguageVC.xib"; sourceTree = "<group>"; };
 		68F032AE2594274C00302E6C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LocalizableTest.strings"; sourceTree = "<group>"; };
 		68F032AF2594274C00302E6C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/KJLanguageVC.xib; sourceTree = "<group>"; };
@@ -708,6 +709,7 @@
 			isa = PBXGroup;
 			children = (
 				68AD72D3251D9BB8000C89C5 /* CALayer */,
+				68EC5A1125BD2E2F00D852AF /* Create */,
 				68AD72B0251D9BB8000C89C5 /* KJMacros */,
 				68C3C47325748C2100C07C4E /* Tools */,
 				68FFFC75254FEA8E00B2E9E3 /* UIBezierPath */,
@@ -779,8 +781,6 @@
 			children = (
 				68AD7295251D9BB8000C89C5 /* UILabel+KJAttributedString.h */,
 				68AD7297251D9BB8000C89C5 /* UILabel+KJAttributedString.m */,
-				68AD7298251D9BB8000C89C5 /* UILabel+KJCreate.h */,
-				68AD7294251D9BB8000C89C5 /* UILabel+KJCreate.m */,
 				68AD7296251D9BB8000C89C5 /* UILabel+KJExtension.h */,
 				68AD7293251D9BB8000C89C5 /* UILabel+KJExtension.m */,
 				687C7332258C5879002DC19C /* UILabel+KJCopy.h */,
@@ -798,8 +798,6 @@
 				68AD729C251D9BB8000C89C5 /* UIButton+KJContentLayout.m */,
 				68AD72A0251D9BB8000C89C5 /* UIButton+KJCountDown.h */,
 				68AD72A6251D9BB8000C89C5 /* UIButton+KJCountDown.m */,
-				68AD72A1251D9BB8000C89C5 /* UIButton+KJCreate.h */,
-				68AD729B251D9BB8000C89C5 /* UIButton+KJCreate.m */,
 				68AD72A4251D9BB8000C89C5 /* UIButton+KJEmitter.h */,
 				68AD729E251D9BB8000C89C5 /* UIButton+KJEmitter.m */,
 				68AD729F251D9BB8000C89C5 /* UIButton+KJEnlarge.h */,
@@ -1025,6 +1023,18 @@
 				68F3A888253969FA00BCD817 /* NSObject+KJSemaphore.m */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		68EC5A1125BD2E2F00D852AF /* Create */ = {
+			isa = PBXGroup;
+			children = (
+				68EC5A0D25BD246100D852AF /* _KJQuickCreateHandle.h */,
+				68AD72A1251D9BB8000C89C5 /* UIButton+KJCreate.h */,
+				68AD729B251D9BB8000C89C5 /* UIButton+KJCreate.m */,
+				68AD7298251D9BB8000C89C5 /* UILabel+KJCreate.h */,
+				68AD7294251D9BB8000C89C5 /* UILabel+KJCreate.m */,
+			);
+			path = Create;
 			sourceTree = "<group>";
 		};
 		68F032AA2594274C00302E6C /* 其他相关 */ = {

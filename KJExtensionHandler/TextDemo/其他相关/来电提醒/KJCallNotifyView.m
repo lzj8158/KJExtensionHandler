@@ -188,14 +188,16 @@ static KJCallNotifyView *_instance = nil;
         self.imageView = [[UIImageView alloc]initWithFrame:CGRectMake(5, 5, height-10, height-10)];
         self.imageView.cornerRadius = (height-10)/2;
         [self addSubview:self.imageView];
-        self.button = [UIButton kj_createButtonWithImageName:@"xxx"];
-        self.button.frame = CGRectMake(self.width-18-8, 0, 18, 18);
+        self.button = [UIButton kj_createButton:^(id<KJQuickCreateHandle>  _Nonnull handle) {
+            handle.kj_frame(self.width-18-8, 0, 18, 18).kj_add(self);
+            handle.kj_image([UIImage imageNamed:@"xxx"]).kj_font([UIFont systemFontOfSize:14]).kj_textColor(UIColor.blackColor);
+        }];
         self.button.centerY = self.height/2;
-        [self addSubview:self.button];
-        self.label = [UILabel kj_createLabelWithText:name];
-        [self addSubview:self.label];
-        self.label.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1.0];
-        self.label.font = [UIFont fontWithName:@"PingFang SC" size:14];
+        self.label = [UILabel kj_createLabel:^(id<KJQuickCreateHandle>  _Nonnull handle) {
+            handle.kj_add(self);
+            handle.kj_text(name).kj_font([UIFont fontWithName:@"PingFang SC" size:14]);
+            handle.kj_textColor([UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1.0]);
+        }];
         CGFloat width = [self.label kj_calculateWidth];
         CGFloat maxw = self.button.x - self.imageView.maxX - 10 - 23 - 10;
         if (width>=maxw) width = maxw;

@@ -9,16 +9,16 @@
 #import "UILabel+KJExtension.h"
 #import <objc/runtime.h>
 @implementation UILabel (KJExtension)
-- (KJLabelTextAlignmentType)kTextAlignmentType{
-    return (KJLabelTextAlignmentType)[objc_getAssociatedObject(self, @selector(kTextAlignmentType)) integerValue];
+- (KJLabelTextAlignmentType)customTextAlignment{
+    return (KJLabelTextAlignmentType)[objc_getAssociatedObject(self, @selector(customTextAlignment)) integerValue];
 }
-- (void)setKTextAlignmentType:(KJLabelTextAlignmentType)kTextAlignmentType{
-    objc_setAssociatedObject(self, @selector(kTextAlignmentType), @(kTextAlignmentType), OBJC_ASSOCIATION_ASSIGN);
+- (void)setCustomTextAlignment:(KJLabelTextAlignmentType)customTextAlignment{
+    objc_setAssociatedObject(self, @selector(customTextAlignment), @(customTextAlignment), OBJC_ASSOCIATION_ASSIGN);
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         method_exchangeImplementations(class_getInstanceMethod(self.class, @selector(drawTextInRect:)), class_getInstanceMethod(self.class, @selector(kj_drawTextInRect:)));
     });
-    switch (kTextAlignmentType) {
+    switch (customTextAlignment) {
         case KJLabelTextAlignmentTypeRight:
         case KJLabelTextAlignmentTypeRightTop:
         case KJLabelTextAlignmentTypeRightBottom:
@@ -39,7 +39,7 @@
     }
 }
 - (void)kj_drawTextInRect:(CGRect)rect{
-    switch (self.kTextAlignmentType) {
+    switch (self.customTextAlignment) {
         case KJLabelTextAlignmentTypeRight:
         case KJLabelTextAlignmentTypeLeft:
         case KJLabelTextAlignmentTypeCenter:

@@ -35,13 +35,14 @@
     for (int k=0; k<names.count; k++) {
         x = k%3*(w+sp)+sp;
         y = k/3*(h+sp)+sp+kSTATUSBAR_NAVIGATION_HEIGHT+sp*2;
-        UILabel *label = [UILabel kj_createLabelWithText:names[k] FontSize:16 TextColor:UIColor.orangeColor];
-        label.backgroundColor = [UIColor.orangeColor colorWithAlphaComponent:0.2];
-        label.kTextAlignmentType = types[k];
+        UILabel *label = [UILabel kj_createLabel:^(id<KJQuickCreateHandle>  _Nonnull handle) {
+            handle.kj_frame(x, y, w, h).kj_add(self.view);
+            handle.kj_background([UIColor.orangeColor colorWithAlphaComponent:0.2]);
+            handle.kj_text(names[k]).kj_font([UIFont systemFontOfSize:16]).kj_textColor(UIColor.orangeColor);
+        }];
+        label.customTextAlignment = types[k];
         label.borderWidth = 1;
         label.borderColor = UIColor.orangeColor;
-        label.frame = CGRectMake(x, y, w, h);
-        [self.view addSubview:label];
     }
 }
 

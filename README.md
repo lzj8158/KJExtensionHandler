@@ -296,7 +296,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 #### UILabel+KJExtension   文本位置和尺寸获取
 |   功能   |  类型  |  API & Property  | 
 | ---- | :----: | ---- |
-| 设置文字内容显示位置 | Property | kTextAlignmentType |
+| 设置文字内容显示位置 | Property | customTextAlignment |
 | 获取宽度 | Instance | kj_calculateWidth |
 | 获取高度 | Instance | kj_calculateHeightWithWidth: |
 | 获取高度，指定行高 | Instance | kj_calculateHeightWithWidth:OneLineHeight: |
@@ -305,10 +305,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 #### UILabel+KJCreate   快速创建文本
 |   功能   |  类型  |  API & Property  | 
 | ---- | :----: | ---- |
-| 快速创建文本 | Class | kj_createLabelWithText: |
-|  | Class | kj_createLabelWithText:FontSize: |
-|  | Class | kj_createLabelWithText:FontSize:TextColor: |
-|  | Class | kj_createLabelWithText:FontSize:TextColor:Alignment: |
+| 快速创建文本 | Class | kj_createLabel: |
 
 #### UILabel+KJAttributedString   富文本
 |   功能   |  类型  |  API & Property  | 
@@ -565,11 +562,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 #### UIButton+KJCreate  按钮快速创建
 |   功能   |  类型  |  API & Property  | 
 | ---- | :----: | ---- |
-| 创建图片按钮 | Class | kj_createButtonWithImageName: |
-| 创建图片按钮 | Class | kj_createButtonWithImageName:SelectImageName: |
-| 创建文本按钮 | Class | kj_createButtonWithFontSize:Title:TextColor: |
-| 创建文本按钮 | Class | kj_createButtonWithFontSize:Title:TextColor:SelectTitle:SelectTextColor: |
-| 创建图文按钮 | Class | kj_createButtonWithImageName:Title:FontSize:TextColor: |
+| 创建图片按钮 | Class | kj_createButton: |
 
 #### UIButton+KJEmitter  按钮粒子效果
 |   功能   |  类型  |  API & Property  | 
