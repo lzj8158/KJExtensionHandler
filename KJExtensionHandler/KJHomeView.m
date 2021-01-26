@@ -14,6 +14,8 @@
         UITableView *tableView = [[UITableView alloc]initWithFrame:self.bounds];
         tableView.delegate = self;
         tableView.dataSource = self;
+        tableView.rowHeight = 50;
+        tableView.sectionHeaderHeight = 40;
         [self addSubview:tableView];
     }
     return self;
@@ -25,12 +27,6 @@
 }
 - (NSInteger )tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [self.temps[section] count];
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 40.0;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 50;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"UITableViewCell"];

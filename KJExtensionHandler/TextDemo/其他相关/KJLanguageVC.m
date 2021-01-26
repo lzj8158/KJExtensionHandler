@@ -13,7 +13,13 @@
 @end
 
 @implementation KJLanguageVC
-
+- (instancetype)init{
+    if (self=[super init]) {
+        [NSBundle kj_openDynamicInherit];
+        NSBundle.customStringsName = @"LocalizableTest";
+    }
+    return self;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -21,8 +27,6 @@
     [self.button kj_addAction:^(UIButton * _Nonnull kButton) {
         kButton.selected = !kButton.selected;
     }];
-    
-    NSBundle.customStringsName = @"LocalizableTest";
     
     __block UIButton *changebutton = [[UIButton alloc] initWithFrame:CGRectMake(0, kScreenH - 60, kScreenW-150, 40)];
     [self.view addSubview:changebutton];
@@ -33,7 +37,7 @@
     changebutton.layer.masksToBounds = YES;
     changebutton.layer.cornerRadius = 5;
     changebutton.titleLabel.font = [UIFont systemFontOfSize:14];
-    [changebutton setTitle:NSLocalizedString(@"changeLanguage", nil) forState:UIControlStateNormal];
+    changebutton.LocalizedKey = @"changeLanguage";
     [changebutton setTitleColor:UIColor.blueColor forState:UIControlStateNormal];
     [changebutton kj_addAction:^(UIButton * _Nonnull kButton) {
         NSString *language = NSBundle.currentLanguage;
@@ -47,7 +51,7 @@
             loadvc.view.backgroundColor = [UIColor.greenColor colorWithAlphaComponent:0.3];
             return weakself;
         } complete:^{
-            [changebutton setTitle:NSLocalizedString(@"changeLanguage", nil) forState:UIControlStateNormal];
+            changebutton.LocalizedKey = @"changeLanguage";
         }];
     }];
 }

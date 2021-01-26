@@ -77,10 +77,11 @@
         [self kj_setTag:520004 BorderColor:color Rect:CGRectMake(self.frame.size.width-width, 0, width, self.frame.size.height)];
     }
 }
+static char kCALayerTagKey;
 - (void)kj_setTag:(NSInteger)tag BorderColor:(UIColor*)color Rect:(CGRect)rect{
     __block BOOL boo = NO;
-    [self.layer.sublayers enumerateObjectsUsingBlock:^(__kindof CALayer * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (obj.kTag == tag) {
+    [self.layer.sublayers enumerateObjectsUsingBlock:^(__kindof CALayer * obj, NSUInteger idx, BOOL * stop) {
+        if ([objc_getAssociatedObject(obj, &kCALayerTagKey) intValue] == tag) {
             boo = YES;
             obj.frame = rect;
             obj.backgroundColor = color.CGColor;
@@ -89,7 +90,7 @@
     }];
     if (boo == NO) {
         CALayer *layer = [CALayer layer];
-        layer.kTag = tag;
+        objc_setAssociatedObject(layer, &kCALayerTagKey, @(tag), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         layer.frame = rect;
         layer.backgroundColor = color.CGColor;
         [self.layer addSublayer:layer];

@@ -634,8 +634,11 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 |   功能   |  类型  |  API & Property  | 
 | ---- | :----: | ---- |
 | 获取该对象的所有属性，包含父类 | Property | propertyTemps |
-| 获取该对象的所有实例变量 | Property | ivarTemps |
-| 获取该对象的所有方法 | Property | methodTemps |
+| 实例变量列表 | Property | ivarTemps |
+| 方法列表 | Property | methodTemps |
+| 遵循的协议列表 | Property | protocolTemps |
+| 归档封装 | Instance | kj_encodeRuntime: |
+| 解档封装 | Instance | kj_initCoderRuntime: |
 
 #### NSObject+KJSemaphore  轻量级解耦工具（信号）
 |   功能   |  类型  |  API & Property  | 
@@ -746,6 +749,11 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 #### <a id="更新日志"></a>更新日志
 ```
 ####版本更新日志:
+#### Add 1.0.17
+1. 删除 CALayer+KJExtension 分类
+2. 新增快速创建UI控件，_KJQuickCreateHandle
+3. NSObject+KJRuntime 新增协议列表和归档解档方法
+
 #### Add 1.0.15
 1. 新增 KJRouterHandler 简单的路由工具(基于URL实现控制器转场的框架)
 2. 移除 KJFPSHandler 和 KJShadowLayer，需要去Demo下载

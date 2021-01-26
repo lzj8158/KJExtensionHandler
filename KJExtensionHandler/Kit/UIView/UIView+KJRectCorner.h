@@ -8,7 +8,6 @@
 //  进阶版圆角和边框扩展
 
 #import <UIKit/UIKit.h>
-#import "CALayer+KJExtension.h"
 
 NS_ASSUME_NONNULL_BEGIN
 typedef NS_OPTIONS(NSInteger, KJBorderOrientationType) {

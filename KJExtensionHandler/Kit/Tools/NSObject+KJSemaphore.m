@@ -30,7 +30,7 @@
 /// 代码执行时间处理，block当中执行代码
 + (CFTimeInterval)kj_executeTime:(void(^)(void))block{
     if (block) {
-        CFAbsoluteTime startTime =CFAbsoluteTimeGetCurrent();
+        CFAbsoluteTime startTime = CFAbsoluteTimeGetCurrent();
         block();
         CFAbsoluteTime linkTime = (CFAbsoluteTimeGetCurrent() - startTime);
         NSLog(@"Linked in %f ms", linkTime * 1000.0);
