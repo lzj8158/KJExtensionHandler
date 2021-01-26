@@ -59,5 +59,8 @@ Github地址：https://github.com/yangKJ
 #define _KJLanguageHeader_h
 
 #import "NSBundle+KJLanguage.h"
+#import "UIButton+KJLanguage.h"
+#import "UILabel+KJLanguage.h"
+#import "UITextField+KJLanguage.h"
 
 #endif /* _KJLanguageHeader_h */

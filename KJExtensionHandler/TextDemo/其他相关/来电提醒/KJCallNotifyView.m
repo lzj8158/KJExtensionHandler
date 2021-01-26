@@ -190,7 +190,7 @@ static KJCallNotifyView *_instance = nil;
         [self addSubview:self.imageView];
         self.button = [UIButton kj_createButton:^(id<KJQuickCreateHandle>  _Nonnull handle) {
             handle.kj_frame(self.width-18-8, 0, 18, 18).kj_add(self);
-            handle.kj_image([UIImage imageNamed:@"xxx"]).kj_font([UIFont systemFontOfSize:14]).kj_textColor(UIColor.blackColor);
+            handle.kj_imageName(@"xxx").kj_fontSize(14).kj_textColor(UIColor.blackColor);
         }];
         self.button.centerY = self.height/2;
         self.label = [UILabel kj_createLabel:^(id<KJQuickCreateHandle>  _Nonnull handle) {

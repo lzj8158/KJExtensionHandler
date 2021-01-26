@@ -12,13 +12,13 @@
 #import "KJLanguageManager.h"
 
 @implementation NSBundle (KJLanguage)
-+ (void)load {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        // 动态继承修改[NSBundle mainBundle]对象的isa指针使其指向子类(KJLanguageManager)，便可以调用子类的方法
-        object_setClass([NSBundle mainBundle], [KJLanguageManager class]);
-    });
-}
+//+ (void)load {
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        // 动态继承修改[NSBundle mainBundle]对象的isa指针使其指向子类(KJLanguageManager)，便可以调用子类的方法
+//        object_setClass([NSBundle mainBundle], [KJLanguageManager class]);
+//    });
+//}
 + (NSString*)customStringsName{
     return objc_getAssociatedObject(self, @selector(customStringsName));
 }
@@ -28,6 +28,13 @@
 }
 + (NSString*)currentLanguage{
     return KJLanguageManager.currentLanguage;
+}
+/// 开启动态继承，必须在使用到多语言之前开启
++ (void)kj_openDynamicInherit{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        object_setClass([NSBundle mainBundle], [KJLanguageManager class]);
+    });
 }
 /// 设置语言
 + (void)kj_setCurrentLanguage:(NSString*)language complete:(void(^)(void))complete{

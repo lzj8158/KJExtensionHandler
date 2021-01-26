@@ -49,7 +49,7 @@
 }
 - (id<KJQuickCreateHandle>(^)(CGFloat))kj_fontSize{
     return ^(CGFloat size) {
-        self.titleLabel.font = [UIFont systemFontOfSize:size];
+        self.font = [UIFont systemFontOfSize:size];
         return self;
     };
 }

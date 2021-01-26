@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = "KJExtensionHandler"
-  s.version  = "1.0.15"
+  s.version  = "1.0.16"
   s.summary  = "77 ExtensionHandler"
   s.homepage = "https://github.com/yangKJ/KJExtensionHandler"
   s.license  = "MIT"

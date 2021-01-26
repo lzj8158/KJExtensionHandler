@@ -46,7 +46,6 @@
 		687C732D258C562C002DC19C /* UIImage+KJQRCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 687C732C258C562C002DC19C /* UIImage+KJQRCode.m */; };
 		687C7334258C5879002DC19C /* UILabel+KJCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = 687C7333258C5879002DC19C /* UILabel+KJCopy.m */; };
 		687C7357258CB21B002DC19C /* KJCodeImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 687C7356258CB21B002DC19C /* KJCodeImageVC.m */; };
-		687E1B5C255D05BF0017075D /* CALayer+KJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 687E1B5B255D05BF0017075D /* CALayer+KJExtension.m */; };
 		687E1B65255D19C50017075D /* KJGestureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 687E1B64255D19C50017075D /* KJGestureVC.m */; };
 		6895B9D62536943700AEEFA1 /* UIResponder+KJAdapt.m in Sources */ = {isa = PBXBuildFile; fileRef = 6895B9D52536943700AEEFA1 /* UIResponder+KJAdapt.m */; };
 		689B947C254A573200E97DEF /* NSObject+KJKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 689B947B254A573200E97DEF /* NSObject+KJKVO.m */; };
@@ -253,8 +252,6 @@
 		687C7333258C5879002DC19C /* UILabel+KJCopy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+KJCopy.m"; sourceTree = "<group>"; };
 		687C7355258CB21B002DC19C /* KJCodeImageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJCodeImageVC.h; sourceTree = "<group>"; };
 		687C7356258CB21B002DC19C /* KJCodeImageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJCodeImageVC.m; sourceTree = "<group>"; };
-		687E1B5A255D05BF0017075D /* CALayer+KJExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+KJExtension.h"; sourceTree = "<group>"; };
-		687E1B5B255D05BF0017075D /* CALayer+KJExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+KJExtension.m"; sourceTree = "<group>"; };
 		687E1B63255D19C50017075D /* KJGestureVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJGestureVC.h; sourceTree = "<group>"; };
 		687E1B64255D19C50017075D /* KJGestureVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJGestureVC.m; sourceTree = "<group>"; };
 		688C92AD251DCC170095D734 /* KJExtensionHandler.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KJExtensionHandler.entitlements; sourceTree = "<group>"; };
@@ -708,7 +705,6 @@
 		68AD7275251D9BB8000C89C5 /* Kit */ = {
 			isa = PBXGroup;
 			children = (
-				68AD72D3251D9BB8000C89C5 /* CALayer */,
 				68EC5A1125BD2E2F00D852AF /* Create */,
 				68AD72B0251D9BB8000C89C5 /* KJMacros */,
 				68C3C47325748C2100C07C4E /* Tools */,
@@ -900,15 +896,6 @@
 				68AD72D2251D9BB8000C89C5 /* UIViewController+KJFullScreen.m */,
 			);
 			path = UIViewController;
-			sourceTree = "<group>";
-		};
-		68AD72D3251D9BB8000C89C5 /* CALayer */ = {
-			isa = PBXGroup;
-			children = (
-				687E1B5A255D05BF0017075D /* CALayer+KJExtension.h */,
-				687E1B5B255D05BF0017075D /* CALayer+KJExtension.m */,
-			);
-			path = CALayer;
 			sourceTree = "<group>";
 		};
 		68AD72D8251D9BB8000C89C5 /* UISlider */ = {
@@ -1405,7 +1392,6 @@
 				68BC81CC25A46D91005C64CD /* NSString+KJSecurity.m in Sources */,
 				68AD72DE251D9BB8000C89C5 /* NSDictionary+KJLog.m in Sources */,
 				68AD72EB251D9BB8000C89C5 /* UIImage+KJMask.m in Sources */,
-				687E1B5C255D05BF0017075D /* CALayer+KJExtension.m in Sources */,
 				68AD72F6251D9BB8000C89C5 /* UIButton+KJIndicator.m in Sources */,
 				687C732D258C562C002DC19C /* UIImage+KJQRCode.m in Sources */,
 				68F3A876253942B400BCD817 /* NSArray+KJPredicate.m in Sources */,
