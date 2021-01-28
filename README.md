@@ -1,6 +1,60 @@
 # KJExtensionHandler
 ### [API & Property整体介绍](https://github.com/yangKJ/KJExtensionHandler/blob/main/README.md)、[图文介绍](https://www.jianshu.com/p/4beb1bd4e1e6)
 ### [Github地址](https://github.com/yangKJ) 、[简书地址](https://www.jianshu.com/u/c84c00476ab6) 、[博客地址](https://blog.csdn.net/qq_34534179)、[掘金地址](https://juejin.cn/user/1987535102554472/posts)
+
+## 先来介绍介绍Category
+**Objective-C提供了一个非常灵活的类扩展机制－类别(Category)，为我们提供了区别于继承的另外一种方式来对类进行扩展，我们可以想任何已有的类添加成员函数来实现功能上的扩展，也就是category只允许添加成员函数，不能添加数据成员，成员函数可以访问类中的所有数据成员，该类的子类也将继承新添加的成员函数。**  
+1、对一个已经存在的类添加方法(Methods)，不需要知道类的源代码，  
+2、类别的第二大优点是实现了功能的局部化封装，拆分归纳整理类  
+3、模拟多继承，简单讲就是实现多个协议  
+> 总结：简单的理解就是扩展类的方法
+
+### 类别的局限性
+#### 1、类别不能添加新的实例变量，但是类别可以关联属性，简单举个例子
+
+```
+@interface CALayer (KJExtension)
+/// 标签记号
+@property(nonatomic,assign) NSInteger kTag;
+@end
+
+#import <objc/runtime.h>
+@implementation CALayer (KJExtension)
+- (NSInteger)kTag{
+    return [objc_getAssociatedObject(self, _cmd) integerValue];
+}
+- (void)setKTag:(NSInteger)kTag{
+    objc_setAssociatedObject(self, @selector(kTag), @(kTag), OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+@end
+```
+#### 2、命名冲突，如果类别中方法和类中已有方法同名，则类别具有更高优先级，这里值得一提就是，如果有多个类别声明的相同方法，那么方法实现是按照文件当中的排名先后顺序加载，也就是说有先加载的方法将永远不会被调用，简单举个例子
+
+```
+@interface NSObject (A)
+- (void)kj_test;
+@end
+
+@interface NSObject (B)
+- (void)kj_test;
+@end
+```
+**这里有NSObject的两个类别`A`和`B`，然后A和B都声明实现了`kj_test`方法，因为加载先后的问题，先加载`A`后加载`B`，等于说`A`就会被覆盖掉，最终调用`kj_test`方法就只是执行`B`类别的方法，而不会执行A类别的方法**
+
+### 类别结构体
+所有的OC类和对象在Runtime层都是用struct表示
+
+```
+struct category_t {
+    const char *name; //类的名字（name）
+    classref_t cls; //类（cls）
+    struct method_list_t *instanceMethods; //实例方法列表（instanceMethods）
+    struct method_list_t *classMethods; //类方法列表（classMethods）
+    struct protocol_list_t *protocols; //协议列表（protocols）
+    struct property_list_t *instanceProperties; //属性列表（instanceProperties）
+};
+```
+
 #### <a id="功能介绍"></a>
 #### 本库主要包含三大块：UIKit类、Foundation类、Language 多语言类
 - UIButton：图文混排、点击事件封装、扩大点击域、时间间隔限制、倒计时、点击粒子效果等
