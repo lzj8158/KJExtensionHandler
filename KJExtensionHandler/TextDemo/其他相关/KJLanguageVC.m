@@ -23,6 +23,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.navigationController.navigationBar.kj_changeNavigationBarImage([UIImage imageNamed:@"timg-2"]);
+    
     _weakself;
     [self.button kj_addAction:^(UIButton * _Nonnull kButton) {
         kButton.selected = !kButton.selected;
@@ -37,7 +39,7 @@
     changebutton.layer.masksToBounds = YES;
     changebutton.layer.cornerRadius = 5;
     changebutton.titleLabel.font = [UIFont systemFontOfSize:14];
-    changebutton.LocalizedKey = @"changeLanguage";
+    changebutton.LocalizedKey = @"切换语言";
     [changebutton setTitleColor:UIColor.blueColor forState:UIControlStateNormal];
     [changebutton kj_addAction:^(UIButton * _Nonnull kButton) {
         NSString *language = NSBundle.currentLanguage;
@@ -51,7 +53,7 @@
             loadvc.view.backgroundColor = [UIColor.greenColor colorWithAlphaComponent:0.3];
             return weakself;
         } complete:^{
-            changebutton.LocalizedKey = @"changeLanguage";
+            changebutton.LocalizedKey = @"切换语言";
         }];
     }];
 }

@@ -64,6 +64,12 @@ static char placeholderColorKey,placeHolderFontSizeKey;
     self.secureTextEntry = mingwen;
     self.text = temp;
 }
+@dynamic displayInputAccessoryView;
+- (void)setDisplayInputAccessoryView:(BOOL)displayInputAccessoryView{
+    if (!displayInputAccessoryView) {
+        self.inputAccessoryView = [UIView new];
+    }
+}
 - (void (^)(NSString * _Nonnull))kTextEditingChangedBolck{
     return objc_getAssociatedObject(self, _cmd);
 }

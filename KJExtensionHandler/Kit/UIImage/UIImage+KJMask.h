@@ -35,6 +35,8 @@ typedef NS_ENUM(NSInteger, KJImageWaterType) {
 - (UIImage*)kj_squareCircleImageWithBorderWidth:(CGFloat)borderWidth borderColor:(UIColor*)borderColor;
 /// 图片透明区域点击穿透处理
 - (bool)kj_transparentWithPoint:(CGPoint)point;
+/// 渐变色图片，0：从上到下，1：从左到右，2：从左上到右下，3：从右上到左下
++ (UIImage*(^)(CGSize,int))kj_gradientImageColor:(UIColor*)color,...;
 
 @end
 

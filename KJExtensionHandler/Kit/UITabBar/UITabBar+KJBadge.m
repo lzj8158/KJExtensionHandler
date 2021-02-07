@@ -19,30 +19,21 @@
     self.tabBarCount = count;
 }
 - (void)kj_showRedBadgeOnItemIndex:(NSInteger)index{
-    [self removeRedBadgeOnItemIndex:index];
+    [self kj_hideRedBadgeOnItemIndex:index];
     UIView *badgeView = [[UIView alloc]init];
     badgeView.tag = 888 + index;
-    badgeView.layer.cornerRadius = 6.5;
     badgeView.backgroundColor = [UIColor redColor];
-    CGRect tabFrame = self.frame;
-    
     float percentX = (index+0.6) / UITabBar.tabBarCount?:4;
-    CGFloat x = ceilf(percentX * tabFrame.size.width);
-    CGFloat y = ceilf(0.1 * tabFrame.size.height);
+    CGFloat x = ceilf(percentX * self.frame.size.width);
+    CGFloat y = ceilf(0.1 * self.frame.size.height);
     badgeView.frame = CGRectMake(x, y, 13, 13);
+    badgeView.layer.cornerRadius = badgeView.frame.size.width/2.;
     [self addSubview:badgeView];
 }
 
 - (void)kj_hideRedBadgeOnItemIndex:(NSInteger)index{
-    [self removeRedBadgeOnItemIndex:index];
-}
-
-- (void)removeRedBadgeOnItemIndex:(NSInteger)index{
-    for (UIView *subView in self.subviews) {
-        if (subView.tag == 888+index) {
-            [subView removeFromSuperview];
-        }
-    }
+    UIView *view = [self viewWithTag:888+index];
+    [view removeFromSuperview];
 }
 
 @end

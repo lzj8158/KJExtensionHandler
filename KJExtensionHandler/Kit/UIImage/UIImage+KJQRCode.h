@@ -29,6 +29,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 改变图片内部像素颜色
 - (UIImage*)kj_changeImagePixelColor:(UIColor*)color;
 
+/// 生成二维码
+void kQRCodeImage(void(^codeImage)(UIImage * image), NSString *content, CGFloat size);
+/// 生成指定颜色二维码
+void kQRCodeImageFromColor(void(^codeImage)(UIImage * image), NSString *content, CGFloat size, UIColor *color);
+
 @end
 
 NS_ASSUME_NONNULL_END

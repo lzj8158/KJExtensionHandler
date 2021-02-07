@@ -26,6 +26,8 @@ IB_DESIGNABLE
 @property(nonatomic,assign)IBInspectable NSInteger maxLength;
 /// 明文暗文切换
 @property(nonatomic,assign)BOOL securePasswords;
+/// 是否显示键盘上面的操作栏，顶部完成按钮
+@property(nonatomic,assign)BOOL displayInputAccessoryView;
 /// 达到最大字符长度
 @property(nonatomic,copy,readwrite)void(^kMaxLengthBolck)(NSString *text);
 /// 文本编辑时刻

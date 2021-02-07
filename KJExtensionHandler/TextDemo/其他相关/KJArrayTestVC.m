@@ -27,6 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationController.navigationBar.kj_changeNavigationBarBackgroundColor(UIColor.orangeColor);
     
     self.textView = [[UITextView alloc]initWithFrame:CGRectMake(20, 86, self.view.frame.size.width-40, self.view.frame.size.height-120)];
     self.textView.layer.borderColor = UIColor.greenColor.CGColor;

@@ -47,6 +47,7 @@
 		687C7334258C5879002DC19C /* UILabel+KJCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = 687C7333258C5879002DC19C /* UILabel+KJCopy.m */; };
 		687C7357258CB21B002DC19C /* KJCodeImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 687C7356258CB21B002DC19C /* KJCodeImageVC.m */; };
 		687E1B65255D19C50017075D /* KJGestureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 687E1B64255D19C50017075D /* KJGestureVC.m */; };
+		6895746425CCF1B4006D1BB3 /* KJRuntimeTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6895746325CCF1B4006D1BB3 /* KJRuntimeTestVC.m */; };
 		6895B9D62536943700AEEFA1 /* UIResponder+KJAdapt.m in Sources */ = {isa = PBXBuildFile; fileRef = 6895B9D52536943700AEEFA1 /* UIResponder+KJAdapt.m */; };
 		689B947C254A573200E97DEF /* NSObject+KJKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 689B947B254A573200E97DEF /* NSObject+KJKVO.m */; };
 		68A663BE256371C0008BD4B8 /* UIImageView+KJLetters.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A663BD256371C0008BD4B8 /* UIImageView+KJLetters.m */; };
@@ -255,6 +256,8 @@
 		687E1B63255D19C50017075D /* KJGestureVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJGestureVC.h; sourceTree = "<group>"; };
 		687E1B64255D19C50017075D /* KJGestureVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJGestureVC.m; sourceTree = "<group>"; };
 		688C92AD251DCC170095D734 /* KJExtensionHandler.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KJExtensionHandler.entitlements; sourceTree = "<group>"; };
+		6895746225CCF1B4006D1BB3 /* KJRuntimeTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJRuntimeTestVC.h; sourceTree = "<group>"; };
+		6895746325CCF1B4006D1BB3 /* KJRuntimeTestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJRuntimeTestVC.m; sourceTree = "<group>"; };
 		6895B9D42536943700AEEFA1 /* UIResponder+KJAdapt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIResponder+KJAdapt.h"; sourceTree = "<group>"; };
 		6895B9D52536943700AEEFA1 /* UIResponder+KJAdapt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+KJAdapt.m"; sourceTree = "<group>"; };
 		689B947A254A573200E97DEF /* NSObject+KJKVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+KJKVO.h"; sourceTree = "<group>"; };
@@ -409,7 +412,6 @@
 		68BF04BD25749B1A00B96F31 /* KJNodeQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJNodeQueue.h; sourceTree = "<group>"; };
 		68BF04BE25749B1A00B96F31 /* KJNodeQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJNodeQueue.m; sourceTree = "<group>"; };
 		68EC5A0D25BD246100D852AF /* _KJQuickCreateHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _KJQuickCreateHandle.h; sourceTree = "<group>"; };
-		68F032AC2594274C00302E6C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/KJLanguageVC.xib"; sourceTree = "<group>"; };
 		68F032AE2594274C00302E6C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LocalizableTest.strings"; sourceTree = "<group>"; };
 		68F032AF2594274C00302E6C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/KJLanguageVC.xib; sourceTree = "<group>"; };
 		68F032B02594274C00302E6C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LocalizableTest.strings; sourceTree = "<group>"; };
@@ -1034,6 +1036,8 @@
 				68F032C82594274C00302E6C /* KJAnimationVC.m */,
 				682B022E25996FCE00FF334B /* KJArrayTestVC.h */,
 				682B022F25996FCE00FF334B /* KJArrayTestVC.m */,
+				6895746225CCF1B4006D1BB3 /* KJRuntimeTestVC.h */,
+				6895746325CCF1B4006D1BB3 /* KJRuntimeTestVC.m */,
 				68F032B22594274C00302E6C /* KJLanguageVC.h */,
 				68F032BA2594274C00302E6C /* KJLanguageVC.m */,
 				68F032AB2594274C00302E6C /* KJLanguageVC.xib */,
@@ -1443,6 +1447,7 @@
 				68AD72F4251D9BB8000C89C5 /* UILabel+KJCreate.m in Sources */,
 				68BF04BF25749B1A00B96F31 /* KJNodeQueue.m in Sources */,
 				68F3A889253969FA00BCD817 /* NSObject+KJSemaphore.m in Sources */,
+				6895746425CCF1B4006D1BB3 /* KJRuntimeTestVC.m in Sources */,
 				68AD72F3251D9BB8000C89C5 /* UILabel+KJExtension.m in Sources */,
 				687C7309258C44D9002DC19C /* UIView+KJAnimation.m in Sources */,
 				68AD71BC251D9705000C89C5 /* AppDelegate.m in Sources */,
@@ -1545,7 +1550,6 @@
 		68F032AB2594274C00302E6C /* KJLanguageVC.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				68F032AC2594274C00302E6C /* zh-Hans */,
 				68F032AF2594274C00302E6C /* en */,
 			);
 			name = KJLanguageVC.xib;

@@ -13,9 +13,15 @@
 
 @implementation KJCallNotifyVC
 
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.kj_changeNavigationBarBackgroundColor(UIColor.orangeColor);
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationController.navigationBar.kj_changeNavigationBarBackgroundColor([UIColor.orangeColor colorWithAlphaComponent:0]);
     
     UIButton *button = [UIButton kj_createButton:^(id<KJQuickCreateHandle>  _Nonnull handle) {
         handle.kj_frame(0, 0, 100, 50).kj_add(self.view);

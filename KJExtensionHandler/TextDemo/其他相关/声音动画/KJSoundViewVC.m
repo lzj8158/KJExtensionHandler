@@ -21,6 +21,7 @@
     
     UIButton *button = [UIButton kj_createButton:^(id<KJQuickCreateHandle>  _Nonnull handle) {
         handle.kj_frame(0, 0, 100, 50).kj_add(self.view);
+        handle.kj_text(@"开始").kj_textColor(UIColor.orangeColor);
     }];
     button.centerX = kScreenW/2;
     button.centerY = kScreenH - 100;
@@ -59,8 +60,10 @@
     view4.value = 20;
     [self.view addSubview:view4];
     
+    __block NSTimer *timer;
     [button kj_addAction:^(UIButton * _Nonnull kButton) {
-        [NSTimer kj_scheduledTimerWithTimeInterval:.2 Repeats:YES Block:^(NSTimer * _Nonnull timer) {
+        if (timer) [NSTimer kj_invalidateTimer:timer];
+        timer = [NSTimer kj_scheduledTimerWithTimeInterval:.2 Repeats:YES Block:^(NSTimer * _Nonnull timer) {
             view.value  = arc4random()%100;
             view2.value = arc4random()%100;
             view3.value = arc4random()%100;

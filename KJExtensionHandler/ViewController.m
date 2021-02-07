@@ -18,6 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationController.navigationBar.kj_changeNavigationBarImage([UIImage imageNamed:@"timg-2"]).kj_changeNavigationBarTitle(UIColor.whiteColor,[UIFont boldSystemFontOfSize:20]);
+    
     KJHomeModel *model = [KJHomeModel new];
     KJHomeView *view = [[KJHomeView alloc]initWithFrame:self.view.bounds];
     view.sectionTemps = model.sectionTemps;

@@ -32,6 +32,11 @@ void kRuntimeMethodSwizzling(Class clazz, SEL original, SEL swizzled);
 /// 交换类方法
 void kRuntimeClassMethodSwizzling(Class clazz, SEL original, SEL swizzled);
 
+/// 获取对象类名
+- (NSString*)kj_runtimeClassName;
+/// 判断对象是否有该属性
+- (void)kj_runtimeHaveProperty:(void(^)(NSString *property, BOOL * stop))traversal;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -8,6 +8,7 @@
 
 #import "UIImage+KJQRCode.h"
 #import <CoreImage/CoreImage.h>
+#import "_KJGCD.h"
 @implementation UIImage (KJQRCode)
 #pragma mark - 二维码
 + (CIImage*)kj_QRCodeImageWithContent:(NSString*)content{
@@ -131,8 +132,34 @@
     return resultImage;
 }
 /// 释放
-static void kProviderReleaseData(void *info, const void *data, size_t size){
+static void kProviderReleaseData(void *info, const void * data, size_t size){
     free((void*)data);
+}
+
+/// 生成二维码
+void kQRCodeImage(void(^codeImage)(UIImage * image), NSString *content, CGFloat size){
+    if (codeImage) {
+        kGCD_async(^{
+            CIImage *image = [UIImage kj_QRCodeImageWithContent:content];
+            __block UIImage *newImage = [UIImage kj_changeCIImage:image codeImageSize:size];
+            kGCD_main(^{
+                codeImage(newImage);
+            });
+        });        
+    }
+}
+/// 生成指定颜色二维码
+void kQRCodeImageFromColor(void(^codeImage)(UIImage * image), NSString *content, CGFloat size, UIColor *color){
+    kQRCodeImage(^(UIImage *image) {
+        if (codeImage) {
+            kGCD_async(^{
+                UIImage *newImage = [image kj_changeImagePixelColor:color];
+                kGCD_main(^{
+                    codeImage(newImage);
+                });
+            });
+        }
+    }, content, size);
 }
 
 @end

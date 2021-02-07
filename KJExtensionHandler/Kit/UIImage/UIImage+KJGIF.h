@@ -20,6 +20,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// 网络动图
 + (UIImage*)kj_gifImageWithURL:(NSURL*)URL;
 
+/// 图片播放，动态图
++ (UIImage*)kj_playImageWithData:(NSData*)data;
+
+/// 子线程处理动态图
+void kPlayGifImageData(void(^xxblock)(bool isgif, UIImage * image), NSData *data);
+
 @end
 
 NS_ASSUME_NONNULL_END

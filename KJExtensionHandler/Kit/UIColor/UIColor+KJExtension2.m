@@ -108,4 +108,11 @@
     }
     return [UIColor colorWithRed:reds/count green:greens/count blue:blues/count alpha:alphas/count];
 }
+/// 图片生成颜色
++ (UIColor*(^)(UIImage*))kj_imageColor{
+    return ^(UIImage *image){
+        return [UIColor colorWithPatternImage:image];
+    };
+}
+
 @end

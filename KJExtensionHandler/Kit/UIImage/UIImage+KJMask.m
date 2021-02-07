@@ -113,12 +113,12 @@
 }
 /// 边框圆形图片
 - (UIImage*)kj_squareCircleImageWithBorderWidth:(CGFloat)borderWidth borderColor:(UIColor*)borderColor{
-    CGFloat imageW = self.size.width + 2 * borderWidth;
-    CGFloat imageH = imageW;
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(imageW, imageH), NO, 0.0);
+    CGFloat width = self.size.width + 2 * borderWidth;
+    CGFloat height = width;
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(width, height), NO, 0.0);
     CGContextRef context = UIGraphicsGetCurrentContext();
     [borderColor set];
-    CGFloat bigRadius = imageW * 0.5;
+    CGFloat bigRadius = width * 0.5;
     CGFloat centerX = bigRadius;
     CGFloat centerY = bigRadius;
     CGContextAddArc(context, centerX, centerY, bigRadius, 0, M_PI * 2, 0);
@@ -126,7 +126,7 @@
     CGFloat smallRadius = bigRadius - borderWidth;
     CGContextAddArc(context, centerX, centerY, smallRadius, 0, M_PI * 2, 0);
     CGContextClip(context);
-    [self drawInRect:CGRectMake(borderWidth, borderWidth, imageW, imageH)];
+    [self drawInRect:CGRectMake(borderWidth, borderWidth, width, height)];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;
@@ -141,6 +141,51 @@
     CGContextRelease(context);
     CGFloat alpha = pixel[0]/255.0f;
     return alpha < 0.01f;
+}
+/// 渐变色图片，0：从上到下，1：从左到右，2：从左上到右下，3：从右上到左下
++ (UIImage*(^)(CGSize,int))kj_gradientImageColor:(UIColor*)color,...{
+    __block NSMutableArray * temps = [NSMutableArray arrayWithObjects:(id)color.CGColor,nil];
+    va_list args;UIColor * arg;
+    va_start(args, color);
+    while ((arg = va_arg(args, UIColor *))) {
+        [temps addObject:(id)arg.CGColor];
+    }
+    va_end(args);
+    return ^UIImage * (CGSize size, int index){
+        UIGraphicsBeginImageContextWithOptions(size, YES, 1);
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        CGContextSaveGState(context);
+        CGColorSpaceRef colorSpace = CGColorGetColorSpace([[temps lastObject] CGColor]);
+        CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef)temps, NULL);
+        CGPoint start = CGPointZero,end = CGPointZero;
+        switch (index) {
+            case 0:
+                start = CGPointMake(0.0, 0.0);
+                end = CGPointMake(0.0, size.height);
+                break;
+            case 1:
+                start = CGPointMake(0.0, 0.0);
+                end = CGPointMake(size.width, 0.0);
+                break;
+            case 2:
+                start = CGPointMake(0.0, 0.0);
+                end = CGPointMake(size.width, size.height);
+                break;
+            case 3:
+                start = CGPointMake(size.width, 0.0);
+                end = CGPointMake(0.0, size.height);
+                break;
+            default:
+                break;
+        }
+        CGContextDrawLinearGradient(context, gradient, start, end, kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
+        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+        CGGradientRelease(gradient);
+        CGContextRestoreGState(context);
+        CGColorSpaceRelease(colorSpace);
+        UIGraphicsEndImageContext();
+        return image;
+    };
 }
 
 @end

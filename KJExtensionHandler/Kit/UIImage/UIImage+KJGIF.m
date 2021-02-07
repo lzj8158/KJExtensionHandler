@@ -6,7 +6,7 @@
 //
 
 #import "UIImage+KJGIF.h"
-
+#import "_KJGCD.h"
 #if __has_feature(objc_arc)
 #define GIFTOCF (__bridge CFTypeRef)
 #define GIFFROMCF (__bridge id)
@@ -118,6 +118,77 @@ static UIImage * animatedImageWithAnimatedGIFReleasingImageSource(CGImageSourceR
         return image;
     }else {
         return nil;
+    }
+}
+
+
+/// 动态图和网图播放
++ (UIImage*)kj_playImageWithData:(NSData*)data{
+    if (data == nil) return nil;
+    CGImageSourceRef imageSource = CGImageSourceCreateWithData(CFBridgingRetain(data), nil);
+    size_t imageCount = CGImageSourceGetCount(imageSource);
+    UIImage *animatedImage;
+    if (imageCount <= 1) {
+        animatedImage = [[UIImage alloc] initWithData:data];
+    }else{
+        NSMutableArray *images = [NSMutableArray arrayWithCapacity:imageCount];
+        NSTimeInterval time = 0;
+        for (int i = 0; i<imageCount; i++) {
+            CGImageRef cgImage = CGImageSourceCreateImageAtIndex(imageSource, i, nil);
+            [images addObject:[UIImage imageWithCGImage:cgImage]];
+            CGImageRelease(cgImage);
+            CFDictionaryRef const properties = CGImageSourceCopyPropertiesAtIndex(imageSource, i, NULL);
+            CFDictionaryRef const gifProperties = CFDictionaryGetValue(properties, kCGImagePropertyGIFDictionary);
+            NSNumber *duration = (__bridge id)CFDictionaryGetValue(gifProperties, kCGImagePropertyGIFUnclampedDelayTime);
+            if (duration == NULL || [duration doubleValue] == 0) {
+                duration = (__bridge id)CFDictionaryGetValue(gifProperties, kCGImagePropertyGIFDelayTime);
+            }
+            CFRelease(properties);
+            CFRelease(gifProperties);
+            time += duration.doubleValue;
+        }
+        animatedImage = [UIImage animatedImageWithImages:images duration:time];
+    }
+    CFRelease(imageSource);
+    return animatedImage;
+}
+
+/// 子线程处理动态图
+void kPlayGifImageData(void(^xxblock)(bool isgif, UIImage * image), NSData *data){
+    if (xxblock) {
+        if (data == nil) xxblock(false,nil);
+        kGCD_async(^{
+            __block UIImage *animatedImage;
+            __block bool isgif = false;
+            CGImageSourceRef imageSource = CGImageSourceCreateWithData(CFBridgingRetain(data), nil);
+            size_t count = CGImageSourceGetCount(imageSource);
+            if (count <= 1) {
+                animatedImage = [[UIImage alloc] initWithData:data];
+            }else{
+                NSMutableArray *images = [NSMutableArray arrayWithCapacity:count];
+                NSTimeInterval time = 0;
+                for (int i = 0; i<count; i++) {
+                    CGImageRef cgImage = CGImageSourceCreateImageAtIndex(imageSource, i, nil);
+                    [images addObject:[UIImage imageWithCGImage:cgImage]];
+                    CGImageRelease(cgImage);
+                    CFDictionaryRef const properties = CGImageSourceCopyPropertiesAtIndex(imageSource, i, NULL);
+                    CFDictionaryRef const gifProperties = CFDictionaryGetValue(properties, kCGImagePropertyGIFDictionary);
+                    NSNumber *duration = (__bridge id)CFDictionaryGetValue(gifProperties, kCGImagePropertyGIFUnclampedDelayTime);
+                    if (duration == NULL || [duration doubleValue] == 0) {
+                        duration = (__bridge id)CFDictionaryGetValue(gifProperties, kCGImagePropertyGIFDelayTime);
+                    }
+                    CFRelease(properties);
+                    CFRelease(gifProperties);
+                    time += duration.doubleValue;
+                }
+                animatedImage = [UIImage animatedImageWithImages:images duration:time];
+                isgif = true;
+            }
+            kGCD_main(^{
+                xxblock(isgif,animatedImage);
+            });
+            CFRelease(imageSource);
+        });
     }
 }
 

@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGFloat masonry_width;
 @property(nonatomic,assign)CGFloat masonry_height;
 
-@property(nonatomic,assign)CGSize size;// 大小
+@property(nonatomic,assign)CGSize  size;// 大小
 @property(nonatomic,assign)CGPoint origin;// 位置
 @property(nonatomic,assign)CGFloat x;// x坐标
 @property(nonatomic,assign)CGFloat y;// y坐标
