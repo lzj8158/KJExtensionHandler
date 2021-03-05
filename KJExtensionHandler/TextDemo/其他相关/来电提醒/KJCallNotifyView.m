@@ -31,13 +31,12 @@ static KJCallNotifyView *_instance = nil;
         if (_instance == nil) {
             _instance = [[KJCallNotifyView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, kScreenH)];
             [kKeyWindow addSubview:_instance];
-            
         }
     });
     return _instance;
 }
 - (instancetype)initWithFrame:(CGRect)frame{
-    if (self==[super initWithFrame:frame]) {
+    if (self=[super initWithFrame:frame]) {
         self.maxCount = 3;
         self.vanishTime = 5.;
     }

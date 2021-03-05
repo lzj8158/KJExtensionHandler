@@ -15,7 +15,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIImage (KJAccelerate)
-
+/// 图片压缩
+- (UIImage*)kj_AccelerateChangeImageSize:(CGSize)size;
 /// 图片旋转
 - (UIImage*)kj_rotateInRadians:(CGFloat)radians;
 

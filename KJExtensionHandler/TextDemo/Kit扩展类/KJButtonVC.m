@@ -7,9 +7,6 @@
 //
 
 #import "KJButtonVC.h"
-#import "UIButton+KJEmitter.h" // 按钮粒子效果
-#import "UIButton+KJCountDown.h" // 倒计时
-#import "UIButton+KJIndicator.h" // 指示器
 
 @interface KJButtonVC ()
 @property(nonatomic,strong)UIButton *button;
@@ -118,7 +115,7 @@
         UIImage *image = [kGetImage(@"wode_nor") kj_imageLinellaeColor:UIColor.greenColor];
         [_button setImage:image forState:UIControlStateNormal];
         _button.layoutType = KJButtonContentLayoutStyleCenterImageTop;
-        _button.kj_Padding = 5;
+        _button.padding = 5;
         [_button kj_addAction:^(UIButton * _Nonnull kButton) {
             NSArray *temp = kButton.ivarTemps;
             NSLog(@"UIControlEventTouchUpInside,%@",temp);

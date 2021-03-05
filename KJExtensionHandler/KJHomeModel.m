@@ -9,7 +9,7 @@
 
 @implementation KJHomeModel
 - (instancetype)init{
-    if (self==[super init]) {
+    if (self=[super init]) {
         self.sectionTemps = @[@"其他相关",@"Kit扩展类",@"图片相关",@"效果类"];
     }
     return self;
@@ -18,6 +18,7 @@
 - (NSArray*)temps{
     if (!_temps) {
         NSMutableArray *temp0 = [NSMutableArray array];
+        [temp0 addObject:@{@"VCName":@"KJRuntimeTestVC",@"describeName":@"Runtime测试"}];
         [temp0 addObject:@{@"VCName":@"KJArrayTestVC",@"describeName":@"数组操作测试"}];
         [temp0 addObject:@{@"VCName":@"KJLanguageVC",@"describeName":@"多语言测试"}];
         [temp0 addObject:@{@"VCName":@"KJCallNotifyVC",@"describeName":@"来电提醒测试"}];

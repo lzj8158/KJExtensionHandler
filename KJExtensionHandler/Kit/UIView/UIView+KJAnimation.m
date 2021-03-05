@@ -118,7 +118,7 @@
 @end
 @implementation KJAnimationManager
 - (instancetype)init{
-    if (self==[super init]) {
+    if (self=[super init]) {
         self.duration = 5;
         self.repeatCount = 0;
         self.opacity = self.multiple = 1;

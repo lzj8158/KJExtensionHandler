@@ -1,17 +1,76 @@
 # KJExtensionHandler
 ### [API & Property整体介绍](https://github.com/yangKJ/KJExtensionHandler/blob/main/README.md)、[图文介绍](https://www.jianshu.com/p/4beb1bd4e1e6)
 ### [Github地址](https://github.com/yangKJ) 、[简书地址](https://www.jianshu.com/u/c84c00476ab6) 、[博客地址](https://blog.csdn.net/qq_34534179)、[掘金地址](https://juejin.cn/user/1987535102554472/posts)
+
+## 先来介绍介绍Category
+**Objective-C提供了一个非常灵活的类扩展机制－类别(Category)，为我们提供了区别于继承的另外一种方式来对类进行扩展，我们可以想任何已有的类添加成员函数来实现功能上的扩展，也就是category只允许添加成员函数，不能添加数据成员，成员函数可以访问类中的所有数据成员，该类的子类也将继承新添加的成员函数。**  
+1、对一个已经存在的类添加方法(Methods)，不需要知道类的源代码，  
+2、类别的第二大优点是实现了功能的局部化封装，拆分归纳整理类  
+3、模拟多继承，简单讲就是实现多个协议  
+> 总结：简单的理解就是扩展类的方法
+
+### 类别的局限性
+#### 1、类别不能添加新的实例变量，但是类别可以关联属性，简单举个例子
+
+```
+@interface CALayer (KJExtension)
+/// 标签记号
+@property(nonatomic,assign) NSInteger kTag;
+@end
+
+#import <objc/runtime.h>
+@implementation CALayer (KJExtension)
+- (NSInteger)kTag{
+    return [objc_getAssociatedObject(self, _cmd) integerValue];
+}
+- (void)setKTag:(NSInteger)kTag{
+    objc_setAssociatedObject(self, @selector(kTag), @(kTag), OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+@end
+```
+#### 2、命名冲突，如果类别中方法和类中已有方法同名，则类别具有更高优先级，这里值得一提就是，如果有多个类别声明的相同方法，那么方法实现是按照文件当中的排名先后顺序加载，也就是说有先加载的方法将永远不会被调用，简单举个例子
+
+```
+@interface NSObject (A)
+- (void)kj_test;
+@end
+
+@interface NSObject (B)
+- (void)kj_test;
+@end
+```
+**这里有NSObject的两个类别`A`和`B`，然后A和B都声明实现了`kj_test`方法，因为加载先后的问题，先加载`A`后加载`B`，等于说`A`就会被覆盖掉，最终调用`kj_test`方法就只是执行`B`类别的方法，而不会执行A类别的方法**
+
+### 类别结构体
+所有的OC类和对象在Runtime层都是用struct表示
+
+```
+struct category_t {
+    const char *name; //类的名字（name）
+    classref_t cls; //类（cls）
+    struct method_list_t *instanceMethods; //实例方法列表（instanceMethods）
+    struct method_list_t *classMethods; //类方法列表（classMethods）
+    struct protocol_list_t *protocols; //协议列表（protocols）
+    struct property_list_t *instanceProperties; //属性列表（instanceProperties）
+};
+```
+
 #### <a id="功能介绍"></a>
 #### 本库主要包含三大块：UIKit类、Foundation类、Language 多语言类
 - UIButton：图文混排、点击事件封装、扩大点击域、时间间隔限制、倒计时、点击粒子效果等
 - UIView：手势封装、圆角渐变、Xib属性（圆角边框阴影）
 - UITextView：输入框扩展、限制字数、撤销处理、获取文本内部超链接
+- UITextField：占位颜色，线条，图文处理等
 - UILabel：富文本，快捷显示文本位置
 - UISlider：渐变色滑杆，滑杆点击值修改
 - UIImage：截图和裁剪、图片压缩、蒙版处理，图片拼接、图片尺寸处理，滤镜渲染、泛洪算法等
+- UIImage：二维码、条形码生成，动态图播放，水印处理等等
 - CALayer：投影，倒影，内发光，外发光，内阴影，外阴影等
+- UIColor：渐变色，rgba，色相，饱和度等
 - Language：多语言，支持Xib快捷设置
-- Foundation：数组和字典防崩处理，数组算法处理，谓词相关等等
+- Foundation：数组和字典防崩处理，数组算法处理，谓词相关，加密解密等等
+- Runtime：列表，方法交换，动态继承等
+- UIDevice：系统相关属性，
 
 #### Foundation我还整理封装异常处理Crash防护 [KJExceptionDemo](https://github.com/yangKJ/KJExceptionDemo)
 #### <a id="效果图"></a>
@@ -273,10 +332,12 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 #### UINavigationBar+KJExtension   
 |   功能   |  类型  |  API & Property  | 
 | ---- | :----: | ---- |
-| 设置navigationBar背景颜色 | Property | kj_BackgroundColor |
-| 设置基础的透明度 | Property | kj_Alpha |
-|  | Property | kj_TranslationY |
-| 重置 | Instance | kj_reset |
+| 隐藏导航条底部下划线 | Instance | kj_hiddenNavigationBarBottomLine |
+| 设置导航栏背景色 | Instance | kj_changeNavigationBarBackgroundColor |
+| 设置图片背景导航栏 | Instance | kj_changeNavigationBarImage |
+| 设置导航条标题颜色和字号 | Instance | kj_changeNavigationBarTitle |
+| 默认恢复成系统的颜色和下划线 | Instance | kj_resetNavigationBarSystem |
+| 设置自定义的返回按钮 | Instance | kj_changeNavigationBarBackImage: |
 
 #### UINavigationItem+KJExtension   Item链式生成
 |   功能   |  类型  |  API & Property  | 
@@ -381,6 +442,7 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 | 圆形图片 | Instance | kj_circleImage |
 | 椭圆形图片 | Instance | kj_ellipseImage |
 | 图片透明区域点击穿透处理 | Instance | kj_transparentWithPoint: |
+| 渐变色图片 | Class | kj_gradientImageColor: |
 
 #### UIImage+KJJoint   图片拼接相关处理
 |   功能   |  类型  |  API & Property  | 
@@ -475,6 +537,15 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 | 边缘检测 | Instance | kj_marginImage |
 | 边缘检测 | Instance | kj_edgeDetection |
 
+#### UIImage+KJGIF  动态图播放处理
+|   功能   |  类型  |  API & Property  | 
+| ---- | :----: | ---- |
+| 本地动态图播放 | Instance | kj_gifLocalityImageWithName: |
+| 本地动图 | Instance | kj_gifImageWithData: |
+| 网络动图 | Instance | kj_gifImageWithURL: |
+| 图片播放，动态图 | Instance | kj_playImageWithData: |
+| 子线程处理动态图 | Foundation | kPlayGifImageData |
+
 ### <a id="UIDevice"></a>UIDevice
 #### UIDevice+KJSystem  系统相关的操作
 |   功能   |  类型  |  API & Property  | 
@@ -522,16 +593,17 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 #### UIColor+KJExtension2  颜色相关扩展
 |   功能   |  类型  |  API & Property  | 
 | ---- | :----: | ---- |
-|  | Property | red |
-|  | Property | green |
-|  | Property | blue |
-|  | Property | alpha |
+| 红 | Property | red |
+| 绿 | Property | green |
+| 蓝 | Property | blue |
+| 透明度 | Property | alpha |
 | 色相 | Property | hue |
 | 饱和度 | Property | saturation |
 | 亮度 | Property | light |
 | 获取颜色对应的RGBA | Instance | kj_colorGetRGBA |
 | 获取颜色对应的色相饱和度和透明度 | Instance | kj_colorGetHSL |
 | 获取颜色的均值 | Class | kj_averageColors: |
+| 图片生成颜色 | Class | kj_imageColor |
 
 ### <a id="UIButton"></a>UIButton
 #### UIButton+KJBlock  点击事件ButtonBlock
@@ -749,6 +821,12 @@ pod 'KJExtensionHandler/Language' # 多语言模块
 #### <a id="更新日志"></a>更新日志
 ```
 ####版本更新日志:
+#### Add 1.1.0
+1. 合并分类，解决潜在内存溢出崩溃
+2. 新增 UINavigationBar 导航栏管理
+3. NSObject+KJRuntime 完善补充
+4. NSObject+KJDoraemonBox 新增路由和信号方式解耦
+
 #### Add 1.0.17
 1. 删除 CALayer+KJExtension 分类
 2. 新增快速创建UI控件，_KJQuickCreateHandle

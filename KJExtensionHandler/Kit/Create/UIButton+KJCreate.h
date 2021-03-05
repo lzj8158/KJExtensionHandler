@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIButton (KJCreate)
 /// 快速创建处理
 + (instancetype)kj_createButton:(void(^)(id<KJQuickCreateHandle>handle))handle;
- 
+
 @end
 
 NS_ASSUME_NONNULL_END

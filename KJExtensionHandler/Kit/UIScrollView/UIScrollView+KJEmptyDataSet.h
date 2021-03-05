@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGFloat verticalOffset;
 /// 空数据图片名
 @property(nonatomic,strong)NSString *loadedImageName;
-/// 空数据详情信息，默认 "没有数据,您可以尝试重新获取"
+/// 空数据详情信息，默认 "没有数据，您可以尝试重新获取"
 @property(nonatomic,strong)NSAttributedString *descriptionText;
 /// 刷新按钮文字，默认 "再次刷新"
 @property(nonatomic,copy,readwrite)NSAttributedString *_Nullable(^kLoadedButton)(UIControlState state);

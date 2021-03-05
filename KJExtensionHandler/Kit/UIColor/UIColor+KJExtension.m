@@ -9,6 +9,134 @@
 #import "UIColor+KJExtension.h"
 
 @implementation UIColor (KJExtension)
+- (CGFloat)red{
+    CGFloat r = 0, g, b, a;
+    [self getRed:&r green:&g blue:&b alpha:&a];
+    return r;
+}
+- (CGFloat)green{
+    CGFloat r, g = 0, b, a;
+    [self getRed:&r green:&g blue:&b alpha:&a];
+    return g;
+}
+- (CGFloat)blue{
+    CGFloat r, g, b = 0, a;
+    [self getRed:&r green:&g blue:&b alpha:&a];
+    return b;
+}
+- (CGFloat)alpha{
+    return CGColorGetAlpha(self.CGColor);
+}
+- (CGFloat)hue{
+    KJColorHSL hsl = [self kj_colorGetHSL];
+    return hsl.hue;
+}
+- (CGFloat)saturation{
+    KJColorHSL hsl = [self kj_colorGetHSL];
+    return hsl.saturation;
+}
+- (CGFloat)light{
+    KJColorHSL hsl = [self kj_colorGetHSL];
+    return hsl.light;
+}
+/// 获取颜色对应的RGBA
+- (KJColorRGBA)kj_colorGetRGBA{
+    KJColorRGBA rgba;
+    NSString *colorString = [NSString stringWithFormat:@"%@",self];
+    NSArray *temps = [colorString componentsSeparatedByString:@" "];
+    rgba.red   = [temps[1] floatValue];
+    rgba.green = [temps[2] floatValue];
+    rgba.blue  = [temps[3] floatValue];
+    rgba.alpha = [temps[4] floatValue];
+    return rgba;
+}
+/// 获取颜色对应的色相饱和度和透明度
+- (KJColorHSL)kj_colorGetHSL{
+    CGFloat red,green,blue,alpha = 0.0f;
+    BOOL success = [self getRed:&red green:&green blue:&blue alpha:&alpha];
+    if (success == NO) return (KJColorHSL){0,0,0};
+    CGFloat hue = 0;
+    CGFloat saturation = 0;
+    CGFloat light = 0;
+    CGFloat min = MIN(red,MIN(green,blue));
+    CGFloat max = MAX(red,MAX(green,blue));
+    if (min==max) {
+        hue = 0;
+        saturation = 0;
+        light = min;
+    }else {
+        CGFloat d = (red==min) ? green-blue : ((blue==min) ? red-green : blue-red);
+        CGFloat h = (red==min) ? 3 : ((blue==min) ? 1 : 5);
+        hue = (h - d / (max - min)) / 6.0;
+        saturation = (max - min) / max;
+        light = max;
+    }
+//    NSArray *array = @[[NSNumber numberWithInt:red],[NSNumber numberWithInt:green],[NSNumber numberWithInt:blue]];
+//    max = [[array valueForKeyPath:@"@max.intValue"] intValue];
+//    min = [[array valueForKeyPath:@"@min.intValue"] intValue];
+//    if (red == max){
+//        hue = (green - blue)/(max = min);
+//    }else if(green == max){
+//        hue = (blue - red)/(max = min);
+//    }else if(blue == max){
+//        hue = (red - green)/(max = min);
+//    }
+    hue = (2 * hue - 1) * M_PI;
+    return (KJColorHSL){hue,saturation,light};
+}
+/// 获取颜色的均值
++ (UIColor*)kj_averageColors:(NSArray<UIColor*>*)colors{
+    if (!colors || colors.count == 0)  return nil;
+    CGFloat reds = 0.0f;
+    CGFloat greens = 0.0f;
+    CGFloat blues = 0.0f;
+    CGFloat alphas = 0.0f;
+    NSInteger count = 0;
+    for (UIColor *c in colors) {
+        CGFloat red = 0.0f;
+        CGFloat green = 0.0f;
+        CGFloat blue = 0.0f;
+        CGFloat alpha = 0.0f;
+        BOOL success = [c getRed:&red green:&green blue:&blue alpha:&alpha];
+        if (success) {
+            reds += red;
+            greens += green;
+            blues += blue;
+            alphas += alpha;
+            count++;
+        }
+    }
+    return [UIColor colorWithRed:reds/count green:greens/count blue:blues/count alpha:alphas/count];
+}
+/// 图片生成颜色
++ (UIColor*(^)(UIImage*))kj_imageColor{
+    return ^(UIImage *image){
+        return [UIColor colorWithPatternImage:image];
+    };
+}
+
+/// 可变参数方式渐变色
+- (UIColor*(^)(CGSize))kj_gradientColor:(UIColor*)color,...{
+    NSMutableArray * colors = [NSMutableArray arrayWithObjects:(id)self.CGColor,(id)color.CGColor,nil];
+    va_list args;UIColor * arg;
+    va_start(args, color);
+    while ((arg = va_arg(args, UIColor *))) {
+        [colors addObject:(id)arg.CGColor];
+    }
+    va_end(args);
+    return ^UIColor*(CGSize size){
+        UIGraphicsBeginImageContextWithOptions(size, NO, [UIScreen mainScreen].scale);
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
+        CGGradientRef gradient = CGGradientCreateWithColors(colorspace, (__bridge CFArrayRef)colors, NULL);
+        CGContextDrawLinearGradient(context, gradient, CGPointZero, CGPointMake(size.width, size.height), 0);
+        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+        CGGradientRelease(gradient);
+        CGColorSpaceRelease(colorspace);
+        UIGraphicsEndImageContext();
+        return [UIColor colorWithPatternImage:image];
+    };
+}
 /// 渐变颜色
 + (UIColor*)zj_gradientColorWithColors:(NSArray*)colors GradientType:(KJGradietColorType)type Size:(CGSize)size{
     NSMutableArray *temps = [NSMutableArray array];
@@ -46,7 +174,6 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     CGGradientRelease(gradient);
     CGContextRestoreGState(context);
-    CGColorSpaceRelease(colorSpace);
     UIGraphicsEndImageContext();
     return [UIColor colorWithPatternImage:image];
 }

@@ -10,6 +10,16 @@
 #import <objc/runtime.h>
 
 @implementation UIView (KJGestureBlock)
+static NSString * const _Nonnull KJGestureTypeStringMap[] = {
+    [KJGestureTypeTap]       = @"UITapGestureRecognizer",
+    [KJGestureTypeDouble]    = @"UITapGestureRecognizer",
+    [KJGestureTypeLongPress] = @"UILongPressGestureRecognizer",
+    [KJGestureTypeSwipe]     = @"UISwipeGestureRecognizer",
+    [KJGestureTypePan]       = @"UIPanGestureRecognizer",
+    [KJGestureTypeRotate]    = @"UIRotationGestureRecognizer",
+    [KJGestureTypePinch]     = @"UIPinchGestureRecognizer",
+};
+
 /// 单击手势
 - (UIGestureRecognizer*)kj_AddTapGestureRecognizerBlock:(KJGestureRecognizerBlock)block{
     return [self kj_AddGestureRecognizer:KJGestureTypeTap block:block];

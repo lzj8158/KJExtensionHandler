@@ -6,7 +6,6 @@
 //
 
 #import "KJImageBlurVC.h"
-#import "UIImageView+KJBlur.h"
 @interface KJImageBlurVC ()
 
 @end

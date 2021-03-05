@@ -10,27 +10,56 @@
 #import <objc/runtime.h>
 
 @implementation UICollectionView (Touch)
-- (bool)kOpenExchange{
-    return [objc_getAssociatedObject(self,@selector(kOpenExchange)) boolValue];
+- (bool)openExchange{
+    return [objc_getAssociatedObject(self,@selector(openExchange)) boolValue];
 }
-- (void)setKOpenExchange:(bool)kOpenExchange{
-    objc_setAssociatedObject(self,@selector(kOpenExchange),[NSNumber numberWithBool:kOpenExchange],OBJC_ASSOCIATION_ASSIGN);
-}
-- (KJMoveBlock)moveblock{
-    return (KJMoveBlock)objc_getAssociatedObject(self, @selector(moveblock));
-}
-- (void)setMoveblock:(KJMoveBlock)moveblock{
-    objc_setAssociatedObject(self, @selector(moveblock), moveblock, OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
-+ (void)load{
+- (void)setOpenExchange:(bool)openExchange{
+    objc_setAssociatedObject(self,@selector(openExchange),[NSNumber numberWithBool:openExchange],OBJC_ASSOCIATION_ASSIGN);
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [self kj_collectionViewSwizzleMethod:@selector(touchesBegan:withEvent:) Method:@selector(kj_touchesBegan:withEvent:)];
-        [self kj_collectionViewSwizzleMethod:@selector(touchesMoved:withEvent:) Method:@selector(kj_touchesMoved:withEvent:)];
-        [self kj_collectionViewSwizzleMethod:@selector(touchesEnded:withEvent:) Method:@selector(kj_touchesEnded:withEvent:)];
-        [self kj_collectionViewSwizzleMethod:@selector(touchesCancelled:withEvent:) Method:@selector(kj_touchesCancelled:withEvent:)];
+        [UICollectionView kj_collectionViewSwizzleMethod:@selector(touchesBegan:withEvent:) Method:@selector(kj_touchesBegan:withEvent:)];
+        [UICollectionView kj_collectionViewSwizzleMethod:@selector(touchesMoved:withEvent:) Method:@selector(kj_touchesMoved:withEvent:)];
+        [UICollectionView kj_collectionViewSwizzleMethod:@selector(touchesEnded:withEvent:) Method:@selector(kj_touchesEnded:withEvent:)];
+        [UICollectionView kj_collectionViewSwizzleMethod:@selector(touchesCancelled:withEvent:) Method:@selector(kj_touchesCancelled:withEvent:)];
     });
 }
+- (void(^)(KJMoveStateType state,CGPoint point))moveblock{
+    return objc_getAssociatedObject(self, _cmd);
+}
+- (void)setMoveblock:(void(^)(KJMoveStateType state,CGPoint point))moveblock{
+    objc_setAssociatedObject(self, @selector(moveblock), moveblock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+- (void)kj_touchesBegan:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event{
+    if (self.openExchange && self.moveblock) {
+        CGPoint point = [[touches anyObject] locationInView:self];
+        self.moveblock(KJMoveStateTypeBegin,point);
+    }
+    [self kj_touchesBegan:touches withEvent:event];
+}
+- (void)kj_touchesMoved:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event{
+    if (self.openExchange && self.moveblock) {
+        CGPoint point = [[touches anyObject] locationInView:self];
+        self.moveblock(KJMoveStateTypeMove,point);
+    }
+    [self kj_touchesMoved:touches withEvent:event];
+}
+- (void)kj_touchesEnded:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event{
+    if (self.openExchange && self.moveblock) {
+        CGPoint point = [[touches anyObject] locationInView:self];
+        self.moveblock(KJMoveStateTypeEnd,point);
+    }
+    [self kj_touchesEnded:touches withEvent:event];
+}
+- (void)kj_touchesCancelled:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event{
+    if (self.openExchange && self.moveblock) {
+        CGPoint point = [[touches anyObject] locationInView:self];
+        self.moveblock(KJMoveStateTypeCancelled,point);
+    }
+    [self kj_touchesEnded:touches withEvent:event];
+}
+
+
+#pragma mark - swizzling
 + (BOOL)kj_collectionViewSwizzleMethod:(SEL)origSel Method:(SEL)altSel{
     Method origMethod = class_getInstanceMethod(self, origSel);
     Method altMethod  = class_getInstanceMethod(self, altSel);
@@ -40,32 +69,5 @@
     method_exchangeImplementations(class_getInstanceMethod(self, origSel), class_getInstanceMethod(self, altSel));
     return YES;
 }
-- (void)kj_touchesBegan:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event{
-    if (self.kOpenExchange && self.moveblock) {
-        CGPoint point = [[touches anyObject] locationInView:self];
-        self.moveblock(KJMoveStateTypeBegin,point);
-    }
-    [self kj_touchesBegan:touches withEvent:event];
-}
-- (void)kj_touchesMoved:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event{
-    if (self.kOpenExchange && self.moveblock) {
-        CGPoint point = [[touches anyObject] locationInView:self];
-        self.moveblock(KJMoveStateTypeMove,point);
-    }
-    [self kj_touchesMoved:touches withEvent:event];
-}
-- (void)kj_touchesEnded:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event{
-    if (self.kOpenExchange && self.moveblock) {
-        CGPoint point = [[touches anyObject] locationInView:self];
-        self.moveblock(KJMoveStateTypeEnd,point);
-    }
-    [self kj_touchesEnded:touches withEvent:event];
-}
-- (void)kj_touchesCancelled:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event{
-    if (self.kOpenExchange && self.moveblock) {
-        CGPoint point = [[touches anyObject] locationInView:self];
-        self.moveblock(KJMoveStateTypeCancelled,point);
-    }
-    [self kj_touchesEnded:touches withEvent:event];
-}
+
 @end

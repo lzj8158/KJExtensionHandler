@@ -64,6 +64,12 @@ static char placeholderColorKey,placeHolderFontSizeKey;
     self.secureTextEntry = mingwen;
     self.text = temp;
 }
+@dynamic displayInputAccessoryView;
+- (void)setDisplayInputAccessoryView:(BOOL)displayInputAccessoryView{
+    if (!displayInputAccessoryView) {
+        self.inputAccessoryView = [UIView new];
+    }
+}
 - (void (^)(NSString * _Nonnull))kTextEditingChangedBolck{
     return objc_getAssociatedObject(self, _cmd);
 }
@@ -190,7 +196,7 @@ static char tapActionKey;
 @end
 @implementation KJTextFieldLeftInfo
 - (instancetype)init{
-    if (self==[super init]) {
+    if (self=[super init]) {
         self.padding = 5;
     }
     return self;

@@ -48,10 +48,10 @@
     [self.view addSubview:slider3];
     
     /// kvo
-    [slider kj_observeKey:@"progress" ObserveResultBlock:^(id  _Nonnull newValue, id  _Nonnull oldValue) {
+    [slider kj_observeKey:@"progress" ResultBlock:^(id  _Nonnull newValue, id  _Nonnull oldValue) {
         NSLog(@"%@",newValue);
     }];
-    [slider2 kj_observeKey:@"progress" ObserveResultBlock:^(id  _Nonnull newValue, id  _Nonnull oldValue) {
+    [slider2 kj_observeKey:@"progress" ResultBlock:^(id  _Nonnull newValue, id  _Nonnull oldValue) {
         NSLog(@"---%@",newValue);
     }];
 }

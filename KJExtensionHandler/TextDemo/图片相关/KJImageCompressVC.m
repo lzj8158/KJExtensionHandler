@@ -6,7 +6,6 @@
 //
 
 #import "KJImageCompressVC.h"
-#import "UIImage+KJCompress.h"
 @interface KJImageCompressVC ()
 
 @end

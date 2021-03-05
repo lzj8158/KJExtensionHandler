@@ -7,7 +7,7 @@
 //  系统相关的操作
 
 #import <UIKit/UIKit.h>
-#import "_KJMacros.h"
+
 NS_ASSUME_NONNULL_BEGIN
 @interface UIDevice (KJSystem)
 /// App版本号
@@ -49,13 +49,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)kj_skipToMail;
 /// 是否切换为扬声器
 + (void)kj_changeLoudspeaker:(bool)loudspeaker;
-
-/// 保存到相册
-+ (void)kj_savedPhotosAlbumWithImage:(UIImage*)image Complete:(void(^)(BOOL success))complete;
-/// 系统自带分享
-+ (UIActivityViewController*)kj_shareActivityWithItems:(NSArray*)items ViewController:(UIViewController*)vc Complete:(void(^)(BOOL success))complete;
-/// 切换根视图控制器
-+ (void)kj_changeRootViewController:(UIViewController*)vc Complete:(void(^)(BOOL success))complete;
 
 @end
 

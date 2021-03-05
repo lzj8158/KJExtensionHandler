@@ -16,12 +16,12 @@ typedef NS_ENUM(NSInteger, KJMoveStateType) {
     KJMoveStateTypeEnd,
     KJMoveStateTypeCancelled,
 };
-typedef void(^KJMoveBlock)(KJMoveStateType state,CGPoint point);
 @interface UICollectionView (KJTouch)
 /// 开启方法交换
-@property(nonatomic,assign)bool kOpenExchange;
+@property(nonatomic,assign) BOOL openExchange;
 /// Touch里面移动回调，需要开启方法交换才处理
-@property(nonatomic,readwrite,copy)KJMoveBlock moveblock;
+@property(nonatomic,readwrite,copy) void(^moveblock)(KJMoveStateType state,CGPoint point);
+
 @end
 
 NS_ASSUME_NONNULL_END

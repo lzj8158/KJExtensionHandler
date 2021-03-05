@@ -208,5 +208,65 @@
     }
     return nil;
 }
+/// xib创建的view
++ (instancetype)kj_viewFromXib{
+    return [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass(self) owner:nil options:nil] lastObject];
+}
++ (instancetype)kj_viewFromXibWithFrame:(CGRect)frame {
+    UIView *view = [self kj_viewFromXib];
+    view.frame = frame;
+    return view;
+}
+/// 判断一个控件是否真正显示在主窗口
+- (BOOL)kj_isShowingOnKeyWindow{
+    UIWindow *keyWindow = ({
+        UIWindow *window;
+        if (@available(iOS 13.0, *)) {
+            window = [UIApplication sharedApplication].windows.firstObject;
+        }else{
+            window = [UIApplication sharedApplication].keyWindow;
+        }
+        window;
+    });
+    CGRect newFrame = [keyWindow convertRect:self.frame fromView:self.superview];
+    CGRect winBounds = keyWindow.bounds;
+    BOOL intersects = CGRectIntersectsRect(newFrame, winBounds);
+    return !self.isHidden && self.alpha > 0.01 && self.window == keyWindow && intersects;
+}
+- (BOOL)showKeyWindow{
+    return [self kj_isShowingOnKeyWindow];
+}
+/// 判断是否有子视图在滚动
+- (BOOL)kj_anySubViewScrolling{
+    if ([self isKindOfClass:[UIScrollView class]]) {
+        UIScrollView *scrollView = (UIScrollView*)self;
+        if (scrollView.dragging || scrollView.decelerating) {
+            return YES;
+        }
+    }
+    for (UIView *subview in self.subviews) {
+        if ([subview kj_anySubViewScrolling]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+- (BOOL)anySubViewScrolling{
+    return [self kj_anySubViewScrolling];
+}
+/// 当前的控制器
+- (UIViewController*)kj_currentViewController{
+    UIResponder *responder = self.nextResponder;
+    do {
+        if ([responder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)responder;
+        }
+        responder = responder.nextResponder;
+    }while (responder);
+    return nil;
+}
+- (UIViewController*)viewController{
+    return [self kj_currentViewController];
+}
 
 @end

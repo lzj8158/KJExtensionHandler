@@ -107,6 +107,13 @@ NS_INLINE void kGCD_apply(int iterations, void(^block)(size_t idx)) {
     dispatch_queue_t queue = kGCD_queue();
     dispatch_apply(iterations, queue, block);
 }
+/// 快速遍历数组
+NS_INLINE void kGCD_apply_array(NSArray * temp, void(^block)(id obj, size_t index)) {
+    void (^xxblock)(size_t) = ^(size_t index){
+        block(temp[index],index);
+    };
+    dispatch_apply(temp.count, kGCD_queue(), xxblock);
+}
 /// 计时器
 static dispatch_source_t gcd_timer = nil;
 NS_INLINE dispatch_source_t kGCD_timer(int64_t delayInSeconds, dispatch_block_t block) {

@@ -16,6 +16,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.navigationController.navigationBar kj_hiddenNavigationBarBottomLine];
+    
     CGFloat w = kScreenW/4,sp = 30;
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(20, kSTATUSBAR_NAVIGATION_HEIGHT+sp, w, w)];
     [self.view addSubview:view];

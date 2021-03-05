@@ -32,7 +32,7 @@
         }).kAddBarButtonItemInfo(^(KJNavigationItemInfo * _Nonnull info) {
             info.imageName = @"wode_nor";
             info.isLeft = NO;
-            info.tintColor = UIColor.redColor;
+            info.tintColor = UIColor.cyanColor;
         }, ^(UIButton * _Nonnull kButton) {
             [weakself.navigationController popViewControllerAnimated:YES];
         });
@@ -44,7 +44,7 @@
             };
         }, ^(UIButton * _Nonnull kButton) {
             UIImage *image = [UIImage kj_captureScreen:weakself.view Rect:CGRectMake(0, kSTATUSBAR_NAVIGATION_HEIGHT, kScreenW, kScreenH-kSTATUSBAR_NAVIGATION_HEIGHT) Quality:3];
-            [UIDevice kj_shareActivityWithItems:@[UIImagePNGRepresentation(image)] ViewController:weakself Complete:^(BOOL success) {
+            [weakself kj_shareActivityWithItems:@[UIImagePNGRepresentation(image)] complete:^(BOOL success) {
                 [weakself.navigationController.view makeToast:success?@"分享成功":@"分享失败"];
             }];
         });

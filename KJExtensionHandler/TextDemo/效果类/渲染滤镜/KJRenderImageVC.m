@@ -73,14 +73,11 @@
         renderImageView;
     });
     
-    KJRenderImageView *view3 = ({
-        KJRenderImageView *renderImageView = [[KJRenderImageView alloc] kj_initWithOriImage:image ExtendParameterBlock:^(KJRenderImageView * _Nonnull obj) {
-            obj.kAddView(weakself.view).kFrame(CGRectMake(sp+view2.maxX, view.bottom+sp, w, h));
-        }];
-        renderImageView.backgroundColor = [UIColor.orangeColor colorWithAlphaComponent:0.1];
-        [renderImageView kj_changeRenderInfo:renderTemps[3]];
-        renderImageView;
-    });
+    KJRenderImageView *renderImageView = [[KJRenderImageView alloc] kj_initWithOriImage:image ExtendParameterBlock:^(KJRenderImageView * _Nonnull obj) {
+        obj.kAddView(weakself.view).kFrame(CGRectMake(sp+view2.maxX, view.bottom+sp, w, h));
+    }];
+    renderImageView.backgroundColor = [UIColor.orangeColor colorWithAlphaComponent:0.1];
+    [renderImageView kj_changeRenderInfo:renderTemps[3]];
 }
 
 /*

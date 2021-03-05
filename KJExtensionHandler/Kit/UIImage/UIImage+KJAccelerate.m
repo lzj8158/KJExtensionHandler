@@ -34,6 +34,32 @@
     CGContextRelease(bmContext);
     return newImg;
 }
+/// 图片压缩
+- (UIImage*)kj_AccelerateChangeImageSize:(CGSize)size{
+    const size_t width = size.width, height = size.height;
+    const size_t bytesPerRow = width * 4;
+    CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
+#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_6_1
+    int bitmapInfo = kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedLast;
+#else
+    int bitmapInfo = kCGImageAlphaPremultipliedLast;
+#endif
+    CGContextRef bmContext = CGBitmapContextCreate(NULL, width, height, 8, bytesPerRow, space, bitmapInfo);
+    CGColorSpaceRelease(space);
+    if (!bmContext) return nil;
+    CGContextDrawImage(bmContext, CGRectMake(0, 0, width, height), self.CGImage);
+    UInt8 * data = (UInt8*)CGBitmapContextGetData(bmContext);
+    if (!data){
+        CGContextRelease(bmContext);
+        return nil;
+    }
+    CGImageRef imageRef = CGBitmapContextCreateImage(bmContext);
+    UIImage *newImage = [UIImage imageWithCGImage:imageRef];
+    CGImageRelease(imageRef);
+    CGContextRelease(bmContext);
+    return newImage;
+}
+
 
 #pragma mark - 模糊处理
 - (UIImage*)kj_blurImageSoft{
@@ -63,7 +89,7 @@
             effectColor = [UIColor colorWithRed:r green:g blue:b alpha:alpha];
         }
     }
-    return [self kj_blurImageWithRadius:20 Color:color MaskImage:nil];
+    return [self kj_blurImageWithRadius:20 Color:effectColor MaskImage:nil];
 }
 /// 模糊处理保留透明区域，范围0 ~ 1
 - (UIImage*)kj_linearBlurryImageBlur:(CGFloat)blur{

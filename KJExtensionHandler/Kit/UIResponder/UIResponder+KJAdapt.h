@@ -47,6 +47,13 @@ UIEdgeInsets KJAdaptEdgeInsetsMake(CGFloat top, CGFloat left, CGFloat bottom, CG
  即可完成简单的屏幕比例适配
 */
 
+#pragma mark - 响应链板块
+/// 获取第一响应者
+- (UIResponder*)kj_responderWithClass:(Class)clazz;
+///
+- (BOOL)kj_responderSendAction:(SEL)action Sender:(id)sender;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

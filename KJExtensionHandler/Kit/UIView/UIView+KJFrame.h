@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGFloat masonry_width;
 @property(nonatomic,assign)CGFloat masonry_height;
 
-@property(nonatomic,assign)CGSize size;// 大小
+@property(nonatomic,assign)CGSize  size;// 大小
 @property(nonatomic,assign)CGPoint origin;// 位置
 @property(nonatomic,assign)CGFloat x;// x坐标
 @property(nonatomic,assign)CGFloat y;// y坐标
@@ -50,6 +50,22 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)kj_hideSubviews:(BOOL)hide operation:(BOOL(^)(UIView *subview))operation;
 /// 子控件处理手势事件
 - (UIView*)kj_childHitTest:(CGPoint)point withEvent:(UIEvent*)event;
+
+/// Xib创建的View
++ (instancetype)kj_viewFromXib;
+/// Xib创建的View
++ (instancetype)kj_viewFromXibWithFrame:(CGRect)frame;
+
+/// 当前的控制器
+- (UIViewController*)kj_currentViewController;
+@property(nonatomic,strong,readonly)UIViewController *viewController;
+
+/// 判断一个控件是否真正显示在主窗口
+- (BOOL)kj_isShowingOnKeyWindow;
+@property(nonatomic,assign,readonly) BOOL showKeyWindow;
+/// 判断是否有子视图在滚动
+- (BOOL)kj_anySubViewScrolling;
+@property(nonatomic,assign,readonly) BOOL anySubViewScrolling;
 
 @end
 

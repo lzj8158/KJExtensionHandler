@@ -7,7 +7,8 @@
 //
 
 #import "KJRenderImageView.h"
-
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored"-Wdeprecated-declarations"
 @interface KJRenderImageView ()
 @property(nonatomic,strong)UIImage *originImage;
 @property(nonatomic,strong)EAGLContext *eagContext;
@@ -141,3 +142,4 @@
     return self;
 }
 @end
+#pragma clang diagnostic pop

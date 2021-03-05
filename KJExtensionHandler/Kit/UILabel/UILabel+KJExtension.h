@@ -34,6 +34,16 @@ typedef NS_ENUM(NSUInteger, KJLabelTextAlignmentType) {
 /// 获取文字尺寸
 + (CGSize)kj_calculateLabelSizeWithTitle:(NSString*)title font:(UIFont*)font constrainedToSize:(CGSize)size lineBreakMode:(NSLineBreakMode)lineBreakMode;
 
+#pragma mark - 长按复制功能
+/// 是否可以拷贝
+@property(nonatomic,assign)BOOL copyable;
+/// 移除拷贝长按手势
+- (void)kj_removeCopyLongPressGestureRecognizer;
+
+#pragma mark - 下拉菜单
+/// 下拉菜单扩展
+- (UITableView*)kj_dropdownMenuTexts:(NSArray<NSString*>*)texts MaxHeight:(CGFloat)height selectText:(void(^)(NSString *string))block;
+
 @end
 
 NS_ASSUME_NONNULL_END

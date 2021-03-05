@@ -48,4 +48,24 @@ UIEdgeInsets KJAdaptEdgeInsetsMake(CGFloat top, CGFloat left, CGFloat bottom, CG
     return UIEdgeInsetsMake(KJAdaptScaleVertical(top), KJAdaptScaleLevel(left), KJAdaptScaleVertical(bottom), KJAdaptScaleLevel(right));
 }
 
+#pragma mark - 响应链板块
+- (UIResponder*)kj_responderWithClass:(Class)clazz{
+    UIResponder *responder = self;
+    while ((responder = [responder nextResponder])) {
+        if ([responder isKindOfClass:clazz]) {
+            return responder;
+        }
+    }
+    return nil;
+}
+
+- (BOOL)kj_responderSendAction:(SEL)action Sender:(id)sender{
+    id target = sender;
+    while (target && ![target canPerformAction:action withSender:sender]) {
+        target = [target nextResponder];
+    }
+    if (target == nil) return NO;
+    return [[UIApplication sharedApplication] sendAction:action to:target from:sender forEvent:nil];
+}
+
 @end

@@ -6,7 +6,6 @@
 //
 
 #import "KJImageViewVC.h"
-#import "UIImageView+KJLetters.h"
 @interface KJImageViewVC ()
 
 @end

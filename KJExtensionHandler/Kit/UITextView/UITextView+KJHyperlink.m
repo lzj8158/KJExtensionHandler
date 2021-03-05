@@ -9,6 +9,9 @@
 #import "UITextView+KJHyperlink.h"
 #import <objc/runtime.h>
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored"-Wdeprecated-declarations"
+
 @interface UITextView ()<UITextViewDelegate>
 @property(nonatomic,copy,readwrite) KJTextViewURLHyperlinkBlock xxblock;
 @property(nonatomic,copy) NSArray *URLTemps;
@@ -84,3 +87,5 @@ static inline NSArray * getURLWithText(NSString *string) {
 }
 
 @end
+
+#pragma clang diagnostic pop

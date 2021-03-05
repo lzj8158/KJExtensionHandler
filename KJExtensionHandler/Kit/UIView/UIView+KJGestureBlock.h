@@ -20,28 +20,16 @@ typedef NS_ENUM(NSUInteger, KJGestureType) {
     KJGestureTypeRotate,    // 旋转
     KJGestureTypePinch,     // 缩放
 };
-static NSString * const _Nonnull KJGestureTypeStringMap[] = {
-    [KJGestureTypeTap]       = @"UITapGestureRecognizer",
-    [KJGestureTypeDouble]    = @"UITapGestureRecognizer",
-    [KJGestureTypeLongPress] = @"UILongPressGestureRecognizer",
-    [KJGestureTypeSwipe]     = @"UISwipeGestureRecognizer",
-    [KJGestureTypePan]       = @"UIPanGestureRecognizer",
-    [KJGestureTypeRotate]    = @"UIRotationGestureRecognizer",
-    [KJGestureTypePinch]     = @"UIPinchGestureRecognizer",
-};
-
 @interface UIView (KJGestureBlock)
 /// 单击手势
 - (UIGestureRecognizer*)kj_AddTapGestureRecognizerBlock:(KJGestureRecognizerBlock)block;
 /// 手势处理
 - (UIGestureRecognizer*)kj_AddGestureRecognizer:(KJGestureType)type block:(KJGestureRecognizerBlock)block;
 
-/* 示例
- [self.view kj_AddGestureRecognizer:KJGestureTypeDouble block:^(UIView *view, UIGestureRecognizer *gesture) {
-     [view removeGestureRecognizer:gesture];
- }];
- */
-
 @end
 
 NS_ASSUME_NONNULL_END
+/* 使用示例 */
+// [self.view kj_AddGestureRecognizer:KJGestureTypeDouble block:^(UIView *view, UIGestureRecognizer *gesture) {
+//     [view removeGestureRecognizer:gesture];
+// }];

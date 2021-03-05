@@ -72,7 +72,7 @@
         _collectView.bounces = YES;
         _collectView.backgroundColor = [UIColor.greenColor colorWithAlphaComponent:0.3];
         [_collectView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"item"];
-        _collectView.kOpenExchange = true;
+        _collectView.openExchange = true;
         _weakself;
         __block bool move = false;
         __block CGPoint beginPoint = CGPointZero;

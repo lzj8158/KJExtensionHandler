@@ -7,7 +7,7 @@
 //  字符串扩展属性
 
 #import <Foundation/Foundation.h>
-
+#import <UIKit/UIKit.h>
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSString (KJExtension)
@@ -30,6 +30,37 @@ NS_ASSUME_NONNULL_BEGIN
 - (CGFloat)kj_maxHeightWithFont:(UIFont*)font Width:(CGFloat)width Alignment:(NSTextAlignment)alignment LinebreakMode:(NSLineBreakMode)linebreakMode LineSpace:(CGFloat)lineSpace;
 /// 文字转图片
 - (UIImage*)kj_textBecomeImageWithSize:(CGSize)size BackgroundColor:(UIColor*)color TextAttributes:(NSDictionary*)attributes;
+
+/// 复制数据至剪切板
+- (void)kj_pasteboard;
+
+#pragma mark - 汉字相关处理
+/// 汉字转拼音
+@property(nonatomic,strong,readonly)NSString *pinYin;
+/// 随机汉字
++ (NSString*)kj_randomCreateChinese:(NSInteger)count;
+/// 查找数据，返回-1表示未查询到
+- (int)kj_searchArray:(NSArray<NSString*>*)temps;
+/// 字母排序
+- (NSArray*)kj_letterSortArray:(NSArray<NSString*>*)array;
+
+#pragma mark - 谓词相关
+/// 过滤空格
+- (NSString*)kj_filterSpace;
+/// 验证数字
+- (BOOL)kj_validateNumber;
+/// 验证字符串中是否有特殊字符
+- (BOOL)kj_validateHaveSpecialCharacter;
+/// 过滤特殊字符
+- (NSString*)kj_removeSpecialCharacter:(NSString*_Nullable)character;
+/// 验证手机号码
+- (BOOL)kj_validateMobileNumber;
+/// 验证邮箱格式
+- (BOOL)kj_validateEmail;
+/// 验证身份证
+- (BOOL)kj_validateIDCardNumber;
+/// 验证银行卡
+- (BOOL)kj_validateBankCardNumber;
 
 @end
 

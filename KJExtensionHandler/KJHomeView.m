@@ -10,7 +10,7 @@
 @implementation KJHomeView
 
 - (instancetype)initWithFrame:(CGRect)frame{
-    if (self == [super initWithFrame:frame]) {
+    if (self = [super initWithFrame:frame]) {
         UITableView *tableView = [[UITableView alloc]initWithFrame:self.bounds];
         tableView.delegate = self;
         tableView.dataSource = self;

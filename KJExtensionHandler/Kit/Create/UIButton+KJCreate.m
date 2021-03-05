@@ -19,24 +19,7 @@
     return button;
 }
 #pragma mark - KJQuickCreateHandle
-- (id<KJQuickCreateHandle>(^)(UIView *))kj_add{
-    return ^(UIView * superview) {
-        [superview addSubview:self];
-        return self;
-    };
-}
-- (id<KJQuickCreateHandle> (^)(CGFloat, CGFloat, CGFloat, CGFloat))kj_frame{
-    return ^(CGFloat x, CGFloat y, CGFloat w, CGFloat h) {
-        self.frame = CGRectMake(x, y, w, h);
-        return self;
-    };
-}
-- (id<KJQuickCreateHandle>(^)(UIColor *))kj_background{
-    return ^(UIColor * color) {
-        self.backgroundColor = color;
-        return self;
-    };
-}
+Quick_Create_Common
 - (id<KJQuickCreateHandle>(^)(UIImage *))kj_image{
     return ^(UIImage * image) {
         [self setImage:image forState:UIControlStateNormal];
@@ -45,7 +28,8 @@
 }
 - (id<KJQuickCreateHandle>(^)(NSString *))kj_imageName{
     return ^(NSString * name) {
-        [self setImage:[UIImage imageNamed:name] forState:UIControlStateNormal];
+        UIImage *image = [UIImage imageNamed:name];
+        if (image) [self setImage:image forState:UIControlStateNormal];
         return self;
     };
 }

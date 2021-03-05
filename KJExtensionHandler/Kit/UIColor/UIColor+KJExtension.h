@@ -16,7 +16,27 @@ typedef NS_ENUM(NSUInteger,KJGradietColorType) {
     KJGradietColorTypeUpLeftToLowRight = 2, /// 从左上到右下
     KJGradietColorTypeUpRightToLowLeft = 3, /// 从右上到左下
 };
+typedef struct KJColorRGBA {float red; float green; float blue; float alpha;}KJColorRGBA;
+/// 色相饱和度和亮度
+typedef struct KJColorHSL {float hue; float saturation; float light;}KJColorHSL;
 @interface UIColor (KJExtension)
+@property(nonatomic,assign,readonly)CGFloat red;
+@property(nonatomic,assign,readonly)CGFloat green;
+@property(nonatomic,assign,readonly)CGFloat blue;
+@property(nonatomic,assign,readonly)CGFloat alpha;
+@property(nonatomic,assign,readonly)CGFloat hue;/// 色相 -π ~ π
+@property(nonatomic,assign,readonly)CGFloat saturation;/// 饱和度 0 ~ 1
+@property(nonatomic,assign,readonly)CGFloat light;/// 亮度 0 ~ 1
+/// 获取颜色对应的RGBA
+- (KJColorRGBA)kj_colorGetRGBA;
+/// 获取颜色对应的色相饱和度和透明度
+- (KJColorHSL)kj_colorGetHSL;
+/// 获取颜色的均值
++ (UIColor*)kj_averageColors:(NSArray<UIColor*>*)colors;
+/// 图片生成颜色
++ (UIColor*(^)(UIImage*))kj_imageColor;
+/// 可变参数方式渐变色
+- (UIColor*(^)(CGSize))kj_gradientColor:(UIColor*)color,...;
 /// 渐变颜色
 + (UIColor*)zj_gradientColorWithColors:(NSArray*)colors GradientType:(KJGradietColorType)type Size:(CGSize)size;
 /// 竖直渐变颜色
