@@ -12,6 +12,8 @@ typedef void(^KJObserveResultBlock) (id newValue, id oldValue);
 @interface NSObject (KJDoraemonBox)
 /// 代码执行时间处理，block当中执行代码
 + (CFTimeInterval)kj_executeTime:(void(^)(void))block;
+/// 延迟点击，避免快速点击
+void kAfterDoubleClick(float time);
 
 #pragma mark - kvo键值监听封装，自动释放
 /// 记录已经添加监听的keyPath与对应的block

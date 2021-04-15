@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
 
   s.default_subspec  = 'Kit'
   s.ios.source_files = 'KJExtensionHandler/KJExtensionHeader.h'
-  s.resources = "README.md"
+  # s.resources = "README.md"
 
   s.subspec 'Kit' do |y|
     y.source_files = "KJExtensionHandler/Kit/**/*.{h,m}"

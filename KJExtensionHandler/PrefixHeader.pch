@@ -12,10 +12,7 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 #import "KJExtensionHeader.h"
 #import "BaseViewController.h"
-
-//#ifdef __cplusplus
-//#import <opencv2/opencv.hpp>
-//#import <opencv2/imgcodecs/ios.h>
-//#endif
+#import "KJMathEquation.h"
+#import "KJGeometry.h"
 
 #endif /* PrefixHeader_pch */

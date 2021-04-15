@@ -131,6 +131,7 @@
 		68FFFC78254FEAA300B2E9E3 /* UIBezierPath+KJPoints.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FFFC76254FEAA300B2E9E3 /* UIBezierPath+KJPoints.m */; };
 		74A7CABAC91AE8282046C928 /* Pods_KJExtensionHandler_KJExtensionHandlerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE1742990F6FAC9E33E5691 /* Pods_KJExtensionHandler_KJExtensionHandlerUITests.framework */; };
 		96625707C2E52044EF2C2278 /* Pods_KJExtensionHandlerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB272C86683A156A6DCD51A /* Pods_KJExtensionHandlerTests.framework */; };
+		C96509EC26285BE300401DF6 /* UPDATELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = C96509EB26285BE300401DF6 /* UPDATELOG.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -398,6 +399,7 @@
 		68FFFC76254FEAA300B2E9E3 /* UIBezierPath+KJPoints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+KJPoints.m"; sourceTree = "<group>"; };
 		68FFFC77254FEAA300B2E9E3 /* UIBezierPath+KJPoints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+KJPoints.h"; sourceTree = "<group>"; };
 		A89E9EE6C07FFEAFB356DF51 /* Pods-KJExtensionHandler-KJExtensionHandlerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KJExtensionHandler-KJExtensionHandlerUITests.release.xcconfig"; path = "Target Support Files/Pods-KJExtensionHandler-KJExtensionHandlerUITests/Pods-KJExtensionHandler-KJExtensionHandlerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		C96509EB26285BE300401DF6 /* UPDATELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = UPDATELOG.md; sourceTree = SOURCE_ROOT; };
 		CCB272C86683A156A6DCD51A /* Pods_KJExtensionHandlerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KJExtensionHandlerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -669,6 +671,7 @@
 				68AD71CC251D9706000C89C5 /* main.m */,
 				68AD71F2251D97A6000C89C5 /* PrefixHeader.pch */,
 				68AD724E251D9AD2000C89C5 /* KJExtensionHandler.podspec */,
+				C96509EB26285BE300401DF6 /* UPDATELOG.md */,
 				68AD724F251D9AD2000C89C5 /* README.md */,
 			);
 			path = KJExtensionHandler;
@@ -1176,6 +1179,7 @@
 			files = (
 				68AD736F251D9C75000C89C5 /* KJShineVC.xib in Resources */,
 				68AD71CA251D9706000C89C5 /* LaunchScreen.storyboard in Resources */,
+				C96509EC26285BE300401DF6 /* UPDATELOG.md in Resources */,
 				68AD7355251D9C75000C89C5 /* KJFloodImageVC.xib in Resources */,
 				68F032C92594274C00302E6C /* KJLanguageVC.xib in Resources */,
 				68AD71C7251D9706000C89C5 /* Assets.xcassets in Resources */,

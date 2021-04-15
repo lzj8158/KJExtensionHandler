@@ -12,17 +12,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KJMathEquation : NSObject
-/// 把弧度转换成角度
-+ (CGFloat)kj_degreeFromRadian:(CGFloat)radian;
-/// 把角度转换成弧度
-+ (CGFloat)kj_radianFromDegree:(CGFloat)degree;
-/// 正切函数的弧度值，tan
-+ (CGFloat)kj_radianValueFromTanSideA:(CGFloat)sideA sideB:(CGFloat)sideB;
-/// 获取具有固定宽度的新size
-+ (CGSize)kj_resetFromSize:(CGSize)size FixedWidth:(CGFloat)width;
-/// 获取具有固定高度的新size
-+ (CGSize)kj_resetFromSize:(CGSize)size FixedHeight:(CGFloat)height;
-
 #pragma mark - 一元一次线性方程 (Y = kX + b).
 /// 一元一次线性方程，求k，b
 typedef struct KJLinearEquation{ CGFloat k;CGFloat b; }KJLinearEquation;
@@ -31,6 +20,20 @@ typedef struct KJLinearEquation{ CGFloat k;CGFloat b; }KJLinearEquation;
 + (CGFloat)kj_xValueWithY:(CGFloat)yValue LinearEquation:(KJLinearEquation)kb;
 /// 已知x，k，b 求 y
 + (CGFloat)kj_yValueWithX:(CGFloat)xValue LinearEquation:(KJLinearEquation)kb;
+
+
+/// 把弧度转换成角度
+float kDegreeFromRadian(float radian);
+/// 把角度转换成弧度
+float kRadianFromDegree(float degree);
+/// 正切函数的弧度值，tan
+float kradianValueFromTanSide(float sideA, float sideB);
+/// 获取具有固定宽度的新size
+CGSize kResetFromSizeAndFixedWidth(CGSize size, float width);
+/// 获取具有固定高度的新size
+CGSize kResetFromSizeAndFixedHeight(CGSize size, float height);
+/// 最大公约数
+int kMaxCommonDivisor(int num);
 
 @end
 

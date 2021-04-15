@@ -17,9 +17,6 @@
         tableView.rowHeight = 50;
         tableView.sectionHeaderHeight = 40;
         [self addSubview:tableView];
-        UILabel *label = kCreateLabelDelegate(^(id<KJLabelDelegate>  _Nonnull delegate) {
-            delegate.kj_add(self);
-        });
     }
     return self;
 }
