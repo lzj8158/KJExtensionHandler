@@ -6,8 +6,13 @@
 //  https://github.com/yangKJ/KJExtensionHandler
 //  DZNEmptyDataSet 基础上再次封装没数据时状态
 
+/* ******************************  需要引入DZNEmptyDataSet库，pod 'DZNEmptyDataSet' ******************************/
+
 #import <UIKit/UIKit.h>
-#import "UIScrollView+EmptyDataSet.h"
+
+#if __has_include(<UIScrollView+EmptyDataSet.h>)
+#import <UIScrollView+EmptyDataSet.h>
+
 NS_ASSUME_NONNULL_BEGIN
 @interface UIScrollView (KJEmptyDataSet)<DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 /// 是否正在加载，加载数据前必须设置为YES
@@ -32,3 +37,4 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+#endif

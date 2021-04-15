@@ -29,7 +29,7 @@ static NSString * const _Nonnull KJGestureTypeStringMap[] = {
     self.userInteractionEnabled = YES;
     if (block) {
         NSString *string = KJGestureTypeStringMap[type];
-        __block UIGestureRecognizer *gesture = [[NSClassFromString(string) alloc] initWithTarget:self action:@selector(kGestureAction:)];
+        UIGestureRecognizer *gesture = [[NSClassFromString(string) alloc] initWithTarget:self action:@selector(kGestureAction:)];
         [gesture setDelaysTouchesBegan:YES];
         [self addGestureRecognizer:gesture];
         if (type == KJGestureTypeTap) {

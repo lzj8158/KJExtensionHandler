@@ -11,10 +11,10 @@
 @implementation UIImage (KJFloodFill)
 /* 基于扫描线的泛洪算法，获取填充同颜色区域后的图片
  @param startPoint 相对于图片的起点
- @param newColor    填充的颜色
+ @param newColor   填充的颜色
  @param tolerance  判断相邻颜色相同的容差值
  @param antialias  是否抗锯齿化
- @return          填充后的图片
+ @return           填充后的图片
  */
 - (UIImage*)kj_FloodFillImageFromStartPoint:(CGPoint)startPoint NewColor:(UIColor*)newColor Tolerance:(CGFloat)tolerance UseAntialias:(BOOL)antialias{
     if (!self.CGImage || !newColor) return self;
@@ -61,7 +61,6 @@
     // 开始点入栈
     KJNodeQueue *points = [[KJNodeQueue alloc] initWithCapacity:500 Increments:500 Multiplier:height];
     [points kj_pushNodeWithX:roundf(startPoint.x) PushY:roundf(startPoint.y)];
-    
     
     // 抗锯齿化处理
     void (^kAntialias)(NSUInteger,NSUInteger) = ^(NSUInteger pointX, NSUInteger pointY) {
@@ -126,11 +125,12 @@
         }
     }
     
-    CGImageRef newImage = CGBitmapContextCreateImage(context);
+    imageRef = CGBitmapContextCreateImage(context);
     CGContextRelease(context);
-    UIImage *nImage = [UIImage imageWithCGImage:newImage];
-    CGImageRelease(newImage);
-    return nImage;
+    UIImage *newImage = [UIImage imageWithCGImage:imageRef];
+    CGImageRelease(imageRef);
+    free(imageData);
+    return newImage;
 }
 
 #pragma mark - 内部方法

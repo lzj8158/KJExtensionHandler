@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -216,7 +216,7 @@
                     </userDefinedRuntimeAttributes>
                 </button>
                 <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BHF-Pj-24v">
-                    <rect key="frame" x="167" y="666" width="80" height="40"/>
+                    <rect key="frame" x="167" y="554" width="80" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="522-Tn-yIQ"/>
                         <constraint firstAttribute="width" constant="80" id="tEq-PZ-RDt"/>
@@ -262,6 +262,7 @@
                 <constraint firstItem="SEx-8c-331" firstAttribute="width" secondItem="vSw-S5-LDJ" secondAttribute="width" id="0BF-YB-prN"/>
                 <constraint firstItem="SEx-8c-331" firstAttribute="centerY" secondItem="vSw-S5-LDJ" secondAttribute="centerY" id="0X3-pd-VeK"/>
                 <constraint firstItem="ZUo-cy-fns" firstAttribute="leading" secondItem="cXr-np-3Ry" secondAttribute="trailing" constant="20" id="0j4-3J-n5L"/>
+                <constraint firstItem="BHF-Pj-24v" firstAttribute="top" secondItem="SEx-8c-331" secondAttribute="bottom" constant="20" id="1jX-kC-Me5"/>
                 <constraint firstItem="vSw-S5-LDJ" firstAttribute="centerX" secondItem="XDP-Ui-GsI" secondAttribute="centerX" id="4GR-bu-D8j"/>
                 <constraint firstItem="NWT-cA-KcE" firstAttribute="width" secondItem="XDP-Ui-GsI" secondAttribute="width" id="5gj-sg-cqh"/>
                 <constraint firstItem="Byz-Ve-X5k" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="20" id="Bas-mf-sz1"/>
@@ -280,7 +281,6 @@
                 <constraint firstItem="ajN-gC-adu" firstAttribute="centerY" secondItem="XDP-Ui-GsI" secondAttribute="centerY" id="cP4-fQ-yQt"/>
                 <constraint firstItem="vSw-S5-LDJ" firstAttribute="top" secondItem="XDP-Ui-GsI" secondAttribute="bottom" constant="30" id="dUh-nO-zKh"/>
                 <constraint firstItem="ajN-gC-adu" firstAttribute="leading" secondItem="NWT-cA-KcE" secondAttribute="trailing" constant="20" id="evh-ZY-lrk"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="BHF-Pj-24v" secondAttribute="bottom" constant="30" id="gIv-KF-fOl"/>
                 <constraint firstItem="NWT-cA-KcE" firstAttribute="centerY" secondItem="XDP-Ui-GsI" secondAttribute="centerY" id="hpr-Gd-Yt7"/>
                 <constraint firstItem="Byz-Ve-X5k" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="20" id="k8S-Yb-bJH"/>
                 <constraint firstItem="cXr-np-3Ry" firstAttribute="centerY" secondItem="vSw-S5-LDJ" secondAttribute="centerY" id="mTP-Fx-pny"/>

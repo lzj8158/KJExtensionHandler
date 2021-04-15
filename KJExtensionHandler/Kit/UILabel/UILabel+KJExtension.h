@@ -32,7 +32,20 @@ typedef NS_ENUM(NSUInteger, KJLabelTextAlignmentType) {
 /// 获取高度，指定行高
 - (CGFloat)kj_calculateHeightWithWidth:(CGFloat)width OneLineHeight:(CGFloat)height;
 /// 获取文字尺寸
-+ (CGSize)kj_calculateLabelSizeWithTitle:(NSString*)title font:(UIFont*)font constrainedToSize:(CGSize)size lineBreakMode:(NSLineBreakMode)lineBreakMode;
+CGSize kCalculateLabelSize(UILabel *label, NSLineBreakMode mode);
+CGSize kCalculateTitleSize(NSString *title, UIFont *font, CGSize size, NSLineBreakMode mode);
++ (CGSize)kj_calculateLabelSizeWithTitle:(NSString*)title
+                                    font:(UIFont*)font
+                       constrainedToSize:(CGSize)size
+                           lineBreakMode:(NSLineBreakMode)lineBreakMode;
+/// 改变行间距
+- (void)kj_changeLineSpace:(float)space;
+/// 改变字间距
+- (void)kj_changeWordSpace:(float)space;
+/// 改变行间距和段间距
+- (void)kj_changeLineSpace:(float)space paragraphSpace:(float)paragraphSpace;
+/// 改变行间距和字间距
+- (void)kj_changeLineSpace:(float)lineSpace wordSpace:(float)wordSpace;
 
 #pragma mark - 长按复制功能
 /// 是否可以拷贝
@@ -42,7 +55,9 @@ typedef NS_ENUM(NSUInteger, KJLabelTextAlignmentType) {
 
 #pragma mark - 下拉菜单
 /// 下拉菜单扩展
-- (UITableView*)kj_dropdownMenuTexts:(NSArray<NSString*>*)texts MaxHeight:(CGFloat)height selectText:(void(^)(NSString *string))block;
+- (UITableView*)kj_dropdownMenuTexts:(NSArray<NSString*>*)texts
+                           MaxHeight:(CGFloat)height
+                          selectText:(void(^)(NSString *string))block;
 
 @end
 

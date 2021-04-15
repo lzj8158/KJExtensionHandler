@@ -49,7 +49,7 @@
     if (block) {
         KJLoadLanguageViewController *__vc = [KJLoadLanguageViewController new];
         __vc.time = .5;
-        __block UIViewController *vc = block(__vc);
+        UIViewController *vc = block(__vc);
         if (vc) {
             __vc.loadEnd = ^{
                 [vc.view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

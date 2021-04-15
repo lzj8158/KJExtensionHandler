@@ -32,15 +32,6 @@
     }
     return html;
 }
-/// Josn字符串转字典
-- (NSDictionary*)jsonDict{
-    if (self == nil) return nil;
-    NSData *jsonData = [self dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *error;
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
-    if(error) return nil;
-    return dic;
-}
 /// 生成竖直文字
 - (NSString*)verticalText{
     NSMutableString *text = [[NSMutableString alloc] initWithString:self];
@@ -50,6 +41,42 @@
     }
     return text;
 }
+#pragma mark - Json相关
+/// Josn字符串转字典
+- (NSDictionary*)jsonDict{
+    if (self == nil) return nil;
+    NSData *jsonData = [self dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
+    if(error) return nil;
+    return dic;
+}
+/// 字典转Json字符串
+NSString * kDictionaryToJson(NSDictionary *dict){
+    NSString *jsonString = nil;
+    NSError *error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&error];
+    if (jsonData) jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    return jsonString;
+}
+/// 数组转Json字符串
+NSString * kArrayToJson(NSArray *array){
+    NSError *error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:array options:NSJSONWritingPrettyPrinted error:&error];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSString *jsonTemp = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    return jsonTemp;
+}
+/// Json字符串转字典
+NSDictionary *kJsonToDictionary(NSString *string){
+    if (string == nil) return nil;
+    NSData *jsonData = [string dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error = nil;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
+    if(error) return nil;
+    return dic;
+}
+
 /// 获取文本宽度
 - (CGFloat)kj_maxWidthWithFont:(UIFont*)font Height:(CGFloat)height Alignment:(NSTextAlignment)alignment LinebreakMode:(NSLineBreakMode)linebreakMode LineSpace:(CGFloat)lineSpace{
     return [self kj_sizeWithFont:font Size:CGSizeMake(CGFLOAT_MAX, height) Alignment:alignment LinebreakMode:linebreakMode LineSpace:lineSpace].width;
@@ -92,7 +119,7 @@
 /// 汉字转拼音
 - (NSString*)pinYin{
     NSMutableString *str = [self mutableCopy];
-    CFStringTransform((CFMutableStringRef)str,NULL,kCFStringTransformMandarinLatin,  NO);//先转换为带声调的拼音
+    CFStringTransform((CFMutableStringRef)str,NULL,kCFStringTransformMandarinLatin,NO);//先转换为带声调的拼音
     CFStringTransform((CFMutableStringRef)str,NULL,kCFStringTransformStripDiacritics,NO);//再转换为不带声调的拼音
     return str;
 }

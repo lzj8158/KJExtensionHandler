@@ -17,7 +17,7 @@
     CGPathApply(self.CGPath, (__bridge void *)temps, kGetBezierPathPoints);
     return temps.mutableCopy;
 }
-static void kGetBezierPathPoints(void *info,const CGPathElement *element){
+static void kGetBezierPathPoints(void *info, const CGPathElement *element){
     NSMutableArray *bezierPoints = (__bridge NSMutableArray *)info;
     CGPathElementType type = element->type;
     CGPoint *points = element->points;

@@ -21,18 +21,24 @@ typedef void(^KJObserveResultBlock) (id newValue, id oldValue);
 
 #pragma mark - 轻量级解耦工具（信号方式）
 /// 发送消息处理
-- (id)kj_sendSemaphoreWithKey:(NSString*)key Message:(id)message Parameter:(id _Nullable)parameter;
+- (id)kj_sendSemaphoreWithKey:(NSString*)key
+                      Message:(id)message
+                    Parameter:(id _Nullable)parameter;
 /// 接收消息处理
 - (void)kj_receivedSemaphoreBlock:(id _Nullable(^)(NSString *key, id message, id _Nullable parameter))block;
 
 #pragma mark - 路由框架（基于URL实现控制器转场）
 /// 注册路由URL
-+ (void)kj_routerRegisterWithURL:(NSURL*)URL Block:(UIViewController * (^)(NSURL *URL, UIViewController *vc))block;
++ (void)kj_routerRegisterWithURL:(NSURL*)URL
+                           Block:(UIViewController * (^)(NSURL *URL, UIViewController *vc))block;
 /// 移除路由URL
 + (void)kj_routerRemoveWithURL:(NSURL*)URL;
 /// 执行跳转处理
-+ (void)kj_routerTransferWithURL:(NSURL*)URL source:(UIViewController*)vc;
-+ (void)kj_routerTransferWithURL:(NSURL*)URL source:(UIViewController*)vc completion:(void(^_Nullable)(UIViewController *vc))completion;
++ (void)kj_routerTransferWithURL:(NSURL*)URL
+                          source:(UIViewController*)vc;
++ (void)kj_routerTransferWithURL:(NSURL*)URL
+                          source:(UIViewController*)vc
+                      completion:(void(^_Nullable)(UIViewController *vc))completion;
 /// 解析获取参数
 + (NSDictionary*)kj_analysisParameterGetQuery:(NSURL*)URL;
 

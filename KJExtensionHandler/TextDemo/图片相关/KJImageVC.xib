@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -93,7 +93,7 @@
                     </userDefinedRuntimeAttributes>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="* 温馨提示，拼接的图片宽度是取的主图宽度" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lql-Y6-q57">
-                    <rect key="frame" x="20" y="688" width="374" height="18"/>
+                    <rect key="frame" x="20" y="616" width="374" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" red="0.99607843139999996" green="0.090196078430000007" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -115,8 +115,8 @@
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="Lql-Y6-q57" secondAttribute="trailing" constant="20" id="Ecg-dM-TNJ"/>
                 <constraint firstItem="zU8-Ve-SAj" firstAttribute="top" secondItem="1Nd-ZE-xSU" secondAttribute="bottom" constant="50" id="KtQ-NY-YQk"/>
                 <constraint firstItem="bIA-7f-W53" firstAttribute="width" secondItem="bIA-7f-W53" secondAttribute="height" multiplier="1:1" id="KxW-fW-6sQ"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="Lql-Y6-q57" secondAttribute="bottom" constant="30" id="M7k-Yf-waH"/>
                 <constraint firstItem="pvB-P9-szM" firstAttribute="width" secondItem="1Nd-ZE-xSU" secondAttribute="width" id="VG6-Pn-TBz"/>
+                <constraint firstItem="Lql-Y6-q57" firstAttribute="top" secondItem="pvB-P9-szM" secondAttribute="bottom" constant="30" id="buV-hR-9uy"/>
                 <constraint firstItem="1Nd-ZE-xSU" firstAttribute="top" secondItem="zZU-Wi-3GR" secondAttribute="bottom" constant="35" id="cQi-KT-ygb"/>
                 <constraint firstItem="1Nd-ZE-xSU" firstAttribute="centerX" secondItem="zZU-Wi-3GR" secondAttribute="centerX" id="djX-Bg-eUS"/>
                 <constraint firstItem="bIA-7f-W53" firstAttribute="centerY" secondItem="zZU-Wi-3GR" secondAttribute="centerY" id="dnN-TY-tJE"/>

@@ -10,29 +10,29 @@
 #import <objc/runtime.h>
 
 @implementation UIViewController (KJFullScreen)
-+ (void)load{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        SEL originalSelector = @selector(presentViewController:animated:completion:);
-        SEL swizzledSelector = @selector(kj_presentViewController:animated:completion:);
-        Class class = [self class];
-        Method originalMethod = class_getInstanceMethod(class, originalSelector);
-        Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
-        if (class_addMethod(class, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))) {
-            class_replaceMethod(class, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod));
-        }else {
-            method_exchangeImplementations(originalMethod, swizzledMethod);
-        }
-    });
-}
-- (void)kj_presentViewController:(UIViewController*)vc animated:(BOOL)animated completion:(void(^)(void))completion{
-    if (@available(iOS 13.0, *)) {
-        if (![vc isKindOfClass:[UISearchController class]]) {
-            vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
-        }
-    }
-    [self kj_presentViewController:vc animated:animated completion:completion];
-}
+//+ (void)load{
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        SEL originalSelector = @selector(presentViewController:animated:completion:);
+//        SEL swizzledSelector = @selector(kj_presentViewController:animated:completion:);
+//        Class class = [self class];
+//        Method originalMethod = class_getInstanceMethod(class, originalSelector);
+//        Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
+//        if (class_addMethod(class, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))) {
+//            class_replaceMethod(class, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod));
+//        }else {
+//            method_exchangeImplementations(originalMethod, swizzledMethod);
+//        }
+//    });
+//}
+//- (void)kj_presentViewController:(UIViewController*)vc animated:(BOOL)animated completion:(void(^)(void))completion{
+//    if (@available(iOS 13.0, *)) {
+//        if (![vc isKindOfClass:[UISearchController class]]) {
+//            vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+//        }
+//    }
+//    [self kj_presentViewController:vc animated:animated completion:completion];
+//}
 /// 顶部控制器
 + (UIViewController*)topViewController{
     UIViewController *result = nil;
@@ -47,7 +47,7 @@
     });
     if (window.windowLevel != UIWindowLevelNormal){
         NSArray *windows = [[UIApplication sharedApplication] windows];
-        for(UIWindow * tmpWin in windows){
+        for (UIWindow * tmpWin in windows){
             if (tmpWin.windowLevel == UIWindowLevelNormal){
                 window = tmpWin;
                 break;
@@ -129,7 +129,7 @@
     }else{
         vc.excludedActivityTypes = @[UIActivityTypeMessage, UIActivityTypeMail];
     }
-    UIActivityViewControllerCompletionWithItemsHandler itemsBlock = ^(UIActivityType _Nullable activityType, BOOL completed, NSArray * _Nullable returnedItems, NSError * _Nullable activityError) {
+    UIActivityViewControllerCompletionWithItemsHandler itemsBlock = ^(UIActivityType activityType, BOOL completed, NSArray * returnedItems, NSError * activityError) {
         if (complete) complete(completed);
     };
     vc.completionWithItemsHandler = itemsBlock;

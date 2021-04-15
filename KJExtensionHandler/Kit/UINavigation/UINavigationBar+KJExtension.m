@@ -90,10 +90,16 @@
 /// 隐藏线条
 - (void)kj_hiddenLine:(BOOL)hidden{
     if ([self respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]) {
-        for (UIView *view in self.subviews){
-            for (id obj in view.subviews) {
-                if ([obj isKindOfClass:[UIImageView class]]) {
-                    ((UIImageView*)obj).hidden = hidden;
+        @autoreleasepool {
+            /// 利用哈西算法解决多层嵌套
+            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+            for (NSInteger i = 0; i < self.subviews.count; i++) {
+                [dict setObject:self.subviews[i] forKey:[NSString stringWithFormat:@"%ld",i]];
+            }
+            for (NSInteger i = 0; i < dict.allKeys.count; i++) {
+                UIView *view = [dict objectForKey:[NSString stringWithFormat:@"%ld",i]];
+                if ([view isKindOfClass:[UIImageView class]]) {
+                    ((UIImageView*)view).hidden = hidden;
                 }
             }
         }

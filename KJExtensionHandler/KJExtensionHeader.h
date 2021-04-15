@@ -36,8 +36,10 @@
 
 //************************************* UIKit 相关扩展 *****************************************
 #import "_KJMacros.h" // 宏
-#import "_KJINLINE.h" // 简单的常用函数
-#import "_KJGCD.h"    // GCD偷懒封装
+#import "_KJGCD.h" // GCD偷懒封装
+
+//***************** 快捷创建UI *******************
+#import "UIButton+KJCreate.h" // 快速创建UI
 
 #import "UIButton+KJBlock.h" // 点击事件ButtonBlock
 #import "UIButton+KJContentLayout.h" // 图文混排
@@ -78,7 +80,7 @@
 #import "UIImage+KJCoreImage.h" // CoreImage 框架图片效果处理
 #import "UIImage+KJAccelerate.h" // Accelerate  框架的图片处理
 #import "UIImage+KJDoraemonBox.h"// 图片百宝箱
-#import "UIImage+KJFloodFill.h" // 图片泛洪算法
+//#import "UIImage+KJFloodFill.h" // 图片泛洪算法
 //#import "UIImage+KJScale.h" // 图片尺寸处理相关
 //#import "UIImage+KJCompress.h" // 图片压缩处理
 //#import "UIImage+KJMask.h" // 蒙版处理
@@ -112,12 +114,9 @@
 //#import "NSObject+KJSemaphore.h" // 信号方式解耦工具
 #import "NSObject+KJDoraemonBox.h" // 百宝箱
 #import "NSObject+KJRuntime.h" // runtime轻量级封装
+#import "NSObject+KJGCDBox.h" // GCD盒子
 
 #import "UIDevice+KJSystem.h" // 系统相关
-
-//***************** 快捷创建UI *******************
-#import "UIButton+KJCreate.h" // 快速创建按钮
-#import "UILabel+KJCreate.h" // 快速创建文本
 
 #endif /* KJExtensionHeader_h */
 /*

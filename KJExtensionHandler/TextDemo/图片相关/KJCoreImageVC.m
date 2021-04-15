@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    __block UIImage *image = self.Image.image;
+    UIImage *image = self.Image.image;
     _weakself;
     [self.view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (500 <= obj.tag && obj.tag <= 509) {

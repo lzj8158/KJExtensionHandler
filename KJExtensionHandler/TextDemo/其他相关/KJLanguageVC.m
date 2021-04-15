@@ -30,7 +30,7 @@
         kButton.selected = !kButton.selected;
     }];
     
-    __block UIButton *changebutton = [[UIButton alloc] initWithFrame:CGRectMake(0, kScreenH - 60, kScreenW-150, 40)];
+    UIButton *changebutton = [[UIButton alloc] initWithFrame:CGRectMake(0, kScreenH - 60 - 60, kScreenW-150, 40)];
     [self.view addSubview:changebutton];
     changebutton.centerX = kScreenW/2;
     changebutton.backgroundColor = UIColor.whiteColor;

@@ -13,4 +13,9 @@
 #import "KJExtensionHeader.h"
 #import "BaseViewController.h"
 
+//#ifdef __cplusplus
+//#import <opencv2/opencv.hpp>
+//#import <opencv2/imgcodecs/ios.h>
+//#endif
+
 #endif /* PrefixHeader_pch */

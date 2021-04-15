@@ -21,12 +21,6 @@ typedef void(^KJButtonBlock)(UIButton *kButton);
 /// 点击事件间隔，设置非零取消间隔
 @property(nonatomic,assign)IBInspectable CGFloat timeInterval;
 
-#pragma mark - 扩大点击域
-/// 设置按钮额外热区
-@property(nonatomic,assign)UIEdgeInsets touchAreaInsets;
-/// 扩大点击域
-- (void)kj_EnlargeEdgeWithTop:(CGFloat)top right:(CGFloat)right bottom:(CGFloat)bottom left:(CGFloat)left;
-
 @end
 
 NS_ASSUME_NONNULL_END

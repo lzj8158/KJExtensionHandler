@@ -19,17 +19,34 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong,readonly)UIImage *image;
 /// 取出HTML
 @property(nonatomic,strong,readonly)NSString *HTMLString;
-/// Josn字符串转字典
-@property(nonatomic,strong,readonly)NSDictionary *jsonDict;
 /// 生成竖直文字
 @property(nonatomic,strong,readonly)NSString *verticalText;
 
+/// Josn字符串转字典
+@property(nonatomic,strong,readonly)NSDictionary *jsonDict;
+/// 字典转Json字符串
+NSString * kDictionaryToJson(NSDictionary *dict);
+/// 数组转Json字符串
+NSString * kArrayToJson(NSArray *array);
+/// Json字符串转字典
+NSDictionary *kJsonToDictionary(NSString *string);
+
 /// 获取文本宽度
-- (CGFloat)kj_maxWidthWithFont:(UIFont*)font Height:(CGFloat)height Alignment:(NSTextAlignment)alignment LinebreakMode:(NSLineBreakMode)linebreakMode LineSpace:(CGFloat)lineSpace;
+- (CGFloat)kj_maxWidthWithFont:(UIFont*)font
+                        Height:(CGFloat)height
+                     Alignment:(NSTextAlignment)alignment
+                 LinebreakMode:(NSLineBreakMode)linebreakMode
+                     LineSpace:(CGFloat)lineSpace;
 /// 获取文本高度
-- (CGFloat)kj_maxHeightWithFont:(UIFont*)font Width:(CGFloat)width Alignment:(NSTextAlignment)alignment LinebreakMode:(NSLineBreakMode)linebreakMode LineSpace:(CGFloat)lineSpace;
+- (CGFloat)kj_maxHeightWithFont:(UIFont*)font
+                          Width:(CGFloat)width
+                      Alignment:(NSTextAlignment)alignment
+                  LinebreakMode:(NSLineBreakMode)linebreakMode
+                      LineSpace:(CGFloat)lineSpace;
 /// 文字转图片
-- (UIImage*)kj_textBecomeImageWithSize:(CGSize)size BackgroundColor:(UIColor*)color TextAttributes:(NSDictionary*)attributes;
+- (UIImage*)kj_textBecomeImageWithSize:(CGSize)size
+                       BackgroundColor:(UIColor*)color
+                        TextAttributes:(NSDictionary*)attributes;
 
 /// 复制数据至剪切板
 - (void)kj_pasteboard;

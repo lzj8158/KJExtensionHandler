@@ -7,6 +7,7 @@
 //  https://github.com/yangKJ/KJExtensionHandler
 
 #import "UIImage+KJDoraemonBox.h"
+#import "_KJGCD.h"
 #if __has_feature(objc_arc)
 #define GIFTOCF (__bridge CFTypeRef)
 #define GIFFROMCF (__bridge id)
@@ -101,95 +102,19 @@
     return image;
 }
 /// 截取滚动的长图
-+ (UIImage*)kj_captureScreenWithScrollView:(UIScrollView*)scroll ContentOffset:(CGPoint)contentOffset{
++ (UIImage*)kj_captureScreenWithScrollView:(UIScrollView*)scroll contentOffset:(CGPoint)offset{
     UIGraphicsBeginImageContext(scroll.bounds.size);
-    CGContextTranslateCTM(UIGraphicsGetCurrentContext(), 0.0f, -contentOffset.y);
+    CGContextTranslateCTM(UIGraphicsGetCurrentContext(), 0.0f, -offset.y);
     [scroll.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    NSData *imageData = UIImageJPEGRepresentation(image, 0.55);
-    return [UIImage imageWithData:imageData];
+    return image;
 }
 
 #pragma mark - 裁剪处理
-/// 裁剪掉图片周围的透明部分
-+ (UIImage*)kj_cutImageRoundAlphaZero:(UIImage*)image{
-    CGImageRef cgimage = [image CGImage];
-    size_t width = CGImageGetWidth(cgimage);
-    size_t height = CGImageGetHeight(cgimage);
-    unsigned char *data = calloc(width * height * 4, sizeof(unsigned char));
-    size_t bitsPerComponent = 8;
-    size_t bytesPerRow = width * 4;
-    CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
-    CGContextRef context = CGBitmapContextCreate(data, width,height,bitsPerComponent,bytesPerRow,space,kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
-    CGContextDrawImage(context, CGRectMake(0, 0, width, height), cgimage);
-    int top = 0,left = 0,right = 0,bottom = 0;
-    for (size_t row = 0; row < height; row++) {
-        BOOL find = false;
-        for (size_t col = 0; col < width; col++) {
-            size_t pixelIndex = (row * width + col) * 4;
-            int alpha = data[pixelIndex + 3];
-            if (alpha != 0) {
-                find = YES;
-                break;
-            }
-        }
-        if (find) break;
-        top ++;
-    }
-    for (size_t col = 0; col < width; col++) {
-        BOOL find = false;
-        for (size_t row = 0; row < height; row++) {
-            size_t pixelIndex = (row * width + col) * 4;
-            int alpha = data[pixelIndex + 3];
-            if (alpha != 0) {
-                find = YES;
-                break;
-            }
-        }
-        if (find) break;
-        left ++;
-    }
-    for (size_t col = width - 1; col > 0; col--) {
-        BOOL find = false;
-        for (size_t row = 0; row < height; row++) {
-            size_t pixelIndex = (row * width + col) * 4;
-            int alpha = data[pixelIndex + 3];
-            if (alpha != 0) {
-                find = YES;
-                break;
-            }
-        }
-        if (find) break;
-        right ++;
-    }
-    
-    for (size_t row = height - 1; row > 0; row--) {
-        BOOL find = false;
-        for (size_t col = 0; col < width; col++) {
-            size_t pixelIndex = (row * width + col) * 4;
-            int alpha = data[pixelIndex + 3];
-            if (alpha != 0) {
-                find = YES;
-                break;
-            }
-        }
-        if (find) break;
-        bottom ++;
-    }
-    
-    CGFloat scale = image.scale;
-    CGImageRef newImageRef = CGImageCreateWithImageInRect(cgimage, CGRectMake(left*scale, top*scale, (image.size.width-left-right)*scale, (image.size.height-top-bottom)*scale));
-    UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
-    CGContextRelease(context);
-    CGColorSpaceRelease(space);
-    CGImageRelease(newImageRef);
-    free(data);
-    return  newImage;
-}
 /// 不规则图形切图
 + (UIImage*)kj_anomalyCaptureImageWithView:(UIView*)view BezierPath:(UIBezierPath*)path{
-    CAShapeLayer *maskLayer= [CAShapeLayer layer];
+    CAShapeLayer *maskLayer = [CAShapeLayer layer];
     maskLayer.path = path.CGPath;
     maskLayer.fillColor = [UIColor blackColor].CGColor;
     maskLayer.strokeColor = [UIColor darkGrayColor].CGColor;
@@ -247,6 +172,9 @@
     return cropRect;
 }
 /// 根据特定的区域对图片进行裁剪
+- (UIImage*)kj_cutImageWithCropRect:(CGRect)cropRect{
+    return [UIImage kj_cutImageWithImage:self Frame:cropRect];
+}
 + (UIImage*)kj_cutImageWithImage:(UIImage*)image Frame:(CGRect)cropRect{
     return ({
         CGImageRef tmp = CGImageCreateWithImageInRect([image CGImage], cropRect);
@@ -256,6 +184,9 @@
     });
 }
 /// quartz 2d 实现裁剪
+- (UIImage*)kj_quartzCutImageWithCropRect:(CGRect)cropRect{
+    return [UIImage kj_quartzCutImageWithImage:self Frame:cropRect];
+}
 + (UIImage*)kj_quartzCutImageWithImage:(UIImage*)image Frame:(CGRect)cropRect{
     cropRect = [self kj_newScaleRect:cropRect Image:image];
     UIGraphicsBeginImageContext(cropRect.size);
@@ -268,6 +199,9 @@
     return image;
 }
 /// 图片路径裁剪，裁剪路径 "以外" 部分
+- (UIImage*)kj_captureOuterImageBezierPath:(UIBezierPath*)path Rect:(CGRect)rect{
+    return [UIImage kj_captureOuterImage:self BezierPath:path Rect:rect];
+}
 + (UIImage*)kj_captureOuterImage:(UIImage*)image BezierPath:(UIBezierPath*)path Rect:(CGRect)rect{
     UIGraphicsBeginImageContextWithOptions(rect.size, NO, image.scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -284,6 +218,9 @@
     return newimage;
 }
 /// 图片路径裁剪，裁剪路径 "以内" 部分
+- (UIImage*)kj_captureInnerImageBezierPath:(UIBezierPath*)path Rect:(CGRect)rect{
+    return [UIImage kj_captureInnerImage:self BezierPath:path Rect:rect];
+}
 + (UIImage*)kj_captureInnerImage:(UIImage*)image BezierPath:(UIBezierPath*)path Rect:(CGRect)rect{
     UIGraphicsBeginImageContextWithOptions(rect.size, NO, image.scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -305,12 +242,12 @@
         rect.origin.x = (self.size.width - self.size.height * size.width/size.height)/2;
         rect.size.width  = self.size.height * size.width/size.height;
         rect.size.height = self.size.height;
-    }else {
+    }else{
         rect.origin.y = (self.size.height - self.size.width/size.width * size.height)/2;
         rect.size.width  = self.size.width;
         rect.size.height = self.size.width/size.width * size.height;
     }
-    CGImageRef imageRef   = CGImageCreateWithImageInRect(self.CGImage, rect);
+    CGImageRef imageRef = CGImageCreateWithImageInRect(self.CGImage, rect);
     UIImage *croppedImage = [UIImage imageWithCGImage:imageRef];
     CGImageRelease(imageRef);
     
@@ -511,7 +448,6 @@
 + (UIImage*)kj_gifImageWithURL:(NSURL*)URL {
     return animatedImageWithAnimatedGIFReleasingImageSource(CGImageSourceCreateWithURL(GIFTOCF URL, NULL));
 }
-
 static int delayCentisecondsForImageAtIndex(CGImageSourceRef const source, size_t const i) {
     int delayCentiseconds = 1;
     CFDictionaryRef const properties = CGImageSourceCopyPropertiesAtIndex(source, i, NULL);
@@ -528,14 +464,12 @@ static int delayCentisecondsForImageAtIndex(CGImageSourceRef const source, size_
     }
     return delayCentiseconds;
 }
-
 static void createImagesAndDelays(CGImageSourceRef source, size_t count, CGImageRef imagesOut[count], int delayCentisecondsOut[count]) {
     for (size_t i = 0; i < count; ++i) {
         imagesOut[i] = CGImageSourceCreateImageAtIndex(source, i, NULL);
         delayCentisecondsOut[i] = delayCentisecondsForImageAtIndex(source, i);
     }
 }
-
 static int sum(size_t const count, int const *const values) {
     int theSum = 0;
     for (size_t i = 0; i < count; ++i) {
@@ -543,7 +477,6 @@ static int sum(size_t const count, int const *const values) {
     }
     return theSum;
 }
-
 static int pairGCD(int a, int b) {
     if (a < b) return pairGCD(b, a);
     while (true) {
@@ -553,7 +486,6 @@ static int pairGCD(int a, int b) {
         b = r;
     }
 }
-
 static int vectorGCD(size_t const count, int const *const values) {
     int gcd = values[0];
     for (size_t i = 1; i < count; ++i) {
@@ -561,7 +493,6 @@ static int vectorGCD(size_t const count, int const *const values) {
     }
     return gcd;
 }
-
 static NSArray * frameArray(size_t const count, CGImageRef const images[count], int const delayCentiseconds[count], int const totalDurationCentiseconds) {
     int const gcd = vectorGCD(count, delayCentiseconds);
     size_t const frameCount = totalDurationCentiseconds / gcd;
@@ -574,7 +505,6 @@ static NSArray * frameArray(size_t const count, CGImageRef const images[count], 
     }
     return [NSArray arrayWithObjects:frames count:frameCount];
 }
-
 static void releaseImages(size_t const count, CGImageRef const images[count]) {
     for (size_t i = 0; i < count; ++i) {
         CGImageRelease(images[i]);
@@ -635,14 +565,15 @@ static UIImage * animatedImageWithAnimatedGIFReleasingImageSource(CGImageSourceR
 /// 子线程处理动态图
 void kPlayGifImageData(void(^xxblock)(bool isgif, UIImage * image), NSData *data){
     if (xxblock) {
-        if (data == nil) xxblock(false,nil);
+        if (data == nil || data.length == 0) xxblock(false,nil);
         kGCD_async(^{
-            __block UIImage *animatedImage;
-            __block bool isgif = false;
             CGImageSourceRef imageSource = CGImageSourceCreateWithData(CFBridgingRetain(data), nil);
             size_t count = CGImageSourceGetCount(imageSource);
             if (count <= 1) {
-                animatedImage = [[UIImage alloc] initWithData:data];
+                UIImage *animatedImage = [[UIImage alloc] initWithData:data];
+                kGCD_main(^{
+                    xxblock(false,animatedImage);
+                });
             }else{
                 NSMutableArray *images = [NSMutableArray arrayWithCapacity:count];
                 NSTimeInterval time = 0;
@@ -659,12 +590,11 @@ void kPlayGifImageData(void(^xxblock)(bool isgif, UIImage * image), NSData *data
                     CFRelease(properties);
                     time += duration.doubleValue;
                 }
-                animatedImage = [UIImage animatedImageWithImages:images duration:time];
-                isgif = true;
+                UIImage *animatedImage = [UIImage animatedImageWithImages:images duration:time];
+                kGCD_main(^{
+                    xxblock(true,animatedImage);
+                });
             }
-            kGCD_main(^{
-                xxblock(isgif,animatedImage);
-            });
             CFRelease(imageSource);
         });
     }
@@ -898,9 +828,9 @@ void kPlayGifImageData(void(^xxblock)(bool isgif, UIImage * image), NSData *data
     UIGraphicsEndImageContext();
     return resultImage;
 }
-#pragma mark - Accelerate
+#pragma mark - CoreGraphics
 /// 水平方向拼接随意张图片，固定主图的高度
-- (UIImage*)kj_moreAccelerateJointLevelImage:(UIImage*)jointImage,...{
+- (UIImage*)kj_moreCoreGraphicsJointLevelImage:(UIImage*)jointImage,...{
     NSMutableArray<UIImage*>* temps = [NSMutableArray arrayWithObjects:self,jointImage,nil];
     CGSize size = self.size;
     CGFloat h = size.height;
@@ -915,47 +845,47 @@ void kPlayGifImageData(void(^xxblock)(bool isgif, UIImage * image), NSData *data
     va_end(args);
     
     const size_t width = size.width, height = size.height;
-    const size_t bytesPerRow = width * 4;
     CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
-#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_6_1
-    int bitmapInfo = kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedLast;
-#else
-    int bitmapInfo = kCGImageAlphaPremultipliedLast;
-#endif
-    CGContextRef bmContext = CGBitmapContextCreate(NULL, width, height, 8, bytesPerRow, space, bitmapInfo);
+    CGContextRef context = CGBitmapContextCreate(NULL,
+                                                 width,
+                                                 height,
+                                                 8,
+                                                 width * 4,
+                                                 space,
+                                                 kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedLast);
     CGColorSpaceRelease(space);
-    if (!bmContext) return nil;
+    if (!context) return nil;
     CGFloat x = 0;
     for (UIImage *img in temps) {
         CGFloat w = h*img.size.width/img.size.height;
-        CGContextDrawImage(bmContext, CGRectMake(x, 0, w, h), img.CGImage);
+        CGContextDrawImage(context, CGRectMake(x, 0, w, h), img.CGImage);
         x += w;
     }
-    UInt8 * data = (UInt8*)CGBitmapContextGetData(bmContext);
+    UInt8 * data = (UInt8*)CGBitmapContextGetData(context);
     if (!data){
-        CGContextRelease(bmContext);
+        CGContextRelease(context);
         return nil;
     }
-    CGImageRef imageRef = CGBitmapContextCreateImage(bmContext);
+    CGImageRef imageRef = CGBitmapContextCreateImage(context);
     UIImage *newImage = [UIImage imageWithCGImage:imageRef];
     CGImageRelease(imageRef);
-    CGContextRelease(bmContext);
+    CGContextRelease(context);
     return newImage;
 }
 /// 图片拼接艺术
 - (UIImage*)kj_jointImageWithJointType:(KJJointImageType)type Size:(CGSize)size Maxw:(CGFloat)maxw{
-    __block CGFloat scale = [UIScreen mainScreen].scale;
+    CGFloat scale = [UIScreen mainScreen].scale;
     const size_t width = size.width * scale, height = size.height * scale;
-    const size_t bytesPerRow = width * 4;
     CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
-#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_6_1
-    int bitmapInfo = kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedLast;
-#else
-    int bitmapInfo = kCGImageAlphaPremultipliedLast;
-#endif
-    __block CGContextRef bmContext = CGBitmapContextCreate(NULL, width, height, 8, bytesPerRow, space, bitmapInfo);
+    CGContextRef context = CGBitmapContextCreate(NULL,
+                                                 width,
+                                                 height,
+                                                 8,
+                                                 width * 4,
+                                                 space,
+                                                 kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedLast);
     CGColorSpaceRelease(space);
-    if (!bmContext) return nil;
+    if (!context) return nil;
     CGFloat maxh = (maxw*self.size.height)/self.size.width;
     int row = (int)ceilf(size.width/maxw);
     int col = (int)ceilf(size.height/maxh);
@@ -967,7 +897,8 @@ void kPlayGifImageData(void(^xxblock)(bool isgif, UIImage * image), NSData *data
     }
     __block CGFloat x = 0,y = 0;
     void (^kDrawImage)(UIImage*) = ^(UIImage *image) {
-        CGContextDrawImage(bmContext, CGRectMake(x, y, maxw*scale+1, maxh*scale+1), image.CGImage);
+        //宽高+1，解决拼接中间的空隙
+        CGContextDrawImage(context, CGRectMake(x, y, maxw*scale+1, maxh*scale+1), image.CGImage);
     };
     for (int i = 0; i < row; i++) {
         for (int k = 0; k < col; k++) {
@@ -995,16 +926,91 @@ void kPlayGifImageData(void(^xxblock)(bool isgif, UIImage * image), NSData *data
             }
         }
     }
-    UInt8 * data = (UInt8*)CGBitmapContextGetData(bmContext);
+    UInt8 * data = (UInt8*)CGBitmapContextGetData(context);
     if (!data){
-        CGContextRelease(bmContext);
+        CGContextRelease(context);
         return nil;
     }
-    CGImageRef imageRef = CGBitmapContextCreateImage(bmContext);
+    CGImageRef imageRef = CGBitmapContextCreateImage(context);
     UIImage *newImage = [UIImage imageWithCGImage:imageRef];
     CGImageRelease(imageRef);
-    CGContextRelease(bmContext);
+    CGContextRelease(context);
     return newImage;
+}
+/// 异步图片拼接处理
+- (void)kj_asyncJointImage:(void(^)(UIImage *image))block JointType:(KJJointImageType)type Size:(CGSize)size Maxw:(CGFloat)maxw{
+    UIImage *selfImage = self;
+    CGFloat scale = [UIScreen mainScreen].scale;
+    const size_t width = size.width * scale, height = size.height * scale;
+    CGFloat maxh = (maxw*self.size.height)/self.size.width;
+    int row = (int)ceilf(size.width/maxw);
+    int col = (int)ceilf(size.height/maxh);
+    __weak __typeof(&*self) weakself = self;
+    kGCD_async(^{
+        CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
+        CGContextRef context = CGBitmapContextCreate(NULL,
+                                                     width,
+                                                     height,
+                                                     8,
+                                                     width * 4,
+                                                     space,
+                                                     kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedLast);
+        CGColorSpaceRelease(space);
+        if (!context) {
+            kGCD_main(^{block(nil);});
+            return;
+        }
+        UIImage *tempImage = nil;
+        if (type == 3) {
+            tempImage = [weakself kj_rotationImageWithOrientation:UIImageOrientationUpMirrored];
+        }else if (type == 4) {
+            tempImage = [weakself kj_rotationImageWithOrientation:UIImageOrientationDownMirrored];
+        }
+        __block CGFloat x = 0,y = 0;
+        void (^kDrawImage)(UIImage*) = ^(UIImage *image) {
+            //宽高+1，解决拼接中间的空隙
+            CGContextDrawImage(context, CGRectMake(x, y, maxw*scale+1, maxh*scale+1), image.CGImage);
+        };
+        for (int i = 0; i < row; i++) {
+            for (int k = 0; k < col; k++) {
+                x = maxw * i * scale;y = maxh * k * scale;
+                if (type == 0) {
+                    kDrawImage(selfImage);
+                }else if (type == 1) {
+                    if (i&1) {//相当于%2
+                        y += maxh*scale/2;
+                        if (k+1 == col) kDrawImage(selfImage);
+                        y -= maxh*scale;
+                    }
+                    kDrawImage(selfImage);
+                }else if (type == 2) {
+                    if (!(i&1)) {
+                        y += maxh*scale/2;
+                        if (k+1 == col) kDrawImage(selfImage);
+                        y -= maxh*scale;
+                    }
+                    kDrawImage(selfImage);
+                }else if (type == 3) {
+                    kDrawImage(i&1 ? tempImage : selfImage);
+                }else if (type == 4) {
+                    kDrawImage(k%2 ? tempImage : selfImage);
+                }
+            }
+        }
+        UInt8 * data = (UInt8*)CGBitmapContextGetData(context);
+        if (!data){
+            CGContextRelease(context);
+            kGCD_main(^{block(nil);});
+            return;
+        }
+        CGImageRef imageRef = CGBitmapContextCreateImage(context);
+        UIImage *newImage = [UIImage imageWithCGImage:imageRef];
+        kGCD_main(^{
+            block(newImage);
+        });
+        CGImageRelease(imageRef);
+        CGContextRelease(context);
+    });
 }
 
 #pragma mark - 水印蒙版处理
@@ -1087,6 +1093,114 @@ void kPlayGifImageData(void(^xxblock)(bool isgif, UIImage * image), NSData *data
     return retImage;
 }
 
+#pragma mark - CoreGraphics板块
+/// 裁剪掉图片周围的透明部分
+- (UIImage*)kj_cutImageRoundAlphaZero{
+    UIImage *image = self;
+    CGImageRef cgimage = [image CGImage];
+    size_t width  = CGImageGetWidth(cgimage);
+    size_t height = CGImageGetHeight(cgimage);
+    unsigned char *data = calloc(width * height * 4, sizeof(unsigned char));
+    CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
+    CGContextRef context = CGBitmapContextCreate(data,
+                                                 width,
+                                                 height,
+                                                 8,
+                                                 width * 4,
+                                                 space,
+                                                 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+    CGContextDrawImage(context, CGRectMake(0, 0, width, height), cgimage);
+    int top = 0,left = 0,right = 0,bottom = 0;
+    for (size_t row = 0; row < height; row++) {
+        BOOL find = false;
+        for (size_t col = 0; col < width; col++) {
+            size_t pixelIndex = (row * width + col) * 4;
+            int alpha = data[pixelIndex + 3];
+            if (alpha != 0) {
+                find = YES;
+                break;
+            }
+        }
+        if (find) break;
+        top ++;
+    }
+    for (size_t col = 0; col < width; col++) {
+        BOOL find = false;
+        for (size_t row = 0; row < height; row++) {
+            size_t pixelIndex = (row * width + col) * 4;
+            int alpha = data[pixelIndex + 3];
+            if (alpha != 0) {
+                find = YES;
+                break;
+            }
+        }
+        if (find) break;
+        left ++;
+    }
+    for (size_t col = width - 1; col > 0; col--) {
+        BOOL find = false;
+        for (size_t row = 0; row < height; row++) {
+            size_t pixelIndex = (row * width + col) * 4;
+            int alpha = data[pixelIndex + 3];
+            if (alpha != 0) {
+                find = YES;
+                break;
+            }
+        }
+        if (find) break;
+        right ++;
+    }
+    
+    for (size_t row = height - 1; row > 0; row--) {
+        BOOL find = false;
+        for (size_t col = 0; col < width; col++) {
+            size_t pixelIndex = (row * width + col) * 4;
+            int alpha = data[pixelIndex + 3];
+            if (alpha != 0) {
+                find = YES;
+                break;
+            }
+        }
+        if (find) break;
+        bottom ++;
+    }
+    
+    CGFloat scale = image.scale;
+    CGImageRef newImageRef = CGImageCreateWithImageInRect(cgimage, CGRectMake(left*scale, top*scale, (image.size.width-left-right)*scale, (image.size.height-top-bottom)*scale));
+    UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
+    CGContextRelease(context);
+    CGColorSpaceRelease(space);
+    CGImageRelease(newImageRef);
+    free(data);
+    return newImage;
+}
+
+/// 图片压缩
+- (UIImage*)kj_BitmapChangeImageSize:(CGSize)size{
+    const size_t width = size.width, height = size.height;
+    CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
+    CGContextRef context = CGBitmapContextCreate(NULL,
+                                                 width,
+                                                 height,
+                                                 8,
+                                                 width * 4,
+                                                 space,
+                                                 kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedLast);
+    CGColorSpaceRelease(space);
+    if (!context) return nil;
+    CGContextDrawImage(context, CGRectMake(0, 0, width, height), self.CGImage);
+    UInt8 * data = (UInt8*)CGBitmapContextGetData(context);
+    if (!data){
+        CGContextRelease(context);
+        return nil;
+    }
+    CGImageRef imageRef = CGBitmapContextCreateImage(context);
+    UIImage *newImage = [UIImage imageWithCGImage:imageRef];
+    CGImageRelease(imageRef);
+    CGContextRelease(context);
+    return newImage;
+}
+
 #pragma mark - 其他相关
 /// 保存到相册
 static char kSavePhotosKey;
@@ -1099,8 +1213,16 @@ static char kSavePhotosKey;
     if (block) block(error == nil ? YES : NO);
 }
 /// 渐变色图片，0：从上到下，1：从左到右，2：从左上到右下，3：从右上到左下
+//UIImage * kGradientColorImage(CGSize size, int direction, UIColor *color,...){
+//    if (direction <= 0) {
+//        direction = 0;
+//    }else if (direction >= 3) {
+//        direction = 3;
+//    }
+//    return [UIImage kj_gradientImageColor:color](size,direction);
+//}
 + (UIImage*(^)(CGSize,int))kj_gradientImageColor:(UIColor*)color,...{
-    __block NSMutableArray * temps = [NSMutableArray arrayWithObjects:(id)color.CGColor,nil];
+    NSMutableArray * temps = [NSMutableArray arrayWithObjects:(id)color.CGColor,nil];
     va_list args;UIColor * arg;
     va_start(args, color);
     while ((arg = va_arg(args, UIColor *))) {
@@ -1270,7 +1392,13 @@ static char kSavePhotosKey;
 - (UIColor*)kj_getImageAverageColor{
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     unsigned char rgba[4];
-    CGContextRef context = CGBitmapContextCreate(rgba,1,1,8,4,colorSpace,kCGImageAlphaPremultipliedLast|kCGBitmapByteOrder32Big);
+    CGContextRef context = CGBitmapContextCreate(rgba,
+                                                 1,
+                                                 1,
+                                                 8,
+                                                 4,
+                                                 colorSpace,
+                                                 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
     CGContextDrawImage(context, CGRectMake(0,0,1,1), self.CGImage);
     CGColorSpaceRelease(colorSpace);
     CGContextRelease(context);
@@ -1278,7 +1406,7 @@ static char kSavePhotosKey;
         CGFloat alpha = ((CGFloat)rgba[3])/255.0;
         CGFloat mu = alpha/255.0;
         return [UIColor colorWithRed:((CGFloat)rgba[0])*mu green:((CGFloat)rgba[1])*mu blue:((CGFloat)rgba[2])*mu alpha:alpha];
-    }else {
+    }else{
         return [UIColor colorWithRed:((CGFloat)rgba[0])/255.0 green:((CGFloat)rgba[1])/255.0 blue:((CGFloat)rgba[2])/255.0 alpha:((CGFloat)rgba[3])/255.0];
     }
 }
@@ -1289,13 +1417,19 @@ static char kSavePhotosKey;
     CGFloat h = self.size.height * scale;
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
     //使用kCGImageAlphaPremultipliedLast保留Alpha通道，避免透明区域变成黑色
-    CGContextRef context = CGBitmapContextCreate(nil,w,h,8,0,colorSpace,kCGImageAlphaPremultipliedLast);
+    CGContextRef context = CGBitmapContextCreate(nil,
+                                                 w,
+                                                 h,
+                                                 8,
+                                                 0,
+                                                 colorSpace,
+                                                 kCGImageAlphaPremultipliedLast);
     CGContextDrawImage(context,CGRectMake(0,0,w,h),[self CGImage]);
     CGImageRef imageRef = CGBitmapContextCreateImage(context);
     UIImage *newImage = [UIImage imageWithCGImage:imageRef];
     CGColorSpaceRelease(colorSpace);
     CGContextRelease(context);
-    CFRelease(imageRef);
+    CGImageRelease(imageRef);
     return newImage;
 }
 /// 改变图片透明度
@@ -1348,6 +1482,79 @@ static char kSavePhotosKey;
     UIGraphicsEndImageContext();
     return tintedImage;
 }
-
+/* 绘制图片 */
+- (UIImage*)kj_mallocDrawImage{
+    CGImageRef cgimage = self.CGImage;
+    size_t width  = CGImageGetWidth(cgimage);
+    size_t height = CGImageGetHeight(cgimage);
+    UInt32 *data = (UInt32*)calloc(width * height * 4, sizeof(UInt32));
+    CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
+    CGContextRef context = CGBitmapContextCreate(data,
+                                                 width,
+                                                 height,
+                                                 8,
+                                                 width * 4,
+                                                 space,
+                                                 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+    CGContextDrawImage(context, CGRectMake(0, 0, width, height), cgimage);
+    for (size_t i = 10; i < height; i++){
+        for (size_t j = 10; j < width; j++){
+            size_t pixelIndex = i * width * 4 + j * 4;
+            UInt32 red   = data[pixelIndex];
+            UInt32 green = data[pixelIndex + 1];
+            UInt32 blue  = data[pixelIndex + 2];
+            //过滤代码
+            if ((red < 0x2f && red > 0x07) && (green < 0xa0 && green > 0x84) && (blue < 0xbf && blue > 0xa8)) {
+                data[pixelIndex] = 255;
+                data[pixelIndex + 1] = 255;
+                data[pixelIndex + 2] = 255;
+            }
+        }
+    }
+    cgimage = CGBitmapContextCreateImage(context);
+    UIImage *newImage = [UIImage imageWithCGImage:cgimage];
+    CGColorSpaceRelease(space);
+    CGContextRelease(context);
+    CGImageRelease(cgimage);
+    free(data);
+    return newImage;
+}
+/// 改变图片亮度
+- (UIImage*)kj_changeImageLuminance:(CGFloat)luminance{
+    CGImageRef cgimage = self.CGImage;
+    size_t width  = CGImageGetWidth(cgimage);
+    size_t height = CGImageGetHeight(cgimage);
+    UInt32 * data = (UInt32 *)calloc(width * height * 4, sizeof(UInt32));
+    CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
+    CGContextRef context = CGBitmapContextCreate(data,
+                                                 width,
+                                                 height,
+                                                 8,
+                                                 width * 4,
+                                                 space,
+                                                 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+    CGContextDrawImage(context, CGRectMake(0, 0, width, height), cgimage);
+    for (size_t i = 0; i < height; i++){
+        for (size_t j = 0; j < width; j++){
+            size_t pixelIndex = i * width * 4 + j * 4;
+            UInt32 red   = data[pixelIndex];
+            UInt32 green = data[pixelIndex + 1];
+            UInt32 blue  = data[pixelIndex + 2];
+            red += luminance;
+            green += luminance;
+            blue += luminance;
+            data[pixelIndex]     = red > 255 ? 255 : red;
+            data[pixelIndex + 1] = green > 255 ? 255 : green;
+            data[pixelIndex + 2] = blue > 255 ? 255 : blue;
+        }
+    }
+    cgimage = CGBitmapContextCreateImage(context);
+    UIImage *newImage = [UIImage imageWithCGImage:cgimage];
+    CGColorSpaceRelease(space);
+    CGContextRelease(context);
+    CGImageRelease(cgimage);
+    free(data);
+    return newImage;
+}
 
 @end

@@ -9,7 +9,7 @@
 #import "KJShineVC.h"
 #import "KJShadowLayer.h" // 内阴影、外阴影、投影相关
 @interface KJShineVC (){
-   __block KJShadowLayer *layer;
+   KJShadowLayer *layer;
 }
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIImageView *displayImageView;

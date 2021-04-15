@@ -24,12 +24,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy,readonly)NSArray<NSString*>*(^kObjectPropertyTemps)(BOOL containSuper);
 
 /// 归档封装
-- (void)kj_encodeRuntime:(NSCoder*)encoder;
+- (void)kj_runtimeEncode:(NSCoder*)encoder;
 /// 解档封装
-- (void)kj_initCoderRuntime:(NSCoder*)decoder;
+- (void)kj_runtimeInitCoder:(NSCoder*)decoder;
 /// NSCopying协议快捷设置
 - (id)kj_setCopyingWithZone:(NSZone*)zone;
-/// 拷贝obj属性
+/// 拷贝属性
 - (void)kj_copyingObject:(id)obj;
 
 /// 拷贝指定类属性，NSCopying协议时使用
@@ -48,6 +48,11 @@ void kRuntimeClassMethodSwizzling(Class clazz, SEL original, SEL swizzled);
 - (NSString*)kj_runtimeClassName;
 /// 判断对象是否有该属性
 - (void)kj_runtimeHaveProperty:(void(^)(NSString *property, BOOL * stop))traversal;
+
+/// 偷懒专用，自动生成属性代码
+- (void)kj_autoCreatePropertyCodeWithJson:(id)json;
+/// 模型转换，支持二级和关键字替换
++ (__kindof NSObject*)kj_modelTransformJson:(id)json;
 
 @end
 

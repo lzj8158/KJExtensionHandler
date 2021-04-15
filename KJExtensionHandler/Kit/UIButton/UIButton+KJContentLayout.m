@@ -9,8 +9,6 @@
 #import "UIButton+KJContentLayout.h"
 #import <objc/runtime.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 @implementation UIButton (KJContentLayout)
 /// 设置图文混排
 - (void)kj_setButtonContentLayout{
@@ -104,29 +102,49 @@ NS_ASSUME_NONNULL_BEGIN
     objc_setAssociatedObject(self, @selector(periphery), @(periphery), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self kj_setButtonContentLayout];
 }
-- (KJButtonContentLayoutStyle)kj_ButtonContentLayoutType{
-    return (KJButtonContentLayoutStyle)[objc_getAssociatedObject(self, @selector(kj_ButtonContentLayoutType)) integerValue];
+
+#pragma mark - 扩大点击域
+static char topNameKey,bottomNameKey,leftNameKey,rightNameKey;
+- (void (^)(CGFloat, CGFloat, CGFloat, CGFloat))kEnlargeEdge{
+    return ^(CGFloat top, CGFloat left, CGFloat bottom, CGFloat right){
+        objc_setAssociatedObject(self, &topNameKey, [NSNumber numberWithFloat:top], OBJC_ASSOCIATION_COPY_NONATOMIC);
+        objc_setAssociatedObject(self, &rightNameKey, [NSNumber numberWithFloat:right], OBJC_ASSOCIATION_COPY_NONATOMIC);
+        objc_setAssociatedObject(self, &bottomNameKey, [NSNumber numberWithFloat:bottom], OBJC_ASSOCIATION_COPY_NONATOMIC);
+        objc_setAssociatedObject(self, &leftNameKey, [NSNumber numberWithFloat:left], OBJC_ASSOCIATION_COPY_NONATOMIC);
+    };
 }
-- (void)setKj_ButtonContentLayoutType:(KJButtonContentLayoutStyle)kj_ButtonContentLayoutType{
-    objc_setAssociatedObject(self, @selector(kj_ButtonContentLayoutType), @(kj_ButtonContentLayoutType), OBJC_ASSOCIATION_ASSIGN);
-    self.layoutType = kj_ButtonContentLayoutType;
+- (CGRect)enlargedRect{
+    NSNumber *t = objc_getAssociatedObject(self, &topNameKey);
+    NSNumber *r = objc_getAssociatedObject(self, &rightNameKey);
+    NSNumber *b = objc_getAssociatedObject(self, &bottomNameKey);
+    NSNumber *l = objc_getAssociatedObject(self, &leftNameKey);
+    if (t && r && b && l){
+        return CGRectMake(self.bounds.origin.x - l.floatValue, self.bounds.origin.y - t.floatValue, self.bounds.size.width + l.floatValue + r.floatValue, self.bounds.size.height + t.floatValue + b.floatValue);
+    }else {
+        return self.bounds;
+    }
 }
-- (CGFloat)kj_Padding{
-    return [objc_getAssociatedObject(self, @selector(kj_Padding)) floatValue];
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
+    CGRect rect = [self enlargedRect];
+    if (CGRectEqualToRect(rect, self.bounds)) {
+        return [super hitTest:point withEvent:event];
+    }
+    return CGRectContainsPoint(rect, point) ? self : nil;
 }
-- (void)setKj_Padding:(CGFloat)kj_Padding{
-    objc_setAssociatedObject(self, @selector(kj_Padding), @(kj_Padding), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    self.padding = kj_Padding;
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent*)event{
+    UIEdgeInsets insets = self.touchAreaInsets;
+    CGRect bounds = self.bounds;
+    bounds = CGRectMake(bounds.origin.x - insets.left, bounds.origin.y - insets.top, bounds.size.width + insets.left + insets.right, bounds.size.height + insets.top + insets.bottom);
+    return CGRectContainsPoint(bounds, point);
 }
-- (CGFloat)kj_PaddingInset{
-    return [objc_getAssociatedObject(self, @selector(kj_PaddingInset)) floatValue];
+#pragma mark - associated
+- (UIEdgeInsets)touchAreaInsets{
+    return [objc_getAssociatedObject(self, _cmd) UIEdgeInsetsValue];
 }
-- (void)setKj_PaddingInset:(CGFloat)kj_PaddingInset{
-    objc_setAssociatedObject(self, @selector(kj_PaddingInset), @(kj_PaddingInset), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    self.periphery = kj_PaddingInset;
+- (void)setTouchAreaInsets:(UIEdgeInsets)touchAreaInsets{
+    NSValue *value = [NSValue valueWithUIEdgeInsets:touchAreaInsets];
+    objc_setAssociatedObject(self, @selector(touchAreaInsets), value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end
-
-NS_ASSUME_NONNULL_END
 

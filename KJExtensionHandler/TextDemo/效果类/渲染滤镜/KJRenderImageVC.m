@@ -29,7 +29,7 @@
     imageView.image = image;
     [self.view addSubview:imageView];
     
-    __block NSArray <KJRenderInfo*>*renderTemps = @[({
+    NSArray <KJRenderInfo*>*renderTemps = @[({
         KJRenderInfo *info = [KJRenderInfo new];
         info.type = KJRenderFilterTypeOriginal;
         info.opacity = 1.;

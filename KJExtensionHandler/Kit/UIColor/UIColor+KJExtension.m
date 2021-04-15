@@ -39,6 +39,10 @@
     KJColorHSL hsl = [self kj_colorGetHSL];
     return hsl.light;
 }
+/// 随机颜色
+UIColor * kRandomColor(void){
+    return [UIColor colorWithRed:((float)arc4random_uniform(256)/255.0) green:((float)arc4random_uniform(256)/255.0) blue:((float)arc4random_uniform(256)/255.0) alpha:1.0];
+}
 /// 获取颜色对应的RGBA
 - (KJColorRGBA)kj_colorGetRGBA{
     KJColorRGBA rgba;
@@ -114,7 +118,26 @@
         return [UIColor colorWithPatternImage:image];
     };
 }
-
+/// 兼容Swift版本，可变参数渐变色
+- (UIColor*)kj_gradientSize:(CGSize)size color:(UIColor*)color,...{
+    NSMutableArray * colors = [NSMutableArray arrayWithObjects:(id)self.CGColor,(id)color.CGColor,nil];
+    va_list args;UIColor * arg;
+    va_start(args, color);
+    while ((arg = va_arg(args, UIColor *))) {
+        [colors addObject:(id)arg.CGColor];
+    }
+    va_end(args);
+    UIGraphicsBeginImageContextWithOptions(size, NO, [UIScreen mainScreen].scale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
+    CGGradientRef gradient = CGGradientCreateWithColors(colorspace, (__bridge CFArrayRef)colors, NULL);
+    CGContextDrawLinearGradient(context, gradient, CGPointZero, CGPointMake(size.width, size.height), 0);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    CGGradientRelease(gradient);
+    CGColorSpaceRelease(colorspace);
+    UIGraphicsEndImageContext();
+    return [UIColor colorWithPatternImage:image];
+}
 /// 可变参数方式渐变色
 - (UIColor*(^)(CGSize))kj_gradientColor:(UIColor*)color,...{
     NSMutableArray * colors = [NSMutableArray arrayWithObjects:(id)self.CGColor,(id)color.CGColor,nil];
@@ -138,7 +161,7 @@
     };
 }
 /// 渐变颜色
-+ (UIColor*)zj_gradientColorWithColors:(NSArray*)colors GradientType:(KJGradietColorType)type Size:(CGSize)size{
++ (UIColor*)kj_gradientColorWithColors:(NSArray*)colors GradientType:(KJGradietColorType)type Size:(CGSize)size{
     NSMutableArray *temps = [NSMutableArray array];
     for(UIColor *c in colors){
         [temps addObject:(id)c.CGColor];
@@ -214,6 +237,9 @@
     CGFloat b = components[2];
     return [NSString stringWithFormat:@"#%02lX%02lX%02lX",lroundf(r*255),lroundf(g*255),lroundf(b*255)];
 }
+NSString *kHexStringFromColor(UIColor *color){
+    return [UIColor kj_hexStringFromColor:color];
+}
 /// 16进制字符串转UIColor
 + (UIColor*)kj_colorWithHexString:(NSString*)hexString {
     NSString *colorString = [[hexString stringByReplacingOccurrencesOfString:@"#" withString:@""] uppercaseString];
@@ -247,6 +273,9 @@
             return nil;
     }
     return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
+}
+UIColor * kColorHexString(NSString *hexString){
+    return [UIColor kj_colorWithHexString:hexString];
 }
 + (CGFloat)colorComponentFrom:(NSString*)string start:(NSUInteger)start length:(NSUInteger)length {
     NSString *substring = [string substringWithRange:NSMakeRange(start,length)];

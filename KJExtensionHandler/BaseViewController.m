@@ -9,7 +9,7 @@
 #import "BaseViewController.h"
 #import "UIDevice+KJSystem.h"
 #import "UIView+Toast.h"
-#import "UINavigationController+FDFullscreenPopGesture.h" // 侧滑返回
+//#import "UINavigationController+FDFullscreenPopGesture.h" // 侧滑返回
 @interface BaseViewController ()
 
 @end
@@ -22,11 +22,16 @@
     
     self.view.backgroundColor = UIColorFromHEXA(0xf5f5f5, 1);
     
+    self.view.frame = CGRectMake(0, 0, kScreenW, kScreenH-60);
+    
     _weakself;
     [self.navigationItem kj_makeNavigationItem:^(UINavigationItem * _Nonnull make) {
         make.kAddBarButtonItemInfo(^(KJNavigationItemInfo * _Nonnull info) {
             info.imageName = @"Arrow";
             info.tintColor = UIColor.whiteColor;
+            info.barButton = ^(UIButton * _Nonnull barButton) {
+                barButton.touchAreaInsets = UIEdgeInsetsMake(10, 10, 10, 10);
+            };
         }, ^(UIButton * _Nonnull kButton) {
             [weakself.navigationController popViewControllerAnimated:YES];
         }).kAddBarButtonItemInfo(^(KJNavigationItemInfo * _Nonnull info) {
@@ -49,8 +54,22 @@
             }];
         });
     }];
+    
+    UIButton *button = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    button.frame = CGRectMake(10, kScreenH-60, kScreenW-20, 60);
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:@"大家觉得好用还请点个星，遇见什么问题也可issues，持续更新ing.." attributes:@{NSForegroundColorAttributeName:UIColor.redColor}];
+    [button setAttributedTitle:attrStr forState:(UIControlStateNormal)];
+    button.titleLabel.numberOfLines = 0;
+    button.titleLabel.textAlignment = 1;
+    [button addTarget:self action:@selector(kj_button) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.view addSubview:button];
 }
-
+- (void)kj_button{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/yangKJ/KJExtensionHandler"]];
+#pragma clang diagnostic pop
+}
 - (void)dealloc{
     // 只要控制器执行此方法，代表VC以及其控件全部已安全从内存中撤出。
     // ARC除去了手动管理内存，但不代表能控制循环引用，虽然去除了内存销毁概念，但引入了新的概念--对象被持有。

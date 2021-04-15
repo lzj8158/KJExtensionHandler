@@ -14,10 +14,13 @@
 @end
 
 @implementation ViewController
-
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.hidesBottomBarWhenPushed = NO;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.navigationController.tabBarItem.selectedImage = [self.navigationController.tabBarItem.selectedImage imageWithRenderingMode:(UIImageRenderingModeAlwaysOriginal)];
     //暗黑模式
     if (@available(iOS 13.0, *)) {
         self.view.backgroundColor = [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull trainCollection) {
@@ -36,7 +39,7 @@
     CGFloat width = self.view.frame.size.width;
     CGFloat height = self.view.frame.size.height;
     KJHomeModel *model = [KJHomeModel new];
-    KJHomeView *view = [[KJHomeView alloc]initWithFrame:CGRectMake(0, 0, width, height-100-kBOTTOM_SPACE_HEIGHT)];
+    KJHomeView *view = [[KJHomeView alloc]initWithFrame:CGRectMake(0, kSTATUSBAR_NAVIGATION_HEIGHT, width, height-kBOTTOM_SPACE_HEIGHT-kSTATUSBAR_NAVIGATION_HEIGHT)];
     view.sectionTemps = model.sectionTemps;
     view.temps = model.temps;
     [self.view addSubview:view];
@@ -45,29 +48,13 @@
     [view kj_receivedSemaphoreBlock:^id _Nullable(NSString * _Nonnull key, id _Nonnull message, id _Nullable parameter) {
         if ([key isEqualToString:kHomeViewKey]) {
             ((UIViewController*)message).title = ((NSDictionary*)parameter)[@"describeName"];
+            weakself.hidesBottomBarWhenPushed = YES;
             [weakself.navigationController pushViewController:message animated:true];
         }
         return nil;
     }];
     
     self.navigationController.navigationBar.kj_changeNavigationBarImage([UIImage imageNamed:@"timg-2"]).kj_changeNavigationBarTitle(UIColor.whiteColor,[UIFont boldSystemFontOfSize:20]);
-    
-    UIButton *button = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    button.frame = CGRectMake(10, height-100-kBOTTOM_SPACE_HEIGHT, width-20, 100);
-    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:@"大家觉得好用还请点个星，遇见什么问题也可issues，持续更新ing.." attributes:@{
-        NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle),
-        NSForegroundColorAttributeName:UIColor.redColor}];
-    [button setAttributedTitle:attrStr forState:(UIControlStateNormal)];
-    button.titleLabel.numberOfLines = 0;
-    button.titleLabel.textAlignment = 1;
-    [button addTarget:self action:@selector(kj_button) forControlEvents:(UIControlEventTouchUpInside)];
-    [self.view addSubview:button];
-}
-- (void)kj_button{
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/yangKJ/KJExtensionHandler"]];
-#pragma clang diagnostic pop
 }
 
 @end

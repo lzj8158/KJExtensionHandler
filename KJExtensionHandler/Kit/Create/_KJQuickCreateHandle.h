@@ -8,38 +8,58 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-@protocol KJQuickCreateHandle <NSObject>
+@protocol KJCustomDelegate <NSObject>
 @optional;
-#pragma mark - common
-@property(nonatomic,copy,readonly)id<KJQuickCreateHandle>(^kj_frame)(CGFloat x,CGFloat y,CGFloat w,CGFloat h);
-@property(nonatomic,copy,readonly)id<KJQuickCreateHandle>(^kj_add)(UIView*);
-@property(nonatomic,copy,readonly)id<KJQuickCreateHandle>(^kj_background)(UIColor*);
-@property(nonatomic,copy,readonly)id<KJQuickCreateHandle>(^kj_image)(UIImage*);
-@property(nonatomic,copy,readonly)id<KJQuickCreateHandle>(^kj_imageName)(NSString*);
-@property(nonatomic,copy,readonly)id<KJQuickCreateHandle>(^kj_text)(NSString*);
-@property(nonatomic,copy,readonly)id<KJQuickCreateHandle>(^kj_font)(UIFont*);
-@property(nonatomic,copy,readonly)id<KJQuickCreateHandle>(^kj_fontSize)(CGFloat);
-@property(nonatomic,copy,readonly)id<KJQuickCreateHandle>(^kj_textColor)(UIColor*);
-
-#pragma mark - button
-@property(nonatomic,copy,readonly)id<KJQuickCreateHandle>(^kj_buttonSelectedImage)(UIImage*);
+@property(nonatomic,copy,readonly)id<KJCustomDelegate>(^kj_frame)(CGFloat x,CGFloat y,CGFloat w,CGFloat h);
+@property(nonatomic,copy,readonly)id<KJCustomDelegate>(^kj_add)(UIView*);
+@property(nonatomic,copy,readonly)id<KJCustomDelegate>(^kj_background)(UIColor*);
 
 @end
+
+@protocol KJViewDelegate <KJCustomDelegate>
+@optional;
+
+@end
+
+@protocol KJLabelDelegate <KJCustomDelegate>
+@optional;
+@property(nonatomic,copy,readonly)id<KJLabelDelegate>(^kj_text)(NSString*);
+@property(nonatomic,copy,readonly)id<KJLabelDelegate>(^kj_font)(UIFont*);
+@property(nonatomic,copy,readonly)id<KJLabelDelegate>(^kj_fontSize)(CGFloat);
+@property(nonatomic,copy,readonly)id<KJLabelDelegate>(^kj_textColor)(UIColor*);
+
+@end
+
+@protocol KJImageViewDelegate <KJCustomDelegate>
+@optional;
+@property(nonatomic,copy,readonly)id<KJImageViewDelegate>(^kj_image)(UIImage*);
+@property(nonatomic,copy,readonly)id<KJImageViewDelegate>(^kj_imageName)(NSString*);
+
+@end
+
+@protocol KJButtonDelegate <KJLabelDelegate,KJImageViewDelegate>
+@optional;
+@property(nonatomic,copy,readonly)id<KJButtonDelegate>(^kj_stateImage)(UIImage*,UIControlState);
+@property(nonatomic,copy,readonly)id<KJButtonDelegate>(^kj_stateTitle)(NSString*,UIColor*,UIControlState);
+
+@end
+
+
 /// 公共部分
 #define Quick_Create_Common \
-- (id<KJQuickCreateHandle>(^)(UIView *))kj_add{\
+- (id<KJCustomDelegate>(^)(UIView *))kj_add{\
     return ^(UIView * superview) {\
         [superview addSubview:self];\
         return self;\
     };\
 }\
-- (id<KJQuickCreateHandle> (^)(CGFloat, CGFloat, CGFloat, CGFloat))kj_frame{\
+- (id<KJCustomDelegate> (^)(CGFloat, CGFloat, CGFloat, CGFloat))kj_frame{\
     return ^(CGFloat x, CGFloat y, CGFloat w, CGFloat h) {\
         self.frame = CGRectMake(x, y, w, h);\
         return self;\
     };\
 }\
-- (id<KJQuickCreateHandle>(^)(UIColor *))kj_background{\
+- (id<KJCustomDelegate>(^)(UIColor *))kj_background{\
     return ^(UIColor * color) {\
         self.backgroundColor = color;\
         return self;\
