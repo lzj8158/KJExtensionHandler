@@ -14,6 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign,readonly)bool isEmpty;
 /// 转换为Josn字符串
 @property(nonatomic,strong,readonly)NSString *jsonString;
+/// 是否包含某个key，内部哈西算法实现
+- (BOOL)kj_containsKey:(NSString*)key;
+/// 字典键名数组，升序排列
+- (NSArray<NSString*>*)kj_keysSorted;
 
 @end
 

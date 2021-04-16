@@ -9,6 +9,8 @@
 #import <objc/runtime.h>
 #import <AVFoundation/AVFoundation.h>
 #import <MobileCoreServices/MobileCoreServices.h>
+#import <LocalAuthentication/LocalAuthentication.h>// 指纹解锁必须的头文件
+
 @implementation UIDevice (KJSystem)
 @dynamic appCurrentVersion,appName,appIcon,deviceID,supportHorizontalScreen;
 + (NSString*)appCurrentVersion{
@@ -47,7 +49,7 @@
     NSArray *imagesDictionary = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"UILaunchImages"];
     for (NSDictionary *dict in imagesDictionary){
         CGSize imageSize = CGSizeFromString(dict[@"UILaunchImageSize"]);
-        if (CGSizeEqualToSize(imageSize, viewSize)&& [viewOrientation isEqualToString:dict[@"UILaunchImageOrientation"]]){
+        if (CGSizeEqualToSize(imageSize, viewSize) && [viewOrientation isEqualToString:dict[@"UILaunchImageOrientation"]]){
             lauchImage = [UIImage imageNamed:dict[@"UILaunchImageName"]];
         }
     }
@@ -132,7 +134,7 @@
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     dispatch_group_async(dispatch_group_create(), queue, ^{
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
-        [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * data, NSURLResponse * response, NSError * error) {
             NSDictionary * json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
             NSDictionary * dict = [json[@"results"] firstObject];
             appVersion = dict[@"version"];
@@ -174,11 +176,46 @@
     [self kj_openURL:@"mailto://admin@abt.com"];
 }
 /// 是否切换为扬声器
-+ (void)kj_changeLoudspeaker:(bool)loudspeaker{
++ (void)kj_changeLoudspeaker:(BOOL)loudspeaker{
     if (loudspeaker) {
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
     }else{
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+    }
+}
+/// 是否开启手电筒
++ (void)kj_changeFlashlight:(BOOL)light{
+    AVCaptureDevice *captureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    if (![captureDevice hasTorch]) return;
+    if (light) {
+        NSError *error = nil;
+        if ([captureDevice lockForConfiguration:&error]) {
+            [captureDevice setTorchMode:AVCaptureTorchModeOn];
+        }
+    }else{
+        [captureDevice lockForConfiguration:nil];
+        [captureDevice setTorchMode:AVCaptureTorchModeOff];
+    }
+    [captureDevice unlockForConfiguration];
+}
+/// 指纹验证
++ (void)kj_fingerprintVerification:(void(^)(NSError *error, BOOL reset))block{
+    LAContext * context = [[LAContext alloc]init];
+    if (@available(iOS 10.0, *)) {
+        context.localizedCancelTitle = NSLocalizedString(@"取消", nil);
+    }
+    NSError * error;
+    if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&error]) {
+        [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
+                localizedReason:NSLocalizedString(@"验证指纹以确认你的身份", nil) reply:^(BOOL success, NSError *error) {
+            if (success) {
+                if (block) block(nil,YES);
+            }else{
+                if (block) block(error,NO);
+            }
+        }];
+    }else{
+        if (block) block(error,NO);
     }
 }
 

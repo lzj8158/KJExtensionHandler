@@ -27,9 +27,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// 启动图备份文件路径
 @property(nonatomic,strong,class)NSString *launchImageBackupPath;
 /// 生成启动图
-+ (UIImage*)kj_launchImageWithPortrait:(BOOL)portrait Dark:(BOOL)dark;
++ (UIImage*)kj_launchImageWithPortrait:(BOOL)portrait
+                                  Dark:(BOOL)dark;
 /// 生成启动图，根据LaunchScreen名称、是否竖屏、是否暗黑
-+ (UIImage*)kj_launchImageWithStoryboard:(NSString*)name Portrait:(BOOL)portrait Dark:(BOOL)dark;
++ (UIImage*)kj_launchImageWithStoryboard:(NSString*)name
+                                Portrait:(BOOL)portrait
+                                    Dark:(BOOL)dark;
 
 /// 判断相机是否可用
 @property(nonatomic,assign,class)BOOL cameraAvailable;
@@ -48,7 +51,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// 调用自带Mail
 + (void)kj_skipToMail;
 /// 是否切换为扬声器
-+ (void)kj_changeLoudspeaker:(bool)loudspeaker;
++ (void)kj_changeLoudspeaker:(BOOL)loudspeaker;
+/// 是否开启手电筒
++ (void)kj_changeFlashlight:(BOOL)light;
+
+/// 指纹验证
++ (void)kj_fingerprintVerification:(void(^)(NSError *error, BOOL reset))block;
 
 @end
 

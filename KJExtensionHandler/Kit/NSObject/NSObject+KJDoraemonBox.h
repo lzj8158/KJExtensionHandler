@@ -12,6 +12,8 @@ typedef void(^KJObserveResultBlock) (id newValue, id oldValue);
 @interface NSObject (KJDoraemonBox)
 /// 代码执行时间处理，block当中执行代码
 + (CFTimeInterval)kj_executeTime:(void(^)(void))block;
+/// 延迟点击，避免快速点击
+void kAfterDoubleClick(float time);
 
 #pragma mark - kvo键值监听封装，自动释放
 /// 记录已经添加监听的keyPath与对应的block
@@ -21,18 +23,24 @@ typedef void(^KJObserveResultBlock) (id newValue, id oldValue);
 
 #pragma mark - 轻量级解耦工具（信号方式）
 /// 发送消息处理
-- (id)kj_sendSemaphoreWithKey:(NSString*)key Message:(id)message Parameter:(id _Nullable)parameter;
+- (id)kj_sendSemaphoreWithKey:(NSString*)key
+                      Message:(id)message
+                    Parameter:(id _Nullable)parameter;
 /// 接收消息处理
 - (void)kj_receivedSemaphoreBlock:(id _Nullable(^)(NSString *key, id message, id _Nullable parameter))block;
 
 #pragma mark - 路由框架（基于URL实现控制器转场）
 /// 注册路由URL
-+ (void)kj_routerRegisterWithURL:(NSURL*)URL Block:(UIViewController * (^)(NSURL *URL, UIViewController *vc))block;
++ (void)kj_routerRegisterWithURL:(NSURL*)URL
+                           Block:(UIViewController * (^)(NSURL *URL, UIViewController *vc))block;
 /// 移除路由URL
 + (void)kj_routerRemoveWithURL:(NSURL*)URL;
 /// 执行跳转处理
-+ (void)kj_routerTransferWithURL:(NSURL*)URL source:(UIViewController*)vc;
-+ (void)kj_routerTransferWithURL:(NSURL*)URL source:(UIViewController*)vc completion:(void(^_Nullable)(UIViewController *vc))completion;
++ (void)kj_routerTransferWithURL:(NSURL*)URL
+                          source:(UIViewController*)vc;
++ (void)kj_routerTransferWithURL:(NSURL*)URL
+                          source:(UIViewController*)vc
+                      completion:(void(^_Nullable)(UIViewController *vc))completion;
 /// 解析获取参数
 + (NSDictionary*)kj_analysisParameterGetQuery:(NSURL*)URL;
 

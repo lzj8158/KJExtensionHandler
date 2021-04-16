@@ -212,10 +212,16 @@
 + (instancetype)kj_viewFromXib{
     return [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass(self) owner:nil options:nil] lastObject];
 }
+UIView * kViewFromXib(void){
+    return [UIView kj_viewFromXib];
+}
 + (instancetype)kj_viewFromXibWithFrame:(CGRect)frame {
     UIView *view = [self kj_viewFromXib];
     view.frame = frame;
     return view;
+}
+UIView * kViewXibWithFrame(CGRect frame){
+    return [UIView kj_viewFromXibWithFrame:frame];
 }
 /// 判断一个控件是否真正显示在主窗口
 - (BOOL)kj_isShowingOnKeyWindow{

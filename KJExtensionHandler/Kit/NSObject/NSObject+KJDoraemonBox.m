@@ -19,6 +19,15 @@
     }
     return 0;
 }
+/// 延迟点击
+void kAfterDoubleClick(float time){
+    static BOOL canClick;
+    if (canClick) return;
+    canClick = YES;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((time) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        canClick = NO;
+    });
+}
 
 #pragma mark - kvo键值监听封装，自动释放
 /// kvo监听

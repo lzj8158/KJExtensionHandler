@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    __block KJColorSlider *slider = [[KJColorSlider alloc]initWithFrame:CGRectMake(20, 100, kScreenW-40, 30)];
+    KJColorSlider *slider = [[KJColorSlider alloc]initWithFrame:CGRectMake(20, 100, kScreenW-40, 30)];
     slider.value = 0.5;
     [self.view addSubview:slider];
     slider.colors = @[UIColorFromHEXA(0xF44336,1), UIColorFromHEXA(0xFFFFFF,1)];

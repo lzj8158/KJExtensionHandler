@@ -47,25 +47,54 @@ typedef NS_OPTIONS(NSInteger, KJBorderOrientationType) {
 /// 边框方位，必设参数
 @property(nonatomic,assign)KJBorderOrientationType kj_borderOrientation;
 /* 虚线边框 */
-- (void)kj_DashedLineColor:(UIColor*)lineColor lineWidth:(CGFloat)lineWidth spaceAry:(NSArray<NSNumber*>*)spaceAry;
+- (void)kj_DashedLineColor:(UIColor*)lineColor
+                 lineWidth:(CGFloat)lineWidth
+                  spaceAry:(NSArray<NSNumber*>*)spaceAry;
 
 #pragma mark - 渐变相关
 /* 返回渐变layer */
-- (CAGradientLayer*)kj_GradientLayerWithColors:(NSArray*)colors Frame:(CGRect)frm Locations:(NSArray*)locations StartPoint:(CGPoint)startPoint EndPoint:(CGPoint)endPoint;
+- (CAGradientLayer*)kj_GradientLayerWithColors:(NSArray*)colors
+                                         Frame:(CGRect)frm
+                                     Locations:(NSArray*)locations
+                                    StartPoint:(CGPoint)startPoint
+                                      EndPoint:(CGPoint)endPoint;
 /* 生成渐变背景色 */
-- (void)kj_GradientBgColorWithColors:(NSArray*)colors Locations:(NSArray*)locations StartPoint:(CGPoint)startPoint EndPoint:(CGPoint)endPoint;
+- (void)kj_GradientBgColorWithColors:(NSArray*)colors
+                           Locations:(NSArray*)locations
+                          StartPoint:(CGPoint)startPoint
+                            EndPoint:(CGPoint)endPoint;
 
 #pragma mark - 指定图形
 /// 画直线
-- (void)kj_DrawLineWithPoint:(CGPoint)fPoint toPoint:(CGPoint)tPoint lineColor:(UIColor*)color lineWidth:(CGFloat)width;
+- (void)kj_DrawLineWithPoint:(CGPoint)fPoint
+                     toPoint:(CGPoint)tPoint
+                   lineColor:(UIColor*)color
+                   lineWidth:(CGFloat)width;
 /// 画虚线
-- (void)kj_DrawDashLineWithPoint:(CGPoint)fPoint toPoint:(CGPoint)tPoint lineColor:(UIColor*)color lineWidth:(CGFloat)width lineSpace:(CGFloat)space lineType:(NSInteger)type;
+- (void)kj_DrawDashLineWithPoint:(CGPoint)fPoint
+                         toPoint:(CGPoint)tPoint
+                       lineColor:(UIColor*)color
+                       lineWidth:(CGFloat)width
+                       lineSpace:(CGFloat)space
+                        lineType:(NSInteger)type;
 /// 画五角星
-- (void)kj_DrawPentagramWithCenter:(CGPoint)center radius:(CGFloat)radius color:(UIColor*)color rate:(CGFloat)rate;
+- (void)kj_DrawPentagramWithCenter:(CGPoint)center
+                            radius:(CGFloat)radius
+                             color:(UIColor*)color
+                              rate:(CGFloat)rate;
 // 根据宽高画六边形
-- (void)kj_DrawSexangleWithWidth:(CGFloat)width LineWidth:(CGFloat)lineWidth StrokeColor:(UIColor *)color FillColor:(UIColor*)fcolor;
+- (void)kj_DrawSexangleWithWidth:(CGFloat)width
+                       LineWidth:(CGFloat)lineWidth
+                     StrokeColor:(UIColor *)color
+                       FillColor:(UIColor*)fcolor;
 // 根据宽高画八边形
-- (void)kj_DrawOctagonWithWidth:(CGFloat)width Height:(CGFloat)height LineWidth:(CGFloat)lineWidth StrokeColor:(UIColor*)color FillColor:(UIColor*)fcolor Px:(CGFloat)px Py:(CGFloat)py;
+- (void)kj_DrawOctagonWithWidth:(CGFloat)width
+                         Height:(CGFloat)height
+                      LineWidth:(CGFloat)lineWidth
+                    StrokeColor:(UIColor*)color
+                      FillColor:(UIColor*)fcolor
+                             Px:(CGFloat)px
+                             Py:(CGFloat)py;
 
 @end
 

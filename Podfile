@@ -7,8 +7,11 @@ target 'KJExtensionHandler' do
 
   # Pods for KJExtensionHandler
 
+  pod 'GZIP'
   pod "Toast"
   pod "FDFullscreenPopGesture"
+  pod "DZNEmptyDataSet"
+  pod 'OpenCV', '~> 4.1.0'
   
   target 'KJExtensionHandlerTests' do
     inherit! :search_paths

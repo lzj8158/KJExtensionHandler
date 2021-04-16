@@ -76,7 +76,7 @@
             }
         }
     }];
-    self.textView.text = [self.textView.text stringByAppendingFormat:@"动态继承后类名:%@\n对象地址%@\n\n",[obj kj_runtimeClassName],obj];
+    self.textView.text = [self.textView.text stringByAppendingFormat:@"修改isa指针后类名:%@\n对象地址%@\n\n",[obj kj_runtimeClassName],obj];
     
     KJRuntimeModel *mo = [KJRuntimeModel new];
     self.textView.text = [self.textView.text stringByAppendingFormat:@"新对象类名:%@\n\n",[mo kj_runtimeClassName]];

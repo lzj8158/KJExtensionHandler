@@ -24,6 +24,8 @@
 	<true/>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>请点击“好”以允许访问</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>App需要您的同意，用于保存图片到手机</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

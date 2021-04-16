@@ -53,8 +53,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// Xib创建的View
 + (instancetype)kj_viewFromXib;
+UIView * kViewFromXib(void);
 /// Xib创建的View
 + (instancetype)kj_viewFromXibWithFrame:(CGRect)frame;
+UIView * kViewXibWithFrame(CGRect frame);
 
 /// 当前的控制器
 - (UIViewController*)kj_currentViewController;

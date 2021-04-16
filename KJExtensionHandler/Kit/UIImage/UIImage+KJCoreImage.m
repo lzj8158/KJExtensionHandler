@@ -13,38 +13,17 @@
 #pragma clang diagnostic ignored"-Wdeprecated-declarations"
 
 @implementation UIImage (KJCoreImage)
-/// 滤镜过滤器
-static NSString * const _Nonnull KJImageFilterTypeStringMap[] = {
-    [KJCoreImagePhotoshopTypeBrightnes]  = @"CIColorControls", /// 色彩控制
-    [KJCoreImagePhotoshopTypeSaturation] = @"CIColorControls",
-    [KJCoreImagePhotoshopTypeContrast]   = @"CIColorControls",
-    [KJCoreImagePhotoshopTypeAngle]      = @"CIHueAdjust", /// 色相滤镜
-    [KJCoreImagePhotoshopTypeExposure]   = @"CIExposureAdjust",/// 曝光滤镜
-    [KJCoreImagePhotoshopTypeSharpness]  = @"CISharpenLuminance",/// 细节锐化滤镜
-    [KJCoreImagePhotoshopTypePower]      = @"CIGammaAdjust",/// 伽玛调整
-    [KJCoreImagePhotoshopTypeGaussianBlur] = @"CIGaussianBlur",/// 高斯模糊
-};
-static NSString * const _Nonnull KJCoreImagePhotoshopTypeStringMap[] = {
-    [KJCoreImagePhotoshopTypeBrightnes]  = @"inputBrightness",
-    [KJCoreImagePhotoshopTypeSaturation] = @"inputSaturation",
-    [KJCoreImagePhotoshopTypeContrast]   = @"inputContrast",
-    [KJCoreImagePhotoshopTypeAngle]      = @"inputAngle", /// 该滤镜实质上使彩色立方体绕中性轴旋转
-    [KJCoreImagePhotoshopTypeExposure]   = @"inputEV",
-    [KJCoreImagePhotoshopTypeSharpness]  = @"inputSharpness",
-    [KJCoreImagePhotoshopTypePower]      = @"inputPower",
-    [KJCoreImagePhotoshopTypeGaussianBlur] = @"inputRadius",/// 高斯模糊
-};
 - (EAGLContext*)eagContext{
-    EAGLContext *eag = objc_getAssociatedObject(self, @selector(eagContext));
-    if (eag == nil) {
+    EAGLContext *context = objc_getAssociatedObject(self, _cmd);
+    if (context == nil) {
         // 创建基于GPU的CIContext对象，处理速度更快，实时渲染
-        eag = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
-        objc_setAssociatedObject(self, @selector(eagContext), eag, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+        objc_setAssociatedObject(self, @selector(eagContext), context, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
-    return eag;
+    return context;
 }
 - (CIContext*)ciContext{
-    CIContext *context = objc_getAssociatedObject(self, @selector(ciContext));
+    CIContext *context = objc_getAssociatedObject(self, _cmd);
     if (context == nil) {
         context = [CIContext contextWithEAGLContext:self.eagContext options:@{kCIContextWorkingColorSpace:[NSNull null]}];
         objc_setAssociatedObject(self, @selector(ciContext), context, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -162,7 +141,7 @@ static NSString * const _Nonnull KJCoreImagePhotoshopTypeStringMap[] = {
     UIImage *newImage = [UIImage imageWithCIImage:outputImage];
     return newImage;
 }
-- (UIImage*)kj_CoreImageChangeImageSize:(CGSize)size{
+- (UIImage*)kj_coreImageChangeImageSize:(CGSize)size{
     CIImage *ciImage = [CIImage imageWithCGImage:self.CGImage];
     CGFloat scale = fminf(size.height/self.size.height, size.width/self.size.width);
     NSDictionary *dict = @{kCIInputScaleKey:@(scale),kCIInputAspectRatioKey:@(1.),kCIInputImageKey:ciImage};
@@ -269,16 +248,15 @@ static NSString * const _Nonnull KJCoreImagePhotoshopTypeStringMap[] = {
 }
 /// 改变图片内部像素颜色
 - (UIImage*)kj_changeImagePixelColor:(UIColor*)color{
-    UIImage *image = self;
     CGFloat red=0, green=0, blue=0, a;
     [color getRed:&red green:&green blue:&blue alpha:&a];
-    int imageWidth = image.size.width;
-    int imageHeight = image.size.height;
+    int imageWidth = self.size.width;
+    int imageHeight = self.size.height;
     size_t bytesPerRow = imageWidth * 4;
     uint32_t *rgbImageBuf = (uint32_t *)malloc(bytesPerRow * imageHeight);
-    CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
-    CGContextRef context = CGBitmapContextCreate(rgbImageBuf, imageWidth, imageHeight, 8, bytesPerRow, colorSpaceRef, kCGBitmapByteOrder32Little|kCGImageAlphaNoneSkipLast);
-    CGContextDrawImage(context, CGRectMake(0, 0, imageWidth, imageHeight), image.CGImage);
+    CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
+    CGContextRef context = CGBitmapContextCreate(rgbImageBuf, imageWidth, imageHeight, 8, bytesPerRow, space, kCGBitmapByteOrder32Little | kCGImageAlphaNoneSkipLast);
+    CGContextDrawImage(context, CGRectMake(0, 0, imageWidth, imageHeight), self.CGImage);
     int pixelNum = imageWidth * imageHeight;
     uint32_t *pCurPtr = rgbImageBuf;
     for (int i = 0; i<pixelNum; i++, pCurPtr++) {
@@ -293,12 +271,12 @@ static NSString * const _Nonnull KJCoreImagePhotoshopTypeStringMap[] = {
         }
     }
     CGDataProviderRef dataProvider = CGDataProviderCreateWithData(NULL, rgbImageBuf, bytesPerRow * imageHeight, kProviderReleaseData);
-    CGImageRef imageRef = CGImageCreate(imageWidth, imageHeight, 8, 32, bytesPerRow, colorSpaceRef, kCGImageAlphaLast | kCGBitmapByteOrder32Little, dataProvider, NULL, true, kCGRenderingIntentDefault);
+    CGImageRef imageRef = CGImageCreate(imageWidth, imageHeight, 8, 32, bytesPerRow, space, kCGImageAlphaLast | kCGBitmapByteOrder32Little, dataProvider, NULL, true, kCGRenderingIntentDefault);
     CGDataProviderRelease(dataProvider);
     UIImage *resultImage = [UIImage imageWithCGImage:imageRef];
     CGImageRelease(imageRef);
     CGContextRelease(context);
-    CGColorSpaceRelease(colorSpaceRef);
+    CGColorSpaceRelease(space);
     return resultImage;
 }
 /// 释放
@@ -311,7 +289,7 @@ void kQRCodeImage(void(^codeImage)(UIImage * image), NSString *content, CGFloat 
     if (codeImage) {
         kGCD_async(^{
             CIImage *image = [UIImage kj_QRCodeImageWithContent:content];
-            __block UIImage *newImage = [UIImage kj_changeCIImage:image codeImageSize:size];
+            UIImage *newImage = [UIImage kj_changeCIImage:image codeImageSize:size];
             kGCD_main(^{
                 codeImage(newImage);
             });

@@ -24,7 +24,7 @@
     for (int k=0; k<name.count; k++) {
         x = k%4*(w+sp)+sp;
         y = k/4*(h+sp*2)+sp+kSTATUSBAR_NAVIGATION_HEIGHT+sp*2;
-        UILabel *label = [UILabel kj_createLabel:^(id<KJQuickCreateHandle>  _Nonnull handle) {
+        UILabel *label = [UILabel kj_createLabel:^(id<KJLabelDelegate>  _Nonnull handle) {
             handle.kj_frame(x, y, w, w/3).kj_add(self.view);
             handle.kj_background([UIColor.orangeColor colorWithAlphaComponent:0.2]);
             handle.kj_text(name[k]).kj_font([UIFont systemFontOfSize:14]).kj_textColor(UIColor.orangeColor);

@@ -9,25 +9,6 @@
 #import "KJMathEquation.h"
 
 @implementation KJMathEquation
-+ (CGFloat)kj_degreeFromRadian:(CGFloat)radian {
-    return ((radian) * (180.0 / M_PI));
-}
-+ (CGFloat)kj_radianFromDegree:(CGFloat)degree {
-    return ((degree) * M_PI / 180.f);
-}
-+ (CGFloat)kj_radianValueFromTanSideA:(CGFloat)sideA sideB:(CGFloat)sideB {
-    return atan2f(sideA, sideB);
-}
-+ (CGSize)kj_resetFromSize:(CGSize)size FixedWidth:(CGFloat)width {
-    CGFloat newHeight = size.height * (width / size.width);
-    CGSize  newSize   = CGSizeMake(width, newHeight);
-    return newSize;
-}
-+ (CGSize)kj_resetFromSize:(CGSize)size FixedHeight:(CGFloat)height {
-    float  newWidth = size.width * (height / size.height);
-    CGSize newSize  = CGSizeMake(newWidth, height);
-    return newSize;
-}
 #pragma mark - Calculate once linear equation (Y = kX + b)
 + (KJLinearEquation)kj_mathOnceLinearEquationWithPointA:(CGPoint)pointA PointB:(CGPoint)pointB{
     CGFloat x1 = pointA.x; CGFloat y1 = pointA.y;
@@ -45,5 +26,36 @@
 + (CGFloat)kj_yValueWithX:(CGFloat)xValue LinearEquation:(KJLinearEquation)kb{
     return kb.k * xValue + kb.b;
 }
+
+float kDegreeFromRadian(float radian){
+    return ((radian) * (180.0 / M_PI));
+}
+float kRadianFromDegree(float degree){
+    return ((degree) * M_PI / 180.f);
+}
+float kradianValueFromTanSide(float sideA, float sideB){
+    return atan2f(sideA, sideB);
+}
+CGSize kResetFromSizeAndFixedWidth(CGSize size, float width){
+    CGFloat newHeight = size.height * (width / size.width);
+    return CGSizeMake(width, newHeight);
+}
+CGSize kResetFromSizeAndFixedHeight(CGSize size, float height){
+    float newWidth = size.width * (height / size.height);
+    return CGSizeMake(newWidth, height);
+}
+/// 最大公约数
+int kMaxCommonDivisor(int num){
+    if (num == 4) return 2;
+    int i = 2, ans = 1;
+    while (i * i <= num) {
+        if (num % i == 0) ans = i;
+        while (num % i == 0) num /= i;
+        i++;
+    }
+//    if (num != 1) ans = num;
+    return num;
+}
+
 
 @end

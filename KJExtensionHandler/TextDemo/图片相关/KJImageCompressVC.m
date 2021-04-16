@@ -24,7 +24,7 @@
     for (int k=0; k<names.count; k++) {
         x = k%2*(w+sp)+sp/2; 
         y = k/2*(h+sp)+sp+kSTATUSBAR_NAVIGATION_HEIGHT;
-        [UILabel kj_createLabel:^(id<KJQuickCreateHandle>  _Nonnull handle) {
+        [UILabel kj_createLabel:^(id<KJLabelDelegate>  _Nonnull handle) {
             handle.kj_frame(x, y, w, 20).kj_add(self.view);
             handle.kj_text(names[k]).kj_font([UIFont systemFontOfSize:16]).kj_textColor(UIColor.orangeColor);
         }];
@@ -56,13 +56,13 @@
             imageView.image = img;
         }else if (k==4) {
             CFAbsoluteTime start = CFAbsoluteTimeGetCurrent();
-            UIImage *img = [image kj_CoreImageChangeImageSize:size];
+            UIImage *img = [image kj_coreImageChangeImageSize:size];
             NSData *date = UIImagePNGRepresentation(img);
             NSLog(@"CoreImageTime：%f，Data：%lu", CFAbsoluteTimeGetCurrent() - start,(unsigned long)date.length);
             imageView.image = img;
         }else if (k==5) {
             CFAbsoluteTime start = CFAbsoluteTimeGetCurrent();
-            UIImage *img = [image kj_AccelerateChangeImageSize:size];
+            UIImage *img = [image kj_BitmapChangeImageSize:size];
             NSData *date = UIImagePNGRepresentation(img);
             NSLog(@"AccelerateTime：%f，Data：%lu", CFAbsoluteTimeGetCurrent() - start,(unsigned long)date.length);
             imageView.image = img;

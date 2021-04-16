@@ -89,6 +89,53 @@
     CGRect frame = [title boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font,NSParagraphStyleAttributeName:paragraph} context:nil];
     return frame.size;
 }
+CGSize kCalculateLabelSize(UILabel *label, NSLineBreakMode mode){
+    return kCalculateTitleSize(label.text, label.font, label.frame.size, mode);
+}
+CGSize kCalculateTitleSize(NSString *title, UIFont *font, CGSize size, NSLineBreakMode mode){
+    return [UILabel kj_calculateLabelSizeWithTitle:title font:font constrainedToSize:size lineBreakMode:mode];
+}
+- (void)kj_changeLineSpace:(float)space {
+    NSString *labelText = self.text;
+    if (!labelText) return;
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:labelText];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:space];
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [labelText length])];
+    self.attributedText = attributedString;
+    [self sizeToFit];
+}
+- (void)kj_changeLineSpace:(float)space paragraphSpace:(float)paragraphSpace{
+    NSString *labelText = self.text;
+    if (!labelText) return;
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:labelText];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:space];
+    [paragraphStyle setParagraphSpacing:paragraphSpace];
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [labelText length])];
+    self.attributedText = attributedString;
+    [self sizeToFit];
+}
+- (void)kj_changeWordSpace:(float)space {
+    NSString *labelText = self.text;
+    if (!labelText) return;
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:labelText attributes:@{NSKernAttributeName:@(space)}];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [labelText length])];
+    self.attributedText = attributedString;
+    [self sizeToFit];
+}
+- (void)kj_changeLineSpace:(float)lineSpace wordSpace:(float)wordSpace {
+    NSString *labelText = self.text;
+    if (!labelText) return;
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:labelText attributes:@{NSKernAttributeName:@(wordSpace)}];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:lineSpace];
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [labelText length])];
+    self.attributedText = attributedString;
+    [self sizeToFit];
+}
+
 
 #pragma mark - 长按复制功能
 - (BOOL)copyable{

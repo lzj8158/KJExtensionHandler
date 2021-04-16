@@ -23,7 +23,7 @@
     // Do any additional setup after loading the view.
     self.navigationController.navigationBar.kj_changeNavigationBarBackgroundColor([UIColor.blueColor colorWithAlphaComponent:.6]);
     
-    UIButton *button = [UIButton kj_createButton:^(id<KJQuickCreateHandle>  _Nonnull handle) {
+    UIButton *button = [UIButton kj_createButton:^(id<KJButtonDelegate>  _Nonnull handle) {
         handle.kj_frame(0, 0, 100, 50).kj_add(self.view);
         handle.kj_text(@"测试来电").kj_font([UIFont systemFontOfSize:15]).kj_textColor(UIColor.orangeColor);
     }];

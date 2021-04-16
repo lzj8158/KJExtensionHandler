@@ -26,7 +26,9 @@ typedef NS_ENUM(NSInteger, KJImageBlurType) {
 - (void)kj_headerImageShowScreenWithBackground:(UIColor*)color;
 
 /// 模糊处理
-- (void)kj_blurImageViewWithBlurType:(KJImageBlurType)type BlurImage:(UIImage*)image BlurRadius:(CGFloat)radius;
+- (void)kj_blurImageViewWithBlurType:(KJImageBlurType)type
+                           BlurImage:(UIImage*)image
+                          BlurRadius:(CGFloat)radius;
 
 @end
 

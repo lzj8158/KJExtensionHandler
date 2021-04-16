@@ -19,7 +19,8 @@ IB_DESIGNABLE
 /// 设置语言，传nil恢复系统默认语言
 + (void)kj_setCurrentLanguage:(NSString*_Nullable)language complete:(void(^_Nullable)(void))complete;
 /// 切换动画，备注Xib设置的多语言会自动切换
-+ (void)kj_switchoverLanguage:(UIViewController*(^_Nullable)(KJLoadLanguageViewController *loadvc))block complete:(void(^_Nullable)(void))complete;
++ (void)kj_switchoverLanguage:(UIViewController*(^_Nullable)(KJLoadLanguageViewController *loadvc))block
+                     complete:(void(^_Nullable)(void))complete;
 
 @end
 

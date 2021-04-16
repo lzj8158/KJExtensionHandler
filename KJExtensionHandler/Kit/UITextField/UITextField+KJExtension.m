@@ -145,7 +145,7 @@ static char placeholderColorKey,placeHolderFontSizeKey;
 }
 /// 设置右边视图，类似小圆叉
 static char tapActionKey;
-- (UIButton*)kj_rightViewTapBlock:(void(^_Nullable)(bool state))block ImageName:(NSString*)imageName Width:(CGFloat)width Padding:(CGFloat)padding{
+- (UIButton*)kj_rightViewTapBlock:(void(^_Nullable)(BOOL state))block ImageName:(NSString*)imageName Width:(CGFloat)width Padding:(CGFloat)padding{
     UIButton *button = [UIButton buttonWithType:(UIButtonTypeCustom)];
     button.frame = CGRectMake(0, 0, width, self.frame.size.height);
     [button setImage:[UIImage imageNamed:imageName] forState:(UIControlStateNormal)];

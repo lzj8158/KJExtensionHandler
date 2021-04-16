@@ -97,7 +97,7 @@ static KJCallNotifyView *_instance = nil;
 }
 - (KJCallView*)kj_viewIndex:(NSInteger)index Info:(KJCallNotifyInfo*)info{
     CGFloat y = kAutoH(17) + (index-1) * kAutoH(58) + kSTATUSBAR_HEIGHT - 20;
-    __block KJCallView *view = [[KJCallView alloc]kj_initWithFrame:CGRectMake(0, y, kAutoW(170), kAutoH(48)) Name:info.name];
+    KJCallView *view = [[KJCallView alloc]kj_initWithFrame:CGRectMake(0, y, kAutoW(170), kAutoH(48)) Name:info.name];
     view.tag = 520 + index - 1;
     view.info = info;
     view.imageView.image = [UIImage imageNamed:info.imageUrl];
@@ -187,12 +187,13 @@ static KJCallNotifyView *_instance = nil;
         self.imageView = [[UIImageView alloc]initWithFrame:CGRectMake(5, 5, height-10, height-10)];
         self.imageView.cornerRadius = (height-10)/2;
         [self addSubview:self.imageView];
-        self.button = [UIButton kj_createButton:^(id<KJQuickCreateHandle>  _Nonnull handle) {
+        self.button = [UIButton kj_createButton:^(id<KJButtonDelegate>  _Nonnull handle) {
             handle.kj_frame(self.width-18-8, 0, 18, 18).kj_add(self);
-            handle.kj_imageName(@"xxx").kj_fontSize(14).kj_textColor(UIColor.blackColor);
+            handle.kj_imageName(@"xxx");
+            handle.kj_fontSize(14).kj_textColor(UIColor.blackColor);
         }];
         self.button.centerY = self.height/2;
-        self.label = [UILabel kj_createLabel:^(id<KJQuickCreateHandle>  _Nonnull handle) {
+        self.label = [UILabel kj_createLabel:^(id<KJLabelDelegate>  _Nonnull handle) {
             handle.kj_add(self);
             handle.kj_text(name).kj_font([UIFont fontWithName:@"PingFang SC" size:14]);
             handle.kj_textColor([UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1.0]);

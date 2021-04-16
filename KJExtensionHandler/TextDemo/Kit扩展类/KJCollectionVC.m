@@ -19,7 +19,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view addSubview:self.collectView];
-    UILabel *label = [UILabel kj_createLabel:^(id<KJQuickCreateHandle>  _Nonnull handle) {
+    UILabel *label = [UILabel kj_createLabel:^(id<KJLabelDelegate>  _Nonnull handle) {
         handle.kj_add(self.view);
         handle.kj_text(@"核心就是解决左右滚动和上下滑动冲突处理").kj_font([UIFont systemFontOfSize:16]).kj_textColor(UIColor.orangeColor);
     }];

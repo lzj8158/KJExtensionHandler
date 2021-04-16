@@ -15,51 +15,25 @@
     const size_t height = self.size.height;
     const size_t bytesPerRow = width * 4;
     CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
-    CGContextRef bmContext = CGBitmapContextCreate(NULL, width, height, 8, bytesPerRow, space, kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedFirst);
+    CGContextRef context = CGBitmapContextCreate(NULL, width, height, 8, bytesPerRow, space, kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedFirst);
     CGColorSpaceRelease(space);
-    if (!bmContext) return nil;
-    CGContextDrawImage(bmContext, CGRectMake(0, 0, width, height), self.CGImage);
-    UInt8 *data = (UInt8*)CGBitmapContextGetData(bmContext);
+    if (!context) return nil;
+    CGContextDrawImage(context, CGRectMake(0, 0, width, height), self.CGImage);
+    UInt8 *data = (UInt8*)CGBitmapContextGetData(context);
     if (!data){
-        CGContextRelease(bmContext);
+        CGContextRelease(context);
         return nil;
     }
     vImage_Buffer src  = {data, height, width, bytesPerRow};
     vImage_Buffer dest = {data, height, width, bytesPerRow};
     Pixel_8888 bgColor = {0, 0, 0, 0};
     vImageRotate_ARGB8888(&src, &dest, NULL, radians, bgColor, kvImageBackgroundColorFill);
-    CGImageRef rotatedImageRef = CGBitmapContextCreateImage(bmContext);
-    UIImage *newImg = [UIImage imageWithCGImage:rotatedImageRef];
-    CGImageRelease(rotatedImageRef);
-    CGContextRelease(bmContext);
-    return newImg;
-}
-/// 图片压缩
-- (UIImage*)kj_AccelerateChangeImageSize:(CGSize)size{
-    const size_t width = size.width, height = size.height;
-    const size_t bytesPerRow = width * 4;
-    CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
-#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_6_1
-    int bitmapInfo = kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedLast;
-#else
-    int bitmapInfo = kCGImageAlphaPremultipliedLast;
-#endif
-    CGContextRef bmContext = CGBitmapContextCreate(NULL, width, height, 8, bytesPerRow, space, bitmapInfo);
-    CGColorSpaceRelease(space);
-    if (!bmContext) return nil;
-    CGContextDrawImage(bmContext, CGRectMake(0, 0, width, height), self.CGImage);
-    UInt8 * data = (UInt8*)CGBitmapContextGetData(bmContext);
-    if (!data){
-        CGContextRelease(bmContext);
-        return nil;
-    }
-    CGImageRef imageRef = CGBitmapContextCreateImage(bmContext);
+    CGImageRef imageRef = CGBitmapContextCreateImage(context);
     UIImage *newImage = [UIImage imageWithCGImage:imageRef];
     CGImageRelease(imageRef);
-    CGContextRelease(bmContext);
+    CGContextRelease(context);
     return newImage;
 }
-
 
 #pragma mark - 模糊处理
 - (UIImage*)kj_blurImageSoft{
@@ -228,28 +202,31 @@
     return outputImage;
 }
 #pragma mark - 形态操作
+- (void)kj_common:(int)type src:(vImage_Buffer)src dest:(vImage_Buffer)dest{
+    
+}
 /// 均衡运算
 - (UIImage*)kj_equalizationImage{
     const size_t width = self.size.width;
     const size_t height = self.size.height;
     const size_t bytesPerRow = width * 4;
     CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
-    CGContextRef bmContext = CGBitmapContextCreate(NULL, width, height, 8, bytesPerRow, space, kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedFirst);
+    CGContextRef context = CGBitmapContextCreate(NULL, width, height, 8, bytesPerRow, space, kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedFirst);
     CGColorSpaceRelease(space);
-    if (!bmContext) return nil;
-    CGContextDrawImage(bmContext, CGRectMake(0,0,width,height), self.CGImage);
-    UInt8 * data = (UInt8*)CGBitmapContextGetData(bmContext);
+    if (!context) return nil;
+    CGContextDrawImage(context, CGRectMake(0,0,width,height), self.CGImage);
+    UInt8 * data = (UInt8*)CGBitmapContextGetData(context);
     if (!data){
-        CGContextRelease(bmContext);
-        return nil;
+        CGContextRelease(context);
+        return nil; 
     }
     vImage_Buffer src  = {data, height, width, bytesPerRow};
     vImage_Buffer dest = {data, height, width, bytesPerRow};
     vImageEqualization_ARGB8888(&src, &dest, kvImageNoFlags);
-    CGImageRef destImageRef = CGBitmapContextCreateImage(bmContext);
+    CGImageRef destImageRef = CGBitmapContextCreateImage(context);
     UIImage* destImage = [UIImage imageWithCGImage:destImageRef];
     CGImageRelease(destImageRef);
-    CGContextRelease(bmContext);
+    CGContextRelease(context);
     return destImage;
 }
 /// 侵蚀
@@ -258,14 +235,14 @@
     const size_t height = self.size.height;
     const size_t bytesPerRow = width * 4;
     CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
-    CGContextRef bmContext = CGBitmapContextCreate(NULL, width, height, 8, bytesPerRow, space, kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedFirst);
+    CGContextRef context = CGBitmapContextCreate(NULL, width, height, 8, bytesPerRow, space, kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedFirst);
     CGColorSpaceRelease(space);
-    if (!bmContext) return nil;
+    if (!context) return nil;
     CGRect rect = CGRectMake(0, 0, width, height);
-    CGContextDrawImage(bmContext, rect, self.CGImage);
-    UInt8 * data = (UInt8*)CGBitmapContextGetData(bmContext);
+    CGContextDrawImage(context, rect, self.CGImage);
+    UInt8 * data = (UInt8*)CGBitmapContextGetData(context);
     if (!data){
-        CGContextRelease(bmContext);
+        CGContextRelease(context);
         return nil;
     }
     const size_t n = sizeof(UInt8) * width * height * 4;
@@ -275,45 +252,50 @@
     vImageErode_ARGB8888(&src, &dest, 0, 0, morphological_kernel, 3, 3, kvImageCopyInPlace);
     memcpy(data, outt, n);
     free(outt);
-    CGImageRef erodedImageRef = CGBitmapContextCreateImage(bmContext);
+    CGImageRef erodedImageRef = CGBitmapContextCreateImage(context);
     UIImage* eroded = [UIImage imageWithCGImage:erodedImageRef];
     CGImageRelease(erodedImageRef);
-    CGContextRelease(bmContext);
+    CGContextRelease(context);
     return eroded;
 }
 /// 形态膨胀/扩张
 - (UIImage *)kj_dilateImage{
     const size_t width = self.size.width;
     const size_t height = self.size.height;
-    const size_t bytesPerRow = width * 4;
     CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
-    CGContextRef bmContext = CGBitmapContextCreate(NULL, width, height, 8, bytesPerRow, space, kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedFirst);
+    CGContextRef context = CGBitmapContextCreate(NULL,
+                                                 width,
+                                                 height,
+                                                 8,
+                                                 width * 4,
+                                                 space,
+                                                 kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedFirst);
     CGColorSpaceRelease(space);
-    if (!bmContext) return nil;
+    if (!context) return nil;
     CGRect rect = CGRectMake(0, 0, width, height);
-    CGContextDrawImage(bmContext, rect, self.CGImage);
-    UInt8 * data = (UInt8*)CGBitmapContextGetData(bmContext);
+    CGContextDrawImage(context, rect, self.CGImage);
+    UInt8 * data = (UInt8*)CGBitmapContextGetData(context);
     if (!data){
-        CGContextRelease(bmContext);
+        CGContextRelease(context);
         return nil;
     }
     const size_t n = sizeof(UInt8) * width * height * 4;
     void* outt = malloc(n);
-    vImage_Buffer src  = {data, height, width, bytesPerRow};
-    vImage_Buffer dest = {outt, height, width, bytesPerRow};
+    vImage_Buffer src  = {data, height, width, width * 4};
+    vImage_Buffer dest = {outt, height, width, width * 4};
     vImageDilate_ARGB8888(&src, &dest, 0, 0, morphological_kernel, 3, 3, kvImageCopyInPlace);
     memcpy(data, outt, n);
     free(outt);
-    CGImageRef dilatedImageRef = CGBitmapContextCreateImage(bmContext);
+    CGImageRef dilatedImageRef = CGBitmapContextCreateImage(context);
     UIImage* dilated = [UIImage imageWithCGImage:dilatedImageRef];
     CGImageRelease(dilatedImageRef);
-    CGContextRelease(bmContext);
+    CGContextRelease(context);
     return dilated;
 }
 /// 多倍侵蚀
 - (UIImage *)kj_erodeImageWithIterations:(int)iterations{
     UIImage *dstImage = self;
-    for (int i=0; i<iterations; i++) {
+    for (int i = 0; i<iterations; i++) {
         dstImage = [dstImage kj_erodeImage];
     }
     return dstImage;
@@ -321,7 +303,7 @@
 /// 形态多倍膨胀/扩张
 - (UIImage *)kj_dilateImageWithIterations:(int)iterations{
     UIImage *dstImage = self;
-    for (int i=0; i<iterations; i++) {
+    for (int i = 0; i<iterations; i++) {
         dstImage = [dstImage kj_dilateImage];
     }
     return dstImage;
@@ -345,8 +327,8 @@
     UIImage *dstImage = [eroded kj_imageBlendedWithImage:self blendMode:kCGBlendModeDifference alpha:1.0];
     return dstImage;
 }
-// 混合函数
-- (UIImage*)kj_imageBlendedWithImage:(UIImage *)overlayImage blendMode:(CGBlendMode)blendMode alpha:(CGFloat)alpha {
+// 混合函数，CoreGraphics处理
+- (UIImage*)kj_imageBlendedWithImage:(UIImage*)overlayImage blendMode:(CGBlendMode)blendMode alpha:(CGFloat)alpha{
     UIGraphicsBeginImageContext(self.size);
     [self drawInRect:CGRectMake(0,0,self.size.width,self.size.height)];
     [overlayImage drawAtPoint:CGPointZero blendMode:blendMode alpha:alpha];
@@ -357,23 +339,28 @@
 #pragma mark - 卷积处理
 /// 卷积处理
 - (UIImage*)kj_convolutionImageWithKernel:(int16_t*)kernel{
-    const size_t w = self.size.width;
-    const size_t h = self.size.height;
-    const size_t bytes = w * 4;
+    const size_t width = self.size.width;
+    const size_t height = self.size.height;
     CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
-    CGContextRef context = CGBitmapContextCreate(NULL,w,h,8,bytes,space,kCGBitmapByteOrderDefault|kCGImageAlphaPremultipliedFirst);
+    CGContextRef context = CGBitmapContextCreate(NULL,
+                                                 width,
+                                                 height,
+                                                 8,
+                                                 width * 4,
+                                                 space,
+                                                 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
     CGColorSpaceRelease(space);
     if (!context) return nil;
-    CGContextDrawImage(context, CGRectMake(0, 0, w, h), self.CGImage);
+    CGContextDrawImage(context, CGRectMake(0, 0, width, height), self.CGImage);
     UInt8 * data = (UInt8*)CGBitmapContextGetData(context);
     if (!data){
         CGContextRelease(context);
         return nil;
     }
-    const size_t n = sizeof(UInt8) * w * h * 4;
+    const size_t n = sizeof(UInt8) * width * height * 4;
     void * outt = malloc(n);
-    vImage_Buffer src  = {data, h, w, bytes};
-    vImage_Buffer dest = {outt, h, w, bytes};
+    vImage_Buffer src  = {data, height, width, width * 4};
+    vImage_Buffer dest = {outt, height, width, width * 4};
     vImageConvolve_ARGB8888(&src,&dest,NULL,0,0,kernel,3,3,1,backgroundColorBlack,kvImageCopyInPlace);
     memcpy(data, outt, n);
     free(outt);

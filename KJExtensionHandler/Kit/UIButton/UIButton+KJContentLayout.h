@@ -30,14 +30,11 @@ IB_DESIGNABLE
 /// 图文边界的间距，默认为5px
 @property(nonatomic,assign)IBInspectable CGFloat periphery;
 
-
-//*************************** 暂时保留，兼容旧版 *******************************
-/// 图文样式
-@property(nonatomic,assign) KJButtonContentLayoutStyle kj_ButtonContentLayoutType DEPRECATED_MSG_ATTRIBUTE("Please use layoutType");
-/// 图文间距
-@property(nonatomic,assign) CGFloat kj_Padding DEPRECATED_MSG_ATTRIBUTE("Please use padding");
-/// 图文边界的间距，默认为5px
-@property(nonatomic,assign) CGFloat kj_PaddingInset DEPRECATED_MSG_ATTRIBUTE("Please use periphery");
+#pragma mark - 扩大点击域
+/// 设置按钮额外热区
+@property(nonatomic,assign)UIEdgeInsets touchAreaInsets;
+/// 扩大点击域
+@property(nonatomic,copy,readonly)void(^kEnlargeEdge)(CGFloat top, CGFloat left, CGFloat bottom, CGFloat right);
 
 @end
 

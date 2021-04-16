@@ -19,7 +19,7 @@
     
     CGFloat sp = (kScreenW-4*50)/5;
     
-    UIButton *button = [UIButton kj_createButton:^(id<KJQuickCreateHandle>  _Nonnull handle) {
+    UIButton *button = [UIButton kj_createButton:^(id<KJButtonDelegate>  _Nonnull handle) {
         handle.kj_frame(0, 0, 100, 50).kj_add(self.view);
         handle.kj_text(@"开始").kj_textColor(UIColor.orangeColor);
     }];
@@ -28,7 +28,7 @@
     button.borderWidth = 1;
     button.borderColor = UIColor.orangeColor;
 
-    __block KJSoundView *view = [[KJSoundView alloc]initWithFrame:CGRectMake(sp, kSTATUSBAR_NAVIGATION_HEIGHT+20, 50, 100)];
+    KJSoundView *view = [[KJSoundView alloc]initWithFrame:CGRectMake(sp, kSTATUSBAR_NAVIGATION_HEIGHT+20, 50, 100)];
     view.backgroundColor = [UIColor.orangeColor colorWithAlphaComponent:0.3];
     view.cornerRadius = 10;
     view.borderWidth = 1;
@@ -36,7 +36,7 @@
     view.value = 1000;
     [self.view addSubview:view];
     
-    __block KJSoundView *view2 = [[KJSoundView alloc]initWithFrame:CGRectMake(sp+50+sp, kSTATUSBAR_NAVIGATION_HEIGHT+20, 50, 100)];
+    KJSoundView *view2 = [[KJSoundView alloc]initWithFrame:CGRectMake(sp+50+sp, kSTATUSBAR_NAVIGATION_HEIGHT+20, 50, 100)];
     view2.backgroundColor = [UIColor.orangeColor colorWithAlphaComponent:0.3];
     view2.cornerRadius = 10;
     view2.borderWidth = 1;
@@ -44,7 +44,7 @@
     view2.value = 0;
     [self.view addSubview:view2];
     
-    __block KJSoundView *view3 = [[KJSoundView alloc]initWithFrame:CGRectMake(sp+50+sp+50+sp, kSTATUSBAR_NAVIGATION_HEIGHT+20, 50, 100)];
+    KJSoundView *view3 = [[KJSoundView alloc]initWithFrame:CGRectMake(sp+50+sp+50+sp, kSTATUSBAR_NAVIGATION_HEIGHT+20, 50, 100)];
     view3.backgroundColor = [UIColor.orangeColor colorWithAlphaComponent:0.3];
     view3.cornerRadius = 10;
     view3.borderWidth = 1;
@@ -52,7 +52,7 @@
     view3.value = -10;
     [self.view addSubview:view3];
     
-    __block KJSoundView *view4 = [[KJSoundView alloc]initWithFrame:CGRectMake(sp+50+sp+50+sp+50+sp, kSTATUSBAR_NAVIGATION_HEIGHT+20, 50, 100)];
+    KJSoundView *view4 = [[KJSoundView alloc]initWithFrame:CGRectMake(sp+50+sp+50+sp+50+sp, kSTATUSBAR_NAVIGATION_HEIGHT+20, 50, 100)];
     view4.backgroundColor = [UIColor.orangeColor colorWithAlphaComponent:0.3];
     view4.cornerRadius = 10;
     view4.borderWidth = 1;

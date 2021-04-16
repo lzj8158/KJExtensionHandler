@@ -82,7 +82,7 @@
     };
 }
 /// 归档封装
-- (void)kj_encodeRuntime:(NSCoder*)encoder{
+- (void)kj_runtimeEncode:(NSCoder*)encoder{
     unsigned int count = 0;
     Ivar *ivars = class_copyIvarList([self class], &count);
     for (int i = 0; i<count; i++) {
@@ -94,7 +94,7 @@
     free(ivars);
 }
 /// 解档封装
-- (void)kj_initCoderRuntime:(NSCoder*)decoder{
+- (void)kj_runtimeInitCoder:(NSCoder*)decoder{
     unsigned int count = 0;
     Ivar *ivars = class_copyIvarList([self class], &count);
     for (int i = 0; i<count; i++) {
@@ -186,7 +186,7 @@ void kRuntimeClassMethodSwizzling(Class clazz, SEL original, SEL swizzled){
 
 /// 动态继承，慎用（一旦修改后面使用的都是该子类）
 - (void)kj_dynamicInheritChildClass:(Class)clazz{
-    // 动态继承修改(self)对象的isa指针使其指向子类(clazz)，便可以调用子类的方法
+    // 动态继承修改自身对象的isa指针使其指向子类，便可以调用子类的方法
     object_setClass(self, clazz);
 }
 /// 获取对象类名
@@ -200,6 +200,51 @@ void kRuntimeClassMethodSwizzling(Class clazz, SEL original, SEL swizzled){
         traversal(name, &stop);
         if (stop) return;
     }
+}
+
+/// 偷懒专用，自动生成属性代码
+- (void)kj_autoCreatePropertyCodeWithJson:(id)json{
+    NSDictionary *dict;
+    if ([json isKindOfClass:[NSDictionary class]]) {
+        dict = json;
+    }else if ([json isKindOfClass:[NSString class]]) {
+        NSData *jsonData = [json dataUsingEncoding:NSUTF8StringEncoding];
+        dict = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
+    }
+    NSMutableString *propertyCode = [NSMutableString string];
+    [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL * stop) {
+        NSString *code = nil;
+        if ([obj isKindOfClass:NSClassFromString(@"__NSCFString")]) {
+            code = [NSString stringWithFormat:@"@property (nonatomic,strong) NSString *%@;//%@", key,obj];
+        }else if ([obj isKindOfClass:NSClassFromString(@"__NSCFBoolean")]) {
+            code = [NSString stringWithFormat:@"@property (nonatomic,assign) BOOL %@;//%@", key,obj];
+        }else if ([obj isKindOfClass:NSClassFromString(@"__NSCFNumber")]) {
+            code = [NSString stringWithFormat:@"@property (nonatomic,assign) NSInteger %@;//%@", key,obj];
+        }else if ([obj isKindOfClass:NSClassFromString(@"__NSCFDictionary")]) {
+            code = [NSString stringWithFormat:@"@property (nonatomic,strong) NSDictionary *%@;//%@", key,obj];
+        }else if ([obj isKindOfClass:NSClassFromString(@"__NSCFArray")]) {
+            code = [NSString stringWithFormat:@"@property (nonatomic,strong) NSArray *%@;//%@", key,obj];
+        }
+        [propertyCode appendFormat:@"\n%@", code];
+    }];
+    NSLog(@"%@",propertyCode);
+}
+/// 模型转换，支持二级和关键字替换
++ (__kindof NSObject*)kj_modelTransformJson:(id)json{
+    id model = [[self alloc]init];
+    NSDictionary *dict;
+    if ([json isKindOfClass:[NSDictionary class]]) {
+        dict = json;
+    }else if ([json isKindOfClass:[NSString class]]) {
+        NSData *jsonData = [json dataUsingEncoding:NSUTF8StringEncoding];
+        dict = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:NULL];
+    }else if ([json isKindOfClass:[NSArray class]]) {
+        
+    }else{
+        return model;
+    }
+    //TODO:
+    return model;
 }
 
 @end

@@ -7,6 +7,9 @@
 
 #import "UIScrollView+KJEmptyDataSet.h"
 #import <objc/runtime.h>
+
+#if __has_include(<UIScrollView+EmptyDataSet.h>)
+
 @implementation UIScrollView (KJEmptyDataSet)
 - (BOOL)loading{
     return [objc_getAssociatedObject(self,@selector(loading)) boolValue];
@@ -53,12 +56,10 @@
     objc_setAssociatedObject(self, @selector(descriptionText), descriptionText, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 - (NSAttributedString * _Nullable (^)(UIControlState))kLoadedButton{
-    NSAttributedString * _Nullable (^block)(UIControlState) = objc_getAssociatedObject(self, @selector(kLoadedButton));
+    NSAttributedString * _Nullable (^block)(UIControlState) = objc_getAssociatedObject(self, _cmd);
     if (block == nil) {
         block = ^NSAttributedString * _Nullable (UIControlState state) {
-            NSDictionary *attributes = @{NSFontAttributeName:[UIFont boldSystemFontOfSize:16.0f],
-                                         NSForegroundColorAttributeName:UINavigationBar.appearance.barTintColor};
-            return [[NSAttributedString alloc] initWithString:@"再次刷新" attributes:attributes];
+            return [[NSAttributedString alloc] initWithString:@"再次刷新" attributes:nil];
         };
     }
     return block;
@@ -147,3 +148,4 @@
 }
 
 @end
+#endif
